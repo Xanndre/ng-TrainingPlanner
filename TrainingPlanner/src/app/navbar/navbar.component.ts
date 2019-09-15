@@ -17,6 +17,5 @@ export class NavbarComponent {
   logout() {
     localStorage.removeItem('jwt');
     this.router.navigateByUrl('/login');
-    window.location.reload();
   }
 }
