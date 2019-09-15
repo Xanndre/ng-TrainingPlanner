@@ -1,0 +1,20 @@
+.navbar-custom {
+  background-color: #284277;
+}
+
+.navbar-custom .navbar-brand,
+.navbar-custom .navbar-text {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.navbar-custom .navbar-nav .nav-link {
+  color: rgba(255, 255, 255, 0.5);
+}
+.navbar-custom .nav-item.active .nav-link,
+.navbar-custom .nav-item:hover .nav-link {
+  color: #ffffff;
+}
+
+button[type='submit']:hover {
+  color: #284277;
+}
