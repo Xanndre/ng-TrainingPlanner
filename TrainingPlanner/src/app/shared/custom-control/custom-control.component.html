@@ -1,0 +1,50 @@
+<div [formGroup]="customControl.formGroup">
+  <ng-template [ngIf]="customControl.controlType == 'input'">
+    <label [for]="customControl.formControlName" class="my-label text-muted">{{
+      customControl.label
+    }}</label>
+    <input
+      [type]="customControl.type"
+      class="form-control text-muted"
+      [formControlName]="customControl.formControlName"
+      [placeholder]="customControl.placeholder ? customControl.placeholder : ''"
+      [readOnly]="readonly"
+      [min]="customControl.min"
+      [step]="customControl.step"
+      [ngClass]="customControl.class"
+    />
+    <app-custom-error
+      [customControl]="
+        customControl.formGroup.get(customControl.formControlName)
+      "
+    ></app-custom-error>
+  </ng-template>
+
+  <ng-template [ngIf]="customControl.controlType == 'checkbox'">
+    <input
+      type="checkbox"
+      class="form-check-input"
+      [formControlName]="customControl.formControlName"
+    />
+    <label
+      class="form-check-label text-muted"
+      [for]="customControl.formControlName"
+      >{{ customControl.label }}</label
+    >
+  </ng-template>
+
+  <ng-template [ngIf]="customControl.controlType == 'textarea'">
+    <label
+      [for]="customControl.formControlName"
+      class="my-label text-muted mt-4"
+      >{{ customControl.label }}</label
+    >
+    <textarea
+      [formControlName]="customControl.formControlName"
+      [placeholder]="customControl.placeholder ? customControl.placeholder : ''"
+      class="form-control text-muted"
+      [ngClass]="customControl.class"
+      [rows]="customControl.rows"
+    ></textarea>
+  </ng-template>
+</div>

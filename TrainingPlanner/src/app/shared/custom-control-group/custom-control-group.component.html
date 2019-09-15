@@ -1,0 +1,13 @@
+<h4 class="text-muted" *ngIf="customControlGroup.title">
+  {{ customControlGroup.title }}
+</h4>
+<div [className]="customControlGroup.class ? customControlGroup.class : ''">
+  <app-custom-control
+    *ngFor="let control of customControlGroup.controls"
+    [customControl]="control"
+    [ngClass]="control.class ? control.class : ''"
+    [categories]="categories"
+    [readonly]="readonly"
+  >
+  </app-custom-control>
+</div>

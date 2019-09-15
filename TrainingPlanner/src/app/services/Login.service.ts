@@ -1,11 +1,11 @@
-import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { JwtHelperService } from "@auth0/angular-jwt";
-import { RegisterData } from "../models/RegisterData";
-import { LoginData } from "../models/LoginData";
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { RegisterData } from '../models/RegisterData';
+import { LoginData } from '../models/LoginData';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class LoginService {
   constructor(
@@ -14,7 +14,7 @@ export class LoginService {
   ) {}
 
   isUserAuthenticated() {
-    const token = localStorage.getItem("jwt");
+    const token = localStorage.getItem('jwt');
     if (token && !this.jwtHelper.isTokenExpired(token)) {
       return true;
     } else {
@@ -24,11 +24,11 @@ export class LoginService {
 
   register(registerData: RegisterData) {
     return this.client.post(
-      "https://localhost:44383/api/Account/Register",
+      'https://localhost:44383/api/Account/Register',
       registerData,
       {
         headers: new HttpHeaders({
-          "Content-Type": "application/json"
+          'Content-Type': 'application/json'
         })
       }
     );
@@ -36,11 +36,11 @@ export class LoginService {
 
   login(loginData: LoginData) {
     return this.client.post(
-      "https://localhost:44383/api/Account/Login",
+      'https://localhost:44383/api/Account/Login',
       loginData,
       {
         headers: new HttpHeaders({
-          "Content-Type": "application/json"
+          'Content-Type': 'application/json'
         })
       }
     );
