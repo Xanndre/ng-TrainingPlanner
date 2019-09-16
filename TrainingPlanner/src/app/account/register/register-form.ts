@@ -27,20 +27,4 @@ export class RegisterForm {
       ]
     });
   }
-
-  get firstName() {
-    return this.registerForm.get('firstName') as FormArray;
-  }
-
-  get lastName() {
-    return this.registerForm.get('lastName') as FormArray;
-  }
-
-  get password() {
-    return this.registerForm.get('password') as FormArray;
-  }
-
-  get email() {
-    return this.registerForm.get('email') as FormArray;
-  }
 }

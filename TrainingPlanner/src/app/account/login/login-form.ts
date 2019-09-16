@@ -9,12 +9,4 @@ export class LoginForm {
       password: [null, Validators.required]
     });
   }
-
-  get email() {
-    return this.loginForm.get('email') as FormArray;
-  }
-
-  get password() {
-    return this.loginForm.get('password') as FormArray;
-  }
 }
