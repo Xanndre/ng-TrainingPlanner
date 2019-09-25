@@ -9,6 +9,12 @@ import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserComponent } from './user/user.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 
 export function getToken(): string {
   return localStorage.getItem('token');
@@ -28,9 +34,15 @@ export function getToken(): string {
       config: {
         tokenGetter: getToken
       }
-    })
+    }),
+    BrowserAnimationsModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
+    MatInputModule,
+    MatSelectModule
   ],
   providers: [JwtHelperService],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

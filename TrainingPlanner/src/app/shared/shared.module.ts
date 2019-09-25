@@ -18,4 +18,4 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CustomControlGroupComponent
   ]
 })
-export class SharedModule {}
+export class SharedModule { }

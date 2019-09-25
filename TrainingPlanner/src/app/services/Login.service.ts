@@ -11,7 +11,7 @@ export class LoginService {
   constructor(
     private jwtHelper: JwtHelperService,
     private client: HttpClient
-  ) {}
+  ) { }
 
   isUserAuthenticated() {
     const token = localStorage.getItem('jwt');
@@ -24,7 +24,7 @@ export class LoginService {
 
   register(registerData: RegisterData) {
     return this.client.post(
-      'https://localhost:44383/api/Account/Register',
+      'http://localhost:65258/api/Account/Register',
       registerData,
       {
         headers: new HttpHeaders({
@@ -36,7 +36,7 @@ export class LoginService {
 
   login(loginData: LoginData) {
     return this.client.post(
-      'https://localhost:44383/api/Account/Login',
+      'http://localhost:65258/api/Account/Login',
       loginData,
       {
         headers: new HttpHeaders({
