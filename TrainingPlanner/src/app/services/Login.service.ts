@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { RegisterData } from '../models/RegisterData';
 import { LoginData } from '../models/LoginData';
+import { ExternalLogin } from '../models/ExternalLogin';
 
 @Injectable({
   providedIn: 'root'
@@ -38,6 +39,18 @@ export class LoginService {
     return this.client.post(
       'http://localhost:65258/api/Account/Login',
       loginData,
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json'
+        })
+      }
+    );
+  }
+
+  externalLogin(login: ExternalLogin) {
+    return this.client.post(
+      'http://localhost:65258/api/Account/Login/External',
+      login,
       {
         headers: new HttpHeaders({
           'Content-Type': 'application/json'
