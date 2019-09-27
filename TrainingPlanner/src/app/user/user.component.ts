@@ -53,6 +53,8 @@ export class UserComponent implements OnInit {
     this.user.email = this.userForm.userForm.value.email;
     this.user.firstName = this.userForm.userForm.value.firstName;
     this.user.lastName = this.userForm.userForm.value.lastName;
+    const date = new Date(this.user.birthDate);
+    this.user.birthDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
   }
 
   cancel() {

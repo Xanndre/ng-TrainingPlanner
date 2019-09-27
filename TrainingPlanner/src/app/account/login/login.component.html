@@ -10,6 +10,7 @@
         class="btn btn-success btn-block my-4"
         type="submit"
         [disabled]="!loginForm.loginForm.valid"
+        (click)="signIn()"
       >
         Sign in
       </button>
