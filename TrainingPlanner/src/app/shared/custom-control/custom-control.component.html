@@ -3,21 +3,27 @@
     <label [for]="customControl.formControlName" class="my-label text-muted">{{
       customControl.label
     }}</label>
-    <input
-      [type]="customControl.type"
-      class="form-control text-muted"
-      [formControlName]="customControl.formControlName"
-      [placeholder]="customControl.placeholder ? customControl.placeholder : ''"
-      [readOnly]="readonly"
-      [min]="customControl.min"
-      [step]="customControl.step"
-      [ngClass]="customControl.class"
-    />
-    <app-custom-error
-      [customControl]="
-        customControl.formGroup.get(customControl.formControlName)
-      "
-    ></app-custom-error>
+    <form class="example-form"></form>
+    <mat-form-field class="full-width">
+      <input
+        matInput
+        [type]="customControl.type"
+        [formControlName]="customControl.formControlName"
+        [placeholder]="
+          customControl.placeholder ? customControl.placeholder : ''
+        "
+        [min]="customControl.min"
+        [step]="customControl.step"
+        [ngClass]="customControl.class"
+      />
+      <mat-error>
+        <app-custom-error
+          [customControl]="
+            customControl.formGroup.get(customControl.formControlName)
+          "
+        ></app-custom-error>
+      </mat-error>
+    </mat-form-field>
   </ng-template>
 
   <ng-template [ngIf]="customControl.controlType == 'checkbox'">

@@ -6,7 +6,7 @@ export class CustomControl {
   type?: string;
   formControlName: string;
   placeholder?: string;
-  readonly?: boolean;
+  disabled?: boolean;
   rows?: number;
   min?: number;
   step?: number;

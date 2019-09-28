@@ -13,32 +13,28 @@ export class RegisterControls {
             controlType: 'input',
             type: 'text',
             formControlName: 'firstName',
-            placeholder: 'First name',
-            class: 'mt-4'
+            placeholder: 'First name'
           },
           {
             formGroup: form.registerForm,
             controlType: 'input',
             type: 'text',
             formControlName: 'lastName',
-            placeholder: 'Last name',
-            class: 'mt-4'
+            placeholder: 'Last name'
           },
           {
             formGroup: form.registerForm,
             controlType: 'input',
             type: 'email',
             formControlName: 'email',
-            placeholder: 'Email',
-            class: 'mt-4'
+            placeholder: 'Email'
           },
           {
             formGroup: form.registerForm,
             controlType: 'input',
             type: 'password',
             formControlName: 'password',
-            placeholder: 'Password',
-            class: 'mt-4'
+            placeholder: 'Password'
           }
         ],
         title: 'Create new account'

@@ -8,7 +8,6 @@ import { CustomControl } from './custom-control';
 })
 export class CustomControlComponent {
   @Input() customControl: CustomControl;
-  @Input() readonly: boolean;
 
-  constructor() { }
+  constructor() {}
 }

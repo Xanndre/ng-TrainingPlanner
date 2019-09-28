@@ -1,19 +1,11 @@
-<div class="row" *ngIf="isLoaded">
+<div class="full-width" *ngIf="isLoaded">
   <div class="col-lg-3"></div>
-  <div class="col-lg-6">
+  <div class="col-lg-6 mx-auto">
     <form
       class="text-center p-5"
       [formGroup]="userForm.userForm"
       (ngSubmit)="editUserData()"
     >
-      <input
-        type="file"
-        id="file"
-        accept="image/*"
-        [disabled]="isReadOnly"
-        (change)="changePictureListener($event)"
-      />
-
       <img
         class="tp-image"
         src="{{
@@ -22,23 +14,34 @@
             : 'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png'
         }}"
         alt="Profile Picture"
-      />
+      /><br />
+      <div *ngIf="user.profilePicture == null && isEdited">
+        <input
+          type="file"
+          id="file"
+          accept="image/*"
+          [disabled]="isReadOnly"
+          (change)="changePictureListener($event)"
+        />
+        <label for="file" class="my-btn tp-btn">Add photo</label>
+      </div>
       <button
-        class="btn btn-danger"
+        mat-raised-button
+        color="primary"
+        class="btn-no-shadow btn-block tp-btn"
         *ngIf="user.profilePicture != null && isEdited"
         (click)="user.profilePicture = null"
       >
-        Delete picture
+        Delete photo
       </button>
 
       <app-custom-control-group
         *ngFor="let controlGroup of formControls.controlGroups"
         [customControlGroup]="controlGroup"
-        [readonly]="!isEdited"
       ></app-custom-control-group>
       <div class="row">
-        <div class="col">
-          <mat-form-field>
+        <div class="col tp-col-l">
+          <mat-form-field class="full-width">
             <input
               matInput
               [disabled]="isReadOnly"
@@ -54,8 +57,8 @@
             <mat-datepicker #birthDate startView="multi-year"></mat-datepicker>
           </mat-form-field>
         </div>
-        <div class="col">
-          <mat-form-field>
+        <div class="col tp-col-r">
+          <mat-form-field class="full-width">
             <mat-label>Gender</mat-label>
             <mat-select
               [disabled]="isReadOnly"
@@ -70,8 +73,10 @@
       </div>
 
       <button
+        mat-raised-button
         *ngIf="!isEdited"
-        class="btn btn-success btn-block my-4"
+        class="btn-block my-4 btn-no-shadow"
+        color="primary"
         type="submit"
       >
         Edit
@@ -79,7 +84,9 @@
       <div *ngIf="isEdited" class="row">
         <div class="col">
           <button
-            class="btn btn-success btn-block my-4"
+            mat-raised-button
+            class="btn-block my-4 btn-no-shadow"
+            color="primary"
             type="submit"
             [disabled]="!userForm.userForm.valid"
             (click)="saveUserData()"
@@ -89,7 +96,8 @@
         </div>
         <div class="col">
           <button
-            class="btn btn-secondary btn-block my-4"
+            mat-raised-button
+            class="btn-cancel btn-block my-4 btn-no-shadow"
             type="submit"
             (click)="cancel()"
           >

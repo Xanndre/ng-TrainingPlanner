@@ -1,5 +1,5 @@
 import { UserForm } from './user-form';
-import { CustomControlGroup } from '../shared/custom-control-group/custom-control-group';
+import { CustomControlGroup } from 'src/app/shared/custom-control-group/custom-control-group';
 
 export class UserControls {
   controlGroups: CustomControlGroup[];
@@ -14,8 +14,7 @@ export class UserControls {
             type: 'text',
             formControlName: 'firstName',
             placeholder: 'First name',
-            class: 'col mt-2',
-            label: 'First name'
+            class: 'col mt-2'
           },
           {
             formGroup: form.userForm,
@@ -23,11 +22,10 @@ export class UserControls {
             type: 'text',
             formControlName: 'lastName',
             placeholder: 'Last name',
-            class: 'col mt-2',
-            label: 'Last name'
+            class: 'col mt-2'
           }
         ],
-        class: 'form-row mb-4'
+        class: 'form-row my-4'
       },
       {
         controls: [
@@ -37,7 +35,6 @@ export class UserControls {
             type: 'email',
             formControlName: 'email',
             placeholder: 'Email',
-            label: 'Email',
             class: 'col mt-2'
           },
           {
@@ -46,7 +43,6 @@ export class UserControls {
             type: 'text',
             formControlName: 'city',
             placeholder: 'Miasto',
-            label: 'Miasto',
             class: 'col mt-2'
           }
         ],

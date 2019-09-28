@@ -14,7 +14,3 @@
 .navbar-custom .nav-item:hover .nav-link {
   color: #ffffff;
 }
-
-button[type='submit']:hover {
-  color: #284277;
-}

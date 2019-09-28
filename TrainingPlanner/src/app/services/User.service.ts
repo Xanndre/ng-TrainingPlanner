@@ -8,8 +8,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
-
-  constructor(private client: HttpClient) { }
+  constructor(private client: HttpClient) {}
 
   getUser(userId: string) {
     const options = {
@@ -18,7 +17,7 @@ export class UserService {
       })
     };
     return this.client
-      .get(`http://localhost:65258/api/User/${userId}`, options)
+      .get(`https://localhost:44383/api/User/${userId}`, options)
       .pipe(
         map((res: User) => {
           return res;
@@ -32,13 +31,11 @@ export class UserService {
         Authorization: 'Bearer ' + localStorage.getItem('jwt')
       })
     };
-    return this.client
-      .get('http://localhost:65258/api/User', options)
-      .pipe(
-        map((res: User[]) => {
-          return res;
-        })
-      );
+    return this.client.get('https://localhost:44383/api/User', options).pipe(
+      map((res: User[]) => {
+        return res;
+      })
+    );
   }
 
   updateUser(user: User) {
@@ -50,13 +47,11 @@ export class UserService {
     };
     console.log(user);
     return this.client
-      .put('http://localhost:65258/api/User', user, options)
+      .put('https://localhost:44383/api/User', user, options)
       .pipe(
         map((res: User) => {
           return res;
         })
       );
   }
-
-
 }

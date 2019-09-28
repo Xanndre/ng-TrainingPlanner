@@ -13,16 +13,14 @@ export class LoginControls {
             controlType: 'input',
             type: 'email',
             formControlName: 'email',
-            placeholder: 'Email',
-            class: 'mt-4'
+            placeholder: 'Email'
           },
           {
             formGroup: form.loginForm,
             controlType: 'input',
             type: 'password',
             formControlName: 'password',
-            placeholder: 'Password',
-            class: 'mt-4'
+            placeholder: 'Password'
           }
         ],
         title: 'Sign in'

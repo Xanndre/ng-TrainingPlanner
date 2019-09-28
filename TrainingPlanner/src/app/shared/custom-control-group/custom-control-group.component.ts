@@ -8,7 +8,6 @@ import { CustomControlGroup } from './custom-control-group';
 })
 export class CustomControlGroupComponent {
   @Input() customControlGroup: CustomControlGroup;
-  @Input() readonly: boolean;
 
   constructor() {}
 }

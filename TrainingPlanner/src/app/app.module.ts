@@ -7,42 +7,30 @@ import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 import { AccountModule } from './account/account.module';
 import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { UserComponent } from './user/user.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatNativeDateModule } from '@angular/material/core';
-import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';
+import { UserModule } from './user/user.module';
 
 export function getToken(): string {
   return localStorage.getItem('token');
 }
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, UserComponent],
+  declarations: [AppComponent, NavbarComponent],
   imports: [
     BrowserModule,
     AccountModule,
     SharedModule,
+    UserModule,
     AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
     HttpClientModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: getToken
       }
     }),
-    BrowserAnimationsModule,
-    MatDatepickerModule,
-    MatFormFieldModule,
-    MatNativeDateModule,
-    MatInputModule,
-    MatSelectModule
+    BrowserAnimationsModule
   ],
   providers: [JwtHelperService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

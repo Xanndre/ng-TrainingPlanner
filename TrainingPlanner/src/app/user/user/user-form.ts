@@ -1,5 +1,5 @@
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { User } from '../models/User';
+import { User } from 'src/app/models/User';
 
 export class UserForm {
   userForm: FormGroup;

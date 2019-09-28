@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../models/User';
+import { User } from '../../models/User';
 import { UserForm } from './user-form';
 import { UserControls } from './user-controls';
-import { UserService } from '../services/User.service';
+import { UserService } from '../../services/User.service';
 import { FormBuilder } from '@angular/forms';
 
 @Component({
@@ -11,7 +11,6 @@ import { FormBuilder } from '@angular/forms';
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
-
   user: User;
   beforeChanges: User;
   userId: string;
@@ -22,11 +21,10 @@ export class UserComponent implements OnInit {
   userForm: UserForm = new UserForm();
   formControls: UserControls = new UserControls();
 
-
   constructor(
     private userService: UserService,
     private formBuilder: FormBuilder
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.userId = localStorage.getItem('userId');
@@ -39,6 +37,7 @@ export class UserComponent implements OnInit {
 
       this.userForm.buildForm(this.formBuilder, this.user);
       this.formControls.initializeControls(this.userForm);
+      this.userForm.userForm.disable();
     });
   }
 
@@ -46,6 +45,7 @@ export class UserComponent implements OnInit {
     this.isReadOnly = false;
     this.isEdited = true;
     this.setEditedData();
+    this.userForm.userForm.enable();
   }
 
   setEditedData() {
@@ -54,7 +54,11 @@ export class UserComponent implements OnInit {
     this.user.firstName = this.userForm.userForm.value.firstName;
     this.user.lastName = this.userForm.userForm.value.lastName;
     const date = new Date(this.user.birthDate);
-    this.user.birthDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    this.user.birthDate = new Date(
+      date.getFullYear(),
+      date.getMonth(),
+      date.getDate()
+    );
   }
 
   cancel() {
@@ -65,13 +69,14 @@ export class UserComponent implements OnInit {
     this.userForm.userForm.markAsPristine();
     this.userForm.userForm.markAsUntouched();
     this.userForm.userForm.updateValueAndValidity();
+    this.userForm.userForm.disable();
   }
 
   saveUserData() {
     this.isEdited = false;
     this.isReadOnly = true;
     this.setEditedData();
-    this.userService.updateUser(this.user).subscribe(() => { });
+    this.userService.updateUser(this.user).subscribe(() => {});
     this.beforeChanges = JSON.parse(JSON.stringify(this.user));
   }
 
@@ -99,5 +104,4 @@ export class UserComponent implements OnInit {
 
     this.isPictureLoaded = true;
   }
-
 }
