@@ -1,46 +1,48 @@
 <div class="row">
   <div class="col-lg-4 mx-auto">
-    <form class="text-center p-5" [formGroup]="loginForm.loginForm">
-      <app-custom-control-group
-        *ngFor="let controlGroup of formControls.controlGroups"
-        [customControlGroup]="controlGroup"
-      ></app-custom-control-group>
+    <mat-card class="my-4">
+      <form class="text-center p-5" [formGroup]="loginForm.loginForm">
+        <app-custom-control-group
+          *ngFor="let controlGroup of formControls.controlGroups"
+          [customControlGroup]="controlGroup"
+        ></app-custom-control-group>
 
-      <button
-        mat-raised-button
-        color="primary"
-        class="btn-block my-4 btn-no-shadow"
-        type="submit"
-        [disabled]="!loginForm.loginForm.valid"
-        (click)="signIn()"
-      >
-        Sign in
-      </button>
-      <div class="text-muted">or</div>
-      <button
-        mat-raised-button
-        color="accent"
-        class="btn-block mt-4 mb-2 btn-no-shadow"
-        (click)="signInWithFb()"
-      >
-        Sign in with Facebook
-      </button>
-      <button
-        mat-raised-button
-        color="warn"
-        class="btn-block mb-4 btn-no-shadow"
-        (click)="signInWithGoogle()"
-      >
-        Sign in with Google
-      </button>
-      <div *ngIf="invalidLogin" class="alert alert-danger">
-        Invalid login attempt.
-      </div>
+        <button
+          mat-raised-button
+          color="primary"
+          class="btn-block my-4 btn-no-shadow"
+          type="submit"
+          [disabled]="!loginForm.loginForm.valid"
+          (click)="signIn()"
+        >
+          Sign in
+        </button>
+        <div class="text-muted">or</div>
+        <button
+          mat-raised-button
+          color="accent"
+          class="btn-block mt-4 mb-2 btn-no-shadow"
+          (click)="signInWithFb()"
+        >
+          Sign in with Facebook
+        </button>
+        <button
+          mat-raised-button
+          color="warn"
+          class="btn-block mb-4 btn-no-shadow"
+          (click)="signInWithGoogle()"
+        >
+          Sign in with Google
+        </button>
+        <div *ngIf="invalidLogin" class="alert alert-danger">
+          Invalid login attempt.
+        </div>
 
-      <p>
-        Not a member?
-        <a routerLink="/register">Register</a>
-      </p>
-    </form>
+        <p>
+          Not a member?
+          <a routerLink="/register">Register</a>
+        </p>
+      </form>
+    </mat-card>
   </div>
 </div>

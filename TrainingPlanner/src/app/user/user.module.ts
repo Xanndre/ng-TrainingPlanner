@@ -9,6 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule, MatCard } from '@angular/material/card';
 
 @NgModule({
   declarations: [UserComponent],
@@ -22,7 +23,8 @@ import { MatButtonModule } from '@angular/material/button';
     MatNativeDateModule,
     MatInputModule,
     MatSelectModule,
-    MatButtonModule
+    MatButtonModule,
+    MatCardModule
   ],
   exports: [UserComponent]
 })

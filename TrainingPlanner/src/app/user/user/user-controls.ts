@@ -42,7 +42,7 @@ export class UserControls {
             controlType: 'input',
             type: 'text',
             formControlName: 'city',
-            placeholder: 'Miasto',
+            placeholder: 'Location',
             class: 'col mt-2'
           }
         ],

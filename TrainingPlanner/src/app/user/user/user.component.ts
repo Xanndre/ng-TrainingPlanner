@@ -78,6 +78,7 @@ export class UserComponent implements OnInit {
     this.setEditedData();
     this.userService.updateUser(this.user).subscribe(() => {});
     this.beforeChanges = JSON.parse(JSON.stringify(this.user));
+    this.userForm.userForm.disable();
   }
 
   setUserData() {

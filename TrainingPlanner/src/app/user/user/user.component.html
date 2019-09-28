@@ -1,111 +1,116 @@
 <div class="full-width" *ngIf="isLoaded">
   <div class="col-lg-3"></div>
   <div class="col-lg-6 mx-auto">
-    <form
-      class="text-center p-5"
-      [formGroup]="userForm.userForm"
-      (ngSubmit)="editUserData()"
-    >
-      <img
-        class="tp-image"
-        src="{{
-          user.profilePicture != null
-            ? user.profilePicture
-            : 'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png'
-        }}"
-        alt="Profile Picture"
-      /><br />
-      <div *ngIf="user.profilePicture == null && isEdited">
-        <input
-          type="file"
-          id="file"
-          accept="image/*"
-          [disabled]="isReadOnly"
-          (change)="changePictureListener($event)"
-        />
-        <label for="file" class="my-btn tp-btn">Add photo</label>
-      </div>
-      <button
-        mat-raised-button
-        color="primary"
-        class="btn-no-shadow btn-block tp-btn"
-        *ngIf="user.profilePicture != null && isEdited"
-        (click)="user.profilePicture = null"
+    <mat-card class="my-4">
+      <form
+        class="text-center p-5"
+        [formGroup]="userForm.userForm"
+        (ngSubmit)="editUserData()"
       >
-        Delete photo
-      </button>
-
-      <app-custom-control-group
-        *ngFor="let controlGroup of formControls.controlGroups"
-        [customControlGroup]="controlGroup"
-      ></app-custom-control-group>
-      <div class="row">
-        <div class="col tp-col-l">
-          <mat-form-field class="full-width">
-            <input
-              matInput
-              [disabled]="isReadOnly"
-              [matDatepicker]="birthDate"
-              placeholder="Birth date"
-              [(ngModel)]="user.birthDate"
-              [ngModelOptions]="{ standalone: true }"
-            />
-            <mat-datepicker-toggle
-              matSuffix
-              [for]="birthDate"
-            ></mat-datepicker-toggle>
-            <mat-datepicker #birthDate startView="multi-year"></mat-datepicker>
-          </mat-form-field>
+        <img
+          class="tp-image"
+          src="{{
+            user.profilePicture != null
+              ? user.profilePicture
+              : 'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png'
+          }}"
+          alt="Profile Picture"
+        /><br />
+        <div *ngIf="user.profilePicture == null && isEdited">
+          <input
+            type="file"
+            id="file"
+            accept="image/*"
+            [disabled]="isReadOnly"
+            (change)="changePictureListener($event)"
+          />
+          <label for="file" class="my-btn tp-btn">Add photo</label>
         </div>
-        <div class="col tp-col-r">
-          <mat-form-field class="full-width">
-            <mat-label>Gender</mat-label>
-            <mat-select
-              [disabled]="isReadOnly"
-              [(ngModel)]="user.gender"
-              [ngModelOptions]="{ standalone: true }"
+        <button
+          mat-raised-button
+          color="primary"
+          class="btn-no-shadow btn-block tp-btn"
+          *ngIf="user.profilePicture != null && isEdited"
+          (click)="user.profilePicture = null"
+        >
+          Delete photo
+        </button>
+
+        <app-custom-control-group
+          *ngFor="let controlGroup of formControls.controlGroups"
+          [customControlGroup]="controlGroup"
+        ></app-custom-control-group>
+        <div class="row">
+          <div class="col tp-col-l">
+            <mat-form-field class="full-width">
+              <input
+                matInput
+                [disabled]="isReadOnly"
+                [matDatepicker]="birthDate"
+                placeholder="Birth date"
+                [(ngModel)]="user.birthDate"
+                [ngModelOptions]="{ standalone: true }"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="birthDate"
+              ></mat-datepicker-toggle>
+              <mat-datepicker
+                #birthDate
+                startView="multi-year"
+              ></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="col tp-col-r">
+            <mat-form-field class="full-width">
+              <mat-label>Gender</mat-label>
+              <mat-select
+                [disabled]="isReadOnly"
+                [(ngModel)]="user.gender"
+                [ngModelOptions]="{ standalone: true }"
+              >
+                <mat-option value="Female">Female</mat-option>
+                <mat-option value="Male">Male</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <button
+          mat-raised-button
+          *ngIf="!isEdited"
+          class="btn-block mt-4 btn-no-shadow"
+          color="primary"
+          type="submit"
+        >
+          Edit
+        </button>
+        <div *ngIf="isEdited" class="row">
+          <div class="col">
+            <button
+              mat-raised-button
+              class="btn-block my-4 btn-no-shadow"
+              color="primary"
+              type="submit"
+              [disabled]="!userForm.userForm.valid"
+              (click)="saveUserData()"
             >
-              <mat-option value="Female">Female</mat-option>
-              <mat-option value="Male">Male</mat-option>
-            </mat-select>
-          </mat-form-field>
+              Save
+            </button>
+          </div>
+          <div class="col">
+            <button
+              mat-raised-button
+              class="btn-cancel btn-block my-4 btn-no-shadow"
+              type="submit"
+              (click)="cancel()"
+            >
+              Close
+            </button>
+          </div>
         </div>
-      </div>
-
-      <button
-        mat-raised-button
-        *ngIf="!isEdited"
-        class="btn-block my-4 btn-no-shadow"
-        color="primary"
-        type="submit"
-      >
-        Edit
-      </button>
-      <div *ngIf="isEdited" class="row">
-        <div class="col">
-          <button
-            mat-raised-button
-            class="btn-block my-4 btn-no-shadow"
-            color="primary"
-            type="submit"
-            [disabled]="!userForm.userForm.valid"
-            (click)="saveUserData()"
-          >
-            Save
-          </button>
-        </div>
-        <div class="col">
-          <button
-            mat-raised-button
-            class="btn-cancel btn-block my-4 btn-no-shadow"
-            type="submit"
-            (click)="cancel()"
-          >
-            Close
-          </button>
-        </div>
-      </div>
-    </form>
+      </form>
+    </mat-card>
   </div>
   <div class="col-lg-3"></div>
 </div>

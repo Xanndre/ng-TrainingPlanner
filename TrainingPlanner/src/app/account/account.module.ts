@@ -12,6 +12,7 @@ import {
   SocialLoginModule
 } from 'angularx-social-login';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -43,7 +44,8 @@ export function provideConfig() {
     ReactiveFormsModule,
     SharedModule,
     SocialLoginModule,
-    MatButtonModule
+    MatButtonModule,
+    MatCardModule
   ],
   providers: [
     {
