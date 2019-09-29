@@ -13,41 +13,71 @@ export class RegisterControls {
             controlType: 'input',
             type: 'text',
             formControlName: 'firstName',
-            placeholder: 'First name'
+            placeholder: 'First name',
+            class: 'col mt-2'
           },
           {
             formGroup: form.registerForm,
             controlType: 'input',
             type: 'text',
             formControlName: 'lastName',
-            placeholder: 'Last name'
-          },
+            placeholder: 'Last name',
+            class: 'col mt-2'
+          }
+        ],
+        title: 'Create new account',
+        class: 'form-row mb-4'
+      },
+      {
+        controls: [
           {
             formGroup: form.registerForm,
             controlType: 'input',
             type: 'email',
             formControlName: 'email',
-            placeholder: 'Email'
-          },
-          {
-            formGroup: form.registerForm,
-            controlType: 'input',
-            type: 'password',
-            formControlName: 'password',
-            placeholder: 'Password'
+            placeholder: 'Email',
+            class: 'col mt-2'
           },
           {
             formGroup: form.registerForm,
             controlType: 'input',
             type: 'text',
             formControlName: 'city',
-            placeholder: 'Location'
+            placeholder: 'Location',
+            class: 'col mt-2'
+          }
+        ],
+        class: 'form-row mb-4'
+      },
+      {
+        controls: [
+          {
+            formGroup: form.registerForm,
+            controlType: 'input',
+            type: 'password',
+            formControlName: 'password',
+            placeholder: 'Password',
+            class: 'col mt-2'
           },
+          {
+            formGroup: form.registerForm,
+            controlType: 'input',
+            type: 'password',
+            formControlName: 'confirmPassword',
+            placeholder: 'Confirm password',
+            class: 'col mt-2'
+          }
+        ],
+        class: 'form-row mb-4'
+      },
+      {
+        controls: [
           {
             formGroup: form.registerForm,
             controlType: 'datePicker',
             formControlName: 'birthDate',
-            placeholder: 'Birth date'
+            placeholder: 'Birth date',
+            class: 'col mt-2'
           },
           {
             formGroup: form.registerForm,
@@ -55,10 +85,11 @@ export class RegisterControls {
             formControlName: 'gender',
             placeholder: 'Gender',
             label: 'Gender',
-            values: ['Female', 'Male']
+            values: ['Female', 'Male'],
+            class: 'col mt-2'
           }
         ],
-        title: 'Create new account'
+        class: 'form-row mb-4'
       }
     ];
   }
