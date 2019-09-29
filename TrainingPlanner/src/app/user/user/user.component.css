@@ -16,6 +16,11 @@
   padding-right: 15px;
 }
 
+.tp-main-col {
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
 .btn-cancel {
   background-color: #868e96;
   color: white;
