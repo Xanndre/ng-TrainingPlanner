@@ -33,8 +33,18 @@ export class RegisterComponent implements OnInit {
       firstName: this.registerForm.registerForm.value.firstName,
       lastName: this.registerForm.registerForm.value.lastName,
       email: this.registerForm.registerForm.value.email,
-      password: this.registerForm.registerForm.value.password
+      password: this.registerForm.registerForm.value.password,
+      birthDate: this.registerForm.registerForm.value.birthDate,
+      gender: this.registerForm.registerForm.value.gender,
+      city: this.registerForm.registerForm.value.city
     };
+    const date = new Date(this.registerData.birthDate);
+    this.registerData.birthDate = new Date(
+      date.getFullYear(),
+      date.getMonth(),
+      date.getDate()
+    );
+    console.log(this.registerData);
 
     this.loginService.register(this.registerData).subscribe(
       () => {

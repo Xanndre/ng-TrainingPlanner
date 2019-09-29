@@ -26,19 +26,6 @@
     </mat-form-field>
   </ng-template>
 
-  <ng-template [ngIf]="customControl.controlType == 'checkbox'">
-    <input
-      type="checkbox"
-      class="form-check-input"
-      [formControlName]="customControl.formControlName"
-    />
-    <label
-      class="form-check-label text-muted"
-      [for]="customControl.formControlName"
-      >{{ customControl.label }}</label
-    >
-  </ng-template>
-
   <ng-template [ngIf]="customControl.controlType == 'textarea'">
     <label
       [for]="customControl.formControlName"
@@ -52,5 +39,46 @@
       [ngClass]="customControl.class"
       [rows]="customControl.rows"
     ></textarea>
+  </ng-template>
+  <ng-template [ngIf]="customControl.controlType == 'datePicker'">
+    <mat-form-field class="full-width">
+      <input
+        matInput
+        [matDatepicker]="datePicker"
+        [placeholder]="customControl.placeholder"
+        [formControlName]="customControl.formControlName"
+      />
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="datePicker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #datePicker startView="multi-year"></mat-datepicker>
+      <mat-error>
+        <app-custom-error
+          [customControl]="
+            customControl.formGroup.get(customControl.formControlName)
+          "
+        ></app-custom-error>
+      </mat-error>
+    </mat-form-field>
+  </ng-template>
+  <ng-template [ngIf]="customControl.controlType == 'select'">
+    <mat-form-field class="full-width">
+      <mat-label>{{ customControl.label }}</mat-label>
+      <mat-select [formControlName]="customControl.formControlName">
+        <mat-option
+          *ngFor="let value of customControl.values; let i = index"
+          [value]="value"
+          >{{ customControl.values[i] }}</mat-option
+        >
+      </mat-select>
+      <mat-error>
+        <app-custom-error
+          [customControl]="
+            customControl.formGroup.get(customControl.formControlName)
+          "
+        ></app-custom-error>
+      </mat-error>
+    </mat-form-field>
   </ng-template>
 </div>

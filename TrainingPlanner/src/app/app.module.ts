@@ -9,6 +9,7 @@ import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserModule } from './user/user.module';
+import { MatButtonModule } from '@angular/material/button';
 
 export function getToken(): string {
   return localStorage.getItem('token');
@@ -21,6 +22,7 @@ export function getToken(): string {
     AccountModule,
     SharedModule,
     UserModule,
+    MatButtonModule,
     AppRoutingModule,
     HttpClientModule,
     JwtModule.forRoot({

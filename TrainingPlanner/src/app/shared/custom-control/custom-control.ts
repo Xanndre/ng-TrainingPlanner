@@ -12,4 +12,5 @@ export class CustomControl {
   step?: number;
   label?: string;
   class?: string;
+  values?: string[];
 }

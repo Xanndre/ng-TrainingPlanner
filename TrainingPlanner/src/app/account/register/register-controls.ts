@@ -35,6 +35,27 @@ export class RegisterControls {
             type: 'password',
             formControlName: 'password',
             placeholder: 'Password'
+          },
+          {
+            formGroup: form.registerForm,
+            controlType: 'input',
+            type: 'text',
+            formControlName: 'city',
+            placeholder: 'Location'
+          },
+          {
+            formGroup: form.registerForm,
+            controlType: 'datePicker',
+            formControlName: 'birthDate',
+            placeholder: 'Birth date'
+          },
+          {
+            formGroup: form.registerForm,
+            controlType: 'select',
+            formControlName: 'gender',
+            placeholder: 'Gender',
+            label: 'Gender',
+            values: ['Female', 'Male']
           }
         ],
         title: 'Create new account'

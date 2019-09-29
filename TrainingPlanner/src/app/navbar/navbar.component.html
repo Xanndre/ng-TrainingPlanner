@@ -14,16 +14,21 @@
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <button
+        mat-raised-button
         *ngIf="!isUserAuthenticated()"
-        class="btn btn-outline-light my-2 my-sm-0"
+        class="my-2 my-sm-0 btn-log"
+        color="basic"
+        type="button"
         [routerLink]="['/login']"
       >
         Login
       </button>
       <button
+        mat-raised-button
         *ngIf="isUserAuthenticated()"
-        class="btn btn-outline-light my-2 my-sm-0"
-        type="submit"
+        class="my-2 my-sm-0 btn-log"
+        type="button"
+        color="basic"
         (click)="logout()"
         [routerLink]="['/login']"
       >

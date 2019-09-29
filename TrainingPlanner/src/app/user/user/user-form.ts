@@ -8,14 +8,29 @@ export class UserForm {
     this.userForm = formBuilder.group({
       firstName: [
         user.firstName,
-        [Validators.required, Validators.pattern('[a-zA-Z]*')]
+        [
+          Validators.required,
+          Validators.maxLength(15),
+          Validators.pattern('[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]*')
+        ]
       ],
       lastName: [
         user.lastName,
-        [Validators.required, Validators.pattern('[a-zA-Z]*')]
+        [
+          Validators.required,
+          Validators.maxLength(20),
+          Validators.pattern('[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]*')
+        ]
       ],
-      email: [user.email, [Validators.required, Validators.email]],
-      city: [user.city, Validators.pattern('[a-zA-Z]*')]
+      email: [
+        user.email,
+        [Validators.required, Validators.maxLength(40), Validators.email]
+      ],
+      city: [
+        user.city,
+        Validators.maxLength(25),
+        Validators.pattern('[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ\\s]*')
+      ]
     });
   }
 }

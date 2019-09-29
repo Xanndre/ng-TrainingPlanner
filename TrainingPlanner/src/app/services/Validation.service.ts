@@ -8,14 +8,15 @@ export class ValidationService {
 
   static getValidatorErrorMessage(validatorName: string, validatorValue?: any) {
     const config = {
-      required: 'This field is required',
+      required: 'Please enter a valid value',
       minlength: `Minimum length: ${validatorValue.requiredLength} characters`,
-      email: 'Valid email adress is required',
+      maxlength: `Maximum length: ${validatorValue.requiredLength} characters`,
+      email: 'Please enter a valid value',
       hasNumber: 'Password must contain at least 1 digit',
       hasUpper: 'Password must contain at least 1 uppercase letter',
       hasLower: 'Password must contain at least 1 lowercase letter',
       hasSpecial: 'Password must contain at least 1 special character',
-      pattern: 'Valid pattern is required'
+      pattern: 'Only letters allowed'
     };
 
     return config[validatorName];
