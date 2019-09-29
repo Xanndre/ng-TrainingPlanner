@@ -28,9 +28,13 @@ export class UserForm {
       ],
       city: [
         user.city,
-        Validators.maxLength(25),
-        Validators.pattern('[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ\\s]*')
-      ]
+        [
+          Validators.maxLength(25),
+          Validators.pattern('[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ\\s]*')
+        ]
+      ],
+      birthDate: [user.birthDate, [Validators.required]],
+      gender: [user.gender, Validators.required]
     });
   }
 }

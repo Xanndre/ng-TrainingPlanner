@@ -21,7 +21,6 @@
             type="file"
             id="file"
             accept="image/*"
-            [disabled]="isReadOnly"
             (change)="changePictureListener($event)"
           />
           <label for="file" class="my-btn tp-btn">Add photo</label>
@@ -40,41 +39,6 @@
           *ngFor="let controlGroup of formControls.controlGroups"
           [customControlGroup]="controlGroup"
         ></app-custom-control-group>
-        <div class="row">
-          <div class="col tp-col-l">
-            <mat-form-field class="full-width">
-              <input
-                matInput
-                [disabled]="isReadOnly"
-                [matDatepicker]="birthDate"
-                placeholder="Birth date"
-                [(ngModel)]="user.birthDate"
-                [ngModelOptions]="{ standalone: true }"
-              />
-              <mat-datepicker-toggle
-                matSuffix
-                [for]="birthDate"
-              ></mat-datepicker-toggle>
-              <mat-datepicker
-                #birthDate
-                startView="multi-year"
-              ></mat-datepicker>
-            </mat-form-field>
-          </div>
-          <div class="col tp-col-r">
-            <mat-form-field class="full-width">
-              <mat-label>Gender</mat-label>
-              <mat-select
-                [disabled]="isReadOnly"
-                [(ngModel)]="user.gender"
-                [ngModelOptions]="{ standalone: true }"
-              >
-                <mat-option value="Female">Female</mat-option>
-                <mat-option value="Male">Male</mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-        </div>
 
         <button
           mat-raised-button

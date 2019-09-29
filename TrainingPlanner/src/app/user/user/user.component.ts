@@ -14,7 +14,6 @@ export class UserComponent implements OnInit {
   user: User;
   beforeChanges: User;
   userId: string;
-  isReadOnly = true;
   isLoaded = false;
   isEdited = false;
   isPictureLoaded = false;
@@ -42,7 +41,6 @@ export class UserComponent implements OnInit {
   }
 
   editUserData() {
-    this.isReadOnly = false;
     this.isEdited = true;
     this.setEditedData();
     this.userForm.userForm.enable();
@@ -53,6 +51,8 @@ export class UserComponent implements OnInit {
     this.user.email = this.userForm.userForm.value.email;
     this.user.firstName = this.userForm.userForm.value.firstName;
     this.user.lastName = this.userForm.userForm.value.lastName;
+    this.user.birthDate = this.userForm.userForm.value.birthDate;
+    this.user.gender = this.userForm.userForm.value.gender;
     const date = new Date(this.user.birthDate);
     this.user.birthDate = new Date(
       date.getFullYear(),
@@ -62,7 +62,6 @@ export class UserComponent implements OnInit {
   }
 
   cancel() {
-    this.isReadOnly = true;
     this.isEdited = false;
     this.user = JSON.parse(JSON.stringify(this.beforeChanges));
     this.setUserData();
@@ -74,7 +73,6 @@ export class UserComponent implements OnInit {
 
   saveUserData() {
     this.isEdited = false;
-    this.isReadOnly = true;
     this.setEditedData();
     this.userService.updateUser(this.user).subscribe(() => {});
     this.beforeChanges = JSON.parse(JSON.stringify(this.user));
@@ -86,7 +84,9 @@ export class UserComponent implements OnInit {
       firstName: this.user.firstName,
       lastName: this.user.lastName,
       email: this.user.email,
-      city: this.user.city
+      city: this.user.city,
+      birthDate: this.user.birthDate,
+      gender: this.user.gender
     });
   }
 

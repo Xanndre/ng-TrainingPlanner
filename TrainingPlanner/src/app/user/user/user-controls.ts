@@ -47,6 +47,27 @@ export class UserControls {
           }
         ],
         class: 'form-row mb-4'
+      },
+      {
+        controls: [
+          {
+            formGroup: form.userForm,
+            controlType: 'datePicker',
+            formControlName: 'birthDate',
+            placeholder: 'Birth date',
+            class: 'col mt-2'
+          },
+          {
+            formGroup: form.userForm,
+            controlType: 'select',
+            formControlName: 'gender',
+            placeholder: 'Gender',
+            values: ['Female', 'Male'],
+            label: 'Gender',
+            class: 'col mt-2'
+          }
+        ],
+        class: 'form-row mb-4'
       }
     ];
   }
