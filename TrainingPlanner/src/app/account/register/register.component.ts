@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { RegisterForm } from './register-form';
 import { RegisterControls } from './register-controls';
 import { LoginService } from 'src/app/services/Login.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ErrorDialogComponent } from 'src/app/shared/error-dialog/error-dialog.component';
 
 @Component({
   selector: 'app-register',
@@ -14,14 +16,14 @@ import { LoginService } from 'src/app/services/Login.service';
 export class RegisterComponent implements OnInit {
   registerData: RegisterData;
   registerForm: RegisterForm = new RegisterForm();
-  invalidRegistration: boolean;
   formControls: RegisterControls = new RegisterControls();
 
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
-    private loginService: LoginService
-  ) {}
+    private loginService: LoginService,
+    private dialog: MatDialog
+  ) { }
 
   ngOnInit() {
     this.registerForm.buildForm(this.formBuilder);
@@ -48,12 +50,17 @@ export class RegisterComponent implements OnInit {
 
     this.loginService.register(this.registerData).subscribe(
       () => {
-        this.invalidRegistration = false;
         this.router.navigate(['/login']);
       },
       () => {
-        this.invalidRegistration = true;
+        this.showError('Invalid registration attempt.');
       }
     );
+  }
+
+  showError(error: string): void {
+    this.dialog.open(ErrorDialogComponent, {
+      data: { errorMsg: error }, width: '400px'
+    });
   }
 }

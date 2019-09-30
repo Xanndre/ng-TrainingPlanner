@@ -9,12 +9,16 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
     CustomControlComponent,
     CustomErrorComponent,
-    CustomControlGroupComponent
+    CustomControlGroupComponent,
+    ErrorDialogComponent
   ],
   imports: [
     CommonModule,
@@ -24,12 +28,15 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatDatepickerModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatDialogModule,
+    MatButtonModule
   ],
   exports: [
     CustomControlComponent,
     CustomErrorComponent,
-    CustomControlGroupComponent
+    CustomControlGroupComponent,
+    ErrorDialogComponent
   ]
 })
-export class SharedModule {}
+export class SharedModule { }

@@ -13,6 +13,7 @@ import {
 } from 'angularx-social-login';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { ErrorDialogComponent } from '../shared/error-dialog/error-dialog.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -53,6 +54,7 @@ export function provideConfig() {
       useFactory: provideConfig
     }
   ],
-  exports: [LoginComponent, RegisterComponent]
+  exports: [LoginComponent, RegisterComponent],
+  entryComponents: [ErrorDialogComponent]
 })
-export class AccountModule {}
+export class AccountModule { }

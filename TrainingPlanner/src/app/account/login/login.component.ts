@@ -7,6 +7,8 @@ import { LoginControls } from './login-controls';
 import { LoginService } from 'src/app/services/Login.service';
 import { ExternalLogin } from 'src/app/models/ExternalLogin';
 import { AuthService, FacebookLoginProvider, GoogleLoginProvider, SocialUser } from 'angularx-social-login';
+import { MatDialog } from '@angular/material/dialog';
+import { ErrorDialogComponent } from 'src/app/shared/error-dialog/error-dialog.component';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +16,6 @@ import { AuthService, FacebookLoginProvider, GoogleLoginProvider, SocialUser } f
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  invalidLogin: boolean;
   login: LoginData;
   externalLogin: ExternalLogin;
   loginForm: LoginForm = new LoginForm();
@@ -24,7 +25,8 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private formBuilder: FormBuilder,
     private loginService: LoginService,
-    private authService: AuthService
+    private authService: AuthService,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -43,13 +45,18 @@ export class LoginComponent implements OnInit {
         const res = response as any;
         localStorage.setItem('jwt', res.token);
         localStorage.setItem('userId', res.id);
-        this.invalidLogin = false;
         this.router.navigate(['/user']);
       },
       () => {
-        this.invalidLogin = true;
+        this.showError('Invalid login attempt.');
       }
     );
+  }
+
+  showError(error: string): void {
+    this.dialog.open(ErrorDialogComponent, {
+      data: { errorMsg: error }, width: '400px'
+    });
   }
 
   signInWithFb() {
@@ -79,11 +86,10 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('jwt', response.token);
         localStorage.setItem('userId', response.id);
         localStorage.setItem('username', response.username);
-        this.invalidLogin = false;
         this.router.navigate(['/user']);
       },
       () => {
-        this.invalidLogin = true;
+        this.showError('Invalid login attempt.');
       }
     );
   }
