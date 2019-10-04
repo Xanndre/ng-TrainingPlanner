@@ -1,8 +1,5 @@
 <div [formGroup]="customControl.formGroup">
   <ng-template [ngIf]="customControl.controlType == 'input'">
-    <label [for]="customControl.formControlName" class="my-label text-muted">{{
-      customControl.label
-    }}</label>
     <form class="example-form"></form>
     <mat-form-field class="full-width">
       <input
@@ -28,18 +25,25 @@
   </ng-template>
 
   <ng-template [ngIf]="customControl.controlType == 'textarea'">
-    <label
-      [for]="customControl.formControlName"
-      class="my-label text-muted mt-4"
-      >{{ customControl.label }}</label
-    >
-    <textarea
-      [formControlName]="customControl.formControlName"
-      [placeholder]="customControl.placeholder ? customControl.placeholder : ''"
-      class="form-control text-muted"
-      [ngClass]="customControl.class"
-      [rows]="customControl.rows"
-    ></textarea>
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>{{ customControl.label }}</mat-label>
+      <textarea
+        matInput
+        [formControlName]="customControl.formControlName"
+        [placeholder]="
+          customControl.placeholder ? customControl.placeholder : ''
+        "
+        class="text-muted tp-textarea"
+        [ngClass]="customControl.class"
+        [rows]="customControl.rows"
+      ></textarea>
+      <mat-error>
+        <app-custom-error
+          [customControl]="
+            customControl.formGroup.get(customControl.formControlName)
+          "
+        ></app-custom-error> </mat-error
+    ></mat-form-field>
   </ng-template>
   <ng-template [ngIf]="customControl.controlType == 'datePicker'">
     <mat-form-field class="full-width">
@@ -66,8 +70,12 @@
   <ng-template [ngIf]="customControl.controlType == 'select'">
     <mat-form-field class="full-width">
       <mat-label>{{ customControl.label }}</mat-label>
-      <mat-select [formControlName]="customControl.formControlName">
+      <mat-select
+        [formControlName]="customControl.formControlName"
+        [multiple]="customControl.multiple"
+      >
         <mat-option
+          class="text-muted"
           *ngFor="let value of customControl.values; let i = index"
           [value]="value"
           >{{ customControl.values[i] }}</mat-option

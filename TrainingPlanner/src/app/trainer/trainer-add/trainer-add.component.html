@@ -1,5 +1,23 @@
 <div class="row full-width">
   <div class="col-lg-6 mx-auto">
-    <mat-card class="my-4">DODAJ KONTO TRENERA</mat-card>
+    <mat-card class="my-4">
+      <form class="text-center p-5" [formGroup]="trainerForm.trainerForm">
+        <app-custom-control-group
+          *ngFor="let controlGroup of formControls.controlGroups"
+          [customControlGroup]="controlGroup"
+        ></app-custom-control-group>
+
+        <button
+          mat-raised-button
+          color="primary"
+          class="btn-block my-4 btn-no-shadow"
+          type="submit"
+          [disabled]="!trainerForm.trainerForm.valid"
+          (click)="createTrainerAccount()"
+        >
+          Create
+        </button>
+      </form>
+    </mat-card>
   </div>
 </div>

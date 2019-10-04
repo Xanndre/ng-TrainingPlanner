@@ -13,4 +13,5 @@ export class CustomControl {
   label?: string;
   class?: string;
   values?: string[];
+  multiple?: boolean;
 }
