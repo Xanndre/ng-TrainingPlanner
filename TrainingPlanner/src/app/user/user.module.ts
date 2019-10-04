@@ -10,6 +10,21 @@ import { MatSelectModule } from '@angular/material/select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { Routes, RouterModule } from '@angular/router';
+import { AuthGuardService } from '../guards/AuthGuard.service';
+
+const routes: Routes = [
+  {
+    path: 'user',
+    component: UserComponent,
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: '',
+    redirectTo: 'user',
+    pathMatch: 'full'
+  }
+];
 
 @NgModule({
   declarations: [UserComponent],
@@ -18,6 +33,7 @@ import { MatCardModule } from '@angular/material/card';
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
+    RouterModule.forChild(routes),
     MatDatepickerModule,
     MatFormFieldModule,
     MatNativeDateModule,

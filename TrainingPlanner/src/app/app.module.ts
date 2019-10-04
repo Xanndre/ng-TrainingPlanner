@@ -9,6 +9,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserModule } from './user/user.module';
 import { NavbarModule } from './navbar/navbar.module';
+import { TrainerModule } from './trainer/trainer.module';
+import { ClubModule } from './club/club.module';
 
 export function getToken(): string {
   return localStorage.getItem('token');
@@ -19,8 +21,10 @@ export function getToken(): string {
   imports: [
     BrowserModule,
     AccountModule,
+    ClubModule,
     NavbarModule,
     SharedModule,
+    TrainerModule,
     UserModule,
     AppRoutingModule,
     HttpClientModule,
