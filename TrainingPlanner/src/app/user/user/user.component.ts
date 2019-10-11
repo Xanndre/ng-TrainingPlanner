@@ -4,7 +4,6 @@ import { UserForm } from './user-form';
 import { UserControls } from './user-controls';
 import { UserService } from '../../services/User.service';
 import { FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user',
@@ -23,8 +22,7 @@ export class UserComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private formBuilder: FormBuilder,
-    private router: Router
+    private formBuilder: FormBuilder
   ) {}
 
   ngOnInit() {

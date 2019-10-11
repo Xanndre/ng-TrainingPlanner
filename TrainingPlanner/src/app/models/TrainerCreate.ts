@@ -1,9 +1,7 @@
-import { User } from './User';
 import { TrainerSport } from './TrainerSport';
 
-export class Trainer {
-  id: number;
-  user: User;
+export class TrainerCreate {
+  userId: string;
   description: string;
   sports: TrainerSport[];
 }

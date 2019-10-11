@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/Operators';
 import { Sport } from '../models/Sport';
@@ -21,5 +21,22 @@ export class SportService {
         return res;
       })
     );
+  }
+
+  getSportsByNames(sportNames: string[]): Observable<Sport[]> {
+    const params = new HttpParams().set('sportNames', sportNames.join(', '));
+    const options = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + localStorage.getItem('jwt')
+      }),
+      params
+    };
+    return this.client
+      .get('https://localhost:44383/api/Sport/names', options)
+      .pipe(
+        map((res: Sport[]) => {
+          return res;
+        })
+      );
   }
 }
