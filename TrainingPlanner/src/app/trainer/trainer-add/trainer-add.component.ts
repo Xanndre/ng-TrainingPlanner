@@ -6,6 +6,7 @@ import { FormBuilder } from '@angular/forms';
 import { TrainerCreate } from 'src/app/models/TrainerCreate';
 import { TrainerService } from 'src/app/services/Trainer.service';
 import { TrainerSport } from 'src/app/models/TrainerSport';
+import { Trainer } from 'src/app/models/Trainer';
 
 @Component({
   selector: 'app-trainer-add',
@@ -17,6 +18,10 @@ export class TrainerAddComponent implements OnInit {
   formControls: TrainerAddControls;
   trainerCreate: TrainerCreate;
   sports: TrainerSport[] = [];
+  isTrainer: boolean;
+  userId: string;
+  trainer: Trainer;
+  isLoaded: boolean;
 
   constructor(
     private sportService: SportService,
@@ -25,9 +30,22 @@ export class TrainerAddComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.formControls = new TrainerAddControls(this.sportService);
-    this.trainerForm.buildForm(this.formBuilder);
-    this.formControls.initializeControls(this.trainerForm);
+    this.userId = localStorage.getItem('userId');
+    this.trainerService.getTrainerByUser(this.userId).subscribe(response => {
+      this.trainer = response;
+      if (response !== null) {
+        this.isTrainer = true;
+        console.log(this.trainer);
+      }
+      this.isLoaded = true;
+      // this.beforeChanges = JSON.parse(JSON.stringify(this.user));
+      this.formControls = new TrainerAddControls(this.sportService);
+      this.trainerForm.buildForm(this.formBuilder, this.trainer);
+      this.formControls.initializeControls(this.trainerForm);
+      if (this.isTrainer) {
+        //this.trainerForm.trainerForm.disable();
+      }
+    });
   }
 
   createTrainerAccount() {
@@ -37,7 +55,8 @@ export class TrainerAddComponent implements OnInit {
         response.forEach(s =>
           this.sports.push({
             trainerId: 0,
-            sportId: s.id
+            sportId: s.id,
+            sportName: s.name
           })
         );
         this.trainerCreate = {
