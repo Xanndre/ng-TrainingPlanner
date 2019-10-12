@@ -37,9 +37,7 @@ export class TrainerAddComponent implements OnInit {
         response.forEach(s =>
           this.sports.push({
             trainerId: 0,
-            trainer: null,
-            sportId: s.id,
-            sport: s
+            sportId: s.id
           })
         );
         this.trainerCreate = {

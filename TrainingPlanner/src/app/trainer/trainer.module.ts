@@ -12,7 +12,14 @@ const routes: Routes = [
   {
     path: 'trainer/add',
     component: TrainerAddComponent,
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService],
+    data: { edit: false }
+  },
+  {
+    path: 'trainer/edit',
+    component: TrainerAddComponent,
+    canActivate: [AuthGuardService],
+    data: { edit: true }
   }
 ];
 
