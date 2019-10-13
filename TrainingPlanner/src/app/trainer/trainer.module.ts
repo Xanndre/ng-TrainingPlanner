@@ -5,8 +5,13 @@ import { AuthGuardService } from '../guards/AuthGuard.service';
 import { Routes, RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { SharedModule } from '../shared/shared.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MatTableModule } from '@angular/material/table';
+import { PricelistTableComponent } from './trainer-add/pricelist-table/pricelist-table.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { DialogBoxComponent } from './trainer-add/pricelist-table/dialog-box/dialog-box.component';
+import { MatFormFieldModule, MatInputModule } from '@angular/material';
 
 const routes: Routes = [
   {
@@ -24,15 +29,25 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [TrainerAddComponent],
+  declarations: [
+    TrainerAddComponent,
+    PricelistTableComponent,
+    DialogBoxComponent
+  ],
   imports: [
     CommonModule,
     MatButtonModule,
     MatCardModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    MatTableModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes),
     SharedModule
   ],
-  exports: [TrainerAddComponent]
+  exports: [TrainerAddComponent],
+  entryComponents: [DialogBoxComponent]
 })
 export class TrainerModule {}

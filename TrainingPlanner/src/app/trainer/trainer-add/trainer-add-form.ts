@@ -6,9 +6,11 @@ export class TrainerAddForm {
 
   buildForm(formBuilder: FormBuilder, trainer: Trainer) {
     const sportNames = [];
-    trainer.sports.forEach(s => {
-      sportNames.push(s.sportName);
-    });
+    if (trainer !== null) {
+      trainer.sports.forEach(s => {
+        sportNames.push(s.sportName);
+      });
+    }
 
     this.trainerForm = formBuilder.group({
       description: [

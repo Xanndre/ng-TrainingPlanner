@@ -7,6 +7,7 @@ import { TrainerCreate } from 'src/app/models/TrainerCreate';
 import { TrainerService } from 'src/app/services/Trainer.service';
 import { TrainerSport } from 'src/app/models/TrainerSport';
 import { Trainer } from 'src/app/models/Trainer';
+import { TrainerPrice } from 'src/app/models/TrainerPrice';
 
 @Component({
   selector: 'app-trainer-add',
@@ -18,6 +19,7 @@ export class TrainerAddComponent implements OnInit {
   formControls: TrainerAddControls;
   trainerCreate: TrainerCreate;
   sports: TrainerSport[] = [];
+  priceList: TrainerPrice[] = [];
   isTrainer: boolean;
   userId: string;
   trainer: Trainer;
@@ -43,7 +45,7 @@ export class TrainerAddComponent implements OnInit {
       this.trainerForm.buildForm(this.formBuilder, this.trainer);
       this.formControls.initializeControls(this.trainerForm);
       if (this.isTrainer) {
-        //this.trainerForm.trainerForm.disable();
+        // this.trainerForm.trainerForm.disable();
       }
     });
   }
@@ -62,7 +64,8 @@ export class TrainerAddComponent implements OnInit {
         this.trainerCreate = {
           userId: localStorage.getItem('userId'),
           description: this.trainerForm.trainerForm.value.description,
-          sports: this.sports
+          sports: this.sports,
+          priceList: this.priceList
         };
         console.log(this.sports);
         this.trainerService.createTrainer(this.trainerCreate).subscribe(() => {
