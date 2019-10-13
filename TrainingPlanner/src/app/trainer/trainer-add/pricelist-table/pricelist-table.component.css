@@ -1,3 +1,11 @@
 .tp-center-align {
   text-align: center;
 }
+
+::ng-deep .mat-chip-list-wrapper {
+  display: block !important;
+}
+
+.tp-label {
+  cursor: pointer;
+}

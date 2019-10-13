@@ -11,7 +11,11 @@ import { MatTableModule } from '@angular/material/table';
 import { PricelistTableComponent } from './trainer-add/pricelist-table/pricelist-table.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DialogBoxComponent } from './trainer-add/pricelist-table/dialog-box/dialog-box.component';
-import { MatFormFieldModule, MatInputModule } from '@angular/material';
+import {
+  MatFormFieldModule,
+  MatInputModule,
+  MatChipsModule
+} from '@angular/material';
 
 const routes: Routes = [
   {
@@ -38,6 +42,7 @@ const routes: Routes = [
     CommonModule,
     MatButtonModule,
     MatCardModule,
+    MatChipsModule,
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,

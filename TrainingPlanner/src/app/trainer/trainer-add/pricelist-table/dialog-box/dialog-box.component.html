@@ -1,5 +1,5 @@
-<h1 mat-dialog-title>
-  <strong>{{ action }}</strong>
+<h1 mat-dialog-title class="text-muted">
+  {{ action + ' Gym Card' }}
 </h1>
 <div mat-dialog-content>
   <div *ngIf="action != 'Delete'; else elseTemplate">
@@ -24,7 +24,7 @@
         matInput
         [(ngModel)]="localData.price"
       />
-      <span matSuffix>zł</span>
+      <span matSuffix class="text-muted">zł</span>
     </mat-form-field>
   </div>
   <ng-template #elseTemplate>
