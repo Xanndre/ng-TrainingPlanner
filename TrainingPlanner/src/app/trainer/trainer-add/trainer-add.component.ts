@@ -67,10 +67,14 @@ export class TrainerAddComponent implements OnInit {
           sports: this.sports,
           priceList: this.priceList
         };
-        console.log(this.sports);
+        console.log(this.priceList);
         this.trainerService.createTrainer(this.trainerCreate).subscribe(() => {
           console.log('Dodano konto trenerskie');
         });
       });
+  }
+
+  receivePriceList($event) {
+    this.priceList = $event;
   }
 }

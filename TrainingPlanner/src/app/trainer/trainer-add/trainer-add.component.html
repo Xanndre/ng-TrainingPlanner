@@ -7,7 +7,11 @@
           [customControlGroup]="controlGroup"
         ></app-custom-control-group>
 
-        <app-pricelist-table [userId]="userId"> </app-pricelist-table>
+        <app-pricelist-table
+          [userId]="userId"
+          (priceListChange)="receivePriceList($event)"
+        >
+        </app-pricelist-table>
 
         <button
           mat-raised-button

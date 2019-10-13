@@ -7,7 +7,12 @@
   Add Gym Card
 </button>
 
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 w-100">
+<table
+  mat-table
+  [dataSource]="dataSource"
+  class="mat-elevation-z8 w-100"
+  *ngIf="isLoaded"
+>
   <ng-container matColumnDef="name">
     <th mat-header-cell class="tp-center-align" *matHeaderCellDef>
       Name

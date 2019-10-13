@@ -1,4 +1,11 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  ViewChild,
+  Output,
+  EventEmitter
+} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTable } from '@angular/material/table';
 import { DialogBoxComponent } from './dialog-box/dialog-box.component';
@@ -26,13 +33,17 @@ export class PricelistTableComponent implements OnInit {
     'action'
   ];
   dataSource: PeriodicElement[] = [];
+  isLoaded: boolean;
 
   @ViewChild(MatTable, { static: true }) table: MatTable<any>;
   constructor(
     public dialog: MatDialog,
     private trainerService: TrainerService
   ) {}
+
   @Input() userId: string;
+
+  @Output() priceListChange = new EventEmitter<PeriodicElement[]>();
 
   ngOnInit() {
     this.trainerService.getTrainerByUser(this.userId).subscribe(response => {
@@ -47,6 +58,7 @@ export class PricelistTableComponent implements OnInit {
             price: pr.price
           });
         });
+        this.isLoaded = true;
       }
     });
   }
@@ -78,6 +90,7 @@ export class PricelistTableComponent implements OnInit {
       price: rowObj.price
     });
     this.table.renderRows();
+    this.priceListChange.emit(this.dataSource);
   }
 
   updateRowData(rowObj) {
@@ -90,10 +103,12 @@ export class PricelistTableComponent implements OnInit {
       }
       return true;
     });
+    this.priceListChange.emit(this.dataSource);
   }
   deleteRowData(rowObj) {
     this.dataSource = this.dataSource.filter(value => {
       return value.id !== rowObj.id;
     });
+    this.priceListChange.emit(this.dataSource);
   }
 }
