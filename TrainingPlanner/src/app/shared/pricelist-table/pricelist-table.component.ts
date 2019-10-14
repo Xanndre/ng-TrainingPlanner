@@ -33,7 +33,6 @@ export class PricelistTableComponent implements OnInit {
     'action'
   ];
   dataSource: PeriodicElement[] = [];
-  ids: number[] = [];
   isLoaded: boolean;
   isTableEmpty = false;
   counter = 0;
