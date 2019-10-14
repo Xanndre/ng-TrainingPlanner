@@ -7,16 +7,16 @@ export interface UsersData {
 }
 
 @Component({
-  selector: 'app-dialog-box',
-  templateUrl: './dialog-box.component.html',
-  styleUrls: ['./dialog-box.component.css']
+  selector: 'app-pricelist-dialog',
+  templateUrl: './pricelist-dialog.component.html',
+  styleUrls: ['./pricelist-dialog.component.css']
 })
-export class DialogBoxComponent {
+export class PricelistDialogComponent {
   action: string;
   localData: any;
 
   constructor(
-    public dialogRef: MatDialogRef<DialogBoxComponent>,
+    public dialogRef: MatDialogRef<PricelistDialogComponent>,
     @Optional() @Inject(MAT_DIALOG_DATA) public data: UsersData
   ) {
     console.log(data);

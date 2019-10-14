@@ -61,6 +61,7 @@ export class TrainerAddComponent implements OnInit {
             sportName: s.name
           })
         );
+        this.priceList.forEach(el => (el.id = undefined));
         this.trainerCreate = {
           userId: localStorage.getItem('userId'),
           description: this.trainerForm.trainerForm.value.description,
@@ -68,6 +69,7 @@ export class TrainerAddComponent implements OnInit {
           priceList: this.priceList
         };
         console.log(this.priceList);
+        console.log(this.sports);
         this.trainerService.createTrainer(this.trainerCreate).subscribe(() => {
           console.log('Dodano konto trenerskie');
         });

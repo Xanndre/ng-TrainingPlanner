@@ -8,9 +8,7 @@ import { SharedModule } from '../shared/shared.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
-import { PricelistTableComponent } from './trainer-add/pricelist-table/pricelist-table.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { DialogBoxComponent } from './trainer-add/pricelist-table/dialog-box/dialog-box.component';
 import {
   MatFormFieldModule,
   MatInputModule,
@@ -33,11 +31,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [
-    TrainerAddComponent,
-    PricelistTableComponent,
-    DialogBoxComponent
-  ],
+  declarations: [TrainerAddComponent],
   imports: [
     CommonModule,
     MatButtonModule,
@@ -52,7 +46,6 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     SharedModule
   ],
-  exports: [TrainerAddComponent],
-  entryComponents: [DialogBoxComponent]
+  exports: [TrainerAddComponent]
 })
 export class TrainerModule {}

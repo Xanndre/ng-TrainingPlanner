@@ -8,8 +8,8 @@ import {
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTable } from '@angular/material/table';
-import { DialogBoxComponent } from './dialog-box/dialog-box.component';
 import { TrainerService } from 'src/app/services/Trainer.service';
+import { PricelistDialogComponent } from './pricelist-dialog/pricelist-dialog.component';
 
 export interface PeriodicElement {
   id: number;
@@ -33,7 +33,10 @@ export class PricelistTableComponent implements OnInit {
     'action'
   ];
   dataSource: PeriodicElement[] = [];
+  ids: number[] = [];
   isLoaded: boolean;
+  isTableEmpty = false;
+  counter = 0;
 
   @ViewChild(MatTable, { static: true }) table: MatTable<any>;
   constructor(
@@ -58,14 +61,15 @@ export class PricelistTableComponent implements OnInit {
             price: pr.price
           });
         });
-        this.isLoaded = true;
       }
+      this.table.renderRows();
+      this.isLoaded = true;
     });
   }
 
   openDialog(action, obj) {
     obj.action = action;
-    const dialogRef = this.dialog.open(DialogBoxComponent, {
+    const dialogRef = this.dialog.open(PricelistDialogComponent, {
       width: '250px',
       data: obj
     });
@@ -83,7 +87,7 @@ export class PricelistTableComponent implements OnInit {
 
   addRowData(rowObj: PeriodicElement) {
     this.dataSource.push({
-      id: rowObj.id,
+      id: rowObj.id !== undefined ? rowObj.id : this.counter++,
       name: rowObj.name,
       validityPeriod: rowObj.validityPeriod,
       entries: rowObj.entries,
@@ -107,7 +111,7 @@ export class PricelistTableComponent implements OnInit {
   }
   deleteRowData(rowObj) {
     this.dataSource = this.dataSource.filter(value => {
-      return value.id !== rowObj.id;
+      return value.name !== rowObj.name;
     });
     this.priceListChange.emit(this.dataSource);
   }

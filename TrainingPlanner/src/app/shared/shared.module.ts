@@ -12,19 +12,26 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
 import { MatButtonModule } from '@angular/material/button';
+import { PricelistTableComponent } from './pricelist-table/pricelist-table.component';
+import { MatChipsModule, MatTableModule } from '@angular/material';
+import { PricelistDialogComponent } from './pricelist-table/pricelist-dialog/pricelist-dialog.component';
 
 @NgModule({
   declarations: [
     CustomControlComponent,
     CustomErrorComponent,
     CustomControlGroupComponent,
-    ErrorDialogComponent
+    ErrorDialogComponent,
+    PricelistTableComponent,
+    PricelistDialogComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     MatInputModule,
+    MatChipsModule,
+    MatTableModule,
     MatDatepickerModule,
     MatFormFieldModule,
     MatSelectModule,
@@ -36,7 +43,9 @@ import { MatButtonModule } from '@angular/material/button';
     CustomControlComponent,
     CustomErrorComponent,
     CustomControlGroupComponent,
-    ErrorDialogComponent
-  ]
+    ErrorDialogComponent,
+    PricelistTableComponent
+  ],
+  entryComponents: [PricelistDialogComponent]
 })
-export class SharedModule { }
+export class SharedModule {}
