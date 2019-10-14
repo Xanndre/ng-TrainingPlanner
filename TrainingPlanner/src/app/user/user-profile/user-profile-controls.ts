@@ -1,10 +1,10 @@
-import { UserForm } from './user-form';
+import { UserProfileForm } from './user-profile-form';
 import { CustomControlGroup } from 'src/app/shared/custom-control-group/custom-control-group';
 
-export class UserControls {
+export class UserProfileControls {
   controlGroups: CustomControlGroup[];
 
-  initializeControls(form: UserForm) {
+  initializeControls(form: UserProfileForm) {
     this.controlGroups = [
       {
         controls: [

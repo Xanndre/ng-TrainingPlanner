@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
-import { UserComponent } from './user/user.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -12,11 +11,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuardService } from '../guards/AuthGuard.service';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 const routes: Routes = [
   {
     path: 'user',
-    component: UserComponent,
+    component: UserProfileComponent,
     canActivate: [AuthGuardService]
   },
   {
@@ -27,7 +27,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [UserComponent],
+  declarations: [UserProfileComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -42,6 +42,6 @@ const routes: Routes = [
     MatButtonModule,
     MatCardModule
   ],
-  exports: [UserComponent]
+  exports: [UserProfileComponent]
 })
 export class UserModule {}

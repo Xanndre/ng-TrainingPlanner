@@ -1,24 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../../models/User';
-import { UserForm } from './user-form';
-import { UserControls } from './user-controls';
-import { UserService } from '../../services/User.service';
+import { User } from 'src/app/models/User';
+import { UserProfileForm } from './user-profile-form';
+import { UserService } from 'src/app/services/User.service';
 import { FormBuilder } from '@angular/forms';
+import { UserProfileControls } from './user-profile-controls';
 
 @Component({
-  selector: 'app-user',
-  templateUrl: './user.component.html',
-  styleUrls: ['./user.component.css']
+  selector: 'app-user-profile',
+  templateUrl: './user-profile.component.html',
+  styleUrls: ['./user-profile.component.css']
 })
-export class UserComponent implements OnInit {
+export class UserProfileComponent implements OnInit {
   user: User;
   beforeChanges: User;
   userId: string;
   isLoaded = false;
   isEdited = false;
   isPictureLoaded = false;
-  userForm: UserForm = new UserForm();
-  formControls: UserControls = new UserControls();
+  userForm: UserProfileForm = new UserProfileForm();
+  formControls: UserProfileControls = new UserProfileControls();
 
   constructor(
     private userService: UserService,
