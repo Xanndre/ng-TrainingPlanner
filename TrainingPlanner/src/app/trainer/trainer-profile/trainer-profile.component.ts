@@ -8,6 +8,7 @@ import { TrainerProfileForm } from './trainer-profile-form';
 import { SportService } from 'src/app/services/Sport.service';
 import { TrainerService } from 'src/app/services/Trainer.service';
 import { FormBuilder } from '@angular/forms';
+import { TrainerGet } from 'src/app/models/TrainerGet';
 
 @Component({
   selector: 'app-trainer-profile',
@@ -22,7 +23,7 @@ export class TrainerProfileComponent implements OnInit {
   priceList: TrainerPrice[] = [];
   isTrainer: boolean;
   userId: string;
-  trainer: Trainer;
+  trainer: TrainerGet;
   beforeChanges: Trainer;
   isLoaded: boolean;
   isEdited = false;
@@ -106,7 +107,7 @@ export class TrainerProfileComponent implements OnInit {
   saveTrainerData() {
     this.isEdited = false;
     this.setEditedData();
-    this.trainerService.updateTrainer(this.trainer).subscribe(() => {});
+    // this.trainerService.updateTrainer(this.trainer).subscribe(() => {});
     this.beforeChanges = JSON.parse(JSON.stringify(this.trainer));
     this.trainerForm.trainerForm.disable();
   }

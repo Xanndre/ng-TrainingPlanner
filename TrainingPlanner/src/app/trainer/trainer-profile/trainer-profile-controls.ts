@@ -35,8 +35,7 @@ export class TrainerProfileControls {
             values: this.sports,
             label: 'Sports'
           }
-        ],
-        title: 'Create a trainer account'
+        ]
       }
     ];
   }

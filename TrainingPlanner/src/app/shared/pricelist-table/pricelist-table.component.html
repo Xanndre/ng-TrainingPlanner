@@ -2,6 +2,7 @@
   mat-raised-button
   color="primary"
   class="btn-block mb-3 mt-4 btn-no-shadow w-25 float-right"
+  [disabled]="isDisabled"
   (click)="openDialog('Add', {})"
 >
   Add Gym Card

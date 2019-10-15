@@ -2,6 +2,15 @@
   <div class="col-lg-6 mx-auto">
     <mat-card class="my-4">
       <form class="text-center p-5" [formGroup]="trainerForm.trainerForm">
+        <h4 class="text-muted" *ngIf="!isTrainer; else editTitle">
+          Create a trainer profile
+        </h4>
+        <ng-template #editTitle>
+          <h4 class="text-muted">
+            Edit a trainer profile
+          </h4>
+        </ng-template>
+
         <app-custom-control-group
           *ngFor="let controlGroup of formControls.controlGroups"
           [customControlGroup]="controlGroup"
@@ -9,6 +18,7 @@
 
         <app-pricelist-table
           [userId]="userId"
+          [isDisabled]="trainerForm.trainerForm.disabled"
           (priceListChange)="receivePriceList($event)"
         >
         </app-pricelist-table>
@@ -29,12 +39,33 @@
           color="primary"
           class="btn-block my-4 btn-no-shadow"
           type="submit"
-          *ngIf="isTrainer"
-          [disabled]="!trainerForm.trainerForm.valid"
+          *ngIf="isTrainer && !isEdited"
           (click)="editTrainerAccount()"
         >
           Edit
         </button>
+        <div *ngIf="isEdited" class="row">
+          <div class="col">
+            <button
+              mat-raised-button
+              class="btn-block my-4 btn-no-shadow"
+              color="primary"
+              [disabled]="!trainerForm.trainerForm.valid"
+              (click)="saveTrainerData()"
+            >
+              Save
+            </button>
+          </div>
+          <div class="col">
+            <button
+              mat-raised-button
+              class="btn-cancel btn-block my-4 btn-no-shadow"
+              (click)="cancel()"
+            >
+              Close
+            </button>
+          </div>
+        </div>
       </form>
     </mat-card>
   </div>

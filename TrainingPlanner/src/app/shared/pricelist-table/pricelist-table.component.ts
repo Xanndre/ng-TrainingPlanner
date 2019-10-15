@@ -30,6 +30,7 @@ export class PricelistTableComponent implements OnInit {
   counter = 0;
 
   @Input() userId: string;
+  @Input() isDisabled: boolean;
 
   @Output() priceListChange = new EventEmitter<TrainerPriceCreate[]>();
 
@@ -43,7 +44,6 @@ export class PricelistTableComponent implements OnInit {
   ngOnInit() {
     this.trainerService.getTrainerByUser(this.userId).subscribe(response => {
       if (response !== null) {
-        console.log(response);
         response.priceList.forEach(pr => {
           this.dataSource.push({
             id: pr.id,

@@ -6,7 +6,12 @@ import { LoginForm } from './login-form';
 import { LoginControls } from './login-controls';
 import { LoginService } from 'src/app/services/Login.service';
 import { ExternalLogin } from 'src/app/models/ExternalLogin';
-import { AuthService, FacebookLoginProvider, GoogleLoginProvider, SocialUser } from 'angularx-social-login';
+import {
+  AuthService,
+  FacebookLoginProvider,
+  GoogleLoginProvider,
+  SocialUser
+} from 'angularx-social-login';
 import { MatDialog } from '@angular/material/dialog';
 import { ErrorDialogComponent } from 'src/app/shared/error-dialog/error-dialog.component';
 
@@ -27,7 +32,7 @@ export class LoginComponent implements OnInit {
     private loginService: LoginService,
     private authService: AuthService,
     private dialog: MatDialog
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.loginForm.buildForm(this.formBuilder);
@@ -45,7 +50,7 @@ export class LoginComponent implements OnInit {
         const res = response as any;
         localStorage.setItem('jwt', res.token);
         localStorage.setItem('userId', res.id);
-        this.router.navigate(['/user']);
+        this.router.navigate(['/profile/user']);
       },
       () => {
         this.showError('Invalid login attempt.');
@@ -55,20 +60,25 @@ export class LoginComponent implements OnInit {
 
   showError(error: string): void {
     this.dialog.open(ErrorDialogComponent, {
-      data: { errorMsg: error }, width: '400px'
+      data: { errorMsg: error },
+      width: '400px'
     });
   }
 
   signInWithFb() {
-    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then(socialUser => {
-      this.externalSignIn(socialUser);
-    });
+    this.authService
+      .signIn(FacebookLoginProvider.PROVIDER_ID)
+      .then(socialUser => {
+        this.externalSignIn(socialUser);
+      });
   }
 
   signInWithGoogle() {
-    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then(socialUser => {
-      this.externalSignIn(socialUser);
-    });
+    this.authService
+      .signIn(GoogleLoginProvider.PROVIDER_ID)
+      .then(socialUser => {
+        this.externalSignIn(socialUser);
+      });
   }
 
   externalSignIn(socialUser: SocialUser) {
@@ -76,7 +86,10 @@ export class LoginComponent implements OnInit {
       loginProvider: socialUser.provider,
       providerKey: socialUser.id,
       email: socialUser.email,
-      token: socialUser.provider === 'FACEBOOK' ? socialUser.authToken : socialUser.idToken,
+      token:
+        socialUser.provider === 'FACEBOOK'
+          ? socialUser.authToken
+          : socialUser.idToken,
       firstName: socialUser.firstName,
       lastName: socialUser.lastName,
       profilePicture: socialUser.photoUrl

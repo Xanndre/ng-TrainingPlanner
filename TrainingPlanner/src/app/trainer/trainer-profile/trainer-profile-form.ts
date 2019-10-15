@@ -1,14 +1,16 @@
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Trainer } from 'src/app/models/Trainer';
+import { TrainerGet } from 'src/app/models/TrainerGet';
 
 export class TrainerProfileForm {
   trainerForm: FormGroup;
 
-  buildForm(formBuilder: FormBuilder, trainer: Trainer) {
+  buildForm(formBuilder: FormBuilder, trainer: TrainerGet) {
     const sportNames = [];
     if (trainer !== null) {
+      console.log(trainer.sports);
       trainer.sports.forEach(s => {
-        sportNames.push(s.sportName);
+        sportNames.push(s.sport.name);
       });
     }
 
