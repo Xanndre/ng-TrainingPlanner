@@ -23,7 +23,9 @@ export class TrainerProfileComponent implements OnInit {
   isTrainer: boolean;
   userId: string;
   trainer: Trainer;
+  beforeChanges: Trainer;
   isLoaded: boolean;
+  isEdited = false;
 
   constructor(
     private sportService: SportService,
@@ -35,17 +37,16 @@ export class TrainerProfileComponent implements OnInit {
     this.userId = localStorage.getItem('userId');
     this.trainerService.getTrainerByUser(this.userId).subscribe(response => {
       this.trainer = response;
-      if (response !== null) {
+      if (this.trainer !== null) {
         this.isTrainer = true;
-        console.log(this.trainer);
       }
       this.isLoaded = true;
-      // this.beforeChanges = JSON.parse(JSON.stringify(this.user));
+      this.beforeChanges = JSON.parse(JSON.stringify(this.trainer));
       this.formControls = new TrainerProfileControls(this.sportService);
       this.trainerForm.buildForm(this.formBuilder, this.trainer);
       this.formControls.initializeControls(this.trainerForm);
       if (this.isTrainer) {
-        // this.trainerForm.trainerForm.disable();
+        this.trainerForm.trainerForm.disable();
       }
     });
   }
@@ -78,5 +79,43 @@ export class TrainerProfileComponent implements OnInit {
 
   receivePriceList($event) {
     this.priceList = $event;
+  }
+
+  editTrainerAccount() {
+    this.isEdited = true;
+    this.setEditedData();
+    this.trainerForm.trainerForm.enable();
+  }
+
+  setEditedData() {
+    this.trainer.description = this.trainerForm.trainerForm.value.description;
+    //this.trainer.sports =
+    //this.trainer.priceList =
+  }
+
+  cancel() {
+    this.isEdited = false;
+    this.trainer = JSON.parse(JSON.stringify(this.beforeChanges));
+    this.setTrainerData();
+    this.trainerForm.trainerForm.markAsPristine();
+    this.trainerForm.trainerForm.markAsUntouched();
+    this.trainerForm.trainerForm.updateValueAndValidity();
+    this.trainerForm.trainerForm.disable();
+  }
+
+  saveTrainerData() {
+    this.isEdited = false;
+    this.setEditedData();
+    this.trainerService.updateTrainer(this.trainer).subscribe(() => {});
+    this.beforeChanges = JSON.parse(JSON.stringify(this.trainer));
+    this.trainerForm.trainerForm.disable();
+  }
+
+  setTrainerData() {
+    this.trainerForm.trainerForm.setValue({
+      description: this.trainer.description,
+      sports: this.trainer.sports,
+      priceList: this.trainer.priceList
+    });
   }
 }

@@ -36,4 +36,20 @@ export class TrainerService {
         })
       );
   }
+
+  updateTrainer(trainer: Trainer) {
+    const options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + localStorage.getItem('jwt')
+      })
+    };
+    return this.client
+      .put('https://localhost:44383/api/Trainer', trainer, options)
+      .pipe(
+        map((res: Trainer) => {
+          return res;
+        })
+      );
+  }
 }
