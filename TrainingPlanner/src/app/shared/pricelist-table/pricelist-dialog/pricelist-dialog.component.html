@@ -3,17 +3,17 @@
 </h1>
 <div mat-dialog-content>
   <div *ngIf="action != 'Delete'; else elseTemplate">
-    <mat-form-field>
+    <mat-form-field class="tp-width">
       <input placeholder="Name" matInput [(ngModel)]="localData.name" />
     </mat-form-field>
-    <mat-form-field>
+    <mat-form-field class="tp-width">
       <input
         placeholder="Validity period"
         matInput
         [(ngModel)]="localData.validityPeriod"
       />
     </mat-form-field>
-    <mat-form-field>
+    <mat-form-field class="tp-width">
       <input placeholder="Entries" matInput [(ngModel)]="localData.entries" />
     </mat-form-field>
     <mat-form-field class="tp-width">
@@ -28,11 +28,13 @@
     </mat-form-field>
   </div>
   <ng-template #elseTemplate>
-    Sure to delete <b>{{ localData.name }}</b
-    >?
+    <div class="text-muted tp-padd">
+      Sure to delete <b>{{ localData.name }}</b
+      >?
+    </div>
   </ng-template>
 </div>
-<div mat-dialog-actions>
+<div mat-dialog-actions class="float-right">
   <button mat-raised-button color="primary" (click)="doAction()">
     {{ action }}
   </button>

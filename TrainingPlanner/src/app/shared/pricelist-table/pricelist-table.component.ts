@@ -10,14 +10,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatTable } from '@angular/material/table';
 import { TrainerService } from 'src/app/services/Trainer.service';
 import { PricelistDialogComponent } from './pricelist-dialog/pricelist-dialog.component';
-
-export interface PeriodicElement {
-  id: number;
-  name: string;
-  validityPeriod: string;
-  entries: string;
-  price: number;
-}
+import { TrainerPriceCreate } from 'src/app/models/TrainerPriceCreate';
 
 @Component({
   selector: 'app-pricelist-table',
@@ -32,20 +25,20 @@ export class PricelistTableComponent implements OnInit {
     'price',
     'action'
   ];
-  dataSource: PeriodicElement[] = [];
+  dataSource: TrainerPriceCreate[] = [];
   isLoaded: boolean;
-  isTableEmpty = false;
   counter = 0;
 
+  @Input() userId: string;
+
+  @Output() priceListChange = new EventEmitter<TrainerPriceCreate[]>();
+
   @ViewChild(MatTable, { static: true }) table: MatTable<any>;
+
   constructor(
     public dialog: MatDialog,
     private trainerService: TrainerService
   ) {}
-
-  @Input() userId: string;
-
-  @Output() priceListChange = new EventEmitter<PeriodicElement[]>();
 
   ngOnInit() {
     this.trainerService.getTrainerByUser(this.userId).subscribe(response => {
@@ -74,17 +67,19 @@ export class PricelistTableComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result.event === 'Add') {
-        this.addRowData(result.data);
-      } else if (result.event === 'Edit') {
-        this.updateRowData(result.data);
-      } else if (result.event === 'Delete') {
-        this.deleteRowData(result.data);
+      if (result !== undefined) {
+        if (result.event === 'Add') {
+          this.addRowData(result.data);
+        } else if (result.event === 'Edit') {
+          this.updateRowData(result.data);
+        } else if (result.event === 'Delete') {
+          this.deleteRowData(result.data);
+        }
       }
     });
   }
 
-  addRowData(rowObj: PeriodicElement) {
+  addRowData(rowObj: TrainerPriceCreate) {
     this.dataSource.push({
       id: rowObj.id !== undefined ? rowObj.id : this.counter++,
       name: rowObj.name,

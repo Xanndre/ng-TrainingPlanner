@@ -15,13 +15,13 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 
 const routes: Routes = [
   {
-    path: 'user',
+    path: 'profile/user',
     component: UserProfileComponent,
     canActivate: [AuthGuardService]
   },
   {
     path: '',
-    redirectTo: 'user',
+    redirectTo: 'profile/user',
     pathMatch: 'full'
   }
 ];

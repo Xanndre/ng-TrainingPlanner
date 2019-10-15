@@ -6,7 +6,7 @@ import { AuthGuardService } from '../guards/AuthGuard.service';
 
 const routes: Routes = [
   {
-    path: 'club/add',
+    path: 'profile/clubs',
     component: ClubAddComponent,
     canActivate: [AuthGuardService]
   }

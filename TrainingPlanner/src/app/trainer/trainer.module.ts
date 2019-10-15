@@ -17,16 +17,9 @@ import {
 
 const routes: Routes = [
   {
-    path: 'trainer/add',
+    path: 'profile/trainer',
     component: TrainerAddComponent,
-    canActivate: [AuthGuardService],
-    data: { edit: false }
-  },
-  {
-    path: 'trainer/edit',
-    component: TrainerAddComponent,
-    canActivate: [AuthGuardService],
-    data: { edit: true }
+    canActivate: [AuthGuardService]
   }
 ];
 
