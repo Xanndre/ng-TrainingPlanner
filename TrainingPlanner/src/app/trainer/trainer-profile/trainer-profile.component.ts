@@ -1,22 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { TrainerAddControls } from './trainer-add-controls';
-import { TrainerAddForm } from './trainer-add-form';
-import { SportService } from 'src/app/services/Sport.service';
-import { FormBuilder } from '@angular/forms';
-import { TrainerCreate } from 'src/app/models/TrainerCreate';
-import { TrainerService } from 'src/app/services/Trainer.service';
-import { TrainerSport } from 'src/app/models/TrainerSport';
 import { Trainer } from 'src/app/models/Trainer';
 import { TrainerPrice } from 'src/app/models/TrainerPrice';
+import { TrainerSport } from 'src/app/models/TrainerSport';
+import { TrainerCreate } from 'src/app/models/TrainerCreate';
+import { TrainerProfileControls } from './trainer-profile-controls';
+import { TrainerProfileForm } from './trainer-profile-form';
+import { SportService } from 'src/app/services/Sport.service';
+import { TrainerService } from 'src/app/services/Trainer.service';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
-  selector: 'app-trainer-add',
-  templateUrl: './trainer-add.component.html',
-  styleUrls: ['./trainer-add.component.css']
+  selector: 'app-trainer-profile',
+  templateUrl: './trainer-profile.component.html',
+  styleUrls: ['./trainer-profile.component.css']
 })
-export class TrainerAddComponent implements OnInit {
-  trainerForm: TrainerAddForm = new TrainerAddForm();
-  formControls: TrainerAddControls;
+export class TrainerProfileComponent implements OnInit {
+  trainerForm: TrainerProfileForm = new TrainerProfileForm();
+  formControls: TrainerProfileControls;
   trainerCreate: TrainerCreate;
   sports: TrainerSport[] = [];
   priceList: TrainerPrice[] = [];
@@ -41,7 +41,7 @@ export class TrainerAddComponent implements OnInit {
       }
       this.isLoaded = true;
       // this.beforeChanges = JSON.parse(JSON.stringify(this.user));
-      this.formControls = new TrainerAddControls(this.sportService);
+      this.formControls = new TrainerProfileControls(this.sportService);
       this.trainerForm.buildForm(this.formBuilder, this.trainer);
       this.formControls.initializeControls(this.trainerForm);
       if (this.isTrainer) {

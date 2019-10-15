@@ -1,14 +1,14 @@
 import { CustomControlGroup } from 'src/app/shared/custom-control-group/custom-control-group';
-import { TrainerAddForm } from './trainer-add-form';
 import { SportService } from 'src/app/services/Sport.service';
+import { TrainerProfileForm } from './trainer-profile-form';
 
-export class TrainerAddControls {
+export class TrainerProfileControls {
   controlGroups: CustomControlGroup[];
   sports: string[] = [];
 
   constructor(private sportService: SportService) {}
 
-  initializeControls(form: TrainerAddForm) {
+  initializeControls(form: TrainerProfileForm) {
     this.sportService.getAllSports().subscribe(response => {
       response.forEach(sport => {
         this.sports.push(sport.name);

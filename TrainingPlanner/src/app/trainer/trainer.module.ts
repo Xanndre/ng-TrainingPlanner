@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TrainerAddComponent } from './trainer-add/trainer-add.component';
 import { AuthGuardService } from '../guards/AuthGuard.service';
 import { Routes, RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
@@ -14,17 +13,18 @@ import {
   MatInputModule,
   MatChipsModule
 } from '@angular/material';
+import { TrainerProfileComponent } from './trainer-profile/trainer-profile.component';
 
 const routes: Routes = [
   {
     path: 'profile/trainer',
-    component: TrainerAddComponent,
+    component: TrainerProfileComponent,
     canActivate: [AuthGuardService]
   }
 ];
 
 @NgModule({
-  declarations: [TrainerAddComponent],
+  declarations: [TrainerProfileComponent],
   imports: [
     CommonModule,
     MatButtonModule,
@@ -39,6 +39,6 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     SharedModule
   ],
-  exports: [TrainerAddComponent]
+  exports: [TrainerProfileComponent]
 })
 export class TrainerModule {}

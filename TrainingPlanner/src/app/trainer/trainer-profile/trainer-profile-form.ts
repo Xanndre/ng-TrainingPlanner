@@ -1,7 +1,7 @@
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Trainer } from 'src/app/models/Trainer';
 
-export class TrainerAddForm {
+export class TrainerProfileForm {
   trainerForm: FormGroup;
 
   buildForm(formBuilder: FormBuilder, trainer: Trainer) {
