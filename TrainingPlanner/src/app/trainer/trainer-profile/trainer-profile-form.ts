@@ -1,6 +1,6 @@
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Trainer } from 'src/app/models/Trainer';
 import { TrainerGet } from 'src/app/models/TrainerGet';
+import { isPhoneNumber } from 'src/app/validators/PatternValidator';
 
 export class TrainerProfileForm {
   trainerForm: FormGroup;
@@ -17,6 +17,10 @@ export class TrainerProfileForm {
       description: [
         trainer !== null ? trainer.description : null,
         Validators.required
+      ],
+      phoneNumber: [
+        trainer !== null ? trainer.phoneNumber : null,
+        isPhoneNumber
       ],
       sports: [trainer !== null ? sportNames : null, Validators.required]
     });

@@ -28,6 +28,14 @@ export class TrainerProfileControls {
           },
           {
             formGroup: form.trainerForm,
+            controlType: 'input',
+            type: 'text',
+            formControlName: 'phoneNumber',
+            placeholder: 'Phone number',
+            label: 'Phone number'
+          },
+          {
+            formGroup: form.trainerForm,
             controlType: 'select',
             multiple: true,
             formControlName: 'sports',

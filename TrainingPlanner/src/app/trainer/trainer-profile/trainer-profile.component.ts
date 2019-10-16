@@ -75,6 +75,7 @@ export class TrainerProfileComponent implements OnInit {
         this.trainerCreate = {
           userId: localStorage.getItem('userId'),
           description: this.trainerForm.trainerForm.value.description,
+          phoneNumber: this.trainerForm.trainerForm.value.phoneNumber,
           sports: this.sports,
           priceList: this.priceList
         };
@@ -97,6 +98,7 @@ export class TrainerProfileComponent implements OnInit {
 
   setEditedData() {
     this.trainerUpdate.description = this.trainerForm.trainerForm.value.description;
+    this.trainerUpdate.phoneNumber = this.trainerForm.trainerForm.value.phoneNumber;
     this.trainerUpdate.userId = this.trainer.user.id;
     this.trainerUpdate.id = this.trainer.id;
   }
@@ -147,6 +149,7 @@ export class TrainerProfileComponent implements OnInit {
     this.trainerForm.trainerForm.value.sports = sportNames;
     this.trainerForm.trainerForm.setValue({
       description: this.trainer.description,
+      phoneNumber: this.trainer.phoneNumber,
       sports: sportNames
     });
     this.priceList = this.beforeChanges.priceList;

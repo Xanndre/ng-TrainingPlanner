@@ -6,6 +6,7 @@ export class TrainerGet {
   id: number;
   user: User;
   description: string;
+  phoneNumber: string;
   sports: TrainerSportGet[];
   priceList: TrainerPrice[];
 }

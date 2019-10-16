@@ -17,7 +17,8 @@ export class ValidationService {
       hasLower: 'Password must contain at least 1 lowercase letter',
       hasSpecial: 'Password must contain at least 1 special character',
       pattern: 'Only letters allowed',
-      isMatching: 'Passwords must match'
+      isMatching: 'Passwords must match',
+      isPhoneNumber: 'Please enter a valid phone number, such as xxx-xxx-xxx'
     };
 
     return config[validatorName];
