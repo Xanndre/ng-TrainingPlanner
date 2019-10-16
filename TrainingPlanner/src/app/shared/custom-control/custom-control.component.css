@@ -5,3 +5,7 @@
 ::ng-deep .mat-select-value {
   color: #999999;
 }
+
+::ng-deep .mat-input-element:enabled {
+  color: #999999;
+}
