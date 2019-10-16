@@ -64,4 +64,17 @@ export class TrainerService {
       .delete(`https://localhost:44383/api/Trainer/${trainerId}`, options)
       .pipe();
   }
+
+  getAllTrainers() {
+    const options = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + localStorage.getItem('jwt')
+      })
+    };
+    return this.client.get('https://localhost:44383/api/Trainer', options).pipe(
+      map((res: TrainerGet[]) => {
+        return res;
+      })
+    );
+  }
 }

@@ -15,17 +15,28 @@ import {
 } from '@angular/material';
 import { TrainerProfileComponent } from './trainer-profile/trainer-profile.component';
 import { DeleteDialogComponent } from '../shared/delete-dialog/delete-dialog.component';
+import { TrainerListComponent } from './trainer-list/trainer-list.component';
+import { TrainerListItemComponent } from './trainer-list/trainer-list-item/trainer-list-item.component';
 
 const routes: Routes = [
   {
     path: 'profile/trainer',
     component: TrainerProfileComponent,
     canActivate: [AuthGuardService]
+  },
+  {
+    path: 'trainers',
+    component: TrainerListComponent,
+    canActivate: [AuthGuardService]
   }
 ];
 
 @NgModule({
-  declarations: [TrainerProfileComponent],
+  declarations: [
+    TrainerProfileComponent,
+    TrainerListComponent,
+    TrainerListItemComponent
+  ],
   imports: [
     CommonModule,
     MatButtonModule,
@@ -40,7 +51,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     SharedModule
   ],
-  exports: [TrainerProfileComponent],
+  exports: [TrainerProfileComponent, TrainerListComponent],
   entryComponents: [DeleteDialogComponent]
 })
 export class TrainerModule {}

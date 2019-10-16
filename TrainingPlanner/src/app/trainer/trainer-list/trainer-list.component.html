@@ -1,0 +1,9 @@
+<div class="full-width">
+  <div class="col-lg-3"></div>
+  <div class="col-lg-6 mx-auto tp-main-col">
+    <mat-card class="my-4" *ngFor="let trainer of trainers">
+      <app-trainer-list-item [trainer]="trainer"></app-trainer-list-item>
+    </mat-card>
+  </div>
+  <div class="col-lg-3"></div>
+</div>
