@@ -8,7 +8,6 @@ export class TrainerProfileForm {
   buildForm(formBuilder: FormBuilder, trainer: TrainerGet) {
     const sportNames = [];
     if (trainer !== null) {
-      console.log(trainer.sports);
       trainer.sports.forEach(s => {
         sportNames.push(s.sport.name);
       });

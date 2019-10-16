@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { TrainerCreate } from '../models/TrainerCreate';
 import { map } from 'rxjs/Operators';
-import { Trainer } from '../models/Trainer';
 import { TrainerGet } from '../models/TrainerGet';
+import { TrainerUpdate } from '../models/TrainerUpdate';
 
 @Injectable({
   providedIn: 'root'
@@ -38,7 +38,7 @@ export class TrainerService {
       );
   }
 
-  updateTrainer(trainer: Trainer) {
+  updateTrainer(trainer: TrainerUpdate) {
     const options = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -48,7 +48,7 @@ export class TrainerService {
     return this.client
       .put('https://localhost:44383/api/Trainer', trainer, options)
       .pipe(
-        map((res: Trainer) => {
+        map((res: TrainerUpdate) => {
           return res;
         })
       );

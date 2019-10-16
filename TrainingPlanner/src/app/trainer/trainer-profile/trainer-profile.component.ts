@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { Trainer } from 'src/app/models/Trainer';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { TrainerPrice } from 'src/app/models/TrainerPrice';
 import { TrainerSport } from 'src/app/models/TrainerSport';
 import { TrainerCreate } from 'src/app/models/TrainerCreate';
@@ -9,6 +8,7 @@ import { SportService } from 'src/app/services/Sport.service';
 import { TrainerService } from 'src/app/services/Trainer.service';
 import { FormBuilder } from '@angular/forms';
 import { TrainerGet } from 'src/app/models/TrainerGet';
+import { TrainerUpdate } from 'src/app/models/TrainerUpdate';
 
 @Component({
   selector: 'app-trainer-profile',
@@ -19,14 +19,17 @@ export class TrainerProfileComponent implements OnInit {
   trainerForm: TrainerProfileForm = new TrainerProfileForm();
   formControls: TrainerProfileControls;
   trainerCreate: TrainerCreate;
+  trainerUpdate: TrainerUpdate = new TrainerUpdate();
   sports: TrainerSport[] = [];
   priceList: TrainerPrice[] = [];
   isTrainer: boolean;
   userId: string;
   trainer: TrainerGet;
-  beforeChanges: Trainer;
+  beforeChanges: TrainerUpdate;
   isLoaded: boolean;
   isEdited = false;
+
+  @Input() table: any;
 
   constructor(
     private sportService: SportService,
@@ -70,8 +73,6 @@ export class TrainerProfileComponent implements OnInit {
           sports: this.sports,
           priceList: this.priceList
         };
-        console.log(this.priceList);
-        console.log(this.sports);
         this.trainerService.createTrainer(this.trainerCreate).subscribe(() => {
           console.log('Dodano konto trenerskie');
         });
@@ -89,14 +90,14 @@ export class TrainerProfileComponent implements OnInit {
   }
 
   setEditedData() {
-    this.trainer.description = this.trainerForm.trainerForm.value.description;
-    //this.trainer.sports =
-    //this.trainer.priceList =
+    this.trainerUpdate.description = this.trainerForm.trainerForm.value.description;
+    this.trainerUpdate.userId = this.trainer.user.id;
+    this.trainerUpdate.id = this.trainer.id;
   }
 
   cancel() {
     this.isEdited = false;
-    this.trainer = JSON.parse(JSON.stringify(this.beforeChanges));
+    this.trainerUpdate = JSON.parse(JSON.stringify(this.beforeChanges));
     this.setTrainerData();
     this.trainerForm.trainerForm.markAsPristine();
     this.trainerForm.trainerForm.markAsUntouched();
@@ -107,16 +108,41 @@ export class TrainerProfileComponent implements OnInit {
   saveTrainerData() {
     this.isEdited = false;
     this.setEditedData();
-    // this.trainerService.updateTrainer(this.trainer).subscribe(() => {});
-    this.beforeChanges = JSON.parse(JSON.stringify(this.trainer));
-    this.trainerForm.trainerForm.disable();
+    this.sportService
+      .getSportsByNames(this.trainerForm.trainerForm.value.sports)
+      .subscribe(response => {
+        this.sports = [];
+        response.forEach(s => {
+          this.sports.push({
+            trainerId: this.trainer.id,
+            sportId: s.id,
+            sportName: s.name
+          });
+        });
+        this.trainerUpdate.sports = this.sports;
+        this.trainerUpdate.priceList = this.priceList;
+        this.trainerUpdate.priceList.forEach(p => {
+          p.trainerId = this.trainerUpdate.id;
+          p.id = undefined;
+        });
+        this.trainerService
+          .updateTrainer(this.trainerUpdate)
+          .subscribe(() => {});
+        this.beforeChanges = JSON.parse(JSON.stringify(this.trainer));
+        this.trainerForm.trainerForm.disable();
+      });
   }
 
   setTrainerData() {
+    const sportNames: string[] = [];
+    this.trainer.sports.forEach(s => {
+      sportNames.push(s.sport.name);
+    });
+    this.trainerForm.trainerForm.value.sports = sportNames;
     this.trainerForm.trainerForm.setValue({
       description: this.trainer.description,
-      sports: this.trainer.sports,
-      priceList: this.trainer.priceList
+      sports: sportNames
     });
+    this.priceList = this.beforeChanges.priceList;
   }
 }
