@@ -32,8 +32,7 @@ export class TrainerProfileControls {
             type: 'text',
             formControlName: 'phoneNumber',
             placeholder: 'Phone number',
-            label: 'Phone number',
-            class: 'blue'
+            label: 'Phone number'
           },
           {
             formGroup: form.trainerForm,
