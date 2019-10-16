@@ -17,6 +17,7 @@ import { TrainerProfileComponent } from './trainer-profile/trainer-profile.compo
 import { DeleteDialogComponent } from '../shared/delete-dialog/delete-dialog.component';
 import { TrainerListComponent } from './trainer-list/trainer-list.component';
 import { TrainerListItemComponent } from './trainer-list/trainer-list-item/trainer-list-item.component';
+import { TrainerDetailsComponent } from './trainer-details/trainer-details.component';
 
 const routes: Routes = [
   {
@@ -28,6 +29,11 @@ const routes: Routes = [
     path: 'trainers',
     component: TrainerListComponent,
     canActivate: [AuthGuardService]
+  },
+  {
+    path: 'trainers/:id',
+    component: TrainerDetailsComponent,
+    canActivate: [AuthGuardService]
   }
 ];
 
@@ -35,7 +41,8 @@ const routes: Routes = [
   declarations: [
     TrainerProfileComponent,
     TrainerListComponent,
-    TrainerListItemComponent
+    TrainerListItemComponent,
+    TrainerDetailsComponent
   ],
   imports: [
     CommonModule,
@@ -51,7 +58,11 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     SharedModule
   ],
-  exports: [TrainerProfileComponent, TrainerListComponent],
+  exports: [
+    TrainerProfileComponent,
+    TrainerListComponent,
+    TrainerDetailsComponent
+  ],
   entryComponents: [DeleteDialogComponent]
 })
 export class TrainerModule {}
