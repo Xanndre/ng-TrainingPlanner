@@ -53,4 +53,15 @@ export class TrainerService {
         })
       );
   }
+
+  deleteTrainer(trainerId: number) {
+    const options = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + localStorage.getItem('jwt')
+      })
+    };
+    return this.client
+      .delete(`https://localhost:44383/api/Trainer/${trainerId}`, options)
+      .pipe();
+  }
 }

@@ -1,6 +1,17 @@
 <div class="row full-width" *ngIf="isLoaded">
   <div class="col-lg-6 mx-auto">
     <mat-card class="my-4">
+      <div class="tp-right">
+        <button
+          mat-raised-button
+          color="warn"
+          class="btn-block btn-no-shadow w-25"
+          *ngIf="isTrainer"
+          (click)="deleteTrainerAccount()"
+        >
+          Delete profile
+        </button>
+      </div>
       <form class="text-center p-5" [formGroup]="trainerForm.trainerForm">
         <h4 class="text-muted" *ngIf="!isTrainer; else editTitle">
           Create a trainer profile

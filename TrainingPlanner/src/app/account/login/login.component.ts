@@ -99,7 +99,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('jwt', response.token);
         localStorage.setItem('userId', response.id);
         localStorage.setItem('username', response.username);
-        this.router.navigate(['/user']);
+        this.router.navigate(['/profile/user']);
       },
       () => {
         this.showError('Invalid login attempt.');

@@ -15,6 +15,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { PricelistTableComponent } from './pricelist-table/pricelist-table.component';
 import { MatChipsModule, MatTableModule } from '@angular/material';
 import { PricelistDialogComponent } from './pricelist-table/pricelist-dialog/pricelist-dialog.component';
+import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { PricelistDialogComponent } from './pricelist-table/pricelist-dialog/pri
     CustomErrorComponent,
     CustomControlGroupComponent,
     ErrorDialogComponent,
+    DeleteDialogComponent,
     PricelistTableComponent,
     PricelistDialogComponent
   ],
@@ -44,6 +46,7 @@ import { PricelistDialogComponent } from './pricelist-table/pricelist-dialog/pri
     CustomErrorComponent,
     CustomControlGroupComponent,
     ErrorDialogComponent,
+    DeleteDialogComponent,
     PricelistTableComponent
   ],
   entryComponents: [PricelistDialogComponent]

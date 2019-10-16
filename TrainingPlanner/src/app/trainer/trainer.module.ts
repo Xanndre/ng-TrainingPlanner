@@ -14,6 +14,7 @@ import {
   MatChipsModule
 } from '@angular/material';
 import { TrainerProfileComponent } from './trainer-profile/trainer-profile.component';
+import { DeleteDialogComponent } from '../shared/delete-dialog/delete-dialog.component';
 
 const routes: Routes = [
   {
@@ -39,6 +40,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     SharedModule
   ],
-  exports: [TrainerProfileComponent]
+  exports: [TrainerProfileComponent],
+  entryComponents: [DeleteDialogComponent]
 })
 export class TrainerModule {}

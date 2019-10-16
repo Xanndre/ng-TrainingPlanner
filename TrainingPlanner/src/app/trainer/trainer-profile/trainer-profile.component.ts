@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { TrainerPrice } from 'src/app/models/TrainerPrice';
 import { TrainerSport } from 'src/app/models/TrainerSport';
 import { TrainerCreate } from 'src/app/models/TrainerCreate';
@@ -9,6 +9,9 @@ import { TrainerService } from 'src/app/services/Trainer.service';
 import { FormBuilder } from '@angular/forms';
 import { TrainerGet } from 'src/app/models/TrainerGet';
 import { TrainerUpdate } from 'src/app/models/TrainerUpdate';
+import { MatDialog } from '@angular/material';
+import { DeleteDialogComponent } from 'src/app/shared/delete-dialog/delete-dialog.component';
+import { DataTransferService } from 'src/app/services/DataTransfer.service';
 
 @Component({
   selector: 'app-trainer-profile',
@@ -34,7 +37,9 @@ export class TrainerProfileComponent implements OnInit {
   constructor(
     private sportService: SportService,
     private trainerService: TrainerService,
-    private formBuilder: FormBuilder
+    private dataTransferService: DataTransferService,
+    private formBuilder: FormBuilder,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -74,6 +79,7 @@ export class TrainerProfileComponent implements OnInit {
           priceList: this.priceList
         };
         this.trainerService.createTrainer(this.trainerCreate).subscribe(() => {
+          window.location.reload();
           console.log('Dodano konto trenerskie');
         });
       });
@@ -144,5 +150,19 @@ export class TrainerProfileComponent implements OnInit {
       sports: sportNames
     });
     this.priceList = this.beforeChanges.priceList;
+  }
+
+  deleteTrainerAccount() {
+    this.dataTransferService.setTrainerId(this.trainer.id);
+    this.showError(
+      'Do you really want to delete this trainer profile? This process cannot be undone.'
+    );
+  }
+
+  showError(error: string): void {
+    this.dialog.open(DeleteDialogComponent, {
+      data: { errorMsg: error },
+      width: '400px'
+    });
   }
 }
