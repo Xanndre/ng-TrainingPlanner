@@ -25,7 +25,7 @@ export class PricelistTableComponent implements OnInit {
     'price',
     'action'
   ];
-  dataSource: TrainerPriceCreate[] = [];
+  @Input() dataSource: TrainerPriceCreate[] = [];
   isLoaded: boolean;
   counter = 0;
 

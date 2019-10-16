@@ -17,6 +17,7 @@
         ></app-custom-control-group>
 
         <app-pricelist-table
+          [dataSource]="priceList"
           [userId]="userId"
           [isDisabled]="trainerForm.trainerForm.disabled"
           (priceListChange)="receivePriceList($event)"
