@@ -1,4 +1,4 @@
-export class TrainerPriceCreate {
+export class Price {
   id: number;
   name: string;
   validityPeriod: string;

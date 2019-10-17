@@ -1,3 +1,84 @@
-<p>
-  club-profile works!
-</p>
+<div class="row full-width" *ngIf="isLoaded">
+  <div class="col-lg-6 mx-auto">
+    <mat-card class="my-4">
+      <div class="tp-right">
+        <button
+          mat-raised-button
+          color="warn"
+          class="btn-block btn-no-shadow w-25"
+          *ngIf="isClub"
+          (click)="deleteClubAccount()"
+        >
+          Delete profile
+        </button>
+      </div>
+      <form class="text-center p-5" [formGroup]="clubForm.clubForm">
+        <h4 class="text-muted" *ngIf="!isClub; else editTitle">
+          Create a club profile
+        </h4>
+        <ng-template #editTitle>
+          <h4 class="text-muted">
+            Edit a club profile
+          </h4>
+        </ng-template>
+
+        <app-custom-control-group
+          *ngFor="let controlGroup of formControls.controlGroups"
+          [customControlGroup]="controlGroup"
+        ></app-custom-control-group>
+
+        <app-pricelist-table
+          [dataSource]="priceList"
+          [clubId]="clubId"
+          [isDisabled]="clubForm.clubForm.disabled"
+          (priceListChange)="receivePriceList($event)"
+        >
+        </app-pricelist-table>
+
+        <button
+          mat-raised-button
+          color="primary"
+          class="btn-block my-4 btn-no-shadow"
+          type="submit"
+          *ngIf="!isClub"
+          [disabled]="!clubForm.clubForm.valid"
+          (click)="createClubAccount()"
+        >
+          Create
+        </button>
+        <button
+          mat-raised-button
+          color="primary"
+          class="btn-block my-4 btn-no-shadow"
+          type="submit"
+          *ngIf="isClub && !isEdited"
+          (click)="editClubAccount()"
+        >
+          Edit
+        </button>
+        <div *ngIf="isEdited" class="row">
+          <div class="col">
+            <button
+              mat-raised-button
+              class="btn-block my-4 btn-no-shadow"
+              color="primary"
+              [disabled]="!clubForm.clubForm.valid"
+              (click)="saveClubData()"
+            >
+              Save
+            </button>
+          </div>
+          <div class="col">
+            <button
+              mat-raised-button
+              class="btn-cancel btn-block my-4 btn-no-shadow"
+              (click)="cancel()"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </form>
+    </mat-card>
+  </div>
+</div>

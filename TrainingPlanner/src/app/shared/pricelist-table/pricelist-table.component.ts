@@ -10,7 +10,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatTable } from '@angular/material/table';
 import { TrainerService } from 'src/app/services/Trainer.service';
 import { PricelistDialogComponent } from './pricelist-dialog/pricelist-dialog.component';
-import { TrainerPriceCreate } from 'src/app/models/TrainerPriceCreate';
+import { ClubService } from 'src/app/services/Club.service';
+import { Price } from 'src/app/models/Price';
 
 @Component({
   selector: 'app-pricelist-table',
@@ -25,38 +26,50 @@ export class PricelistTableComponent implements OnInit {
     'price',
     'action'
   ];
-  @Input() dataSource: TrainerPriceCreate[] = [];
+  @Input() dataSource: Price[] = [];
   isLoaded: boolean;
   counter = 0;
 
   @Input() userId: string;
+  @Input() clubId: number;
   @Input() isDisabled: boolean;
 
-  @Output() priceListChange = new EventEmitter<TrainerPriceCreate[]>();
+  @Output() priceListChange = new EventEmitter<Price[]>();
 
   @ViewChild(MatTable, { static: true }) table: MatTable<any>;
 
   constructor(
     public dialog: MatDialog,
-    private trainerService: TrainerService
+    private trainerService: TrainerService,
+    private clubService: ClubService
   ) {}
 
   ngOnInit() {
-    this.trainerService.getTrainerByUser(this.userId).subscribe(response => {
-      if (response !== null) {
-        response.priceList.forEach(pr => {
-          this.dataSource.push({
-            id: pr.id,
-            name: pr.name,
-            validityPeriod: pr.validityPeriod,
-            entries: pr.entries,
-            price: pr.price
-          });
+    if (this.userId !== null) {
+      this.trainerService.getTrainerByUser(this.userId).subscribe(response => {
+        this.setPriceListData(response);
+      });
+    } else {
+      this.clubService.getClub(this.clubId).subscribe(response => {
+        this.setPriceListData(response);
+      });
+    }
+  }
+
+  setPriceListData(response: any) {
+    if (response !== null) {
+      response.priceList.forEach(pr => {
+        this.dataSource.push({
+          id: pr.id,
+          name: pr.name,
+          validityPeriod: pr.validityPeriod,
+          entries: pr.entries,
+          price: pr.price
         });
-      }
-      this.table.renderRows();
-      this.isLoaded = true;
-    });
+      });
+    }
+    this.table.renderRows();
+    this.isLoaded = true;
   }
 
   openDialog(action, obj) {
@@ -79,7 +92,7 @@ export class PricelistTableComponent implements OnInit {
     });
   }
 
-  addRowData(rowObj: TrainerPriceCreate) {
+  addRowData(rowObj: Price) {
     this.dataSource.push({
       id: rowObj.id !== undefined ? rowObj.id : this.counter++,
       name: rowObj.name,

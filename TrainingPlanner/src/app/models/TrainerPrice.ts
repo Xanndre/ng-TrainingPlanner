@@ -1,8 +1,5 @@
-export class TrainerPrice {
-  id: number;
+import { Price } from './Price';
+
+export class TrainerPrice extends Price {
   trainerId: number;
-  name: string;
-  validityPeriod: string;
-  entries: string;
-  price: number;
 }

@@ -8,11 +8,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
-import {
-  MatFormFieldModule,
-  MatInputModule,
-  MatChipsModule
-} from '@angular/material';
+import { MatChipsModule } from '@angular/material';
 import { TrainerProfileComponent } from './trainer-profile/trainer-profile.component';
 import { DeleteDialogComponent } from '../shared/delete-dialog/delete-dialog.component';
 import { TrainerListComponent } from './trainer-list/trainer-list.component';
@@ -50,8 +46,6 @@ const routes: Routes = [
     MatCardModule,
     MatChipsModule,
     MatDialogModule,
-    MatFormFieldModule,
-    MatInputModule,
     FormsModule,
     MatTableModule,
     ReactiveFormsModule,
