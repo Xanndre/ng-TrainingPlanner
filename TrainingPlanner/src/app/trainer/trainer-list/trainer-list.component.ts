@@ -9,12 +9,14 @@ import { TrainerGet } from 'src/app/models/TrainerGet';
 })
 export class TrainerListComponent implements OnInit {
   trainers: TrainerGet[];
+  isLoaded: boolean;
 
   constructor(private trainerService: TrainerService) {}
 
   ngOnInit() {
     this.trainerService.getAllTrainers().subscribe(response => {
       this.trainers = response;
+      this.isLoaded = true;
       console.log(this.trainers);
     });
   }

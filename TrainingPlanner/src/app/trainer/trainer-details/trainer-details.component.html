@@ -1,3 +1,112 @@
-<p>
-  trainer-details works!
-</p>
+<div class="full-width" *ngIf="isLoaded">
+  <div class="col-lg-3"></div>
+  <div class="col-lg-6 mx-auto tp-main-col">
+    <mat-card class="my-4">
+      <div class="row">
+        <div class="col-3">
+          <img
+            class="tp-image"
+            src="{{
+              trainer.user.profilePicture != null
+                ? trainer.user.profilePicture
+                : 'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png'
+            }}"
+            alt="Profile Picture"
+          />
+        </div>
+        <div class="col-9 tp-padd">
+          <div class="mb-3">
+            <h5 class="text-muted mt-1">
+              {{ trainer.user.firstName + ' ' + trainer.user.lastName }}
+            </h5>
+          </div>
+          <p class="text-muted mb-2">
+            <span><i class="fa fa-envelope" aria-hidden="true"></i></span>
+            {{ trainer.user.email }}
+          </p>
+          <p class="text-muted mb-2" *ngIf="trainer.phoneNumber != null">
+            <span><i class="fa fa-phone" aria-hidden="true"></i></span>
+            {{ trainer.phoneNumber }}
+          </p>
+
+          <p class="text-muted mb-2">
+            <span><i class="fa fa-home" aria-hidden="true"></i></span>
+            {{ trainer.user.city }}
+          </p>
+          <p class="text-muted mb-0">
+            <span><i class="fas fa-dumbbell"></i></span>
+            {{ sports }}
+          </p>
+        </div>
+      </div>
+
+      <p class="text-muted my-4 text-justify">
+        {{ trainer.description }}
+      </p>
+
+      <h5 class="text-muted text-center">
+        Price list
+      </h5>
+      <table
+        mat-table
+        [dataSource]="trainer.priceList"
+        class="mat-elevation-z8 w-100"
+      >
+        <ng-container matColumnDef="name">
+          <th mat-header-cell class="tp-center-align" *matHeaderCellDef>
+            Name
+          </th>
+          <td
+            mat-cell
+            class="text-muted tp-center-align"
+            *matCellDef="let element"
+          >
+            {{ element.name }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="validityPeriod">
+          <th mat-header-cell class="tp-center-align" *matHeaderCellDef>
+            Validity Period
+          </th>
+          <td
+            mat-cell
+            class="text-muted tp-center-align"
+            *matCellDef="let element"
+          >
+            {{ element.validityPeriod }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="entries">
+          <th mat-header-cell class="tp-center-align" *matHeaderCellDef>
+            Entries
+          </th>
+          <td
+            mat-cell
+            class="text-muted tp-center-align"
+            *matCellDef="let element"
+          >
+            {{ element.entries }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="price">
+          <th mat-header-cell class="tp-center-align" *matHeaderCellDef>
+            Price
+          </th>
+          <td
+            mat-cell
+            class="text-muted tp-center-align"
+            *matCellDef="let element"
+          >
+            {{ element.price + ' zł' }}
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </mat-card>
+  </div>
+  <div class="col-lg-3"></div>
+</div>

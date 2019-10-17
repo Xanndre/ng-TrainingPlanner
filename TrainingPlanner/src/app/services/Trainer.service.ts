@@ -77,4 +77,19 @@ export class TrainerService {
       })
     );
   }
+
+  getTrainer(id: number) {
+    const options = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + localStorage.getItem('jwt')
+      })
+    };
+    return this.client
+      .get(`https://localhost:44383/api/Trainer/${id}`, options)
+      .pipe(
+        map((res: TrainerGet) => {
+          return res;
+        })
+      );
+  }
 }
