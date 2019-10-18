@@ -34,6 +34,58 @@
           (priceListChange)="receivePriceList($event)"
         >
         </app-pricelist-table>
+        <mat-expansion-panel class="mt-4">
+          <mat-expansion-panel-header>
+            <mat-panel-title class="text-muted">
+              Trainers
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <button
+            mat-raised-button
+            color="primary"
+            class="btn-block mb-3 btn-no-shadow w-25 float-right"
+            (click)="openAddDialog('Add', {})"
+          >
+            Add trainer
+          </button>
+          <app-slider>
+            <div appSliderItem *ngFor="let trainer of trainers">
+              <mat-card class="example-card">
+                <img
+                  class="tp-image"
+                  mat-card-image
+                  src="{{ trainer.picture }}"
+                  alt="Trainer picture"
+                />
+                <mat-card-header style="display: block !important;">
+                  <mat-card-title>{{ trainer.name }}</mat-card-title>
+                  <mat-card-subtitle>{{
+                    trainer.description
+                  }}</mat-card-subtitle>
+                  <div class="controls">
+                    <button
+                      mat-raised-button
+                      color="primary"
+                      class="btn-no-shadow mar-r"
+                      (click)="openAddDialog('Edit', trainer)"
+                    >
+                      Edit
+                    </button>
+
+                    <button
+                      mat-raised-button
+                      color="warn"
+                      class="btn-no-shadow mar-l"
+                      (click)="openAddDialog('Delete', trainer)"
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </mat-card-header>
+              </mat-card>
+            </div>
+          </app-slider>
+        </mat-expansion-panel>
 
         <button
           mat-raised-button

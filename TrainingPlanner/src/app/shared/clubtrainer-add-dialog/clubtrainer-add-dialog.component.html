@@ -1,0 +1,60 @@
+<h1 mat-dialog-title class="text-muted mb-2">
+  {{ action + ' Trainer' }}
+</h1>
+<div mat-dialog-content>
+  <div *ngIf="action != 'Delete'; else elseTemplate">
+    <img
+      class="tp-image"
+      src="{{
+        localData.picture != null
+          ? localData.picture
+          : 'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png'
+      }}"
+      alt="Profile Picture"
+    /><br />
+    <div *ngIf="localData.picture == null">
+      <input
+        type="file"
+        id="file"
+        accept="image/*"
+        (change)="changePictureListener($event)"
+      />
+      <label for="file" class="my-btn tp-btn text-center">Add photo</label>
+    </div>
+    <button
+      mat-raised-button
+      color="primary"
+      class="btn-no-shadow btn-block tp-btn"
+      *ngIf="localData.picture != null"
+      (click)="localData.picture = null"
+    >
+      Delete photo
+    </button>
+    <mat-form-field class="tp-width mt-2">
+      <input placeholder="Name" matInput [(ngModel)]="localData.name" />
+    </mat-form-field>
+    <mat-form-field class="tp-width" appearance="outline">
+      <mat-label>Description</mat-label>
+      <textarea
+        placeholder="Description"
+        matInput
+        rows="5"
+        [(ngModel)]="localData.description"
+      ></textarea>
+    </mat-form-field>
+  </div>
+  <ng-template #elseTemplate>
+    <div class="text-muted tp-padd">
+      Are you sure to delete <b>{{ localData.name }}</b
+      >?
+    </div>
+  </ng-template>
+</div>
+<div mat-dialog-actions class="float-right">
+  <button mat-raised-button color="primary" (click)="doAction()">
+    {{ action }}
+  </button>
+  <button mat-raised-button (click)="closeDialog()" color="warn">
+    Cancel
+  </button>
+</div>

@@ -1,0 +1,26 @@
+.slider-container {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+}
+.slides {
+  display: flex;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+}
+.slides::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+.controls {
+  display: flex;
+  justify-content: center;
+}
+
+.mar-l {
+  margin-left: 3px;
+}
+
+.mar-r {
+  margin-right: 3px;
+}

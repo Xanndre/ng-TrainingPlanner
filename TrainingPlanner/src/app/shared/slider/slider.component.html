@@ -1,0 +1,23 @@
+<div class="slider-container mx-auto mt-4">
+  <div class="slides" #slides>
+    <ng-content select="[appSliderItem]" #sliderItem> </ng-content>
+  </div>
+  <div class="controls">
+    <button
+      mat-raised-button
+      color="primary"
+      class="mar-r btn-no-shadow"
+      (click)="onClickLeft()"
+    >
+      <
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      class="mar-l btn-no-shadow"
+      (click)="onClickRight()"
+    >
+      >
+    </button>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+.example-card {
+  max-width: 398px;
+  margin-bottom: 2px;
+  margin-left: 1px;
+  margin-right: 1px;
+}
+[appSliderItem] {
+  flex-shrink: 0;
+}
+
+.tp-image {
+  height: 319px;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+}
+
+.mar-l {
+  margin-left: 3px;
+}
+
+.mar-r {
+  margin-right: 3px;
+}

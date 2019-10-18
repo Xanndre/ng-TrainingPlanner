@@ -16,6 +16,9 @@ import { PricelistTableComponent } from './pricelist-table/pricelist-table.compo
 import { MatChipsModule, MatTableModule } from '@angular/material';
 import { PricelistDialogComponent } from './pricelist-table/pricelist-dialog/pricelist-dialog.component';
 import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
+import { SliderComponent } from './slider/slider.component';
+import { SliderItemDirective } from './slider/slider-item.directive';
+import { ClubtrainerAddDialogComponent } from './clubtrainer-add-dialog/clubtrainer-add-dialog.component';
 
 @NgModule({
   declarations: [
@@ -24,8 +27,11 @@ import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
     CustomControlGroupComponent,
     ErrorDialogComponent,
     DeleteDialogComponent,
+    ClubtrainerAddDialogComponent,
     PricelistTableComponent,
-    PricelistDialogComponent
+    PricelistDialogComponent,
+    SliderComponent,
+    SliderItemDirective
   ],
   imports: [
     CommonModule,
@@ -47,7 +53,10 @@ import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
     CustomControlGroupComponent,
     ErrorDialogComponent,
     DeleteDialogComponent,
-    PricelistTableComponent
+    ClubtrainerAddDialogComponent,
+    PricelistTableComponent,
+    SliderComponent,
+    SliderItemDirective
   ],
   entryComponents: [PricelistDialogComponent]
 })

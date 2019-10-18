@@ -1,0 +1,51 @@
+.btn-cancel {
+  background-color: #868e96;
+  color: white;
+}
+
+.input {
+  cursor: pointer !important;
+}
+
+.tp-image {
+  width: 205px;
+}
+
+.tp-btn {
+  width: 205px;
+}
+
+[type='file'] {
+  opacity: 0;
+  position: absolute;
+  cursor: pointer;
+  width: 205px;
+  height: 38px;
+}
+[type='file'] + label {
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0px;
+  outline: none;
+  padding: 1px 60px;
+  position: relative;
+  line-height: 36px;
+  vertical-align: middle;
+  z-index: 1;
+}
+
+[type='file'] + label.my-btn {
+  background-color: #3f51b5;
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+.tp-width {
+  width: 205px;
+}

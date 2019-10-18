@@ -7,10 +7,11 @@ import { SharedModule } from '../shared/shared.module';
 import {
   MatCardModule,
   MatButtonModule,
-  MatInputModule,
-  MatFormFieldModule
+  MatInputModule
 } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { ClubtrainerAddDialogComponent } from '../shared/clubtrainer-add-dialog/clubtrainer-add-dialog.component';
 
 const routes: Routes = [
   {
@@ -28,9 +29,11 @@ const routes: Routes = [
     ReactiveFormsModule,
     SharedModule,
     MatCardModule,
+    MatExpansionModule,
     MatButtonModule,
     RouterModule.forChild(routes)
   ],
-  exports: [ClubProfileComponent]
+  exports: [ClubProfileComponent],
+  entryComponents: [ClubtrainerAddDialogComponent]
 })
 export class ClubModule {}
