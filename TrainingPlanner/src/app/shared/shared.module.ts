@@ -18,7 +18,8 @@ import { PricelistDialogComponent } from './pricelist-table/pricelist-dialog/pri
 import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 import { SliderComponent } from './slider/slider.component';
 import { SliderItemDirective } from './slider/slider-item.directive';
-import { ClubtrainerAddDialogComponent } from './clubtrainer-add-dialog/clubtrainer-add-dialog.component';
+import { ClubActivityDialogComponent } from './club-activity-dialog/club-activity-dialog.component';
+import { ClubTrainerDialogComponent } from './club-trainer-dialog/club-trainer-dialog.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ClubtrainerAddDialogComponent } from './clubtrainer-add-dialog/clubtrai
     CustomControlGroupComponent,
     ErrorDialogComponent,
     DeleteDialogComponent,
-    ClubtrainerAddDialogComponent,
+    ClubActivityDialogComponent,
+    ClubTrainerDialogComponent,
     PricelistTableComponent,
     PricelistDialogComponent,
     SliderComponent,
@@ -53,7 +55,8 @@ import { ClubtrainerAddDialogComponent } from './clubtrainer-add-dialog/clubtrai
     CustomControlGroupComponent,
     ErrorDialogComponent,
     DeleteDialogComponent,
-    ClubtrainerAddDialogComponent,
+    ClubTrainerDialogComponent,
+    ClubActivityDialogComponent,
     PricelistTableComponent,
     SliderComponent,
     SliderItemDirective

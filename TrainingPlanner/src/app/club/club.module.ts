@@ -4,14 +4,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuardService } from '../guards/AuthGuard.service';
 import { ClubProfileComponent } from './club-profile/club-profile.component';
 import { SharedModule } from '../shared/shared.module';
-import {
-  MatCardModule,
-  MatButtonModule,
-  MatInputModule
-} from '@angular/material';
+import { MatCardModule, MatButtonModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { ClubtrainerAddDialogComponent } from '../shared/clubtrainer-add-dialog/clubtrainer-add-dialog.component';
+import { ClubTrainerDialogComponent } from '../shared/club-trainer-dialog/club-trainer-dialog.component';
+import { ClubActivityDialogComponent } from '../shared/club-activity-dialog/club-activity-dialog.component';
 
 const routes: Routes = [
   {
@@ -34,6 +31,6 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   exports: [ClubProfileComponent],
-  entryComponents: [ClubtrainerAddDialogComponent]
+  entryComponents: [ClubTrainerDialogComponent, ClubActivityDialogComponent]
 })
 export class ClubModule {}

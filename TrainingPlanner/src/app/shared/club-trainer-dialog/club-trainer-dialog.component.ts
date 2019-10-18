@@ -2,15 +2,15 @@ import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
-  selector: 'app-clubtrainer-add-dialog',
-  templateUrl: './clubtrainer-add-dialog.component.html',
-  styleUrls: ['./clubtrainer-add-dialog.component.css']
+  selector: 'app-club-trainer-dialog',
+  templateUrl: './club-trainer-dialog.component.html',
+  styleUrls: ['./club-trainer-dialog.component.css']
 })
-export class ClubtrainerAddDialogComponent {
+export class ClubTrainerDialogComponent {
   action: string;
   localData: any;
   constructor(
-    private dialogRef: MatDialogRef<ClubtrainerAddDialogComponent>,
+    private dialogRef: MatDialogRef<ClubTrainerDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     console.log(data);

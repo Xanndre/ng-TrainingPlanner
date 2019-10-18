@@ -6,7 +6,7 @@ import { ClubGet } from 'src/app/models/ClubGet';
 import { ClubPrice } from 'src/app/models/ClubPrice';
 import { ClubTrainer } from 'src/app/models/ClubTrainer';
 import { MatDialog } from '@angular/material';
-import { ClubtrainerAddDialogComponent } from 'src/app/shared/clubtrainer-add-dialog/clubtrainer-add-dialog.component';
+import { ClubTrainerDialogComponent } from 'src/app/shared/club-trainer-dialog/club-trainer-dialog.component';
 
 @Component({
   selector: 'app-club-profile',
@@ -56,7 +56,7 @@ export class ClubProfileComponent implements OnInit {
 
   openAddDialog(action, obj) {
     obj.action = action;
-    const dialogRef = this.dialog.open(ClubtrainerAddDialogComponent, {
+    const dialogRef = this.dialog.open(ClubTrainerDialogComponent, {
       width: '268px',
       data: obj
     });
