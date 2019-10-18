@@ -1,5 +1,5 @@
 <div class="slider-container mx-auto mt-4">
-  <div class="slides" #slides>
+  <div class="slides mx-auto" #slides>
     <ng-content select="[appSliderItem]" #sliderItem> </ng-content>
   </div>
   <div class="controls">
@@ -8,6 +8,7 @@
       color="primary"
       class="mar-r btn-no-shadow"
       (click)="onClickLeft()"
+      [disabled]="slidesIndex === 0"
     >
       <
     </button>
@@ -16,6 +17,7 @@
       color="primary"
       class="mar-l btn-no-shadow"
       (click)="onClickRight()"
+      [disabled]="slidesIndex === items.length - 1"
     >
       >
     </button>
