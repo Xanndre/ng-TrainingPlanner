@@ -9,6 +9,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { ClubTrainerDialogComponent } from '../shared/club-trainer-dialog/club-trainer-dialog.component';
 import { ClubActivityDialogComponent } from '../shared/club-activity-dialog/club-activity-dialog.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { PicturesComponent } from './club-profile/pictures/pictures.component';
 
 const routes: Routes = [
   {
@@ -19,7 +21,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [ClubProfileComponent],
+  declarations: [ClubProfileComponent, PicturesComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -28,6 +30,7 @@ const routes: Routes = [
     MatCardModule,
     MatExpansionModule,
     MatButtonModule,
+    DragDropModule,
     RouterModule.forChild(routes)
   ],
   exports: [ClubProfileComponent],

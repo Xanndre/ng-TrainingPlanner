@@ -1,0 +1,33 @@
+<input
+  type="file"
+  id="file"
+  accept="image/*"
+  multiple
+  (change)="changePictureListener($event)"
+  [disabled]="pictures.length >= 4"
+/>
+<label for="file" class="my-btn">Add Photos</label>
+
+<div
+  cdkDropList
+  cdkDropListOrientation="horizontal"
+  class="example-list"
+  (cdkDropListDropped)="drop($event)"
+>
+  <div
+    class="example-box"
+    *ngFor="let picture of pictures; let i = index"
+    cdkDragLockAxis="x"
+    cdkDrag
+  >
+    <button
+      type="button"
+      class="close my-button"
+      aria-label="Close"
+      (click)="pictures.splice(i, 1)"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <img class="my-image" src="{{ picture.data }}" alt="" />
+  </div>
+</div>

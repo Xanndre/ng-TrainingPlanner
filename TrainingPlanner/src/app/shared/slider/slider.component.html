@@ -8,7 +8,7 @@
       color="primary"
       class="mar-r btn-no-shadow"
       (click)="onClickLeft()"
-      [disabled]="slidesIndex === 0"
+      [disabled]="slidesIndex === 0 || items.length === 1"
     >
       <
     </button>
@@ -17,7 +17,7 @@
       color="primary"
       class="mar-l btn-no-shadow"
       (click)="onClickRight()"
-      [disabled]="slidesIndex === items.length - 1"
+      [disabled]="slidesIndex === items.length - 1 || items.length === 1"
     >
       >
     </button>

@@ -51,10 +51,20 @@
   </ng-template>
 </div>
 <div mat-dialog-actions class="float-right">
-  <button mat-raised-button color="primary" (click)="doAction()">
+  <button
+    mat-raised-button
+    color="primary"
+    class="btn-no-shadow"
+    (click)="doAction()"
+  >
     {{ action }}
   </button>
-  <button mat-raised-button (click)="closeDialog()" color="warn">
+  <button
+    mat-raised-button
+    (click)="closeDialog()"
+    color="warn"
+    class="btn-no-shadow"
+  >
     Cancel
   </button>
 </div>

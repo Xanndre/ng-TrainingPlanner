@@ -60,7 +60,9 @@
                   alt="Trainer picture"
                 />
                 <mat-card-header style="display: block !important;">
-                  <mat-card-title>{{ trainer.name }}</mat-card-title>
+                  <mat-card-title class="text-muted">{{
+                    trainer.name
+                  }}</mat-card-title>
                   <mat-card-subtitle>{{
                     trainer.description
                   }}</mat-card-subtitle>
@@ -89,6 +91,69 @@
           </app-slider>
         </mat-expansion-panel>
 
+        <mat-expansion-panel class="mt-4">
+          <mat-expansion-panel-header>
+            <mat-panel-title class="text-muted">
+              Activities
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <button
+            mat-raised-button
+            color="primary"
+            class="btn-block mb-3 btn-no-shadow w-25 float-right"
+            (click)="openActivityDialog('Add', {})"
+          >
+            Add activity
+          </button>
+
+          <app-slider>
+            <div appSliderItem *ngFor="let activity of activities">
+              <mat-card class="example-card">
+                <img
+                  class="tp-image"
+                  mat-card-image
+                  src="{{ activity.picture }}"
+                  alt="Activity picture"
+                />
+                <mat-card-header style="display: block !important;">
+                  <mat-card-title class="text-muted">{{
+                    activity.name
+                  }}</mat-card-title>
+                  <mat-card-subtitle
+                    >Duration: {{ activity.duration }} min</mat-card-subtitle
+                  >
+                  <mat-card-subtitle
+                    >Calories: {{ activity.calories }}</mat-card-subtitle
+                  >
+                  <mat-card-subtitle
+                    >Difficulty level: {{ activity.level }}</mat-card-subtitle
+                  >
+                  <div class="controls">
+                    <button
+                      mat-raised-button
+                      color="primary"
+                      class="btn-no-shadow mar-r"
+                      (click)="openActivityDialog('Edit', activity)"
+                    >
+                      Edit
+                    </button>
+
+                    <button
+                      mat-raised-button
+                      color="warn"
+                      class="btn-no-shadow mar-l"
+                      (click)="openActivityDialog('Delete', activity)"
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </mat-card-header>
+              </mat-card>
+            </div>
+          </app-slider>
+        </mat-expansion-panel>
+        <app-pictures [(pictures)]="pictures"></app-pictures>
         <button
           mat-raised-button
           color="primary"
