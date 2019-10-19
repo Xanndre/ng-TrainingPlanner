@@ -1,3 +1,5 @@
+import { ClubWorkingHours } from './ClubWorkingHours';
+
 export class ClubGet {
   name: string;
   description: string;
@@ -7,4 +9,5 @@ export class ClubGet {
   city: string;
   phoneNumber: string;
   email: string;
+  workingHours: ClubWorkingHours[];
 }

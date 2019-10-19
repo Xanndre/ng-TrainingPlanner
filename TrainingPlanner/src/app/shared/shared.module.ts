@@ -20,6 +20,8 @@ import { SliderComponent } from './slider/slider.component';
 import { SliderItemDirective } from './slider/slider-item.directive';
 import { ClubActivityDialogComponent } from './club-activity-dialog/club-activity-dialog.component';
 import { ClubTrainerDialogComponent } from './club-trainer-dialog/club-trainer-dialog.component';
+import { WorkingHoursTableComponent } from './working-hours-table/working-hours-table.component';
+import { WorkingHoursDialogComponent } from './working-hours-table/working-hours-dialog/working-hours-dialog.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { ClubTrainerDialogComponent } from './club-trainer-dialog/club-trainer-d
     ClubActivityDialogComponent,
     ClubTrainerDialogComponent,
     PricelistTableComponent,
+    WorkingHoursTableComponent,
     PricelistDialogComponent,
+    WorkingHoursDialogComponent,
     SliderComponent,
     SliderItemDirective
   ],
@@ -58,9 +62,10 @@ import { ClubTrainerDialogComponent } from './club-trainer-dialog/club-trainer-d
     ClubTrainerDialogComponent,
     ClubActivityDialogComponent,
     PricelistTableComponent,
+    WorkingHoursTableComponent,
     SliderComponent,
     SliderItemDirective
   ],
-  entryComponents: [PricelistDialogComponent]
+  entryComponents: [PricelistDialogComponent, WorkingHoursDialogComponent]
 })
 export class SharedModule {}

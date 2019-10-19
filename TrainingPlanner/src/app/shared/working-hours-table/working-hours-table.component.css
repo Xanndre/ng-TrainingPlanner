@@ -1,0 +1,22 @@
+.tp-center-align {
+  text-align: center;
+}
+
+::ng-deep .mat-chip-list-wrapper {
+  display: block !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+::ng-deep .mat-chip-list-wrapper:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.tp-label {
+  cursor: pointer;
+}
+
+::ng-deep .mat-chip-disabled {
+  cursor: default !important;
+}

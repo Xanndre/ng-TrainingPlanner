@@ -34,6 +34,14 @@
           (priceListChange)="receivePriceList($event)"
         >
         </app-pricelist-table>
+
+        <app-working-hours-table
+          [dataSource]="workingHours"
+          [clubId]="clubId"
+          [isDisabled]="clubForm.clubForm.disabled"
+          (workingHoursChange)="receiveWorkingHours($event)"
+        ></app-working-hours-table>
+
         <mat-expansion-panel class="mt-4">
           <mat-expansion-panel-header>
             <mat-panel-title class="text-muted">

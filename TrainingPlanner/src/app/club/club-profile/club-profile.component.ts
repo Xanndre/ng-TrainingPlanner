@@ -10,6 +10,7 @@ import { ClubTrainerDialogComponent } from 'src/app/shared/club-trainer-dialog/c
 import { ClubActivity } from 'src/app/models/ClubActivity';
 import { ClubActivityDialogComponent } from 'src/app/shared/club-activity-dialog/club-activity-dialog.component';
 import { Picture } from 'src/app/models/Picture';
+import { ClubWorkingHours } from 'src/app/models/ClubWorkingHours';
 
 @Component({
   selector: 'app-club-profile',
@@ -24,6 +25,7 @@ export class ClubProfileComponent implements OnInit {
   club: ClubGet = null;
   clubId: number;
   priceList: ClubPrice[] = [];
+  workingHours: ClubWorkingHours[] = [];
   trainers: ClubTrainer[] = [];
   activities: ClubActivity[] = [];
   pictures: Picture[] = [];
@@ -74,6 +76,10 @@ export class ClubProfileComponent implements OnInit {
 
   receivePriceList($event) {
     this.priceList = $event;
+  }
+
+  receiveWorkingHours($event) {
+    this.workingHours = $event;
   }
 
   openAddDialog(action, obj) {
