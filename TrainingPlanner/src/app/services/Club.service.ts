@@ -10,7 +10,7 @@ import { ClubGet } from '../models/ClubGet';
 export class ClubService {
   constructor(private client: HttpClient) {}
 
-  createTrainer(club: ClubCreate) {
+  createClub(club: ClubCreate) {
     const options = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',

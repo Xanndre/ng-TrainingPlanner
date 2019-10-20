@@ -1,12 +1,12 @@
 <input
   type="file"
-  id="file"
+  id="files"
   accept="image/*"
   multiple
-  (change)="changePictureListener($event)"
+  (change)="xd($event)"
   [disabled]="pictures.length >= 4"
 />
-<label for="file" class="my-btn">Add Photos</label>
+<label for="files" class="my-btn">Add Photos</label>
 
 <div
   cdkDropList

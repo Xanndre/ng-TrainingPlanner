@@ -1,6 +1,5 @@
-export class ClubTrainer {
-  id: number;
-  name: string;
-  description: string;
-  picture: string;
+import { ClubTrainerBase } from './ClubTrainerBase';
+
+export class ClubTrainer extends ClubTrainerBase {
+  clubId: number;
 }

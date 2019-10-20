@@ -72,7 +72,7 @@
             Add Trainer
           </button>
 
-          <app-slider>
+          <app-slider *ngIf="trainers.length !== 0">
             <div appSliderItem *ngFor="let trainer of trainers">
               <mat-card class="example-card">
                 <img
@@ -129,7 +129,7 @@
             Add Activity
           </button>
 
-          <app-slider>
+          <app-slider *ngIf="activities.length !== 0">
             <div appSliderItem *ngFor="let activity of activities">
               <mat-card class="example-card">
                 <img
@@ -181,8 +181,8 @@
               Photo Gallery
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <app-pictures [(pictures)]="pictures"></app-pictures
-        ></mat-expansion-panel>
+          <app-pictures [(pictures)]="pictures"></app-pictures>
+        </mat-expansion-panel>
         <button
           mat-raised-button
           color="primary"

@@ -32,7 +32,6 @@ export class WorkingHoursTableComponent implements OnInit {
     }
   };
   displayedColumns: string[] = ['day', 'openHour', 'closeHour'];
-  @Input() dataSource: WorkingHours[] = [];
   isLoaded: boolean;
   counter = 0;
   days = [
@@ -48,6 +47,7 @@ export class WorkingHoursTableComponent implements OnInit {
   @Input() userId: string;
   @Input() clubId: number;
   @Input() isDisabled: boolean;
+  @Input() dataSource: WorkingHours[] = [];
 
   @Output() workingHoursChange = new EventEmitter<WorkingHours[]>();
 
@@ -55,7 +55,7 @@ export class WorkingHoursTableComponent implements OnInit {
   constructor(public dialog: MatDialog, private clubService: ClubService) {}
 
   ngOnInit() {
-    if (this.clubId !== undefined) {
+    if (this.clubId !== null) {
       this.clubService.getClub(this.clubId).subscribe(response => {
         this.setWorkingHours(response);
       });

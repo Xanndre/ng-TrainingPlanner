@@ -15,6 +15,7 @@
     <td mat-cell class="text-muted" *matCellDef="let element">
       <input
         matInput
+        class="tp-input"
         placeholder="-"
         [(ngModel)]="element.openHour"
         [ngxTimepicker]="openHour"
@@ -34,6 +35,7 @@
     <td mat-cell class="text-muted" *matCellDef="let element">
       <input
         matInput
+        class="tp-input"
         placeholder="-"
         [(ngModel)]="element.closeHour"
         [ngxTimepicker]="closeHour"

@@ -12,7 +12,7 @@ export class PicturesComponent {
   @Input() pictures: Picture[];
   isPicturesLoaded: boolean;
 
-  changePictureListener($event): void {
+  xd($event): void {
     this.readPicture($event.target);
   }
 
@@ -20,15 +20,14 @@ export class PicturesComponent {
     const files: FileList = inputValue.files;
     for (let i = 0; i < files.length; i++) {
       const myReader: FileReader = new FileReader();
-
       myReader.onloadend = () => {
         const base = myReader.result;
-        const picture = {
+        const pic = {
           data: base.toString(),
           displayOrder: 1,
           isMiniature: false
         };
-        this.pictures.push(picture);
+        this.pictures.push(pic);
       };
       myReader.readAsDataURL(files.item(i));
     }

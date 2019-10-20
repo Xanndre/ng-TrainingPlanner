@@ -2,7 +2,6 @@ import {
   Component,
   ViewChild,
   ElementRef,
-  AfterContentInit,
   QueryList,
   ContentChildren
 } from '@angular/core';
@@ -13,7 +12,7 @@ import { SliderItemDirective } from './slider-item.directive';
   templateUrl: './slider.component.html',
   styleUrls: ['./slider.component.css']
 })
-export class SliderComponent implements AfterContentInit {
+export class SliderComponent {
   @ContentChildren(SliderItemDirective, { read: ElementRef }) items: QueryList<
     ElementRef<HTMLDivElement>
   >;
@@ -23,15 +22,6 @@ export class SliderComponent implements AfterContentInit {
 
   get currentItem(): ElementRef<HTMLDivElement> {
     return this.items.find((item, index) => index === this.slidesIndex);
-  }
-
-  ngAfterContentInit() {
-    console.log('items', this.items);
-  }
-
-  // tslint:disable-next-line: use-lifecycle-interface
-  ngAfterViewInit() {
-    console.log('slides', this.slidesContainer);
   }
 
   onClickLeft() {

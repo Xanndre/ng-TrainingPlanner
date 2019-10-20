@@ -13,7 +13,6 @@ export class ClubTrainerDialogComponent {
     private dialogRef: MatDialogRef<ClubTrainerDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
-    console.log(data);
     this.localData = { ...data };
     this.action = this.localData.action;
   }
@@ -35,6 +34,7 @@ export class ClubTrainerDialogComponent {
 
     myReader.onloadend = () => {
       this.localData.picture = myReader.result.toString();
+      console.log('sdfdsfdsfd');
     };
     myReader.readAsDataURL(file);
   }

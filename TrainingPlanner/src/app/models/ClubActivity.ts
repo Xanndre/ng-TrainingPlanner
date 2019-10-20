@@ -1,8 +1,5 @@
-export class ClubActivity {
-  id: number;
-  name: string;
-  duration: number;
-  calories: number;
-  level: string;
-  picture: string;
+import { Activity } from './Activity';
+
+export class ClubActivity extends Activity {
+  clubId: number;
 }

@@ -4,13 +4,19 @@ import { ClubProfileControls } from './club-profile-controls';
 import { FormBuilder } from '@angular/forms';
 import { ClubGet } from 'src/app/models/ClubGet';
 import { ClubPrice } from 'src/app/models/ClubPrice';
-import { ClubTrainer } from 'src/app/models/ClubTrainer';
 import { MatDialog } from '@angular/material';
 import { ClubTrainerDialogComponent } from 'src/app/shared/club-trainer-dialog/club-trainer-dialog.component';
-import { ClubActivity } from 'src/app/models/ClubActivity';
 import { ClubActivityDialogComponent } from 'src/app/shared/club-activity-dialog/club-activity-dialog.component';
 import { Picture } from 'src/app/models/Picture';
 import { ClubWorkingHours } from 'src/app/models/ClubWorkingHours';
+import { ClubService } from 'src/app/services/Club.service';
+import { ClubUpdate } from 'src/app/models/ClubUpdate';
+import { ActivatedRoute } from '@angular/router';
+import { ClubActivity } from 'src/app/models/ClubActivity';
+import { Activity } from 'src/app/models/Activity';
+import { ClubTrainerBase } from 'src/app/models/ClubTrainerBase';
+import { ClubTrainer } from 'src/app/models/ClubTrainer';
+import { ClubCreate } from 'src/app/models/ClubCreate';
 
 @Component({
   selector: 'app-club-profile',
@@ -21,58 +27,88 @@ export class ClubProfileComponent implements OnInit {
   clubForm: ClubProfileForm = new ClubProfileForm();
   formControls: ClubProfileControls;
   isLoaded = true;
+  isEdit: boolean;
   isClub: boolean;
-  club: ClubGet = null;
+  club: ClubGet;
+  clubCreate: ClubCreate;
   clubId: number;
   priceList: ClubPrice[] = [];
   workingHours: ClubWorkingHours[] = [];
   trainers: ClubTrainer[] = [];
   activities: ClubActivity[] = [];
   pictures: Picture[] = [];
+  beforeChanges: ClubUpdate;
   counter = 0;
 
   @Input() table: any;
 
-  constructor(private formBuilder: FormBuilder, private dialog: MatDialog) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private dialog: MatDialog,
+    private clubService: ClubService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit() {
-    this.trainers.push({
-      id: 1,
-      name: 'Anita',
-      description: 'Volleyball | Basketball | Crossfit',
-      picture: 'https://material.angular.io/assets/img/examples/shiba2.jpg'
-    });
-    this.trainers.push({
-      id: 2,
-      name: 'Karolina',
-      description: 'Fitness | Canoeing | Crossfit',
-      picture: 'https://material.angular.io/assets/img/examples/shiba2.jpg'
-    });
-
-    this.activities.push({
-      id: 1,
-      name: 'Fit And Jump',
-      duration: 60,
-      calories: 600,
-      level: 'For advanced',
-      picture: 'https://i.ibb.co/d0Zg3qs/newgym.png'
-    });
-    this.activities.push({
-      id: 2,
-      name: 'Group Training',
-      duration: 45,
-      calories: 700,
-      level: 'For beginners',
-      picture: 'https://i.ibb.co/d0Zg3qs/newgym.png'
-    });
-    this.formControls = new ClubProfileControls();
-    this.clubForm.buildForm(this.formBuilder, this.club);
-    this.formControls.initializeControls(this.clubForm);
+    if (this.route.snapshot.queryParams.id) {
+      this.clubId = parseInt(this.route.snapshot.paramMap.get('id'), 10);
+    } else {
+      this.clubId = null;
+      this.club = null;
+    }
+    if (this.clubId === null) {
+      this.formControls = new ClubProfileControls();
+      this.clubForm.buildForm(this.formBuilder, this.club);
+      this.formControls.initializeControls(this.clubForm);
+      this.isLoaded = true;
+    } else {
+      // console.log('xxxx');
+      // this.clubService.getClub(this.clubId).subscribe(response => {
+      //   if (this.club !== null) {
+      //     this.isEdit = true;
+      //   }
+      //   this.club = response;
+      //   this.isLoaded = true;
+      //   this.beforeChanges = JSON.parse(JSON.stringify(this.club));
+      //   this.formControls = new ClubProfileControls();
+      //   this.clubForm.buildForm(this.formBuilder, this.club);
+      //   this.formControls.initializeControls(this.clubForm);
+      //   if (this.isEdit) {
+      //     this.clubForm.clubForm.disable();
+      //   }
+      // });
+    }
   }
 
   deleteClubAccount() {}
 
-  createClubAccount() {}
+  createClubAccount() {
+    this.priceList.forEach(el => (el.id = undefined));
+    this.trainers.forEach(el => (el.id = undefined));
+    this.workingHours.forEach(el => (el.id = undefined));
+    this.activities.forEach(el => (el.id = undefined));
+    this.clubCreate = {
+      userId: localStorage.getItem('userId'),
+      name: this.clubForm.clubForm.value.name,
+      description: this.clubForm.clubForm.value.description,
+      streetName: this.clubForm.clubForm.value.streetName,
+      streetNumber: this.clubForm.clubForm.value.streetNumber,
+      postalCode: this.clubForm.clubForm.value.postalCode,
+      city: this.clubForm.clubForm.value.city,
+      phoneNumber: this.clubForm.clubForm.value.phoneNumber,
+      email: this.clubForm.clubForm.value.email,
+      priceList: this.priceList,
+      workingHours: this.workingHours,
+      trainers: this.trainers,
+      activities: this.activities,
+      pictures: this.pictures
+    };
+    console.log(this.pictures);
+    this.clubService.createClub(this.clubCreate).subscribe(() => {
+      window.location.reload();
+      console.log('Dodano konto klubu');
+    });
+  }
 
   receivePriceList($event) {
     this.priceList = $event;
@@ -105,6 +141,7 @@ export class ClubProfileComponent implements OnInit {
   addData(rowObj: ClubTrainer) {
     this.trainers.push({
       id: rowObj.id !== undefined ? rowObj.id : this.counter++,
+      clubId: 0,
       name: rowObj.name,
       description: rowObj.description,
       picture:
@@ -162,6 +199,7 @@ export class ClubProfileComponent implements OnInit {
   addActivity(rowObj: ClubActivity) {
     this.activities.push({
       id: rowObj.id !== undefined ? rowObj.id : this.counter++,
+      clubId: 0,
       name: rowObj.name,
       duration: rowObj.duration,
       calories: rowObj.calories,
