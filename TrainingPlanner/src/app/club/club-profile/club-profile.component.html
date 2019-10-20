@@ -27,20 +27,34 @@
           [customControlGroup]="controlGroup"
         ></app-custom-control-group>
 
-        <app-pricelist-table
-          [dataSource]="priceList"
-          [clubId]="clubId"
-          [isDisabled]="clubForm.clubForm.disabled"
-          (priceListChange)="receivePriceList($event)"
-        >
-        </app-pricelist-table>
+        <mat-expansion-panel class="mt-4">
+          <mat-expansion-panel-header>
+            <mat-panel-title class="text-muted">
+              Price List
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <app-pricelist-table
+            [dataSource]="priceList"
+            [clubId]="clubId"
+            [isDisabled]="clubForm.clubForm.disabled"
+            (priceListChange)="receivePriceList($event)"
+          >
+          </app-pricelist-table
+        ></mat-expansion-panel>
 
-        <app-working-hours-table
-          [dataSource]="workingHours"
-          [clubId]="clubId"
-          [isDisabled]="clubForm.clubForm.disabled"
-          (workingHoursChange)="receiveWorkingHours($event)"
-        ></app-working-hours-table>
+        <mat-expansion-panel class="mt-4">
+          <mat-expansion-panel-header>
+            <mat-panel-title class="text-muted">
+              Working Hours
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <app-working-hours-table
+            [dataSource]="workingHours"
+            [clubId]="clubId"
+            [isDisabled]="clubForm.clubForm.disabled"
+            (workingHoursChange)="receiveWorkingHours($event)"
+          ></app-working-hours-table
+        ></mat-expansion-panel>
 
         <mat-expansion-panel class="mt-4">
           <mat-expansion-panel-header>
@@ -55,7 +69,7 @@
             class="btn-block mb-3 btn-no-shadow w-25 float-right"
             (click)="openAddDialog('Add', {})"
           >
-            Add trainer
+            Add Trainer
           </button>
 
           <app-slider>
@@ -112,7 +126,7 @@
             class="btn-block mb-3 btn-no-shadow w-25 float-right"
             (click)="openActivityDialog('Add', {})"
           >
-            Add activity
+            Add Activity
           </button>
 
           <app-slider>
@@ -161,7 +175,14 @@
             </div>
           </app-slider>
         </mat-expansion-panel>
-        <app-pictures [(pictures)]="pictures"></app-pictures>
+        <mat-expansion-panel class="mt-4">
+          <mat-expansion-panel-header>
+            <mat-panel-title class="text-muted">
+              Photo Gallery
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <app-pictures [(pictures)]="pictures"></app-pictures
+        ></mat-expansion-panel>
         <button
           mat-raised-button
           color="primary"

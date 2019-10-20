@@ -1,11 +1,6 @@
 import { Component, Inject, Optional } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
-export interface Data {
-  name: string;
-  id: number;
-}
-
 @Component({
   selector: 'app-pricelist-dialog',
   templateUrl: './pricelist-dialog.component.html',
@@ -17,7 +12,7 @@ export class PricelistDialogComponent {
 
   constructor(
     public dialogRef: MatDialogRef<PricelistDialogComponent>,
-    @Optional() @Inject(MAT_DIALOG_DATA) public data: Data
+    @Optional() @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     console.log(data);
     this.localData = { ...data };

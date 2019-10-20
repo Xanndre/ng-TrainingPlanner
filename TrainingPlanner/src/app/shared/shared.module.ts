@@ -18,10 +18,10 @@ import { PricelistDialogComponent } from './pricelist-table/pricelist-dialog/pri
 import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 import { SliderComponent } from './slider/slider.component';
 import { SliderItemDirective } from './slider/slider-item.directive';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { ClubActivityDialogComponent } from './club-activity-dialog/club-activity-dialog.component';
 import { ClubTrainerDialogComponent } from './club-trainer-dialog/club-trainer-dialog.component';
 import { WorkingHoursTableComponent } from './working-hours-table/working-hours-table.component';
-import { WorkingHoursDialogComponent } from './working-hours-table/working-hours-dialog/working-hours-dialog.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +35,6 @@ import { WorkingHoursDialogComponent } from './working-hours-table/working-hours
     PricelistTableComponent,
     WorkingHoursTableComponent,
     PricelistDialogComponent,
-    WorkingHoursDialogComponent,
     SliderComponent,
     SliderItemDirective
   ],
@@ -51,7 +50,8 @@ import { WorkingHoursDialogComponent } from './working-hours-table/working-hours
     MatSelectModule,
     MatNativeDateModule,
     MatDialogModule,
-    MatButtonModule
+    MatButtonModule,
+    NgxMaterialTimepickerModule
   ],
   exports: [
     CustomControlComponent,
@@ -66,6 +66,6 @@ import { WorkingHoursDialogComponent } from './working-hours-table/working-hours
     SliderComponent,
     SliderItemDirective
   ],
-  entryComponents: [PricelistDialogComponent, WorkingHoursDialogComponent]
+  entryComponents: [PricelistDialogComponent]
 })
 export class SharedModule {}

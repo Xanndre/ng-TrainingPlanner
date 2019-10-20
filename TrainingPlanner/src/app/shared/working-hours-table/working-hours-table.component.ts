@@ -9,7 +9,7 @@ import {
 import { MatTable, MatDialog } from '@angular/material';
 import { WorkingHours } from 'src/app/models/WorkingHours';
 import { ClubService } from 'src/app/services/Club.service';
-import { WorkingHoursDialogComponent } from './working-hours-dialog/working-hours-dialog.component';
+import { NgxMaterialTimepickerTheme } from 'ngx-material-timepicker';
 
 @Component({
   selector: 'app-working-hours-table',
@@ -17,7 +17,21 @@ import { WorkingHoursDialogComponent } from './working-hours-dialog/working-hour
   styleUrls: ['./working-hours-table.component.css']
 })
 export class WorkingHoursTableComponent implements OnInit {
-  displayedColumns: string[] = ['day', 'openHour', 'closeHour', 'action'];
+  theme: NgxMaterialTimepickerTheme = {
+    container: {
+      bodyBackgroundColor: '#fff',
+      buttonColor: '#3f51b5'
+    },
+    dial: {
+      dialBackgroundColor: '#3f51b5'
+    },
+    clockFace: {
+      clockFaceBackgroundColor: '#f0f0f0',
+      clockHandColor: '#3f51b5',
+      clockFaceTimeInactiveColor: '#6c6c6c'
+    }
+  };
+  displayedColumns: string[] = ['day', 'openHour', 'closeHour'];
   @Input() dataSource: WorkingHours[] = [];
   isLoaded: boolean;
   counter = 0;
@@ -50,8 +64,8 @@ export class WorkingHoursTableComponent implements OnInit {
         this.dataSource.push({
           id: this.counter++,
           day: d,
-          openHour: new Date(),
-          closeHour: new Date()
+          openHour: undefined,
+          closeHour: undefined
         });
       });
     }
@@ -69,34 +83,6 @@ export class WorkingHoursTableComponent implements OnInit {
       });
     }
     this.table.renderRows();
-    console.log('Dupa');
     this.isLoaded = true;
-  }
-
-  openDialog(action, obj) {
-    obj.action = action;
-    const dialogRef = this.dialog.open(WorkingHoursDialogComponent, {
-      width: '250px',
-      data: obj
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result !== undefined) {
-        if (result.event === 'Edit') {
-          this.updateRowData(result.data);
-        }
-      }
-    });
-  }
-
-  updateRowData(rowObj) {
-    this.dataSource = this.dataSource.filter(value => {
-      if (value.id === rowObj.id) {
-        value.openHour = rowObj.openHour;
-        value.closeHour = rowObj.closeHour;
-      }
-      return true;
-    });
-    this.workingHoursChange.emit(this.dataSource);
   }
 }

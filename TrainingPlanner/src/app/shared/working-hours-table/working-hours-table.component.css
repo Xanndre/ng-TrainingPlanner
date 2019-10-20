@@ -20,3 +20,8 @@
 ::ng-deep .mat-chip-disabled {
   cursor: default !important;
 }
+
+::ng-deep .timepicker-dial__control:focus {
+  outline: none !important;
+  box-shadow: none;
+}
