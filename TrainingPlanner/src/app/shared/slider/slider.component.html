@@ -17,7 +17,12 @@
       color="primary"
       class="mar-l btn-no-shadow"
       (click)="onClickRight()"
-      [disabled]="slidesIndex === items.length - 1 || items.length === 1"
+      [disabled]="
+        slidesIndex === items.length - 1 ||
+        items.length === 1 ||
+        dataTransferService.getIsDeleteActivity() ||
+        dataTransferService.getIsDeleteTrainer()
+      "
     >
       >
     </button>

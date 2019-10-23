@@ -13,10 +13,9 @@ import { ClubService } from 'src/app/services/Club.service';
 import { ClubUpdate } from 'src/app/models/ClubUpdate';
 import { ActivatedRoute } from '@angular/router';
 import { ClubActivity } from 'src/app/models/ClubActivity';
-import { Activity } from 'src/app/models/Activity';
-import { ClubTrainerBase } from 'src/app/models/ClubTrainerBase';
 import { ClubTrainer } from 'src/app/models/ClubTrainer';
 import { ClubCreate } from 'src/app/models/ClubCreate';
+import { DataTransferService } from 'src/app/services/DataTransfer.service';
 
 @Component({
   selector: 'app-club-profile',
@@ -46,6 +45,7 @@ export class ClubProfileComponent implements OnInit {
     private formBuilder: FormBuilder,
     private dialog: MatDialog,
     private clubService: ClubService,
+    private dataTransferService: DataTransferService,
     private route: ActivatedRoute
   ) {}
 
@@ -168,6 +168,13 @@ export class ClubProfileComponent implements OnInit {
     this.trainers = this.trainers.filter(value => {
       return value.name !== rowObj.name;
     });
+    const temp = this.trainers.find(value => value.name === rowObj.name);
+    if (temp === this.trainers[this.trainers.length - 1]) {
+      this.dataTransferService.setIsDeleteTrainer(true);
+    }
+    this.trainers = this.trainers.filter(value => {
+      return value.name !== rowObj.name;
+    });
   }
 
   openActivityDialog(action, obj) {
@@ -190,7 +197,11 @@ export class ClubProfileComponent implements OnInit {
     });
   }
 
-  deleteActivity(rowObj) {
+  deleteActivity(rowObj: ClubActivity) {
+    const temp = this.activities.find(value => value.name === rowObj.name);
+    if (temp === this.activities[this.activities.length - 1]) {
+      this.dataTransferService.setIsDeleteActivity(true);
+    }
     this.activities = this.activities.filter(value => {
       return value.name !== rowObj.name;
     });

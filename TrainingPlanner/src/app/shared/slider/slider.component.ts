@@ -6,6 +6,7 @@ import {
   ContentChildren
 } from '@angular/core';
 import { SliderItemDirective } from './slider-item.directive';
+import { DataTransferService } from 'src/app/services/DataTransfer.service';
 
 @Component({
   selector: 'app-slider',
@@ -20,20 +21,32 @@ export class SliderComponent {
 
   private slidesIndex = 0;
 
-  get currentItem(): ElementRef<HTMLDivElement> {
-    return this.items.find((item, index) => index === this.slidesIndex);
+  constructor(private dataTransferService: DataTransferService) {}
+
+  currentItem(): ElementRef<HTMLDivElement> {
+    const it = this.items.find((item, index) => index === this.slidesIndex);
+    if (it === undefined) {
+      this.slidesIndex--;
+      console.log(this.slidesIndex);
+      return this.items.find((item, index) => index === this.slidesIndex - 1);
+    } else {
+      return this.items.find((item, index) => index === this.slidesIndex);
+    }
   }
 
   onClickLeft() {
-    this.slidesContainer.nativeElement.scrollLeft -= this.currentItem.nativeElement.offsetWidth;
-
+    this.dataTransferService.setIsDeleteActivity(false);
+    this.dataTransferService.setIsDeleteTrainer(false);
+    this.slidesContainer.nativeElement.scrollLeft -= this.currentItem().nativeElement.offsetWidth;
     if (this.slidesIndex > 0) {
       this.slidesIndex--;
     }
   }
 
   onClickRight() {
-    this.slidesContainer.nativeElement.scrollLeft += this.currentItem.nativeElement.offsetWidth;
+    this.dataTransferService.setIsDeleteActivity(false);
+    this.dataTransferService.setIsDeleteTrainer(false);
+    this.slidesContainer.nativeElement.scrollLeft += this.currentItem().nativeElement.offsetWidth;
 
     if (this.slidesIndex < this.items.length - 1) {
       this.slidesIndex++;
