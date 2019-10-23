@@ -40,6 +40,7 @@
         type="number"
         [(ngModel)]="localData.duration"
       />
+      <span matSuffix class="text-muted">min</span>
     </mat-form-field>
     <mat-form-field class="tp-width mt-2">
       <input
@@ -50,7 +51,15 @@
       />
     </mat-form-field>
     <mat-form-field class="tp-width mt-2">
-      <input placeholder="Level" matInput [(ngModel)]="localData.level" />
+      <mat-label>Level</mat-label>
+      <mat-select [(ngModel)]="localData.level">
+        <mat-option value="Beginner" class="text-muted">Beginner</mat-option>
+        <mat-option value="Intermediate" class="text-muted"
+          >Intermediate</mat-option
+        >
+        <mat-option value="Advanced" class="text-muted">Advanced</mat-option>
+        <mat-option value="All" class="text-muted">All</mat-option>
+      </mat-select>
     </mat-form-field>
   </div>
   <ng-template #elseTemplate>
