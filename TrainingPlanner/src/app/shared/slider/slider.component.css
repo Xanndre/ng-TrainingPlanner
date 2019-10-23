@@ -5,10 +5,11 @@
 }
 .slides {
   display: flex;
-  overflow-x: scroll;
+  overflow-x: hidden;
   scroll-behavior: smooth;
   width: 252px;
 }
+
 .slides::-webkit-scrollbar {
   width: 0px;
   background: transparent;
@@ -16,6 +17,7 @@
 .controls {
   display: flex;
   justify-content: center;
+  margin-top: 16px;
 }
 
 .mar-l {

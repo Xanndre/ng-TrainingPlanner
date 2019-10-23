@@ -1,11 +1,13 @@
 <input
   type="file"
+  class="float-right"
   id="files"
   accept="image/*"
   multiple
-  (change)="xd($event)"
+  (change)="changePictureListener($event)"
   [disabled]="pictures.length >= 4"
 />
+
 <label for="files" class="my-btn">Add Photos</label>
 
 <div

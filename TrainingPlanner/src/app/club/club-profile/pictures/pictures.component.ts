@@ -12,7 +12,7 @@ export class PicturesComponent {
   @Input() pictures: Picture[];
   isPicturesLoaded: boolean;
 
-  xd($event): void {
+  changePictureListener($event): void {
     this.readPicture($event.target);
   }
 
