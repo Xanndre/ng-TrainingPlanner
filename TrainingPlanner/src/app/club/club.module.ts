@@ -11,6 +11,9 @@ import { ClubTrainerDialogComponent } from '../shared/club-trainer-dialog/club-t
 import { ClubActivityDialogComponent } from '../shared/club-activity-dialog/club-activity-dialog.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { PicturesComponent } from './club-profile/pictures/pictures.component';
+import { ClubDetailsComponent } from './club-details/club-details.component';
+import { ClubListComponent } from './club-list/club-list.component';
+import { ClubListItemComponent } from './club-list/club-list-item/club-list-item.component';
 
 const routes: Routes = [
   {
@@ -21,7 +24,13 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [ClubProfileComponent, PicturesComponent],
+  declarations: [
+    ClubProfileComponent,
+    PicturesComponent,
+    ClubDetailsComponent,
+    ClubListComponent,
+    ClubListItemComponent
+  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -33,7 +42,7 @@ const routes: Routes = [
     DragDropModule,
     RouterModule.forChild(routes)
   ],
-  exports: [ClubProfileComponent],
+  exports: [ClubProfileComponent, ClubDetailsComponent, ClubListComponent],
   entryComponents: [ClubTrainerDialogComponent, ClubActivityDialogComponent]
 })
 export class ClubModule {}

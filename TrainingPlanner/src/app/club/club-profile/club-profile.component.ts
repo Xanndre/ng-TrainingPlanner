@@ -27,7 +27,7 @@ export class ClubProfileComponent implements OnInit {
   formControls: ClubProfileControls;
   isLoaded = true;
   isEdit: boolean;
-  isClub: boolean;
+  hasClubs: boolean;
   club: ClubGet;
   clubCreate: ClubCreate;
   clubId: number;
@@ -62,7 +62,6 @@ export class ClubProfileComponent implements OnInit {
       this.formControls.initializeControls(this.clubForm);
       this.isLoaded = true;
     } else {
-      // console.log('xxxx');
       // this.clubService.getClub(this.clubId).subscribe(response => {
       //   if (this.club !== null) {
       //     this.isEdit = true;
