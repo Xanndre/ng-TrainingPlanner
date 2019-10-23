@@ -8,7 +8,7 @@
 }
 
 .tp-image {
-  width: 205px;
+  max-width: 205px;
 }
 
 .tp-btn {

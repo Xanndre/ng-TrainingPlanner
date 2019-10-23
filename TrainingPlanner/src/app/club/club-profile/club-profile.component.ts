@@ -87,6 +87,13 @@ export class ClubProfileComponent implements OnInit {
     this.trainers.forEach(el => (el.id = undefined));
     this.workingHours.forEach(el => (el.id = undefined));
     this.activities.forEach(el => (el.id = undefined));
+    for (let i = 0; i < this.pictures.length; i++) {
+      this.pictures[i].displayOrder = i;
+      if (i !== 0) {
+        this.pictures[i].isMiniature = false;
+      }
+    }
+    this.pictures[0].isMiniature = true;
     this.clubCreate = {
       userId: localStorage.getItem('userId'),
       name: this.clubForm.clubForm.value.name,
@@ -103,7 +110,6 @@ export class ClubProfileComponent implements OnInit {
       activities: this.activities,
       pictures: this.pictures
     };
-    console.log(this.pictures);
     this.clubService.createClub(this.clubCreate).subscribe(() => {
       window.location.reload();
       console.log('Dodano konto klubu');
@@ -118,7 +124,7 @@ export class ClubProfileComponent implements OnInit {
     this.workingHours = $event;
   }
 
-  openAddDialog(action, obj) {
+  openTrainerDialog(action, obj) {
     obj.action = action;
     const dialogRef = this.dialog.open(ClubTrainerDialogComponent, {
       width: '268px',
@@ -128,17 +134,17 @@ export class ClubProfileComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result !== undefined) {
         if (result.event === 'Add') {
-          this.addData(result.data);
+          this.addTrainer(result.data);
         } else if (result.event === 'Edit') {
-          this.editData(result.data);
+          this.editTrainer(result.data);
         } else if (result.event === 'Delete') {
-          this.deleteData(result.data);
+          this.deleteTrainer(result.data);
         }
       }
     });
   }
 
-  addData(rowObj: ClubTrainer) {
+  addTrainer(rowObj: ClubTrainer) {
     this.trainers.push({
       id: rowObj.id !== undefined ? rowObj.id : this.counter++,
       clubId: 0,
@@ -151,7 +157,7 @@ export class ClubProfileComponent implements OnInit {
     });
   }
 
-  editData(rowObj) {
+  editTrainer(rowObj: ClubTrainer) {
     this.trainers = this.trainers.filter(value => {
       if (value.id === rowObj.id) {
         value.name = rowObj.name;
@@ -164,7 +170,7 @@ export class ClubProfileComponent implements OnInit {
       return true;
     });
   }
-  deleteData(rowObj) {
+  deleteTrainer(rowObj: ClubTrainer) {
     this.trainers = this.trainers.filter(value => {
       return value.name !== rowObj.name;
     });
@@ -222,7 +228,7 @@ export class ClubProfileComponent implements OnInit {
     });
   }
 
-  editActivity(rowObj) {
+  editActivity(rowObj: ClubActivity) {
     this.activities = this.activities.filter(value => {
       if (value.id === rowObj.id) {
         value.name = rowObj.name;

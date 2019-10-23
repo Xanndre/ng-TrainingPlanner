@@ -67,7 +67,7 @@
             mat-raised-button
             color="primary"
             class="btn-block mb-3 btn-no-shadow w-25 float-right"
-            (click)="openAddDialog('Add', {})"
+            (click)="openTrainerDialog('Add', {})"
           >
             Add Trainer
           </button>
@@ -93,7 +93,7 @@
                       mat-raised-button
                       color="primary"
                       class="btn-no-shadow mar-r"
-                      (click)="openAddDialog('Edit', trainer)"
+                      (click)="openTrainerDialog('Edit', trainer)"
                     >
                       Edit
                     </button>
@@ -102,7 +102,7 @@
                       mat-raised-button
                       color="warn"
                       class="btn-no-shadow mar-l"
-                      (click)="openAddDialog('Delete', trainer)"
+                      (click)="openTrainerDialog('Delete', trainer)"
                     >
                       Delete
                     </button>
