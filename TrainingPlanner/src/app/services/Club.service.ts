@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { ClubCreate } from '../models/ClubCreate';
 import { map } from 'rxjs/Operators';
-import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
 import { ClubGet } from '../models/ClubGet';
+import { PagedClubs } from '../models/PagedClubs';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -35,5 +37,39 @@ export class ClubService {
           return res;
         })
       );
+  }
+
+  getClubs(
+    pageNumber: number,
+    pageSize: number,
+    userId: string,
+    isUser: boolean,
+    isFavourite: boolean
+  ): Observable<PagedClubs> {
+    let params = new HttpParams()
+      .set('pageNumber', pageNumber.toString())
+      .set('pageSize', pageSize.toString());
+    if (isUser || isFavourite || userId != null) {
+      params = params.set('userId', userId);
+    }
+    const options = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + localStorage.getItem('jwt')
+      }),
+      params
+    };
+    let url = '';
+    if (isUser) {
+      url = 'https://localhost:44383/api/Club/user';
+    } else if (isFavourite) {
+      url = 'https://localhost:44383/api/Club/favourites';
+    } else {
+      url = 'https://localhost:44383/api/Club';
+    }
+    return this.client.get(url, options).pipe(
+      map((res: PagedClubs) => {
+        return res;
+      })
+    );
   }
 }

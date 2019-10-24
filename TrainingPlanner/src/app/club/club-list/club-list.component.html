@@ -1,3 +1,29 @@
-<p>
-  club-list works!
-</p>
+<div class="container" *ngIf="isLoaded">
+  <div class="container mt-4">
+    <div
+      class="row text-muted justify-content-center align-items-center mt-4"
+      *ngIf="clubs.length == 0 && isFavourite"
+    >
+      You don't have any favourite clubs.
+    </div>
+    <div
+      class="row"
+      *ngIf="clubs.length != 0"
+      infinite-scroll
+      (scrolled)="onScrollDown()"
+    >
+      <div class="col-lg-12 mb-4">
+        <div class="card">
+          <ul class="list-group">
+            <li class="list-group-item pr-0 pl-0" *ngFor="let club of clubs">
+              <app-club-list-item
+                [club]="club"
+                [isUser]="isUser"
+              ></app-club-list-item>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

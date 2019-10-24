@@ -1,235 +1,233 @@
-<div *ngIf="!hasClubs">
-  <div class="row full-width" *ngIf="isLoaded">
-    <div class="col-lg-6 mx-auto">
-      <mat-card class="my-4">
-        <div class="tp-right">
-          <button
-            mat-raised-button
-            color="warn"
-            class="btn-block btn-no-shadow w-25"
-            *ngIf="isClub"
-            (click)="deleteClubAccount()"
-          >
-            Delete profile
-          </button>
-        </div>
-        <form class="text-center p-5" [formGroup]="clubForm.clubForm">
-          <h4 class="text-muted" *ngIf="!isClub; else editTitle">
-            Create a club profile
+<div class="row full-width" *ngIf="!hasClubs && isLoaded">
+  <div class="col-lg-6 mx-auto">
+    <mat-card class="my-4">
+      <div class="tp-right">
+        <button
+          mat-raised-button
+          color="warn"
+          class="btn-block btn-no-shadow w-25"
+          *ngIf="isClub"
+          (click)="deleteClubAccount()"
+        >
+          Delete profile
+        </button>
+      </div>
+      <form class="text-center p-5" [formGroup]="clubForm.clubForm">
+        <h4 class="text-muted" *ngIf="!isClub; else editTitle">
+          Create a club profile
+        </h4>
+        <ng-template #editTitle>
+          <h4 class="text-muted">
+            Edit a club profile
           </h4>
-          <ng-template #editTitle>
-            <h4 class="text-muted">
-              Edit a club profile
-            </h4>
-          </ng-template>
+        </ng-template>
 
-          <app-custom-control-group
-            *ngFor="let controlGroup of formControls.controlGroups"
-            [customControlGroup]="controlGroup"
-          ></app-custom-control-group>
+        <app-custom-control-group
+          *ngFor="let controlGroup of formControls.controlGroups"
+          [customControlGroup]="controlGroup"
+        ></app-custom-control-group>
 
-          <mat-expansion-panel class="mt-4">
-            <mat-expansion-panel-header>
-              <mat-panel-title class="text-muted">
-                Price List
-              </mat-panel-title>
-            </mat-expansion-panel-header>
-            <app-pricelist-table
-              [dataSource]="priceList"
-              [clubId]="clubId"
-              [isDisabled]="clubForm.clubForm.disabled"
-              (priceListChange)="receivePriceList($event)"
-            >
-            </app-pricelist-table
-          ></mat-expansion-panel>
+        <mat-expansion-panel class="mt-4">
+          <mat-expansion-panel-header>
+            <mat-panel-title class="text-muted">
+              Price List
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <app-pricelist-table
+            [dataSource]="priceList"
+            [clubId]="clubId"
+            [isDisabled]="clubForm.clubForm.disabled"
+            (priceListChange)="receivePriceList($event)"
+          >
+          </app-pricelist-table
+        ></mat-expansion-panel>
 
-          <mat-expansion-panel class="mt-4">
-            <mat-expansion-panel-header>
-              <mat-panel-title class="text-muted">
-                Working Hours
-              </mat-panel-title>
-            </mat-expansion-panel-header>
-            <app-working-hours-table
-              [dataSource]="workingHours"
-              [clubId]="clubId"
-              [isDisabled]="clubForm.clubForm.disabled"
-              (workingHoursChange)="receiveWorkingHours($event)"
-            ></app-working-hours-table
-          ></mat-expansion-panel>
+        <mat-expansion-panel class="mt-4">
+          <mat-expansion-panel-header>
+            <mat-panel-title class="text-muted">
+              Working Hours
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <app-working-hours-table
+            [dataSource]="workingHours"
+            [clubId]="clubId"
+            [isDisabled]="clubForm.clubForm.disabled"
+            (workingHoursChange)="receiveWorkingHours($event)"
+          ></app-working-hours-table
+        ></mat-expansion-panel>
 
-          <mat-expansion-panel class="mt-4">
-            <mat-expansion-panel-header>
-              <mat-panel-title class="text-muted">
-                Trainers
-              </mat-panel-title>
-            </mat-expansion-panel-header>
+        <mat-expansion-panel class="mt-4">
+          <mat-expansion-panel-header>
+            <mat-panel-title class="text-muted">
+              Trainers
+            </mat-panel-title>
+          </mat-expansion-panel-header>
 
-            <button
-              mat-raised-button
-              color="primary"
-              class="btn-block mb-3 btn-no-shadow w-25 float-right"
-              (click)="openTrainerDialog('Add', {})"
-            >
-              Add Trainer
-            </button>
-
-            <app-slider *ngIf="trainers.length !== 0">
-              <div appSliderItem *ngFor="let trainer of trainers">
-                <mat-card class="example-card">
-                  <img
-                    class="tp-image"
-                    mat-card-image
-                    src="{{ trainer.picture }}"
-                    alt="Trainer picture"
-                  />
-                  <mat-card-header style="display: block !important;">
-                    <mat-card-title class="text-muted">{{
-                      trainer.name
-                    }}</mat-card-title>
-                    <mat-card-subtitle>{{
-                      trainer.description
-                    }}</mat-card-subtitle>
-                    <div class="controls">
-                      <button
-                        mat-raised-button
-                        color="primary"
-                        class="btn-no-shadow mar-r"
-                        (click)="openTrainerDialog('Edit', trainer)"
-                      >
-                        Edit
-                      </button>
-
-                      <button
-                        mat-raised-button
-                        color="warn"
-                        class="btn-no-shadow mar-l"
-                        (click)="openTrainerDialog('Delete', trainer)"
-                      >
-                        Delete
-                      </button>
-                    </div>
-                  </mat-card-header>
-                </mat-card>
-              </div>
-            </app-slider>
-          </mat-expansion-panel>
-
-          <mat-expansion-panel class="mt-4">
-            <mat-expansion-panel-header>
-              <mat-panel-title class="text-muted">
-                Activities
-              </mat-panel-title>
-            </mat-expansion-panel-header>
-
-            <button
-              mat-raised-button
-              color="primary"
-              class="btn-block mb-3 btn-no-shadow w-25 float-right"
-              (click)="openActivityDialog('Add', {})"
-            >
-              Add Activity
-            </button>
-
-            <app-slider *ngIf="activities.length !== 0">
-              <div appSliderItem *ngFor="let activity of activities">
-                <mat-card class="example-card">
-                  <img
-                    class="tp-image"
-                    mat-card-image
-                    src="{{ activity.picture }}"
-                    alt="Activity picture"
-                  />
-                  <mat-card-header style="display: block !important;">
-                    <mat-card-title class="text-muted">{{
-                      activity.name
-                    }}</mat-card-title>
-                    <mat-card-subtitle
-                      >Duration: {{ activity.duration }} min</mat-card-subtitle
-                    >
-                    <mat-card-subtitle
-                      >Calories: {{ activity.calories }}</mat-card-subtitle
-                    >
-                    <mat-card-subtitle
-                      >Difficulty level: {{ activity.level }}</mat-card-subtitle
-                    >
-                    <div class="controls">
-                      <button
-                        mat-raised-button
-                        color="primary"
-                        class="btn-no-shadow mar-r"
-                        (click)="openActivityDialog('Edit', activity)"
-                      >
-                        Edit
-                      </button>
-
-                      <button
-                        mat-raised-button
-                        color="warn"
-                        class="btn-no-shadow mar-l"
-                        (click)="openActivityDialog('Delete', activity)"
-                      >
-                        Delete
-                      </button>
-                    </div>
-                  </mat-card-header>
-                </mat-card>
-              </div>
-            </app-slider>
-          </mat-expansion-panel>
-          <mat-expansion-panel class="mt-4">
-            <mat-expansion-panel-header>
-              <mat-panel-title class="text-muted">
-                Photo Gallery
-              </mat-panel-title>
-            </mat-expansion-panel-header>
-            <app-pictures [(pictures)]="pictures"></app-pictures>
-          </mat-expansion-panel>
           <button
             mat-raised-button
             color="primary"
-            class="btn-block my-4 btn-no-shadow"
-            type="submit"
-            *ngIf="!isClub"
-            [disabled]="!clubForm.clubForm.valid"
-            (click)="createClubAccount()"
+            class="btn-block mb-3 btn-no-shadow w-25 float-right"
+            (click)="openTrainerDialog('Add', {})"
           >
-            Create
+            Add Trainer
           </button>
+
+          <app-slider *ngIf="trainers.length !== 0">
+            <div appSliderItem *ngFor="let trainer of trainers">
+              <mat-card class="example-card">
+                <img
+                  class="tp-image"
+                  mat-card-image
+                  src="{{ trainer.picture }}"
+                  alt="Trainer picture"
+                />
+                <mat-card-header style="display: block !important;">
+                  <mat-card-title class="text-muted">{{
+                    trainer.name
+                  }}</mat-card-title>
+                  <mat-card-subtitle>{{
+                    trainer.description
+                  }}</mat-card-subtitle>
+                  <div class="controls">
+                    <button
+                      mat-raised-button
+                      color="primary"
+                      class="btn-no-shadow mar-r"
+                      (click)="openTrainerDialog('Edit', trainer)"
+                    >
+                      Edit
+                    </button>
+
+                    <button
+                      mat-raised-button
+                      color="warn"
+                      class="btn-no-shadow mar-l"
+                      (click)="openTrainerDialog('Delete', trainer)"
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </mat-card-header>
+              </mat-card>
+            </div>
+          </app-slider>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel class="mt-4">
+          <mat-expansion-panel-header>
+            <mat-panel-title class="text-muted">
+              Activities
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
           <button
             mat-raised-button
             color="primary"
-            class="btn-block my-4 btn-no-shadow"
-            type="submit"
-            *ngIf="isClub && !isEdited"
-            (click)="editClubAccount()"
+            class="btn-block mb-3 btn-no-shadow w-25 float-right"
+            (click)="openActivityDialog('Add', {})"
           >
-            Edit
+            Add Activity
           </button>
-          <div *ngIf="isEdited" class="row">
-            <div class="col">
-              <button
-                mat-raised-button
-                class="btn-block my-4 btn-no-shadow"
-                color="primary"
-                [disabled]="!clubForm.clubForm.valid"
-                (click)="saveClubData()"
-              >
-                Save
-              </button>
+
+          <app-slider *ngIf="activities.length !== 0">
+            <div appSliderItem *ngFor="let activity of activities">
+              <mat-card class="example-card">
+                <img
+                  class="tp-image"
+                  mat-card-image
+                  src="{{ activity.picture }}"
+                  alt="Activity picture"
+                />
+                <mat-card-header style="display: block !important;">
+                  <mat-card-title class="text-muted">{{
+                    activity.name
+                  }}</mat-card-title>
+                  <mat-card-subtitle
+                    >Duration: {{ activity.duration }} min</mat-card-subtitle
+                  >
+                  <mat-card-subtitle
+                    >Calories: {{ activity.calories }}</mat-card-subtitle
+                  >
+                  <mat-card-subtitle
+                    >Difficulty level: {{ activity.level }}</mat-card-subtitle
+                  >
+                  <div class="controls">
+                    <button
+                      mat-raised-button
+                      color="primary"
+                      class="btn-no-shadow mar-r"
+                      (click)="openActivityDialog('Edit', activity)"
+                    >
+                      Edit
+                    </button>
+
+                    <button
+                      mat-raised-button
+                      color="warn"
+                      class="btn-no-shadow mar-l"
+                      (click)="openActivityDialog('Delete', activity)"
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </mat-card-header>
+              </mat-card>
             </div>
-            <div class="col">
-              <button
-                mat-raised-button
-                class="btn-cancel btn-block my-4 btn-no-shadow"
-                (click)="cancel()"
-              >
-                Close
-              </button>
-            </div>
+          </app-slider>
+        </mat-expansion-panel>
+        <mat-expansion-panel class="mt-4">
+          <mat-expansion-panel-header>
+            <mat-panel-title class="text-muted">
+              Photo Gallery
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <app-pictures [(pictures)]="pictures"></app-pictures>
+        </mat-expansion-panel>
+        <button
+          mat-raised-button
+          color="primary"
+          class="btn-block my-4 btn-no-shadow"
+          type="submit"
+          *ngIf="!isClub"
+          [disabled]="!clubForm.clubForm.valid"
+          (click)="createClubAccount()"
+        >
+          Create
+        </button>
+        <button
+          mat-raised-button
+          color="primary"
+          class="btn-block my-4 btn-no-shadow"
+          type="submit"
+          *ngIf="isClub && !isEdited"
+          (click)="editClubAccount()"
+        >
+          Edit
+        </button>
+        <div *ngIf="isEdited" class="row">
+          <div class="col">
+            <button
+              mat-raised-button
+              class="btn-block my-4 btn-no-shadow"
+              color="primary"
+              [disabled]="!clubForm.clubForm.valid"
+              (click)="saveClubData()"
+            >
+              Save
+            </button>
           </div>
-        </form>
-      </mat-card>
-    </div>
+          <div class="col">
+            <button
+              mat-raised-button
+              class="btn-cancel btn-block my-4 btn-no-shadow"
+              (click)="cancel()"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </form>
+    </mat-card>
   </div>
 </div>
-<app-club-list *ngIf="hasClubs"></app-club-list>
+<app-club-list *ngIf="hasClubs && isLoaded"></app-club-list>

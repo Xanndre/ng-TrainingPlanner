@@ -1,6 +1,7 @@
 import { ClubWorkingHours } from './ClubWorkingHours';
 
 export class ClubGet {
+  id: number;
   name: string;
   description: string;
   streetName: string;

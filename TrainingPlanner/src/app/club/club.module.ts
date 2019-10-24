@@ -14,11 +14,47 @@ import { PicturesComponent } from './club-profile/pictures/pictures.component';
 import { ClubDetailsComponent } from './club-details/club-details.component';
 import { ClubListComponent } from './club-list/club-list.component';
 import { ClubListItemComponent } from './club-list/club-list-item/club-list-item.component';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 const routes: Routes = [
   {
     path: 'profile/clubs',
     component: ClubProfileComponent,
+    data: { isUser: true, isFavourites: false, edit: false },
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'profile/clubs/add',
+    component: ClubProfileComponent,
+    data: { edit: false },
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'profile/clubs/edit/:id',
+    component: ClubProfileComponent,
+    data: { edit: true },
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'advertisements/user',
+    component: ClubListComponent,
+    data: { isUser: true, isFavourites: false },
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'advertisements',
+    component: ClubListComponent,
+    data: { isUser: false, isFavourites: false }
+  },
+  {
+    path: '',
+    redirectTo: 'advertisements',
+    pathMatch: 'full'
+  },
+  {
+    path: 'favourites',
+    component: ClubListComponent,
+    data: { isUser: false, isFavourites: true },
     canActivate: [AuthGuardService]
   }
 ];
@@ -40,6 +76,7 @@ const routes: Routes = [
     MatExpansionModule,
     MatButtonModule,
     DragDropModule,
+    InfiniteScrollModule,
     RouterModule.forChild(routes)
   ],
   exports: [ClubProfileComponent, ClubDetailsComponent, ClubListComponent],

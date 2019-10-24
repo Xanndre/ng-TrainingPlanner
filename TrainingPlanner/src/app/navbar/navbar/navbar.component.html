@@ -28,7 +28,9 @@
           <button
             mat-menu-item
             class="text-muted btn-no-shadow"
-            [routerLink]="['/profile/clubs']"
+            [routerLink]="
+              hasClubs ? ['/profile/clubs'] : ['/profile/clubs/add']
+            "
           >
             My clubs
           </button>

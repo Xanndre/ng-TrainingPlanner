@@ -25,12 +25,12 @@ import { DataTransferService } from 'src/app/services/DataTransfer.service';
 export class ClubProfileComponent implements OnInit {
   clubForm: ClubProfileForm = new ClubProfileForm();
   formControls: ClubProfileControls;
-  isLoaded = true;
+  isLoaded: boolean;
   isEdit: boolean;
   hasClubs: boolean;
-  club: ClubGet;
+  club: ClubGet = null;
   clubCreate: ClubCreate;
-  clubId: number;
+  clubId = null;
   priceList: ClubPrice[] = [];
   workingHours: ClubWorkingHours[] = [];
   trainers: ClubTrainer[] = [];
@@ -38,6 +38,7 @@ export class ClubProfileComponent implements OnInit {
   pictures: Picture[] = [];
   beforeChanges: ClubUpdate;
   counter = 0;
+  userId: string;
 
   @Input() table: any;
 
@@ -45,38 +46,26 @@ export class ClubProfileComponent implements OnInit {
     private formBuilder: FormBuilder,
     private dialog: MatDialog,
     private clubService: ClubService,
-    private dataTransferService: DataTransferService,
-    private route: ActivatedRoute
+    private dataTransferService: DataTransferService
   ) {}
 
   ngOnInit() {
-    if (this.route.snapshot.queryParams.id) {
-      this.clubId = parseInt(this.route.snapshot.paramMap.get('id'), 10);
-    } else {
-      this.clubId = null;
-      this.club = null;
-    }
-    if (this.clubId === null) {
-      this.formControls = new ClubProfileControls();
-      this.clubForm.buildForm(this.formBuilder, this.club);
-      this.formControls.initializeControls(this.clubForm);
-      this.isLoaded = true;
-    } else {
-      // this.clubService.getClub(this.clubId).subscribe(response => {
-      //   if (this.club !== null) {
-      //     this.isEdit = true;
-      //   }
-      //   this.club = response;
-      //   this.isLoaded = true;
-      //   this.beforeChanges = JSON.parse(JSON.stringify(this.club));
-      //   this.formControls = new ClubProfileControls();
-      //   this.clubForm.buildForm(this.formBuilder, this.club);
-      //   this.formControls.initializeControls(this.clubForm);
-      //   if (this.isEdit) {
-      //     this.clubForm.clubForm.disable();
-      //   }
-      // });
-    }
+    this.userId = localStorage.getItem('userId');
+    this.formControls = new ClubProfileControls();
+    this.clubForm.buildForm(this.formBuilder, this.club);
+    this.formControls.initializeControls(this.clubForm);
+    this.clubService
+      .getClubs(1, 6, this.userId, true, false)
+      .subscribe(response => {
+        if (response.clubs.length === 0) {
+          this.hasClubs = false;
+          this.club = null;
+          this.clubId = null;
+        } else {
+          this.hasClubs = true;
+        }
+        this.isLoaded = true;
+      });
   }
 
   deleteClubAccount() {}
