@@ -55,6 +55,7 @@ export class ClubListComponent implements OnInit {
         this.totalCount = response.totalCount;
         this.currentPage = pageNumber;
         this.isLoaded = true;
+        console.log(this.clubs);
       });
   }
 

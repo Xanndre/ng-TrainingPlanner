@@ -1,1 +1,41 @@
-<div>KLUB</div>
+<div class="row">
+  <div class="col-3">
+    <img
+      class="tp-image"
+      src="{{
+        club.picture != null && club.picture != undefined
+          ? club.picture
+          : 'https://i.ibb.co/d0Zg3qs/newgym.png'
+      }}"
+      alt="Profile Picture"
+    />
+  </div>
+  <div class="col-9 tp-padd">
+    <div class="mb-3">
+      <h5 class="text-muted mt-1 tp-inline">
+        {{ club.name }}
+      </h5>
+      <button
+        mat-raised-button
+        color="primary"
+        class="btn-block btn-no-shadow w-25 float-right tp-inline"
+        (click)="viewDetails()"
+      >
+        View details
+      </button>
+    </div>
+    <p class="text-muted mb-2">
+      <span><i class="fa fa-envelope" aria-hidden="true"></i></span>
+      {{ club.email }}
+    </p>
+    <p class="text-muted mb-2" *ngIf="club.phoneNumber != null">
+      <span><i class="fa fa-phone" aria-hidden="true"></i></span>
+      {{ club.phoneNumber }}
+    </p>
+
+    <p class="text-muted mb-2">
+      <span><i class="fa fa-home" aria-hidden="true"></i></span>
+      {{ club.city }}
+    </p>
+  </div>
+</div>

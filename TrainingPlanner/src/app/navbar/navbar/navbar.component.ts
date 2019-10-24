@@ -10,7 +10,7 @@ import { ClubService } from 'src/app/services/Club.service';
 })
 export class NavbarComponent implements OnInit {
   userId: string;
-  hasClubs = false;
+  hasClubs: boolean;
 
   ngOnInit() {
     if (this.isUserAuthenticated) {
@@ -20,6 +20,8 @@ export class NavbarComponent implements OnInit {
         .subscribe(response => {
           if (response.clubs.length !== 0) {
             this.hasClubs = true;
+          } else {
+            this.hasClubs = false;
           }
         });
     }
