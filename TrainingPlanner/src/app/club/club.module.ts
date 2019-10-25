@@ -20,39 +20,34 @@ const routes: Routes = [
   {
     path: 'profile/clubs',
     component: ClubProfileComponent,
-    data: { isUser: true, isFavourites: false, edit: false },
+    data: { isUser: true, isFavourites: false, edit: false, add: false },
     canActivate: [AuthGuardService]
   },
   {
     path: 'profile/clubs/add',
     component: ClubProfileComponent,
-    data: { edit: false },
+    data: { edit: false, add: true },
     canActivate: [AuthGuardService]
   },
   {
     path: 'profile/clubs/edit/:id',
     component: ClubProfileComponent,
-    data: { edit: true },
+    data: { edit: true, add: false },
     canActivate: [AuthGuardService]
   },
   {
-    path: 'advertisements/user',
+    path: 'clubs/user',
     component: ClubListComponent,
     data: { isUser: true, isFavourites: false },
     canActivate: [AuthGuardService]
   },
   {
-    path: 'advertisements',
+    path: 'clubs',
     component: ClubListComponent,
     data: { isUser: false, isFavourites: false }
   },
   {
-    path: '',
-    redirectTo: 'advertisements',
-    pathMatch: 'full'
-  },
-  {
-    path: 'favourites',
+    path: 'clubs/favourites',
     component: ClubListComponent,
     data: { isUser: false, isFavourites: true },
     canActivate: [AuthGuardService]

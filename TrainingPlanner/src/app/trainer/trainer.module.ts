@@ -14,6 +14,7 @@ import { DeleteDialogComponent } from '../shared/delete-dialog/delete-dialog.com
 import { TrainerListComponent } from './trainer-list/trainer-list.component';
 import { TrainerListItemComponent } from './trainer-list/trainer-list-item/trainer-list-item.component';
 import { TrainerDetailsComponent } from './trainer-details/trainer-details.component';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 const routes: Routes = [
   {
@@ -24,6 +25,7 @@ const routes: Routes = [
   {
     path: 'trainers',
     component: TrainerListComponent,
+    data: { isFavourite: false },
     canActivate: [AuthGuardService]
   },
   {
@@ -47,6 +49,7 @@ const routes: Routes = [
     MatChipsModule,
     MatDialogModule,
     FormsModule,
+    InfiniteScrollModule,
     MatTableModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes),

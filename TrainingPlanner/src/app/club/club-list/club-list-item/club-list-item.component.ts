@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ClubGet } from 'src/app/models/ClubGet';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { LoginService } from 'src/app/services/Login.service';
+import { ClubGetBase } from 'src/app/models/ClubGetBase';
 
 @Component({
   selector: 'app-club-list-item',
@@ -10,17 +10,29 @@ import { LoginService } from 'src/app/services/Login.service';
 })
 export class ClubListItemComponent implements OnInit {
   isUserAuthenticated: boolean;
+  isProfile = false;
 
-  @Input() club: ClubGet;
+  @Input() club: ClubGetBase;
   @Input() isUser: boolean;
 
-  constructor(private router: Router, private loginService: LoginService) {}
+  constructor(
+    private router: Router,
+    private loginService: LoginService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit() {
     this.isUserAuthenticated = this.loginService.isUserAuthenticated();
+    if (this.route.snapshot.routeConfig.path === 'profile/clubs') {
+      this.isProfile = true;
+    }
   }
 
   viewDetails() {
     this.router.navigate([`/clubs/${this.club.id}`]);
+  }
+
+  editClub() {
+    this.router.navigate(['profile/clubs/add']);
   }
 }

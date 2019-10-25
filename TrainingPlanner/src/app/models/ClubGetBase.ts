@@ -7,4 +7,5 @@ export class ClubGetBase {
   phoneNumber: string;
   email: string;
   picture: Picture;
+  isFavourite: boolean;
 }

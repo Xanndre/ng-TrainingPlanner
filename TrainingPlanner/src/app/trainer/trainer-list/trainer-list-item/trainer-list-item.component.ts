@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { TrainerGet } from 'src/app/models/TrainerGet';
 import { Router } from '@angular/router';
+import { TrainerGetBase } from 'src/app/models/TrainerGetBase';
 
 @Component({
   selector: 'app-trainer-list-item',
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class TrainerListItemComponent implements OnInit {
   sports = '';
 
-  @Input() trainer: TrainerGet;
+  @Input() trainer: TrainerGetBase;
 
   constructor(private router: Router) {}
 

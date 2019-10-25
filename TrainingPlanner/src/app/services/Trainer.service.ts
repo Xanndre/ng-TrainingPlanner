@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { TrainerCreate } from '../models/TrainerCreate';
 import { map } from 'rxjs/Operators';
 import { TrainerGet } from '../models/TrainerGet';
 import { TrainerUpdate } from '../models/TrainerUpdate';
+import { Observable } from 'rxjs';
+import { PagedTrainers } from '../models/PagedTrainers';
 
 @Injectable({
   providedIn: 'root'
@@ -65,19 +67,6 @@ export class TrainerService {
       .pipe();
   }
 
-  getAllTrainers() {
-    const options = {
-      headers: new HttpHeaders({
-        Authorization: 'Bearer ' + localStorage.getItem('jwt')
-      })
-    };
-    return this.client.get('https://localhost:44383/api/Trainer', options).pipe(
-      map((res: TrainerGet[]) => {
-        return res;
-      })
-    );
-  }
-
   getTrainer(id: number) {
     const options = {
       headers: new HttpHeaders({
@@ -91,5 +80,36 @@ export class TrainerService {
           return res;
         })
       );
+  }
+
+  getTrainers(
+    pageNumber: number,
+    pageSize: number,
+    userId: string,
+    isFavourite: boolean
+  ): Observable<PagedTrainers> {
+    let params = new HttpParams()
+      .set('pageNumber', pageNumber.toString())
+      .set('pageSize', pageSize.toString());
+    if (isFavourite || userId != null) {
+      params = params.set('userId', userId);
+    }
+    const options = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + localStorage.getItem('jwt')
+      }),
+      params
+    };
+    let url = '';
+    if (isFavourite) {
+      url = 'https://localhost:44383/api/Trainer/favourites';
+    } else {
+      url = 'https://localhost:44383/api/Trainer';
+    }
+    return this.client.get(url, options).pipe(
+      map((res: PagedTrainers) => {
+        return res;
+      })
+    );
   }
 }
