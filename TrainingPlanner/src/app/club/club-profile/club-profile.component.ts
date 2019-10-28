@@ -27,6 +27,7 @@ export class ClubProfileComponent implements OnInit {
   formControls: ClubProfileControls;
   isLoaded: boolean;
   isEdit: boolean;
+  isAdd: boolean;
   hasClubs: boolean;
   club: ClubGet = null;
   clubCreate: ClubCreate;
@@ -46,10 +47,14 @@ export class ClubProfileComponent implements OnInit {
     private formBuilder: FormBuilder,
     private dialog: MatDialog,
     private clubService: ClubService,
-    private dataTransferService: DataTransferService
+    private dataTransferService: DataTransferService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
+    if (this.route.snapshot.data.add) {
+      this.isAdd = true;
+    }
     this.userId = localStorage.getItem('userId');
     this.formControls = new ClubProfileControls();
     this.clubForm.buildForm(this.formBuilder, this.club);
@@ -65,6 +70,7 @@ export class ClubProfileComponent implements OnInit {
           this.hasClubs = true;
         }
         this.isLoaded = true;
+        console.log(this.hasClubs);
       });
   }
 

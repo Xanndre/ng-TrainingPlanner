@@ -1,13 +1,27 @@
-<div class="full-width" *ngIf="isLoaded">
+<div class="row full-width" *ngIf="isLoaded">
   <div class="col-lg-3"></div>
-  <div class="col-lg-6 mx-auto tp-main-col">
+  <div
+    class="col-lg-6 mx-auto tp-main-col"
+    infinite-scroll
+    (scrolled)="onScrollDown()"
+  >
     <div
       class="row text-muted justify-content-center align-items-center mt-4"
       *ngIf="clubs.length == 0 && isFavourite"
     >
       You don't have any favourite clubs.
     </div>
-
+    <div class="tp-right mt-4" *ngIf="isProfile">
+      <button
+        mat-raised-button
+        color="primary"
+        class="btn-block btn-no-shadow w-25"
+        [routerLink]="['/profile/clubs/add']"
+        [routerLinkActive]="['active']"
+      >
+        Add Club
+      </button>
+    </div>
     <mat-card class="my-4" *ngFor="let club of clubs">
       <app-club-list-item [club]="club" [isUser]="isUser"></app-club-list-item>
     </mat-card>

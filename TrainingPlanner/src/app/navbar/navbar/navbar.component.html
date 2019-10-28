@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-sm navbar-custom ">
+<nav class="navbar navbar-expand-sm navbar-custom" *ngIf="isLoaded">
   <a class="navbar-brand" [routerLink]="['/user']">TrainingPlanner</a>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
@@ -28,10 +28,12 @@
           <button
             mat-menu-item
             class="text-muted btn-no-shadow"
+            [routerLinkActive]="['active']"
             [routerLink]="
               hasClubs ? ['/profile/clubs'] : ['/profile/clubs/add']
             "
           >
+            <a routerLink="/profile/clubs/add"></a>
             My clubs
           </button>
         </mat-menu>
