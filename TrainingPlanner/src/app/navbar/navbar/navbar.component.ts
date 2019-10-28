@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../../services/Login.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ClubService } from 'src/app/services/Club.service';
 
 @Component({
@@ -12,6 +12,7 @@ export class NavbarComponent implements OnInit {
   userId: string;
   hasClubs: boolean;
   isLoaded = false;
+  clubIds: number[] = [];
 
   ngOnInit() {
     if (this.isUserAuthenticated) {
@@ -21,6 +22,9 @@ export class NavbarComponent implements OnInit {
         .subscribe(response => {
           if (response.clubs.length !== 0) {
             this.hasClubs = true;
+            response.clubs.forEach(c => {
+              this.clubIds.push(c.id);
+            });
           } else {
             this.hasClubs = false;
           }
@@ -31,7 +35,8 @@ export class NavbarComponent implements OnInit {
   constructor(
     private loginService: LoginService,
     private router: Router,
-    private clubService: ClubService
+    private clubService: ClubService,
+    private route: ActivatedRoute
   ) {}
 
   isUserAuthenticated() {

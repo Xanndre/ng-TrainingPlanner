@@ -5,6 +5,7 @@ import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
 import { ClubGet } from '../models/ClubGet';
 import { PagedClubs } from '../models/PagedClubs';
 import { Observable } from 'rxjs';
+import { ClubUpdate } from '../models/ClubUpdate';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,22 @@ export class ClubService {
     return this.client
       .post('https://localhost:44383/api/Club', club, options)
       .pipe();
+  }
+
+  updateClub(club: ClubUpdate) {
+    const options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + localStorage.getItem('jwt')
+      })
+    };
+    return this.client
+      .put('https://localhost:44383/api/Club', club, options)
+      .pipe(
+        map((res: ClubUpdate) => {
+          return res;
+        })
+      );
   }
 
   getClub(id: number) {

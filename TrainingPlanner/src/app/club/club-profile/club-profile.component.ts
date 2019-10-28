@@ -11,7 +11,7 @@ import { Picture } from 'src/app/models/Picture';
 import { ClubWorkingHours } from 'src/app/models/ClubWorkingHours';
 import { ClubService } from 'src/app/services/Club.service';
 import { ClubUpdate } from 'src/app/models/ClubUpdate';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ClubActivity } from 'src/app/models/ClubActivity';
 import { ClubTrainer } from 'src/app/models/ClubTrainer';
 import { ClubCreate } from 'src/app/models/ClubCreate';
@@ -41,6 +41,7 @@ export class ClubProfileComponent implements OnInit {
   beforeChanges: ClubUpdate;
   counter = 0;
   userId: string;
+  clubUpdate: ClubUpdate = new ClubUpdate();
   miniatureIndex = 0;
 
   @Input() table: any;
@@ -50,7 +51,8 @@ export class ClubProfileComponent implements OnInit {
     private dialog: MatDialog,
     private clubService: ClubService,
     private dataTransferService: DataTransferService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -106,23 +108,97 @@ export class ClubProfileComponent implements OnInit {
 
   editClubAccount() {
     this.isEdited = true;
+    this.setEditedData();
     this.clubForm.clubForm.enable();
   }
 
-  cancel() {}
+  setEditedData() {
+    this.clubUpdate.name = this.clubForm.clubForm.value.name;
+    this.clubUpdate.description = this.clubForm.clubForm.value.description;
+    this.clubUpdate.streetName = this.clubForm.clubForm.value.streetName;
+    this.clubUpdate.streetNumber = this.clubForm.clubForm.value.streetNumber;
+    this.clubUpdate.postalCode = this.clubForm.clubForm.value.postalCode;
+    this.clubUpdate.city = this.clubForm.clubForm.value.city;
+    this.clubUpdate.phoneNumber = this.clubForm.clubForm.value.phoneNumber;
+    this.clubUpdate.email = this.clubForm.clubForm.value.email;
+    this.clubUpdate.userId = this.club.user.id;
+    this.clubUpdate.id = this.club.id;
+  }
+
+  cancel() {
+    this.isEdited = false;
+    this.clubUpdate = JSON.parse(JSON.stringify(this.beforeChanges));
+    this.setClubData();
+    this.clubForm.clubForm.markAsPristine();
+    this.clubForm.clubForm.markAsUntouched();
+    this.clubForm.clubForm.updateValueAndValidity();
+    this.clubForm.clubForm.disable();
+  }
+
+  setClubData() {
+    this.clubForm.clubForm.setValue({
+      name: this.club.name,
+      description: this.club.description,
+      streetName: this.club.streetName,
+      streetNumber: this.club.streetNumber,
+      postalCode: this.club.postalCode,
+      city: this.club.city,
+      phoneNumber: this.club.phoneNumber,
+      email: this.club.email
+    });
+    this.priceList = this.beforeChanges.priceList;
+    this.workingHours = this.beforeChanges.workingHours;
+    this.activities = this.beforeChanges.activities;
+    this.trainers = this.beforeChanges.trainers;
+    this.pictures = this.beforeChanges.pictures;
+  }
+
+  saveClubData() {
+    this.isEdited = false;
+    this.setEditedData();
+
+    this.clubUpdate.workingHours = this.workingHours;
+    this.clubUpdate.priceList = this.priceList;
+    this.clubUpdate.trainers = this.trainers;
+    this.clubUpdate.activities = this.activities;
+    this.clubUpdate.pictures = this.pictures;
+
+    this.clubUpdate.priceList.forEach(p => {
+      p.clubId = this.clubUpdate.id;
+      p.id = undefined;
+    });
+    this.clubUpdate.workingHours.forEach(p => {
+      p.clubId = this.clubUpdate.id;
+      p.id = undefined;
+    });
+    this.clubUpdate.activities.forEach(p => {
+      p.clubId = this.clubUpdate.id;
+      p.id = undefined;
+    });
+    this.clubUpdate.trainers.forEach(p => {
+      p.clubId = this.clubUpdate.id;
+      p.id = undefined;
+    });
+    this.clubService.updateClub(this.clubUpdate).subscribe(() => {});
+    this.beforeChanges = JSON.parse(JSON.stringify(this.club));
+    this.clubForm.clubForm.disable();
+  }
 
   createClubAccount() {
     this.priceList.forEach(el => (el.id = undefined));
     this.trainers.forEach(el => (el.id = undefined));
     this.workingHours.forEach(el => (el.id = undefined));
     this.activities.forEach(el => (el.id = undefined));
-    for (let i = 0; i < this.pictures.length; i++) {
-      this.pictures[i].displayOrder = i;
-      if (i !== 0) {
-        this.pictures[i].isMiniature = false;
+    if (this.pictures.length > 0) {
+      for (let i = 0; i < this.pictures.length; i++) {
+        this.pictures[i].displayOrder = i;
+        if (i !== 0) {
+          this.pictures[i].isMiniature = false;
+        }
       }
+      this.pictures[0].isMiniature = true;
     }
-    this.pictures[0].isMiniature = true;
+
     this.clubCreate = {
       userId: localStorage.getItem('userId'),
       name: this.clubForm.clubForm.value.name,
@@ -140,7 +216,7 @@ export class ClubProfileComponent implements OnInit {
       pictures: this.pictures
     };
     this.clubService.createClub(this.clubCreate).subscribe(() => {
-      window.location.reload();
+      this.router.navigate(['profile/clubs']);
       console.log('Dodano konto klubu');
     });
   }

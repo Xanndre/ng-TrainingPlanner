@@ -15,7 +15,7 @@ export class ClubListComponent implements OnInit {
 
   totalPages: number;
   totalCount: number;
-  pageSize = 6;
+  pageSize = 3;
   currentPage: number;
 
   isLoaded = false;
@@ -60,7 +60,6 @@ export class ClubListComponent implements OnInit {
         this.totalCount = response.totalCount;
         this.currentPage = pageNumber;
         this.isLoaded = true;
-        console.log(this.clubs);
       });
   }
 

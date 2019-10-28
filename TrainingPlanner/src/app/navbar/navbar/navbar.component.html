@@ -34,6 +34,10 @@
             "
           >
             <a routerLink="/profile/clubs/add"></a>
+            <a
+              *ngFor="let id of clubIds"
+              routerLink="/profile/clubs/edit/{{ id }}"
+            ></a>
             My clubs
           </button>
         </mat-menu>
