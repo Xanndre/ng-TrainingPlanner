@@ -29,3 +29,7 @@
 .tp-input {
   cursor: pointer;
 }
+
+.tp-input:disabled {
+  cursor: auto;
+}

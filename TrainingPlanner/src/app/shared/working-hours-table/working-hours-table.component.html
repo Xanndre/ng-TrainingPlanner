@@ -19,7 +19,7 @@
         placeholder="-"
         [(ngModel)]="element.openHour"
         [ngxTimepicker]="openHour"
-        readonly
+        [disabled]="isDisabled"
       />
       <ngx-material-timepicker
         #openHour
@@ -39,7 +39,7 @@
         placeholder="-"
         [(ngModel)]="element.closeHour"
         [ngxTimepicker]="closeHour"
-        readonly
+        [disabled]="isDisabled"
       />
       <ngx-material-timepicker
         #closeHour

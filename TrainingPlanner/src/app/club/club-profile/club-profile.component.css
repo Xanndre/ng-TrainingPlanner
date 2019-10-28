@@ -24,3 +24,8 @@
 .mar-r {
   margin-right: 3px;
 }
+
+.btn-cancel {
+  background-color: #868e96;
+  color: white;
+}

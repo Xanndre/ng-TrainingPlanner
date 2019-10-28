@@ -27,6 +27,7 @@ export class ClubProfileComponent implements OnInit {
   formControls: ClubProfileControls;
   isLoaded: boolean;
   isEdit: boolean;
+  isEdited: boolean;
   isAdd: boolean;
   hasClubs: boolean;
   club: ClubGet = null;
@@ -40,6 +41,7 @@ export class ClubProfileComponent implements OnInit {
   beforeChanges: ClubUpdate;
   counter = 0;
   userId: string;
+  miniatureIndex = 0;
 
   @Input() table: any;
 
@@ -52,29 +54,62 @@ export class ClubProfileComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    if (this.route.snapshot.data.add) {
-      this.isAdd = true;
-    }
-    this.userId = localStorage.getItem('userId');
-    this.formControls = new ClubProfileControls();
-    this.clubForm.buildForm(this.formBuilder, this.club);
-    this.formControls.initializeControls(this.clubForm);
-    this.clubService
-      .getClubs(1, 6, this.userId, true, false)
-      .subscribe(response => {
-        if (response.clubs.length === 0) {
-          this.hasClubs = false;
-          this.club = null;
-          this.clubId = null;
-        } else {
-          this.hasClubs = true;
+    if (this.route.snapshot.data.edit) {
+      this.isEdit = true;
+      this.clubId = parseInt(this.route.snapshot.paramMap.get('id'), 10);
+      this.clubService.getClub(this.clubId).subscribe(response => {
+        this.club = response;
+        this.beforeChanges = JSON.parse(JSON.stringify(this.club));
+        this.formControls = new ClubProfileControls();
+        this.clubForm.buildForm(this.formBuilder, this.club);
+        this.formControls.initializeControls(this.clubForm);
+        this.clubForm.clubForm.disable();
+        this.pictures = response.pictures;
+        this.activities = response.activities;
+        this.trainers = response.trainers;
+        this.priceList = response.priceList;
+        this.workingHours = response.workingHours;
+        this.pictures.sort((a, b) => {
+          return a.displayOrder - b.displayOrder;
+        });
+        for (let i = 0; i < this.pictures.length; i++) {
+          if (this.pictures[i].isMiniature) {
+            this.miniatureIndex = i;
+          }
         }
         this.isLoaded = true;
-        console.log(this.hasClubs);
       });
+    } else {
+      if (this.route.snapshot.data.add) {
+        this.isAdd = true;
+      }
+      this.userId = localStorage.getItem('userId');
+      this.formControls = new ClubProfileControls();
+      this.clubForm.buildForm(this.formBuilder, this.club);
+      this.formControls.initializeControls(this.clubForm);
+      this.clubService
+        .getClubs(1, 6, this.userId, true, false)
+        .subscribe(response => {
+          if (response.clubs.length === 0) {
+            this.hasClubs = false;
+            this.club = null;
+            this.clubId = null;
+          } else {
+            this.hasClubs = true;
+          }
+          this.isLoaded = true;
+        });
+    }
   }
 
   deleteClubAccount() {}
+
+  editClubAccount() {
+    this.isEdited = true;
+    this.clubForm.clubForm.enable();
+  }
+
+  cancel() {}
 
   createClubAccount() {
     this.priceList.forEach(el => (el.id = undefined));

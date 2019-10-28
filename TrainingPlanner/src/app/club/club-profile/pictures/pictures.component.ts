@@ -10,6 +10,7 @@ import { Picture } from 'src/app/models/Picture';
 export class PicturesComponent {
   constructor() {}
   @Input() pictures: Picture[];
+  @Input() isDisabled: boolean;
   isPicturesLoaded: boolean;
 
   changePictureListener($event): void {

@@ -1,4 +1,8 @@
 import { ClubWorkingHours } from './ClubWorkingHours';
+import { Picture } from './Picture';
+import { ClubPrice } from './ClubPrice';
+import { ClubActivity } from './ClubActivity';
+import { ClubTrainer } from './ClubTrainer';
 
 export class ClubGet {
   id: number;
@@ -11,4 +15,8 @@ export class ClubGet {
   phoneNumber: string;
   email: string;
   workingHours: ClubWorkingHours[];
+  pictures: Picture[];
+  priceList: ClubPrice[];
+  activities: ClubActivity[];
+  trainers: ClubTrainer[];
 }

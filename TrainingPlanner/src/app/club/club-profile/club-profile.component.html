@@ -1,6 +1,6 @@
 <div
   class="row full-width"
-  *ngIf="(!hasClubs && isLoaded) || (isAdd && isLoaded)"
+  *ngIf="(!hasClubs && isLoaded) || (isAdd && isLoaded) || (isEdit && isLoaded)"
 >
   <div class="col-lg-6 mx-auto">
     <mat-card class="my-4">
@@ -16,7 +16,7 @@
         </button>
       </div>
       <form class="text-center p-5" [formGroup]="clubForm.clubForm">
-        <h4 class="text-muted" *ngIf="!isClub; else editTitle">
+        <h4 class="text-muted" *ngIf="isAdd; else editTitle">
           Create a club profile
         </h4>
         <ng-template #editTitle>
@@ -71,6 +71,7 @@
             color="primary"
             class="btn-block mb-3 btn-no-shadow w-25 float-right"
             (click)="openTrainerDialog('Add', {})"
+            [disabled]="clubForm.clubForm.disabled"
           >
             Add Trainer
           </button>
@@ -97,6 +98,7 @@
                       color="primary"
                       class="btn-no-shadow mar-r"
                       (click)="openTrainerDialog('Edit', trainer)"
+                      [disabled]="clubForm.clubForm.disabled"
                     >
                       Edit
                     </button>
@@ -106,6 +108,7 @@
                       color="warn"
                       class="btn-no-shadow mar-l"
                       (click)="openTrainerDialog('Delete', trainer)"
+                      [disabled]="clubForm.clubForm.disabled"
                     >
                       Delete
                     </button>
@@ -128,6 +131,7 @@
             color="primary"
             class="btn-block mb-3 btn-no-shadow w-25 float-right"
             (click)="openActivityDialog('Add', {})"
+            [disabled]="clubForm.clubForm.disabled"
           >
             Add Activity
           </button>
@@ -160,6 +164,7 @@
                       color="primary"
                       class="btn-no-shadow mar-r"
                       (click)="openActivityDialog('Edit', activity)"
+                      [disabled]="clubForm.clubForm.disabled"
                     >
                       Edit
                     </button>
@@ -169,6 +174,7 @@
                       color="warn"
                       class="btn-no-shadow mar-l"
                       (click)="openActivityDialog('Delete', activity)"
+                      [disabled]="clubForm.clubForm.disabled"
                     >
                       Delete
                     </button>
@@ -184,14 +190,17 @@
               Photo Gallery
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <app-pictures [(pictures)]="pictures"></app-pictures>
+          <app-pictures
+            [(pictures)]="pictures"
+            [isDisabled]="clubForm.clubForm.disabled"
+          ></app-pictures>
         </mat-expansion-panel>
         <button
           mat-raised-button
           color="primary"
           class="btn-block my-4 btn-no-shadow"
           type="submit"
-          *ngIf="!isClub"
+          *ngIf="isAdd"
           [disabled]="!clubForm.clubForm.valid"
           (click)="createClubAccount()"
         >
@@ -201,8 +210,7 @@
           mat-raised-button
           color="primary"
           class="btn-block my-4 btn-no-shadow"
-          type="submit"
-          *ngIf="isClub && !isEdited"
+          *ngIf="isEdit && !isEdited"
           (click)="editClubAccount()"
         >
           Edit
@@ -222,6 +230,7 @@
           <div class="col">
             <button
               mat-raised-button
+              color=""
               class="btn-cancel btn-block my-4 btn-no-shadow"
               (click)="cancel()"
             >

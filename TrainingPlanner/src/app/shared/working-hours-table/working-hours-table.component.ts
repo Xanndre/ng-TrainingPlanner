@@ -68,11 +68,13 @@ export class WorkingHoursTableComponent implements OnInit {
           closeHour: undefined
         });
       });
+      this.isLoaded = true;
     }
   }
 
   setWorkingHours(response: any) {
     if (response !== null) {
+      this.dataSource = [];
       response.workingHours.forEach(wh => {
         this.dataSource.push({
           id: wh.id,

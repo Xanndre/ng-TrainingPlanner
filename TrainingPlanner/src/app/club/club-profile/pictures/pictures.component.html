@@ -5,10 +5,11 @@
   accept="image/*"
   multiple
   (change)="changePictureListener($event)"
-  [disabled]="pictures.length >= 4"
+  [disabled]="pictures.length >= 4 || isDisabled"
 />
 
-<label for="files" class="my-btn">Add Photos</label>
+<label for="files" class="my-btn" *ngIf="!isDisabled">Add Photos</label>
+<label for="files" class="my-btn-disabled" *ngIf="isDisabled">Add Photos</label>
 
 <div
   cdkDropList
@@ -21,11 +22,13 @@
     *ngFor="let picture of pictures; let i = index"
     cdkDragLockAxis="x"
     cdkDrag
+    [cdkDragDisabled]="isDisabled"
   >
     <button
       type="button"
       class="close my-button"
       aria-label="Close"
+      [disabled]="isDisabled"
       (click)="pictures.splice(i, 1)"
     >
       <span aria-hidden="true">&times;</span>

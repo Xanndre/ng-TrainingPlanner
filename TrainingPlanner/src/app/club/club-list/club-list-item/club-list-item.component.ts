@@ -33,6 +33,6 @@ export class ClubListItemComponent implements OnInit {
   }
 
   editClub() {
-    this.router.navigate(['profile/clubs/add']);
+    this.router.navigate([`profile/clubs/edit/${this.club.id}`]);
   }
 }
