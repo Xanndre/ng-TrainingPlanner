@@ -53,4 +53,15 @@ export class UserService {
         })
       );
   }
+
+  deleteUser(userId: string) {
+    const options = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + localStorage.getItem('jwt')
+      })
+    };
+    return this.client
+      .delete(`https://localhost:44383/api/User/${userId}`, options)
+      .pipe();
+  }
 }

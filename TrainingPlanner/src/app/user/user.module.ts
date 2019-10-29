@@ -12,6 +12,7 @@ import { MatCardModule } from '@angular/material/card';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuardService } from '../guards/AuthGuard.service';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { DeleteUserDialogComponent } from '../shared/delete-user-dialog/delete-user-dialog.component';
 
 const routes: Routes = [
   {
@@ -42,6 +43,7 @@ const routes: Routes = [
     MatButtonModule,
     MatCardModule
   ],
-  exports: [UserProfileComponent]
+  exports: [UserProfileComponent],
+  entryComponents: [DeleteUserDialogComponent]
 })
 export class UserModule {}

@@ -23,6 +23,7 @@ import { ClubTrainerDialogComponent } from './club-trainer-dialog/club-trainer-d
 import { WorkingHoursTableComponent } from './working-hours-table/working-hours-table.component';
 import { DeleteTrainerDialogComponent } from './delete-trainer-dialog/delete-trainer-dialog.component';
 import { DeleteClubDialogComponent } from './delete-club-dialog/delete-club-dialog.component';
+import { DeleteUserDialogComponent } from './delete-user-dialog/delete-user-dialog.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { DeleteClubDialogComponent } from './delete-club-dialog/delete-club-dial
     ErrorDialogComponent,
     DeleteClubDialogComponent,
     DeleteTrainerDialogComponent,
+    DeleteUserDialogComponent,
     ClubActivityDialogComponent,
     ClubTrainerDialogComponent,
     PricelistTableComponent,
@@ -62,6 +64,7 @@ import { DeleteClubDialogComponent } from './delete-club-dialog/delete-club-dial
     ErrorDialogComponent,
     DeleteTrainerDialogComponent,
     DeleteClubDialogComponent,
+    DeleteUserDialogComponent,
     ClubTrainerDialogComponent,
     ClubActivityDialogComponent,
     PricelistTableComponent,

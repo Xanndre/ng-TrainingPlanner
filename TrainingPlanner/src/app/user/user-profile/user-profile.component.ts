@@ -4,6 +4,9 @@ import { UserProfileForm } from './user-profile-form';
 import { UserService } from 'src/app/services/User.service';
 import { FormBuilder } from '@angular/forms';
 import { UserProfileControls } from './user-profile-controls';
+import { MatDialog } from '@angular/material';
+import { DataTransferService } from 'src/app/services/DataTransfer.service';
+import { DeleteUserDialogComponent } from 'src/app/shared/delete-user-dialog/delete-user-dialog.component';
 
 @Component({
   selector: 'app-user-profile',
@@ -22,7 +25,9 @@ export class UserProfileComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private dialog: MatDialog,
+    private dataTransferService: DataTransferService
   ) {}
 
   ngOnInit() {
@@ -37,6 +42,19 @@ export class UserProfileComponent implements OnInit {
       this.userForm.buildForm(this.formBuilder, this.user);
       this.formControls.initializeControls(this.userForm);
       this.userForm.userForm.disable();
+    });
+  }
+
+  deleteAccount() {
+    this.showError(
+      'Do you really want to delete this profile? This process cannot be undone.'
+    );
+  }
+
+  showError(error: string): void {
+    this.dialog.open(DeleteUserDialogComponent, {
+      data: { errorMsg: error },
+      width: '400px'
     });
   }
 
