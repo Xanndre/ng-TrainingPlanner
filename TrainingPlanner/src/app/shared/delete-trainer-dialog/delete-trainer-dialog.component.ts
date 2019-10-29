@@ -1,22 +1,22 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { DataTransferService } from 'src/app/services/DataTransfer.service';
 import { TrainerService } from 'src/app/services/Trainer.service';
 import { Router } from '@angular/router';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
-  selector: 'app-delete-dialog',
-  templateUrl: './delete-dialog.component.html',
-  styleUrls: ['./delete-dialog.component.css']
+  selector: 'app-delete-trainer-dialog',
+  templateUrl: './delete-trainer-dialog.component.html',
+  styleUrls: ['./delete-trainer-dialog.component.css']
 })
-export class DeleteDialogComponent implements OnInit {
+export class DeleteTrainerDialogComponent implements OnInit {
   trainerId: number;
 
   constructor(
     private dataTransferService: DataTransferService,
     private trainerService: TrainerService,
     private router: Router,
-    private dialogRef: MatDialogRef<DeleteDialogComponent>,
+    private dialogRef: MatDialogRef<DeleteTrainerDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 

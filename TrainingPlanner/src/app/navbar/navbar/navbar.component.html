@@ -30,10 +30,13 @@
             class="text-muted btn-no-shadow"
             [routerLinkActive]="['active']"
             [routerLink]="
-              hasClubs ? ['/profile/clubs'] : ['/profile/clubs/add']
+              clubQuantity !== 0 && isClubsLoaded
+                ? ['/profile/clubs']
+                : ['/profile/clubs/add']
             "
           >
             <a routerLink="/profile/clubs/add"></a>
+            <a routerLink="/profile/clubs"></a>
             <a
               *ngFor="let id of clubIds"
               routerLink="/profile/clubs/edit/{{ id }}"

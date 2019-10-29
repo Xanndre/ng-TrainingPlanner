@@ -16,6 +16,7 @@ import { ClubActivity } from 'src/app/models/ClubActivity';
 import { ClubTrainer } from 'src/app/models/ClubTrainer';
 import { ClubCreate } from 'src/app/models/ClubCreate';
 import { DataTransferService } from 'src/app/services/DataTransfer.service';
+import { DeleteClubDialogComponent } from 'src/app/shared/delete-club-dialog/delete-club-dialog.component';
 
 @Component({
   selector: 'app-club-profile',
@@ -26,9 +27,9 @@ export class ClubProfileComponent implements OnInit {
   clubForm: ClubProfileForm = new ClubProfileForm();
   formControls: ClubProfileControls;
   isLoaded: boolean;
-  isEdit: boolean;
+  isEdit = false;
   isEdited: boolean;
-  isAdd: boolean;
+  isAdd = false;
   hasClubs: boolean;
   club: ClubGet = null;
   clubCreate: ClubCreate;
@@ -104,7 +105,19 @@ export class ClubProfileComponent implements OnInit {
     }
   }
 
-  deleteClubAccount() {}
+  deleteClubAccount() {
+    this.dataTransferService.setClubId(this.club.id);
+    this.showError(
+      'Do you really want to delete this club profile? This process cannot be undone.'
+    );
+  }
+
+  showError(error: string): void {
+    this.dialog.open(DeleteClubDialogComponent, {
+      data: { errorMsg: error },
+      width: '400px'
+    });
+  }
 
   editClubAccount() {
     this.isEdited = true;

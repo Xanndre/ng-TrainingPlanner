@@ -10,8 +10,8 @@ import { FormBuilder } from '@angular/forms';
 import { TrainerGet } from 'src/app/models/TrainerGet';
 import { TrainerUpdate } from 'src/app/models/TrainerUpdate';
 import { MatDialog } from '@angular/material';
-import { DeleteDialogComponent } from 'src/app/shared/delete-dialog/delete-dialog.component';
 import { DataTransferService } from 'src/app/services/DataTransfer.service';
+import { DeleteTrainerDialogComponent } from 'src/app/shared/delete-trainer-dialog/delete-trainer-dialog.component';
 
 @Component({
   selector: 'app-trainer-profile',
@@ -163,7 +163,7 @@ export class TrainerProfileComponent implements OnInit {
   }
 
   showError(error: string): void {
-    this.dialog.open(DeleteDialogComponent, {
+    this.dialog.open(DeleteTrainerDialogComponent, {
       data: { errorMsg: error },
       width: '400px'
     });

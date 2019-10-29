@@ -12,6 +12,10 @@
   height: 250px;
 }
 
+.tp-right {
+  text-align: right;
+}
+
 .controls {
   display: flex;
   justify-content: center;

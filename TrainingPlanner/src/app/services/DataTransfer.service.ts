@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class DataTransferService {
   private trainerId: number;
+  private clubId: number;
   private isDeleteActivity: boolean;
   private isDeleteTrainer: boolean;
 
@@ -32,5 +33,13 @@ export class DataTransferService {
 
   setIsDeleteTrainer(isDeleteTrainer: boolean) {
     this.isDeleteTrainer = isDeleteTrainer;
+  }
+
+  getClubId(): number {
+    return this.clubId;
+  }
+
+  setClubId(clubId: number) {
+    this.clubId = clubId;
   }
 }

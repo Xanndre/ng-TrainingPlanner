@@ -15,6 +15,7 @@ import { ClubDetailsComponent } from './club-details/club-details.component';
 import { ClubListComponent } from './club-list/club-list.component';
 import { ClubListItemComponent } from './club-list/club-list-item/club-list-item.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { DeleteClubDialogComponent } from '../shared/delete-club-dialog/delete-club-dialog.component';
 
 const routes: Routes = [
   {
@@ -75,6 +76,10 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   exports: [ClubProfileComponent, ClubDetailsComponent, ClubListComponent],
-  entryComponents: [ClubTrainerDialogComponent, ClubActivityDialogComponent]
+  entryComponents: [
+    ClubTrainerDialogComponent,
+    ClubActivityDialogComponent,
+    DeleteClubDialogComponent
+  ]
 })
 export class ClubModule {}

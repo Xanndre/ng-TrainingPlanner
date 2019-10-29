@@ -10,11 +10,11 @@ import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatChipsModule } from '@angular/material';
 import { TrainerProfileComponent } from './trainer-profile/trainer-profile.component';
-import { DeleteDialogComponent } from '../shared/delete-dialog/delete-dialog.component';
 import { TrainerListComponent } from './trainer-list/trainer-list.component';
 import { TrainerListItemComponent } from './trainer-list/trainer-list-item/trainer-list-item.component';
 import { TrainerDetailsComponent } from './trainer-details/trainer-details.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { DeleteTrainerDialogComponent } from '../shared/delete-trainer-dialog/delete-trainer-dialog.component';
 
 const routes: Routes = [
   {
@@ -60,6 +60,6 @@ const routes: Routes = [
     TrainerListComponent,
     TrainerDetailsComponent
   ],
-  entryComponents: [DeleteDialogComponent]
+  entryComponents: [DeleteTrainerDialogComponent]
 })
 export class TrainerModule {}

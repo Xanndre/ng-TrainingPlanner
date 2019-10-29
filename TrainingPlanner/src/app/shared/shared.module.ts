@@ -15,13 +15,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { PricelistTableComponent } from './pricelist-table/pricelist-table.component';
 import { MatChipsModule, MatTableModule } from '@angular/material';
 import { PricelistDialogComponent } from './pricelist-table/pricelist-dialog/pricelist-dialog.component';
-import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 import { SliderComponent } from './slider/slider.component';
 import { SliderItemDirective } from './slider/slider-item.directive';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { ClubActivityDialogComponent } from './club-activity-dialog/club-activity-dialog.component';
 import { ClubTrainerDialogComponent } from './club-trainer-dialog/club-trainer-dialog.component';
 import { WorkingHoursTableComponent } from './working-hours-table/working-hours-table.component';
+import { DeleteTrainerDialogComponent } from './delete-trainer-dialog/delete-trainer-dialog.component';
+import { DeleteClubDialogComponent } from './delete-club-dialog/delete-club-dialog.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { WorkingHoursTableComponent } from './working-hours-table/working-hours-
     CustomErrorComponent,
     CustomControlGroupComponent,
     ErrorDialogComponent,
-    DeleteDialogComponent,
+    DeleteClubDialogComponent,
+    DeleteTrainerDialogComponent,
     ClubActivityDialogComponent,
     ClubTrainerDialogComponent,
     PricelistTableComponent,
@@ -58,7 +60,8 @@ import { WorkingHoursTableComponent } from './working-hours-table/working-hours-
     CustomErrorComponent,
     CustomControlGroupComponent,
     ErrorDialogComponent,
-    DeleteDialogComponent,
+    DeleteTrainerDialogComponent,
+    DeleteClubDialogComponent,
     ClubTrainerDialogComponent,
     ClubActivityDialogComponent,
     PricelistTableComponent,

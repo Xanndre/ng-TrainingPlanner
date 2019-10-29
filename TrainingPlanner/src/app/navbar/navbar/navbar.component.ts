@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../../services/Login.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { ClubService } from 'src/app/services/Club.service';
 
 @Component({
@@ -10,9 +10,11 @@ import { ClubService } from 'src/app/services/Club.service';
 })
 export class NavbarComponent implements OnInit {
   userId: string;
-  hasClubs: boolean;
   isLoaded = false;
   clubIds: number[] = [];
+  clubQuantity: number;
+
+  isClubsLoaded = false;
 
   ngOnInit() {
     if (this.isUserAuthenticated) {
@@ -21,22 +23,19 @@ export class NavbarComponent implements OnInit {
         .getClubs(1, 6, this.userId, true, false)
         .subscribe(response => {
           if (response.clubs.length !== 0) {
-            this.hasClubs = true;
             response.clubs.forEach(c => {
               this.clubIds.push(c.id);
             });
-          } else {
-            this.hasClubs = false;
           }
           this.isLoaded = true;
         });
     }
   }
+
   constructor(
     private loginService: LoginService,
     private router: Router,
-    private clubService: ClubService,
-    private route: ActivatedRoute
+    private clubService: ClubService
   ) {}
 
   isUserAuthenticated() {
@@ -46,5 +45,12 @@ export class NavbarComponent implements OnInit {
   logout() {
     localStorage.removeItem('jwt');
     this.router.navigateByUrl('/login');
+  }
+
+  getClubQuantity() {
+    this.clubService.getClubQuantity(this.userId).subscribe(response => {
+      this.clubQuantity = response;
+      this.isClubsLoaded = true;
+    });
   }
 }

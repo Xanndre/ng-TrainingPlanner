@@ -41,6 +41,17 @@ export class ClubService {
       );
   }
 
+  deleteClub(clubId: number) {
+    const options = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + localStorage.getItem('jwt')
+      })
+    };
+    return this.client
+      .delete(`https://localhost:44383/api/Club/${clubId}`, options)
+      .pipe();
+  }
+
   getClub(id: number) {
     const options = {
       headers: new HttpHeaders({
@@ -51,6 +62,21 @@ export class ClubService {
       .get(`https://localhost:44383/api/Club/${id}`, options)
       .pipe(
         map((res: ClubGet) => {
+          return res;
+        })
+      );
+  }
+
+  getClubQuantity(userId: string) {
+    const options = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + localStorage.getItem('jwt')
+      })
+    };
+    return this.client
+      .get(`https://localhost:44383/api/Club/user/${userId}/quantity`, options)
+      .pipe(
+        map((res: number) => {
           return res;
         })
       );
