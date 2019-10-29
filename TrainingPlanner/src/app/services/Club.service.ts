@@ -82,6 +82,21 @@ export class ClubService {
       );
   }
 
+  getClubIds(userId: string) {
+    const options = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + localStorage.getItem('jwt')
+      })
+    };
+    return this.client
+      .get(`https://localhost:44383/api/Club/user/${userId}/ids`, options)
+      .pipe(
+        map((res: number[]) => {
+          return res;
+        })
+      );
+  }
+
   getClubs(
     pageNumber: number,
     pageSize: number,

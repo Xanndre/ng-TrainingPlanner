@@ -30,7 +30,7 @@
             class="text-muted btn-no-shadow"
             [routerLinkActive]="['active']"
             [routerLink]="
-              clubQuantity !== 0 && isClubsLoaded
+              hasClubs && isClubsLoaded
                 ? ['/profile/clubs']
                 : ['/profile/clubs/add']
             "

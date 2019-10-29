@@ -44,6 +44,16 @@ export class WorkingHoursTableComponent implements OnInit {
     'Sunday'
   ];
 
+  weekdaySorter = {
+    Monday: 1,
+    Tuesday: 2,
+    Wednesday: 3,
+    Thursday: 4,
+    Friday: 5,
+    Saturday: 6,
+    Sunday: 7
+  };
+
   @Input() userId: string;
   @Input() clubId: number;
   @Input() isDisabled: boolean;
@@ -58,6 +68,9 @@ export class WorkingHoursTableComponent implements OnInit {
     if (this.clubId !== null) {
       this.clubService.getClub(this.clubId).subscribe(response => {
         this.setWorkingHours(response);
+        this.dataSource.sort((a, b) => {
+          return this.weekdaySorter[a.day] - this.weekdaySorter[b.day];
+        });
       });
     } else {
       this.days.forEach(d => {
