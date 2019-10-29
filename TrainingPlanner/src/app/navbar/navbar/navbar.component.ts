@@ -23,17 +23,11 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
     if (this.isUserAuthenticated()) {
       this.userId = localStorage.getItem('userId');
-      this.clubService
-        .getClubs(1, 6, this.userId, true, false)
-        .subscribe(response => {
-          if (response.clubs.length !== 0) {
-            response.clubs.forEach(c => {
-              this.clubIds.push(c.id);
-            });
-          }
-          this.getClubQuantity();
-          this.isLoaded = true;
-        });
+      this.clubService.getClubIds(this.userId).subscribe(response => {
+        this.clubIds = response;
+        this.getClubQuantity();
+        this.isLoaded = true;
+      });
     } else {
       this.isLoaded = true;
     }
@@ -50,6 +44,7 @@ export class NavbarComponent implements OnInit {
         if (this.isUserAuthenticated()) {
           this.userId = localStorage.getItem('userId');
           this.isClubsLoaded = false;
+          this.getClubIds();
           this.getClubQuantity();
         }
       }
@@ -72,6 +67,13 @@ export class NavbarComponent implements OnInit {
         this.hasClubs = true;
       }
       this.isClubsLoaded = true;
+    });
+  }
+
+  getClubIds() {
+    this.clubIds = [];
+    this.clubService.getClubIds(this.userId).subscribe(response => {
+      this.clubIds = response;
     });
   }
 }
