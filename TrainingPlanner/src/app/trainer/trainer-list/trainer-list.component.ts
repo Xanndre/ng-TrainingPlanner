@@ -53,13 +53,11 @@ export class TrainerListComponent implements OnInit {
         this.totalCount = response.totalCount;
         this.currentPage = pageNumber;
         this.isLoaded = true;
-        console.log(this.trainers);
       });
   }
 
   onScrollDown() {
     if (this.currentPage + 1 <= this.totalPages) {
-      console.log('jest wiecej');
       this.getTrainers(this.currentPage + 1);
     }
   }

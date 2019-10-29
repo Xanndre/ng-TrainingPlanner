@@ -13,11 +13,11 @@ export let browserRefresh = false;
 })
 export class NavbarComponent implements OnInit {
   userId: string;
-  isLoaded = false;
   clubIds: number[] = [];
   hasClubs: boolean;
   subscription: Subscription;
 
+  isLoaded = false;
   isClubsLoaded = false;
 
   ngOnInit() {

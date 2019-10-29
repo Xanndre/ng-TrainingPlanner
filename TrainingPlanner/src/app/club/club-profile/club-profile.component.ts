@@ -30,7 +30,6 @@ export class ClubProfileComponent implements OnInit {
   isEdit = false;
   isEdited: boolean;
   isAdd = false;
-  hasClubs: boolean;
   club: ClubGet = null;
   clubCreate: ClubCreate;
   clubId = null;
@@ -44,6 +43,11 @@ export class ClubProfileComponent implements OnInit {
   userId: string;
   clubUpdate: ClubUpdate = new ClubUpdate();
   miniatureIndex = 0;
+
+  pageNumber = 1;
+  pageSize = 3;
+  isUser = true;
+  isFavourite = false;
 
   @Input() table: any;
 
@@ -90,18 +94,7 @@ export class ClubProfileComponent implements OnInit {
       this.formControls = new ClubProfileControls();
       this.clubForm.buildForm(this.formBuilder, this.club);
       this.formControls.initializeControls(this.clubForm);
-      this.clubService
-        .getClubs(1, 6, this.userId, true, false)
-        .subscribe(response => {
-          if (response.clubs.length === 0) {
-            this.hasClubs = false;
-            this.club = null;
-            this.clubId = null;
-          } else {
-            this.hasClubs = true;
-          }
-          this.isLoaded = true;
-        });
+      this.isLoaded = true;
     }
   }
 

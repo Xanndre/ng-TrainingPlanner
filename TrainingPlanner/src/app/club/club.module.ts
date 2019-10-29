@@ -16,6 +16,7 @@ import { ClubListComponent } from './club-list/club-list.component';
 import { ClubListItemComponent } from './club-list/club-list-item/club-list-item.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { DeleteClubDialogComponent } from '../shared/delete-club-dialog/delete-club-dialog.component';
+import { EditGuardService } from '../guards/EditGuard.service';
 
 const routes: Routes = [
   {
@@ -34,7 +35,7 @@ const routes: Routes = [
     path: 'profile/clubs/edit/:id',
     component: ClubProfileComponent,
     data: { edit: true, add: false },
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService, EditGuardService]
   },
   {
     path: 'clubs/user',

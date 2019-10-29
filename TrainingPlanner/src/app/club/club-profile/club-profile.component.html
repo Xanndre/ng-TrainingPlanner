@@ -1,7 +1,4 @@
-<div
-  class="row full-width"
-  *ngIf="(!hasClubs && isLoaded) || (isAdd && isLoaded) || (isEdit && isLoaded)"
->
+<div class="row full-width" *ngIf="(isAdd && isLoaded) || (isEdit && isLoaded)">
   <div class="col-lg-6 mx-auto">
     <mat-card class="my-4">
       <div class="tp-right">
@@ -242,4 +239,4 @@
     </mat-card>
   </div>
 </div>
-<app-club-list *ngIf="hasClubs && isLoaded && !isAdd"></app-club-list>
+<app-club-list *ngIf="isLoaded && !isAdd && !isEdit"></app-club-list>
