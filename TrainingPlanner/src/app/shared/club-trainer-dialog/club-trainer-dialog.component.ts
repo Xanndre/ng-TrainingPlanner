@@ -34,7 +34,6 @@ export class ClubTrainerDialogComponent {
 
     myReader.onloadend = () => {
       this.localData.picture = myReader.result.toString();
-      console.log('sdfdsfdsfd');
     };
     myReader.readAsDataURL(file);
   }

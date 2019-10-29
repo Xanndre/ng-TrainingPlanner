@@ -32,7 +32,6 @@ export class TrainerDetailsComponent implements OnInit {
         }
       });
       this.isLoaded = true;
-      console.log(this.trainer);
     });
   }
 }

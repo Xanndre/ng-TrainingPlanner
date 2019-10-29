@@ -81,7 +81,6 @@ export class TrainerProfileComponent implements OnInit {
         };
         this.trainerService.createTrainer(this.trainerCreate).subscribe(() => {
           window.location.reload();
-          console.log('Dodano konto trenerskie');
         });
       });
   }

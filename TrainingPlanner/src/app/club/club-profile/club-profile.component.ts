@@ -223,7 +223,6 @@ export class ClubProfileComponent implements OnInit {
     };
     this.clubService.createClub(this.clubCreate).subscribe(() => {
       this.router.navigate(['profile/clubs']);
-      console.log('Dodano konto klubu');
     });
   }
 

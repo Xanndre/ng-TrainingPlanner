@@ -23,7 +23,7 @@ export class RegisterComponent implements OnInit {
     private formBuilder: FormBuilder,
     private loginService: LoginService,
     private dialog: MatDialog
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.registerForm.buildForm(this.formBuilder);
@@ -46,7 +46,6 @@ export class RegisterComponent implements OnInit {
       date.getMonth(),
       date.getDate()
     );
-    console.log(this.registerData);
 
     this.loginService.register(this.registerData).subscribe(
       () => {
@@ -60,7 +59,8 @@ export class RegisterComponent implements OnInit {
 
   showError(error: string): void {
     this.dialog.open(ErrorDialogComponent, {
-      data: { errorMsg: error }, width: '400px'
+      data: { errorMsg: error },
+      width: '400px'
     });
   }
 }

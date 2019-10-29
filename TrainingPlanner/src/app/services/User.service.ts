@@ -45,7 +45,6 @@ export class UserService {
         Authorization: 'Bearer ' + localStorage.getItem('jwt')
       })
     };
-    console.log(user);
     return this.client
       .put('https://localhost:44383/api/User', user, options)
       .pipe(

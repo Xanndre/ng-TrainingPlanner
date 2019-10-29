@@ -14,7 +14,6 @@ export class PricelistDialogComponent {
     public dialogRef: MatDialogRef<PricelistDialogComponent>,
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any
   ) {
-    console.log(data);
     this.localData = { ...data };
     this.action = this.localData.action;
   }

@@ -27,7 +27,6 @@ export class SliderComponent {
     const it = this.items.find((item, index) => index === this.slidesIndex);
     if (it === undefined) {
       this.slidesIndex--;
-      console.log(this.slidesIndex);
       return this.items.find((item, index) => index === this.slidesIndex - 1);
     } else {
       return this.items.find((item, index) => index === this.slidesIndex);

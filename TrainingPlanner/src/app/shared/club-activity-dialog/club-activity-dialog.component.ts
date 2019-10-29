@@ -13,7 +13,6 @@ export class ClubActivityDialogComponent {
     private dialogRef: MatDialogRef<ClubActivityDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
-    console.log(data);
     this.localData = { ...data };
     this.action = this.localData.action;
   }
