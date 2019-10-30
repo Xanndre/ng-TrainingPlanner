@@ -1,4 +1,4 @@
-import { ClubGetBase } from './ClubGetBase';
+import { ClubGetBase } from '../Club/ClubGetBase';
 
 export class PagedClubs {
   totalPages: number;

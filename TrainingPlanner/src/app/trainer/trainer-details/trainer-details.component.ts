@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TrainerService } from 'src/app/services/Trainer.service';
 import { ActivatedRoute } from '@angular/router';
-import { TrainerGet } from 'src/app/models/TrainerGet';
+import { TrainerGet } from 'src/app/models/Trainer/TrainerGet';
 
 @Component({
   selector: 'app-trainer-details',

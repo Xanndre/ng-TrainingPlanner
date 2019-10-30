@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/Operators';
-import { Sport } from '../models/Sport';
+import { Sport } from '../models/Stuff/Sport';
 
 @Injectable({
   providedIn: 'root'

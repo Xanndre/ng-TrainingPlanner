@@ -1,5 +1,5 @@
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ClubGet } from 'src/app/models/ClubGet';
+import { ClubGet } from 'src/app/models/Club/ClubGet';
 
 export class ClubProfileForm {
   clubForm: FormGroup;

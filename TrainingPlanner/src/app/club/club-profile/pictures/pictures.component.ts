@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { Picture } from 'src/app/models/Picture';
+import { Picture } from 'src/app/models/Stuff/Picture';
 
 @Component({
   selector: 'app-pictures',

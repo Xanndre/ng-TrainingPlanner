@@ -7,7 +7,7 @@ import {
   EventEmitter
 } from '@angular/core';
 import { MatTable, MatDialog } from '@angular/material';
-import { WorkingHours } from 'src/app/models/WorkingHours';
+import { WorkingHours } from 'src/app/models/Stuff/WorkingHours';
 import { ClubService } from 'src/app/services/Club.service';
 import { NgxMaterialTimepickerTheme } from 'ngx-material-timepicker';
 

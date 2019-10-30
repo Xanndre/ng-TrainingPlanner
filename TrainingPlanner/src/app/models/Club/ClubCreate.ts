@@ -1,8 +1,8 @@
-import { ClubPrice } from './ClubPrice';
-import { ClubWorkingHours } from './ClubWorkingHours';
-import { ClubActivity } from './ClubActivity';
-import { ClubTrainer } from './ClubTrainer';
-import { Picture } from './Picture';
+import { ClubPrice } from '../ClubStuff/ClubPrice';
+import { ClubWorkingHours } from '../ClubStuff/ClubWorkingHours';
+import { ClubActivity } from '../ClubStuff/ClubActivity';
+import { ClubTrainer } from '../ClubStuff/ClubTrainer';
+import { Picture } from '../Stuff/Picture';
 
 export class ClubCreate {
   userId: string;

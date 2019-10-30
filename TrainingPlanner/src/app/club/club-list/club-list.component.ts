@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ClubService } from 'src/app/services/Club.service';
 import { LoginService } from 'src/app/services/Login.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ClubGetBase } from 'src/app/models/ClubGetBase';
+import { ClubGetBase } from 'src/app/models/Club/ClubGetBase';
 
 @Component({
   selector: 'app-club-list',

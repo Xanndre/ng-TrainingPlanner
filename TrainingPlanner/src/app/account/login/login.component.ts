@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder } from '@angular/forms';
-import { LoginData } from '../../models/LoginData';
 import { LoginForm } from './login-form';
 import { LoginControls } from './login-controls';
 import { LoginService } from 'src/app/services/Login.service';
-import { ExternalLogin } from 'src/app/models/ExternalLogin';
+import { ExternalLogin } from 'src/app/models/Account/ExternalLogin';
 import {
   AuthService,
   FacebookLoginProvider,
@@ -14,6 +13,7 @@ import {
 } from 'angularx-social-login';
 import { MatDialog } from '@angular/material/dialog';
 import { ErrorDialogComponent } from 'src/app/shared/error-dialog/error-dialog.component';
+import { LoginData } from 'src/app/models/Account/LoginData';
 
 @Component({
   selector: 'app-login',

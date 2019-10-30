@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { TrainerGetBase } from 'src/app/models/TrainerGetBase';
+import { TrainerGetBase } from 'src/app/models/Trainer/TrainerGetBase';
 
 @Component({
   selector: 'app-trainer-list-item',

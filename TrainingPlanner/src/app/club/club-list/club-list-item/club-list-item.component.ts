@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { LoginService } from 'src/app/services/Login.service';
-import { ClubGetBase } from 'src/app/models/ClubGetBase';
+import { ClubGetBase } from 'src/app/models/Club/ClubGetBase';
 
 @Component({
   selector: 'app-club-list-item',

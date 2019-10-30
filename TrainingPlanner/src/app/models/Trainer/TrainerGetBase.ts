@@ -1,5 +1,5 @@
-import { User } from './User';
-import { TrainerSportGet } from './TrainerSportGet';
+import { User } from '../User/User';
+import { TrainerSportGet } from '../TrainerStuff/TrainerSportGet';
 
 export class TrainerGetBase {
   id: number;

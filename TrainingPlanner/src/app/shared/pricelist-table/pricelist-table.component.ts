@@ -11,7 +11,7 @@ import { MatTable } from '@angular/material/table';
 import { TrainerService } from 'src/app/services/Trainer.service';
 import { PricelistDialogComponent } from './pricelist-dialog/pricelist-dialog.component';
 import { ClubService } from 'src/app/services/Club.service';
-import { Price } from 'src/app/models/Price';
+import { Price } from 'src/app/models/Stuff/Price';
 
 @Component({
   selector: 'app-pricelist-table',

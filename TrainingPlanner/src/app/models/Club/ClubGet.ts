@@ -1,9 +1,9 @@
-import { ClubWorkingHours } from './ClubWorkingHours';
-import { Picture } from './Picture';
-import { ClubPrice } from './ClubPrice';
-import { ClubActivity } from './ClubActivity';
-import { ClubTrainer } from './ClubTrainer';
-import { User } from './User';
+import { ClubWorkingHours } from '../ClubStuff/ClubWorkingHours';
+import { Picture } from '../Stuff/Picture';
+import { ClubPrice } from '../ClubStuff/ClubPrice';
+import { ClubActivity } from '../ClubStuff/ClubActivity';
+import { ClubTrainer } from '../ClubStuff/ClubTrainer';
+import { User } from '../User/User';
 
 export class ClubGet {
   id: number;

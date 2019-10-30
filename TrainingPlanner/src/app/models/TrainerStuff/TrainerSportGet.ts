@@ -1,4 +1,4 @@
-import { Sport } from './Sport';
+import { Sport } from '../Stuff/Sport';
 
 export class TrainerSportGet {
   sportId: number;

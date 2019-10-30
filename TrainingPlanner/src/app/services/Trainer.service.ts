@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { TrainerCreate } from '../models/TrainerCreate';
+import { TrainerCreate } from '../models/Trainer/TrainerCreate';
 import { map } from 'rxjs/Operators';
-import { TrainerGet } from '../models/TrainerGet';
-import { TrainerUpdate } from '../models/TrainerUpdate';
+import { TrainerGet } from '../models/Trainer/TrainerGet';
+import { TrainerUpdate } from '../models/Trainer/TrainerUpdate';
 import { Observable } from 'rxjs';
-import { PagedTrainers } from '../models/PagedTrainers';
+import { PagedTrainers } from '../models/Paged/PagedTrainers';
 
 @Injectable({
   providedIn: 'root'

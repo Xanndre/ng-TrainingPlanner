@@ -1,5 +1,5 @@
-import { TrainerSport } from './TrainerSport';
-import { TrainerPrice } from './TrainerPrice';
+import { TrainerSport } from '../TrainerStuff/TrainerSport';
+import { TrainerPrice } from '../TrainerStuff/TrainerPrice';
 
 export class TrainerCreate {
   userId: string;

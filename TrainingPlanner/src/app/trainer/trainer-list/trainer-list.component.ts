@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TrainerService } from 'src/app/services/Trainer.service';
-import { TrainerGetBase } from 'src/app/models/TrainerGetBase';
+import { TrainerGetBase } from 'src/app/models/Trainer/TrainerGetBase';
 import { LoginService } from 'src/app/services/Login.service';
 import { ActivatedRoute } from '@angular/router';
 

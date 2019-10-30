@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { ClubCreate } from '../models/ClubCreate';
+import { ClubCreate } from '../models/Club/ClubCreate';
 import { map } from 'rxjs/Operators';
 import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
-import { ClubGet } from '../models/ClubGet';
-import { PagedClubs } from '../models/PagedClubs';
+import { ClubGet } from '../models/Club/ClubGet';
+import { PagedClubs } from '../models/Paged/PagedClubs';
 import { Observable } from 'rxjs';
-import { ClubUpdate } from '../models/ClubUpdate';
+import { ClubUpdate } from '../models/Club/ClubUpdate';
 
 @Injectable({
   providedIn: 'root'

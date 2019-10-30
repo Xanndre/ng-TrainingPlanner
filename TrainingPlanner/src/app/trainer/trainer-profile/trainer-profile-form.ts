@@ -1,5 +1,5 @@
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { TrainerGet } from 'src/app/models/TrainerGet';
+import { TrainerGet } from 'src/app/models/Trainer/TrainerGet';
 import { isPhoneNumber } from 'src/app/validators/PatternValidator';
 
 export class TrainerProfileForm {

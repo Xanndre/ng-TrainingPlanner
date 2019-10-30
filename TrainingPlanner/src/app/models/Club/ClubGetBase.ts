@@ -1,4 +1,4 @@
-import { Picture } from './Picture';
+import { Picture } from '../Stuff/Picture';
 
 export class ClubGetBase {
   id: number;

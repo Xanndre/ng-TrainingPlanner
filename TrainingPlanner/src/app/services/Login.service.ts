@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { RegisterData } from '../models/RegisterData';
-import { LoginData } from '../models/LoginData';
-import { ExternalLogin } from '../models/ExternalLogin';
+import { RegisterData } from '../models/Account/RegisterData';
+import { ExternalLogin } from '../models/Account/ExternalLogin';
+import { LoginData } from '../models/Account/LoginData';
 
 @Injectable({
   providedIn: 'root'
