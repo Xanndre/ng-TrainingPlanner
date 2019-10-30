@@ -4,7 +4,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuardService } from '../guards/AuthGuard.service';
 import { ClubProfileComponent } from './club-profile/club-profile.component';
 import { SharedModule } from '../shared/shared.module';
-import { MatCardModule, MatButtonModule } from '@angular/material';
+import {
+  MatCardModule,
+  MatButtonModule,
+  MatTableModule
+} from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { ClubTrainerDialogComponent } from '../shared/club-trainer-dialog/club-trainer-dialog.component';
@@ -75,6 +79,7 @@ const routes: Routes = [
     SharedModule,
     MatCardModule,
     MatExpansionModule,
+    MatTableModule,
     MatButtonModule,
     DragDropModule,
     InfiniteScrollModule,

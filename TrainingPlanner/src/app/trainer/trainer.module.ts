@@ -8,7 +8,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MatChipsModule } from '@angular/material';
+import { MatChipsModule, MatExpansionModule } from '@angular/material';
 import { TrainerProfileComponent } from './trainer-profile/trainer-profile.component';
 import { TrainerListComponent } from './trainer-list/trainer-list.component';
 import { TrainerListItemComponent } from './trainer-list/trainer-list-item/trainer-list-item.component';
@@ -49,6 +49,7 @@ const routes: Routes = [
     FormsModule,
     InfiniteScrollModule,
     MatTableModule,
+    MatExpansionModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes),
     SharedModule

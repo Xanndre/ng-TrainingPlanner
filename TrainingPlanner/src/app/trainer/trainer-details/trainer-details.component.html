@@ -1,7 +1,7 @@
 <div class="full-width" *ngIf="isLoaded">
   <div class="col-lg-3"></div>
-  <div class="col-lg-6 mx-auto tp-main-col">
-    <mat-card class="my-4">
+  <div class="col-lg-6 mx-auto tp-main-col pb-4">
+    <mat-card class="mt-4">
       <div class="row">
         <div class="col-3">
           <img
@@ -44,68 +44,73 @@
         {{ trainer.description }}
       </p>
 
-      <h5 class="text-muted text-center">
-        Price list
-      </h5>
-      <table
-        mat-table
-        [dataSource]="trainer.priceList"
-        class="mat-elevation-z8 w-100"
-      >
-        <ng-container matColumnDef="name">
-          <th mat-header-cell class="tp-center-align" *matHeaderCellDef>
-            Name
-          </th>
-          <td
-            mat-cell
-            class="text-muted tp-center-align"
-            *matCellDef="let element"
-          >
-            {{ element.name }}
-          </td>
-        </ng-container>
+      <mat-expansion-panel class="mt-4">
+        <mat-expansion-panel-header>
+          <mat-panel-title class="text-muted">
+            Price List
+          </mat-panel-title>
+        </mat-expansion-panel-header>
 
-        <ng-container matColumnDef="validityPeriod">
-          <th mat-header-cell class="tp-center-align" *matHeaderCellDef>
-            Validity Period
-          </th>
-          <td
-            mat-cell
-            class="text-muted tp-center-align"
-            *matCellDef="let element"
-          >
-            {{ element.validityPeriod }}
-          </td>
-        </ng-container>
+        <table
+          mat-table
+          [dataSource]="trainer.priceList"
+          class="mat-elevation-z8 w-100"
+        >
+          <ng-container matColumnDef="name">
+            <th mat-header-cell class="tp-center-align" *matHeaderCellDef>
+              Name
+            </th>
+            <td
+              mat-cell
+              class="text-muted tp-center-align"
+              *matCellDef="let element"
+            >
+              {{ element.name }}
+            </td>
+          </ng-container>
 
-        <ng-container matColumnDef="entries">
-          <th mat-header-cell class="tp-center-align" *matHeaderCellDef>
-            Entries
-          </th>
-          <td
-            mat-cell
-            class="text-muted tp-center-align"
-            *matCellDef="let element"
-          >
-            {{ element.entries }}
-          </td>
-        </ng-container>
+          <ng-container matColumnDef="validityPeriod">
+            <th mat-header-cell class="tp-center-align" *matHeaderCellDef>
+              Validity Period
+            </th>
+            <td
+              mat-cell
+              class="text-muted tp-center-align"
+              *matCellDef="let element"
+            >
+              {{ element.validityPeriod }}
+            </td>
+          </ng-container>
 
-        <ng-container matColumnDef="price">
-          <th mat-header-cell class="tp-center-align" *matHeaderCellDef>
-            Price
-          </th>
-          <td
-            mat-cell
-            class="text-muted tp-center-align"
-            *matCellDef="let element"
-          >
-            {{ element.price + ' zł' }}
-          </td>
-        </ng-container>
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-      </table>
+          <ng-container matColumnDef="entries">
+            <th mat-header-cell class="tp-center-align" *matHeaderCellDef>
+              Entries
+            </th>
+            <td
+              mat-cell
+              class="text-muted tp-center-align"
+              *matCellDef="let element"
+            >
+              {{ element.entries }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="price">
+            <th mat-header-cell class="tp-center-align" *matHeaderCellDef>
+              Price
+            </th>
+            <td
+              mat-cell
+              class="text-muted tp-center-align"
+              *matCellDef="let element"
+            >
+              {{ element.price + ' zł' }}
+            </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+      </mat-expansion-panel>
     </mat-card>
   </div>
   <div class="col-lg-3"></div>
