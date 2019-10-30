@@ -9,3 +9,16 @@
 .tp-padd {
   padding-left: 73px;
 }
+
+.tp-image-trainer {
+  height: 250px;
+}
+.example-card {
+  max-width: 250px;
+  margin-bottom: 2px;
+  margin-left: 1px;
+  margin-right: 1px;
+}
+[appSliderItem] {
+  flex-shrink: 0;
+}

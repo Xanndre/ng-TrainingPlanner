@@ -174,6 +174,73 @@
           ></tr>
         </table>
       </mat-expansion-panel>
+      <mat-expansion-panel class="mt-4">
+        <mat-expansion-panel-header>
+          <mat-panel-title class="text-muted">
+            Trainers
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <app-slider *ngIf="club.trainers.length !== 0">
+          <div appSliderItem *ngFor="let trainer of club.trainers">
+            <mat-card class="example-card">
+              <img
+                class="tp-image-trainer"
+                mat-card-image
+                src="{{ trainer.picture }}"
+                alt="Trainer picture"
+              />
+              <mat-card-header style="display: block !important;">
+                <mat-card-title class="text-muted text-center">{{
+                  trainer.name
+                }}</mat-card-title>
+                <mat-card-subtitle class="text-center mb-0">{{
+                  trainer.description
+                }}</mat-card-subtitle>
+              </mat-card-header>
+            </mat-card>
+          </div>
+        </app-slider>
+      </mat-expansion-panel>
+      <mat-expansion-panel class="mt-4">
+        <mat-expansion-panel-header>
+          <mat-panel-title class="text-muted">
+            Activities
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <app-slider *ngIf="club.activities.length !== 0">
+          <div appSliderItem *ngFor="let activity of club.activities">
+            <mat-card class="example-card">
+              <img
+                class="tp-image-trainer"
+                mat-card-image
+                src="{{ activity.picture }}"
+                alt="Activity picture"
+              />
+              <mat-card-header style="display: block !important;">
+                <mat-card-title class="text-muted text-center">{{
+                  activity.name
+                }}</mat-card-title>
+                <mat-card-subtitle class="text-center"
+                  >Duration: {{ activity.duration }} min</mat-card-subtitle
+                >
+                <mat-card-subtitle class="text-center"
+                  >Calories: {{ activity.calories }}</mat-card-subtitle
+                >
+                <mat-card-subtitle class="text-center mb-0"
+                  >Difficulty level: {{ activity.level }}</mat-card-subtitle
+                >
+              </mat-card-header>
+            </mat-card>
+          </div>
+        </app-slider>
+      </mat-expansion-panel>
+      <mat-expansion-panel class="mt-4">
+        <mat-expansion-panel-header>
+          <mat-panel-title class="text-muted">
+            Photo Gallery
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+      </mat-expansion-panel>
     </mat-card>
   </div>
   <div class="col-lg-3"></div>
