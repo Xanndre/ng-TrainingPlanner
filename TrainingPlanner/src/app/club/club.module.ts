@@ -21,6 +21,7 @@ import { ClubListItemComponent } from './club-list/club-list-item/club-list-item
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { DeleteClubDialogComponent } from '../shared/delete-club-dialog/delete-club-dialog.component';
 import { EditGuardService } from '../guards/EditGuard.service';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 const routes: Routes = [
   {
@@ -79,6 +80,7 @@ const routes: Routes = [
     SharedModule,
     MatCardModule,
     MatExpansionModule,
+    NgbModule,
     MatTableModule,
     MatButtonModule,
     DragDropModule,

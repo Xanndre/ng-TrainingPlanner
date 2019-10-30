@@ -22,3 +22,12 @@
 [appSliderItem] {
   flex-shrink: 0;
 }
+
+.tp-carousel {
+  outline: none !important;
+  box-shadow: none;
+}
+
+.tp-image-carousel {
+  max-height: 300px;
+}

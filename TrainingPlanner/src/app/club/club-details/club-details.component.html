@@ -240,6 +240,16 @@
             Photo Gallery
           </mat-panel-title>
         </mat-expansion-panel-header>
+        <ngb-carousel class="tp-carousel">
+          <ng-template ngbSlide *ngFor="let picture of club.pictures">
+            <div class="picsum-img-wrapper text-center mx-auto">
+              <img
+                [src]="picture.data"
+                class="tp-image-carousel img-fluid mb-4"
+              />
+            </div>
+          </ng-template>
+        </ngb-carousel>
       </mat-expansion-panel>
     </mat-card>
   </div>
