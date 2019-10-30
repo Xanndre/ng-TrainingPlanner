@@ -25,13 +25,11 @@ const routes: Routes = [
   {
     path: 'trainers',
     component: TrainerListComponent,
-    data: { isFavourite: false },
-    canActivate: [AuthGuardService]
+    data: { isFavourite: false }
   },
   {
     path: 'trainers/:id',
-    component: TrainerDetailsComponent,
-    canActivate: [AuthGuardService]
+    component: TrainerDetailsComponent
   }
 ];
 

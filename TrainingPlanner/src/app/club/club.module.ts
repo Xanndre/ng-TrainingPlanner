@@ -53,6 +53,10 @@ const routes: Routes = [
     component: ClubListComponent,
     data: { isUser: false, isFavourites: true },
     canActivate: [AuthGuardService]
+  },
+  {
+    path: 'clubs/:id',
+    component: ClubDetailsComponent
   }
 ];
 
