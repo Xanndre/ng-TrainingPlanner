@@ -31,12 +31,21 @@
       Delete photo
     </button>
     <mat-form-field class="tp-width mt-2">
-      <input placeholder="Name" matInput [(ngModel)]="localData.name" />
+      <input
+        placeholder="Name"
+        matInput
+        [(ngModel)]="localData.name"
+        required
+        maxlength="30"
+      />
     </mat-form-field>
     <mat-form-field class="tp-width mt-2">
       <input
         placeholder="Duration"
         matInput
+        required
+        min="0"
+        max="1000"
         type="number"
         [(ngModel)]="localData.duration"
       />
@@ -46,13 +55,16 @@
       <input
         placeholder="Calories"
         matInput
+        required
+        min="0"
+        max="4000"
         type="number"
         [(ngModel)]="localData.calories"
       />
     </mat-form-field>
     <mat-form-field class="tp-width mt-2">
       <mat-label>Level</mat-label>
-      <mat-select [(ngModel)]="localData.level">
+      <mat-select [(ngModel)]="localData.level" required>
         <mat-option value="Beginner" class="text-muted">Beginner</mat-option>
         <mat-option value="Intermediate" class="text-muted"
           >Intermediate</mat-option
@@ -75,6 +87,16 @@
     color="primary"
     class="btn-no-shadow"
     (click)="doAction()"
+    [disabled]="
+      !localData.name ||
+      !localData.duration ||
+      !localData.calories ||
+      !localData.level ||
+      localData.duration < 0 ||
+      localData.duration > 1000 ||
+      localData.calories < 0 ||
+      localData.calories > 4000
+    "
   >
     {{ action }}
   </button>

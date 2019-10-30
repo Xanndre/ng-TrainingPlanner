@@ -31,12 +31,20 @@
       Delete photo
     </button>
     <mat-form-field class="tp-width mt-2">
-      <input placeholder="Name" matInput [(ngModel)]="localData.name" />
+      <input
+        placeholder="Name"
+        matInput
+        [(ngModel)]="localData.name"
+        required
+        maxlength="20"
+      />
     </mat-form-field>
     <mat-form-field class="tp-width" appearance="outline">
       <mat-label>Description</mat-label>
       <textarea
         placeholder="Description"
+        required
+        maxlength="200"
         matInput
         rows="5"
         [(ngModel)]="localData.description"
@@ -56,6 +64,7 @@
     color="primary"
     class="btn-no-shadow"
     (click)="doAction()"
+    [disabled]="!localData.name || !localData.description"
   >
     {{ action }}
   </button>
