@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ClubService } from 'src/app/services/Club.service';
 import { LoginService } from 'src/app/services/Login.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ClubGetBase } from 'src/app/models/Club/ClubGetBase';
+import { ClubBase } from 'src/app/models/Club/ClubBase';
 
 @Component({
   selector: 'app-club-list',
@@ -10,7 +10,7 @@ import { ClubGetBase } from 'src/app/models/Club/ClubGetBase';
   styleUrls: ['./club-list.component.css']
 })
 export class ClubListComponent implements OnInit {
-  clubs: ClubGetBase[] = [];
+  clubs: ClubBase[] = [];
   userId: string;
 
   totalPages: number;

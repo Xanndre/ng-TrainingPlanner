@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { LoginService } from 'src/app/services/Login.service';
-import { ClubGetBase } from 'src/app/models/Club/ClubGetBase';
+import { ClubBase } from 'src/app/models/Club/ClubBase';
 
 @Component({
   selector: 'app-club-list-item',
@@ -12,7 +12,7 @@ export class ClubListItemComponent implements OnInit {
   isUserAuthenticated: boolean;
   isProfile = false;
 
-  @Input() club: ClubGetBase;
+  @Input() club: ClubBase;
   @Input() isUser: boolean;
 
   constructor(

@@ -1,7 +1,5 @@
-export class ClubWorkingHours {
-  id: number;
-  day: string;
-  openHour: string;
-  closeHour: string;
+import { WorkingHours } from '../Stuff/WorkingHours';
+
+export class ClubWorkingHours extends WorkingHours {
   clubId: number;
 }

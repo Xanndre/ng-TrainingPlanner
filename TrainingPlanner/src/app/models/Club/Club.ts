@@ -5,7 +5,7 @@ import { ClubActivity } from '../ClubStuff/ClubActivity';
 import { ClubTrainer } from '../ClubStuff/ClubTrainer';
 import { User } from '../User/User';
 
-export class ClubGet {
+export class Club {
   id: number;
   user: User;
   name: string;

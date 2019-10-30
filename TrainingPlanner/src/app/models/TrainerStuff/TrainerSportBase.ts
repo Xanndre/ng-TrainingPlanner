@@ -1,6 +1,6 @@
 import { Sport } from '../Stuff/Sport';
 
-export class TrainerSportGet {
+export class TrainerSportBase {
   sportId: number;
   sport: Sport;
 }

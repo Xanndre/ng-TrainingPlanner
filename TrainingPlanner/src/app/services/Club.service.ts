@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ClubCreate } from '../models/Club/ClubCreate';
 import { map } from 'rxjs/Operators';
 import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
-import { ClubGet } from '../models/Club/ClubGet';
+import { Club } from '../models/Club/Club';
 import { PagedClubs } from '../models/Paged/PagedClubs';
 import { Observable } from 'rxjs';
 import { ClubUpdate } from '../models/Club/ClubUpdate';
@@ -61,7 +61,7 @@ export class ClubService {
     return this.client
       .get(`https://localhost:44383/api/Club/${id}`, options)
       .pipe(
-        map((res: ClubGet) => {
+        map((res: Club) => {
           return res;
         })
       );

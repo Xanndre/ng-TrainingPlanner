@@ -1,6 +1,6 @@
 import { Picture } from '../Stuff/Picture';
 
-export class ClubGetBase {
+export class ClubBase {
   id: number;
   name: string;
   city: string;

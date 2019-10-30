@@ -1,10 +1,10 @@
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ClubGet } from 'src/app/models/Club/ClubGet';
+import { Club } from 'src/app/models/Club/Club';
 
 export class ClubProfileForm {
   clubForm: FormGroup;
 
-  buildForm(formBuilder: FormBuilder, club: ClubGet) {
+  buildForm(formBuilder: FormBuilder, club: Club) {
     this.clubForm = formBuilder.group({
       name: [club !== null ? club.name : null, Validators.required],
       description: [

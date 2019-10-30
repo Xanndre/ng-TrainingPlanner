@@ -1,7 +1,7 @@
-import { TrainerGetBase } from '../Trainer/TrainerGetBase';
+import { TrainerBase } from '../Trainer/TrainerBase';
 
 export class PagedTrainers {
   totalPages: number;
   totalCount: number;
-  trainers: TrainerGetBase[];
+  trainers: TrainerBase[];
 }

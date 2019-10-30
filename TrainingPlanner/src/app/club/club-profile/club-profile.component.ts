@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ClubProfileForm } from './club-profile-form';
 import { ClubProfileControls } from './club-profile-controls';
 import { FormBuilder } from '@angular/forms';
-import { ClubGet } from 'src/app/models/Club/ClubGet';
+import { Club } from 'src/app/models/Club/Club';
 import { ClubPrice } from 'src/app/models/ClubStuff/ClubPrice';
 import { MatDialog } from '@angular/material';
 import { ClubTrainerDialogComponent } from 'src/app/shared/club-trainer-dialog/club-trainer-dialog.component';
@@ -30,7 +30,7 @@ export class ClubProfileComponent implements OnInit {
   isEdit = false;
   isEdited: boolean;
   isAdd = false;
-  club: ClubGet = null;
+  club: Club = null;
   clubCreate: ClubCreate;
   clubId = null;
   priceList: ClubPrice[] = [];

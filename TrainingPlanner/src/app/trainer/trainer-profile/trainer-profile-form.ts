@@ -1,11 +1,11 @@
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { TrainerGet } from 'src/app/models/Trainer/TrainerGet';
+import { Trainer } from 'src/app/models/Trainer/Trainer';
 import { isPhoneNumber } from 'src/app/validators/PatternValidator';
 
 export class TrainerProfileForm {
   trainerForm: FormGroup;
 
-  buildForm(formBuilder: FormBuilder, trainer: TrainerGet) {
+  buildForm(formBuilder: FormBuilder, trainer: Trainer) {
     const sportNames = [];
     if (trainer !== null) {
       trainer.sports.forEach(s => {

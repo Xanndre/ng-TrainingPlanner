@@ -7,7 +7,7 @@ import { TrainerProfileForm } from './trainer-profile-form';
 import { SportService } from 'src/app/services/Sport.service';
 import { TrainerService } from 'src/app/services/Trainer.service';
 import { FormBuilder } from '@angular/forms';
-import { TrainerGet } from 'src/app/models/Trainer/TrainerGet';
+import { Trainer } from 'src/app/models/Trainer/Trainer';
 import { TrainerUpdate } from 'src/app/models/Trainer/TrainerUpdate';
 import { MatDialog } from '@angular/material';
 import { DataTransferService } from 'src/app/services/DataTransfer.service';
@@ -27,7 +27,7 @@ export class TrainerProfileComponent implements OnInit {
   priceList: TrainerPrice[] = [];
   isTrainer: boolean;
   userId: string;
-  trainer: TrainerGet;
+  trainer: Trainer;
   beforeChanges: TrainerUpdate;
   isLoaded: boolean;
   isEdited = false;

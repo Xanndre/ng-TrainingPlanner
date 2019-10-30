@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { TrainerCreate } from '../models/Trainer/TrainerCreate';
 import { map } from 'rxjs/Operators';
-import { TrainerGet } from '../models/Trainer/TrainerGet';
+import { Trainer } from '../models/Trainer/Trainer';
 import { TrainerUpdate } from '../models/Trainer/TrainerUpdate';
 import { Observable } from 'rxjs';
 import { PagedTrainers } from '../models/Paged/PagedTrainers';
@@ -34,7 +34,7 @@ export class TrainerService {
     return this.client
       .get(`https://localhost:44383/api/Trainer/user/${userId}`, options)
       .pipe(
-        map((res: TrainerGet) => {
+        map((res: Trainer) => {
           return res;
         })
       );
@@ -76,7 +76,7 @@ export class TrainerService {
     return this.client
       .get(`https://localhost:44383/api/Trainer/${id}`, options)
       .pipe(
-        map((res: TrainerGet) => {
+        map((res: Trainer) => {
           return res;
         })
       );

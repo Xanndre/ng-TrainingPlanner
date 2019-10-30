@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TrainerService } from 'src/app/services/Trainer.service';
 import { ActivatedRoute } from '@angular/router';
-import { TrainerGet } from 'src/app/models/Trainer/TrainerGet';
+import { Trainer } from 'src/app/models/Trainer/Trainer';
 
 @Component({
   selector: 'app-trainer-details',
@@ -10,7 +10,7 @@ import { TrainerGet } from 'src/app/models/Trainer/TrainerGet';
 })
 export class TrainerDetailsComponent implements OnInit {
   trainerId: number;
-  trainer: TrainerGet;
+  trainer: Trainer;
   sports = '';
   isLoaded: boolean;
   displayedColumns: string[] = ['name', 'validityPeriod', 'entries', 'price'];
