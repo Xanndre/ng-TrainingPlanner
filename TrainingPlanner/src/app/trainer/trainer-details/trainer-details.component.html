@@ -111,6 +111,11 @@
           <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
         </table>
       </mat-expansion-panel>
+      <div class="row">
+        <div class="col d-flex justify-content-center text-muted mt-4">
+          Views: {{ trainer.viewCounter }}
+        </div>
+      </div>
     </mat-card>
   </div>
   <div class="col-lg-3"></div>

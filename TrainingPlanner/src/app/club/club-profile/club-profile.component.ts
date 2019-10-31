@@ -64,7 +64,8 @@ export class ClubProfileComponent implements OnInit {
     if (this.route.snapshot.data.edit) {
       this.isEdit = true;
       this.clubId = parseInt(this.route.snapshot.paramMap.get('id'), 10);
-      this.clubService.getClub(this.clubId).subscribe(response => {
+      this.clubService.getClub(this.clubId, false).subscribe(response => {
+        console.log(response.viewCounter);
         this.club = response;
         this.beforeChanges = JSON.parse(JSON.stringify(this.club));
         this.formControls = new ClubProfileControls();
@@ -85,6 +86,7 @@ export class ClubProfileComponent implements OnInit {
           }
         }
         this.isLoaded = true;
+        console.log(this.club.viewCounter);
       });
     } else {
       if (this.route.snapshot.data.add) {
@@ -129,6 +131,7 @@ export class ClubProfileComponent implements OnInit {
     this.clubUpdate.email = this.clubForm.clubForm.value.email;
     this.clubUpdate.userId = this.club.user.id;
     this.clubUpdate.id = this.club.id;
+    this.clubUpdate.viewCounter = this.club.viewCounter;
   }
 
   cancel() {

@@ -67,11 +67,16 @@ export class TrainerService {
       .pipe();
   }
 
-  getTrainer(id: number) {
+  getTrainer(id: number, isIncrementingViewCounter = false) {
+    const params = new HttpParams().set(
+      'isIncrementingViewCounter',
+      isIncrementingViewCounter.toString()
+    );
     const options = {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + localStorage.getItem('jwt')
-      })
+      }),
+      params
     };
     return this.client
       .get(`https://localhost:44383/api/Trainer/${id}`, options)

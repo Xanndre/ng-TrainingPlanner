@@ -39,7 +39,7 @@ export class ClubDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.clubId = parseInt(this.route.snapshot.paramMap.get('id'), 10);
-    this.clubService.getClub(this.clubId).subscribe(response => {
+    this.clubService.getClub(this.clubId, true).subscribe(response => {
       this.club = response;
       this.club.workingHours.sort(
         (a, b) => this.weekdaySorter[a.day] - this.weekdaySorter[b.day]

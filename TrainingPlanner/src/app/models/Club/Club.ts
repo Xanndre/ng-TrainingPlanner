@@ -21,4 +21,5 @@ export class Club {
   priceList: ClubPrice[];
   activities: ClubActivity[];
   trainers: ClubTrainer[];
+  viewCounter: number;
 }

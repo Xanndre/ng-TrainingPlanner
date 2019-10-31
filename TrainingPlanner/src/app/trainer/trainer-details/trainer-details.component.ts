@@ -22,7 +22,7 @@ export class TrainerDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.trainerId = parseInt(this.route.snapshot.paramMap.get('id'), 10);
-    this.trainerService.getTrainer(this.trainerId).subscribe(response => {
+    this.trainerService.getTrainer(this.trainerId, true).subscribe(response => {
       this.trainer = response;
       this.trainer.sports.forEach(s => {
         if (s === this.trainer.sports[this.trainer.sports.length - 1]) {

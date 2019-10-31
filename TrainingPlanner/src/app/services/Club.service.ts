@@ -52,11 +52,16 @@ export class ClubService {
       .pipe();
   }
 
-  getClub(id: number) {
+  getClub(id: number, isIncrementingViewCounter = false) {
+    const params = new HttpParams().set(
+      'isIncrementingViewCounter',
+      isIncrementingViewCounter.toString()
+    );
     const options = {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + localStorage.getItem('jwt')
-      })
+      }),
+      params
     };
     return this.client
       .get(`https://localhost:44383/api/Club/${id}`, options)

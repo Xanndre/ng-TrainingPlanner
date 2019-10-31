@@ -9,4 +9,5 @@ export class Trainer {
   phoneNumber: string;
   sports: TrainerSportBase[];
   priceList: TrainerPrice[];
+  viewCounter: number;
 }

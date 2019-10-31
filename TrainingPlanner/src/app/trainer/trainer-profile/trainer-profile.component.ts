@@ -100,6 +100,7 @@ export class TrainerProfileComponent implements OnInit {
     this.trainerUpdate.phoneNumber = this.trainerForm.trainerForm.value.phoneNumber;
     this.trainerUpdate.userId = this.trainer.user.id;
     this.trainerUpdate.id = this.trainer.id;
+    this.trainerUpdate.viewCounter = this.trainer.viewCounter;
   }
 
   cancel() {
