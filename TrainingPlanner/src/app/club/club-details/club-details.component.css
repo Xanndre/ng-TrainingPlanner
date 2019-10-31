@@ -31,3 +31,7 @@
 .tp-image-carousel {
   max-height: 300px;
 }
+
+.tp-display {
+  display: block !important;
+}

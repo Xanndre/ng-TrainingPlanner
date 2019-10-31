@@ -33,3 +33,7 @@
   background-color: #868e96;
   color: white;
 }
+
+.tp-display {
+  display: block !important;
+}

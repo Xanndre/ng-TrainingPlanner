@@ -35,7 +35,7 @@ export class ClubProfileForm {
         [
           Validators.required,
           Validators.maxLength(30),
-          Validators.pattern('[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]*')
+          Validators.pattern('[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ\\s]*')
         ]
       ],
       phoneNumber: [club !== null ? club.phoneNumber : null, isPhoneNumber],

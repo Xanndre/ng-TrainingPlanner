@@ -50,7 +50,7 @@ export class RegisterForm {
           null,
           [
             Validators.required,
-            Validators.maxLength(25),
+            Validators.maxLength(30),
             Validators.pattern('[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ\\s]*')
           ]
         ],

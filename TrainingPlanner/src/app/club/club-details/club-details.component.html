@@ -189,7 +189,7 @@
                 src="{{ trainer.picture }}"
                 alt="Trainer picture"
               />
-              <mat-card-header style="display: block !important;">
+              <mat-card-header class="tp-display">
                 <mat-card-title class="text-muted text-center">{{
                   trainer.name
                 }}</mat-card-title>
@@ -216,7 +216,7 @@
                 src="{{ activity.picture }}"
                 alt="Activity picture"
               />
-              <mat-card-header style="display: block !important;">
+              <mat-card-header class="tp-display">
                 <mat-card-title class="text-muted text-center">{{
                   activity.name
                 }}</mat-card-title>
@@ -241,7 +241,7 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <ngb-carousel class="tp-carousel">
-          <ng-template ngbSlide *ngFor="let picture of club.pictures">
+          <ng-template ngbSlide *ngFor="let picture of pictures">
             <div class="picsum-img-wrapper text-center mx-auto">
               <img
                 [src]="picture.data"
