@@ -51,3 +51,27 @@ html {
 .carousel-inner img {
   height: 400px;
 }
+
+.mat-tab-label {
+  color: #999999 !important;
+  width: 50%;
+}
+
+.mat-tab-label.mat-tab-label-active {
+  color: #999999 !important;
+}
+
+.mat-tab-body-content {
+  overflow-y: hidden !important;
+}
+
+.mat-tab-header {
+  width: 48%;
+  margin-top: 24px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mat-tab-header-pagination {
+  display: none !important;
+}

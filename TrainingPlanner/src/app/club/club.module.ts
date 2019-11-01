@@ -27,7 +27,7 @@ const routes: Routes = [
   {
     path: 'profile/clubs',
     component: ClubProfileComponent,
-    data: { isUser: true, isFavourites: false, edit: false, add: false },
+    data: { isUser: true, edit: false, add: false },
     canActivate: [AuthGuardService]
   },
   {
@@ -45,19 +45,13 @@ const routes: Routes = [
   {
     path: 'clubs/user',
     component: ClubListComponent,
-    data: { isUser: true, isFavourites: false },
+    data: { isUser: true },
     canActivate: [AuthGuardService]
   },
   {
     path: 'clubs',
     component: ClubListComponent,
-    data: { isUser: false, isFavourites: false }
-  },
-  {
-    path: 'clubs/favourites',
-    component: ClubListComponent,
-    data: { isUser: false, isFavourites: true },
-    canActivate: [AuthGuardService]
+    data: { isUser: false }
   },
   {
     path: 'clubs/:id',

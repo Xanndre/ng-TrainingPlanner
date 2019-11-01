@@ -2,10 +2,15 @@
   <div class="col-lg-3"></div>
   <div
     class="col-lg-6 mx-auto tp-main-col pb-4"
-    *ngIf="trainers.length !== 0"
     infinite-scroll
     (scrolled)="onScrollDown()"
   >
+    <div
+      class="row text-muted justify-content-center align-items-center mt-4"
+      *ngIf="trainers.length == 0 && isFavourite"
+    >
+      You don't have any favourite trainers.
+    </div>
     <mat-card class="mt-4" *ngFor="let trainer of trainers">
       <app-trainer-list-item
         [trainer]="trainer"

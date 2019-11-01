@@ -24,8 +24,7 @@ const routes: Routes = [
   },
   {
     path: 'trainers',
-    component: TrainerListComponent,
-    data: { isFavourite: false }
+    component: TrainerListComponent
   },
   {
     path: 'trainers/:id',

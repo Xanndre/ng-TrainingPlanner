@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { TrainerService } from 'src/app/services/Trainer.service';
 import { TrainerBase } from 'src/app/models/Trainer/TrainerBase';
 import { LoginService } from 'src/app/services/Login.service';
-import { ActivatedRoute } from '@angular/router';
 import { FavouriteService } from 'src/app/services/Favourite.service';
 import { FavouriteTrainer } from 'src/app/models/Favourite/FavouriteTrainer';
 
@@ -23,18 +22,17 @@ export class TrainerListComponent implements OnInit {
 
   isLoaded = false;
   isUserAuthenticated: boolean;
-  isFavourite: boolean;
+
+  @Input() isFavourite: boolean;
 
   constructor(
     private trainerService: TrainerService,
     private loginService: LoginService,
-    private route: ActivatedRoute,
     private favouriteService: FavouriteService
   ) {}
 
   ngOnInit() {
     this.isUserAuthenticated = this.loginService.isUserAuthenticated();
-    this.isFavourite = this.route.snapshot.data.isFavourite;
     this.userId = localStorage.getItem('userId');
     this.getTrainers(1, true);
   }

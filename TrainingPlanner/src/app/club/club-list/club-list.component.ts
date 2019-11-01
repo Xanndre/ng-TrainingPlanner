@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ClubService } from 'src/app/services/Club.service';
 import { LoginService } from 'src/app/services/Login.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -23,8 +23,9 @@ export class ClubListComponent implements OnInit {
   isLoaded = false;
   isUserAuthenticated: boolean;
   isUser: boolean;
-  isFavourite: boolean;
   isProfile = false;
+
+  @Input() isFavourite: boolean;
 
   constructor(
     private clubService: ClubService,
@@ -37,7 +38,6 @@ export class ClubListComponent implements OnInit {
   ngOnInit() {
     this.isUserAuthenticated = this.loginService.isUserAuthenticated();
     this.isUser = this.route.snapshot.data.isUser;
-    this.isFavourite = this.route.snapshot.data.isFavourites;
     if (this.route.snapshot.routeConfig.path === 'profile/clubs') {
       this.isProfile = true;
     }
