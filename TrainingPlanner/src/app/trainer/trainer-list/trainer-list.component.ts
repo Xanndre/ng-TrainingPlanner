@@ -3,6 +3,8 @@ import { TrainerService } from 'src/app/services/Trainer.service';
 import { TrainerBase } from 'src/app/models/Trainer/TrainerBase';
 import { LoginService } from 'src/app/services/Login.service';
 import { ActivatedRoute } from '@angular/router';
+import { FavouriteService } from 'src/app/services/Favourite.service';
+import { FavouriteTrainer } from 'src/app/models/Favourite/FavouriteTrainer';
 
 @Component({
   selector: 'app-trainer-list',
@@ -26,7 +28,8 @@ export class TrainerListComponent implements OnInit {
   constructor(
     private trainerService: TrainerService,
     private loginService: LoginService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private favouriteService: FavouriteService
   ) {}
 
   ngOnInit() {
@@ -59,6 +62,21 @@ export class TrainerListComponent implements OnInit {
   onScrollDown() {
     if (this.currentPage + 1 <= this.totalPages) {
       this.getTrainers(this.currentPage + 1);
+    }
+  }
+
+  doFavourite(trainer: TrainerBase) {
+    if (trainer.isFavourite) {
+      this.favouriteService.deleteFavouriteTrainer(trainer.id).subscribe(() => {
+        this.getTrainers(1, true);
+      });
+    } else {
+      const favourite: FavouriteTrainer = new FavouriteTrainer();
+      favourite.userId = this.userId;
+      favourite.trainerId = trainer.id;
+      this.favouriteService.createFavouriteTrainer(favourite).subscribe(() => {
+        this.getTrainers(1, true);
+      });
     }
   }
 }

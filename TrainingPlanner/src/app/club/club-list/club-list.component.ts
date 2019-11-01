@@ -3,6 +3,8 @@ import { ClubService } from 'src/app/services/Club.service';
 import { LoginService } from 'src/app/services/Login.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ClubBase } from 'src/app/models/Club/ClubBase';
+import { FavouriteClub } from 'src/app/models/Favourite/FavouriteClub';
+import { FavouriteService } from 'src/app/services/Favourite.service';
 
 @Component({
   selector: 'app-club-list',
@@ -27,6 +29,7 @@ export class ClubListComponent implements OnInit {
   constructor(
     private clubService: ClubService,
     private loginService: LoginService,
+    private favouriteService: FavouriteService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
@@ -71,5 +74,20 @@ export class ClubListComponent implements OnInit {
 
   addClub() {
     this.router.navigate(['profile/clubs/add']);
+  }
+
+  doFavourite(club: ClubBase) {
+    if (club.isFavourite) {
+      this.favouriteService.deleteFavouriteClub(club.id).subscribe(() => {
+        this.getClubs(1, true);
+      });
+    } else {
+      const favourite: FavouriteClub = new FavouriteClub();
+      favourite.userId = this.userId;
+      favourite.clubId = club.id;
+      this.favouriteService.createFavouriteClub(favourite).subscribe(() => {
+        this.getClubs(1, true);
+      });
+    }
   }
 }

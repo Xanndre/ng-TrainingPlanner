@@ -15,6 +15,19 @@
       <h5 class="text-muted mt-1 tp-inline">
         {{ club.name }}
       </h5>
+      <div class="heart-icon" *ngIf="isUserAuthenticated">
+        <button
+          *ngIf="club.isFavourite; else notFavourite"
+          class="tp-fav tp-icon fas fa-heart fa-2x"
+          (click)="doFavourite()"
+        ></button>
+        <ng-template #notFavourite
+          ><button
+            class="tp-not-fav tp-icon fas fa-heart fa-2x"
+            (click)="doFavourite()"
+          ></button
+        ></ng-template>
+      </div>
     </div>
     <p class="text-muted mb-2">
       <span><i class="fa fa-envelope" aria-hidden="true"></i></span>

@@ -23,7 +23,10 @@
       </button>
     </div>
     <mat-card class="mt-4" *ngFor="let club of clubs">
-      <app-club-list-item [club]="club" [isUser]="isUser"></app-club-list-item>
+      <app-club-list-item
+        [club]="club"
+        (favouriteChange)="doFavourite($event)"
+      ></app-club-list-item>
     </mat-card>
   </div>
   <div class="col-lg-3"></div>

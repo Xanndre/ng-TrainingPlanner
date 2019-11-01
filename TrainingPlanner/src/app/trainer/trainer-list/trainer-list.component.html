@@ -7,7 +7,10 @@
     (scrolled)="onScrollDown()"
   >
     <mat-card class="mt-4" *ngFor="let trainer of trainers">
-      <app-trainer-list-item [trainer]="trainer"></app-trainer-list-item>
+      <app-trainer-list-item
+        [trainer]="trainer"
+        (favouriteChange)="doFavourite($event)"
+      ></app-trainer-list-item>
     </mat-card>
   </div>
   <div class="col-lg-3"></div>

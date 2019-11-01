@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { LoginService } from 'src/app/services/Login.service';
 import { ClubBase } from 'src/app/models/Club/ClubBase';
@@ -13,7 +13,7 @@ export class ClubListItemComponent implements OnInit {
   isProfile = false;
 
   @Input() club: ClubBase;
-  @Input() isUser: boolean;
+  @Output() favouriteChange = new EventEmitter<ClubBase>();
 
   constructor(
     private router: Router,
@@ -34,5 +34,9 @@ export class ClubListItemComponent implements OnInit {
 
   editClub() {
     this.router.navigate([`profile/clubs/edit/${this.club.id}`]);
+  }
+
+  doFavourite() {
+    this.favouriteChange.emit(this.club);
   }
 }

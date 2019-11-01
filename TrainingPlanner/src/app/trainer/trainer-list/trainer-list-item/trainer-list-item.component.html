@@ -15,6 +15,19 @@
       <h5 class="text-muted mt-1 tp-inline">
         {{ trainer.user.firstName + ' ' + trainer.user.lastName }}
       </h5>
+      <div class="heart-icon" *ngIf="isUserAuthenticated">
+        <button
+          *ngIf="trainer.isFavourite; else notFavourite"
+          class="tp-fav tp-icon fas fa-heart fa-2x"
+          (click)="doFavourite()"
+        ></button>
+        <ng-template #notFavourite
+          ><button
+            class="tp-not-fav tp-icon fas fa-heart fa-2x"
+            (click)="doFavourite()"
+          ></button
+        ></ng-template>
+      </div>
       <button
         mat-raised-button
         color="primary"

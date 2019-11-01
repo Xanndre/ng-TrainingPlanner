@@ -13,3 +13,32 @@
 .tp-div {
   align-self: center;
 }
+
+.tp-not-fav {
+  color: white;
+  border: none;
+  background: transparent;
+}
+
+.tp-fav {
+  color: #f44336;
+  border: none;
+  background: transparent;
+}
+
+.tp-not-fav:before {
+  -webkit-text-stroke: 1px #f44336;
+}
+
+.tp-icon:focus {
+  outline: none !important;
+  box-shadow: none;
+}
+
+.tp-icon:hover {
+  color: #f44336;
+}
+
+.heart-icon {
+  display: inline;
+}
