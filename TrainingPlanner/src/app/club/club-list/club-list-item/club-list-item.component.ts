@@ -13,6 +13,7 @@ export class ClubListItemComponent implements OnInit {
   isProfile = false;
 
   @Input() club: ClubBase;
+  @Input() isUser: boolean;
   @Output() favouriteChange = new EventEmitter<ClubBase>();
 
   constructor(

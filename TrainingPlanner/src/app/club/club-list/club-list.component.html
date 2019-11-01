@@ -25,6 +25,7 @@
     <mat-card class="mt-4" *ngFor="let club of clubs">
       <app-club-list-item
         [club]="club"
+        [isUser]="isUser"
         (favouriteChange)="doFavourite($event)"
       ></app-club-list-item>
     </mat-card>

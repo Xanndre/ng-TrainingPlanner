@@ -15,7 +15,7 @@
       <h5 class="text-muted mt-1 tp-inline">
         {{ club.name }}
       </h5>
-      <div class="heart-icon" *ngIf="isUserAuthenticated">
+      <div class="heart-icon" *ngIf="isUserAuthenticated && !isUser">
         <button
           *ngIf="club.isFavourite; else notFavourite"
           class="tp-fav tp-icon fas fa-heart fa-2x"
