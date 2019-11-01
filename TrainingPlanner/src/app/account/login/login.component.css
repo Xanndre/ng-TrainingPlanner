@@ -7,3 +7,18 @@
   background-color: #4b8bf7;
   color: white;
 }
+
+.btn-rg {
+  color: #3f51b5;
+}
+
+.left-icon-holder {
+  position: relative;
+}
+.left-icon-holder .fab {
+  position: absolute;
+  line-height: 24px;
+  top: 50%;
+  margin-top: -12px; /* Half of line height to keep left middle postion of container */
+  left: 10px;
+}

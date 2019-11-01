@@ -20,21 +20,23 @@
         <div class="text-muted">or</div>
         <button
           mat-raised-button
-          class="btn-block mt-4 mb-2 btn-no-shadow btn-fb"
+          class="btn-block mt-4 mb-2 btn-no-shadow btn-fb left-icon-holder"
           (click)="signInWithFb()"
         >
+          <mat-icon class="fab fa-facebook-f"></mat-icon>
           Sign in with Facebook
         </button>
         <button
           mat-raised-button
-          class="btn-block mb-4 btn-no-shadow btn-gg"
+          class="btn-block mb-4 btn-no-shadow btn-gg left-icon-holder"
           (click)="signInWithGoogle()"
         >
+          <mat-icon class="fab fa-google"></mat-icon>
           Sign in with Google
         </button>
         <p class="text-muted">
           Not a member?
-          <a routerLink="/register">Register</a>
+          <a routerLink="/register" class="btn-rg">Register</a>
         </p>
       </form>
     </mat-card>

@@ -14,6 +14,7 @@ import {
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { ErrorDialogComponent } from '../shared/error-dialog/error-dialog.component';
+import { MatIconModule } from '@angular/material';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -46,6 +47,7 @@ export function provideConfig() {
     SharedModule,
     SocialLoginModule,
     MatButtonModule,
+    MatIconModule,
     MatCardModule
   ],
   providers: [
@@ -57,4 +59,4 @@ export function provideConfig() {
   exports: [LoginComponent, RegisterComponent],
   entryComponents: [ErrorDialogComponent]
 })
-export class AccountModule { }
+export class AccountModule {}
