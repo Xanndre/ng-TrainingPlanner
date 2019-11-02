@@ -22,6 +22,8 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { DeleteClubDialogComponent } from '../shared/delete-club-dialog/delete-club-dialog.component';
 import { EditGuardService } from '../guards/EditGuard.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ClubReviewListComponent } from './club-review-list/club-review-list.component';
+import { ClubReviewListItemComponent } from './club-review-list/club-review-list-item/club-review-list-item.component';
 
 const routes: Routes = [
   {
@@ -56,6 +58,10 @@ const routes: Routes = [
   {
     path: 'clubs/:id',
     component: ClubDetailsComponent
+  },
+  {
+    path: 'clubs/:id/reviews',
+    component: ClubReviewListComponent
   }
 ];
 
@@ -65,7 +71,9 @@ const routes: Routes = [
     PicturesComponent,
     ClubDetailsComponent,
     ClubListComponent,
-    ClubListItemComponent
+    ClubListItemComponent,
+    ClubReviewListComponent,
+    ClubReviewListItemComponent
   ],
   imports: [
     CommonModule,
@@ -81,7 +89,12 @@ const routes: Routes = [
     InfiniteScrollModule,
     RouterModule.forChild(routes)
   ],
-  exports: [ClubProfileComponent, ClubDetailsComponent, ClubListComponent],
+  exports: [
+    ClubProfileComponent,
+    ClubDetailsComponent,
+    ClubListComponent,
+    ClubReviewListComponent
+  ],
   entryComponents: [
     ClubTrainerDialogComponent,
     ClubActivityDialogComponent,

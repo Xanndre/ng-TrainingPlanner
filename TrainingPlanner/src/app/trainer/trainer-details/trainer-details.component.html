@@ -16,9 +16,17 @@
         </div>
         <div class="col-9 tp-padd">
           <div class="mb-3">
-            <h5 class="text-muted mt-1">
+            <h5 class="text-muted mt-1 tp-inline">
               {{ trainer.user.firstName + ' ' + trainer.user.lastName }}
             </h5>
+            <button
+              mat-raised-button
+              color="primary"
+              class="btn-block btn-no-shadow float-right w-25 tp-inline"
+              (click)="goToReviews()"
+            >
+              Reviews
+            </button>
           </div>
           <p class="text-muted mb-2">
             <span><i class="fa fa-envelope" aria-hidden="true"></i></span>

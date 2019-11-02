@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TrainerService } from 'src/app/services/Trainer.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Trainer } from 'src/app/models/Trainer/Trainer';
 
 @Component({
@@ -17,7 +17,8 @@ export class TrainerDetailsComponent implements OnInit {
 
   constructor(
     private trainerService: TrainerService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -33,5 +34,9 @@ export class TrainerDetailsComponent implements OnInit {
       });
       this.isLoaded = true;
     });
+  }
+
+  goToReviews() {
+    this.router.navigate([`/trainers/${this.trainerId}/reviews`]);
   }
 }

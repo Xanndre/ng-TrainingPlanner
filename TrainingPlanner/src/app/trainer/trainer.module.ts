@@ -15,6 +15,8 @@ import { TrainerListItemComponent } from './trainer-list/trainer-list-item/train
 import { TrainerDetailsComponent } from './trainer-details/trainer-details.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { DeleteTrainerDialogComponent } from '../shared/delete-trainer-dialog/delete-trainer-dialog.component';
+import { TrainerReviewListComponent } from './trainer-review-list/trainer-review-list.component';
+import { TrainerReviewListItemComponent } from './trainer-review-list/trainer-review-list-item/trainer-review-list-item.component';
 
 const routes: Routes = [
   {
@@ -29,6 +31,10 @@ const routes: Routes = [
   {
     path: 'trainers/:id',
     component: TrainerDetailsComponent
+  },
+  {
+    path: 'trainers/:id/reviews',
+    component: TrainerReviewListComponent
   }
 ];
 
@@ -37,7 +43,9 @@ const routes: Routes = [
     TrainerProfileComponent,
     TrainerListComponent,
     TrainerListItemComponent,
-    TrainerDetailsComponent
+    TrainerDetailsComponent,
+    TrainerReviewListComponent,
+    TrainerReviewListItemComponent
   ],
   imports: [
     CommonModule,
@@ -56,7 +64,8 @@ const routes: Routes = [
   exports: [
     TrainerProfileComponent,
     TrainerListComponent,
-    TrainerDetailsComponent
+    TrainerDetailsComponent,
+    TrainerReviewListComponent
   ],
   entryComponents: [DeleteTrainerDialogComponent]
 })

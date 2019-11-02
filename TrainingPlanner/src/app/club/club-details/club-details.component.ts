@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Club } from 'src/app/models/Club/Club';
 import { ClubService } from 'src/app/services/Club.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Picture } from 'src/app/models/Stuff/Picture';
 
 @Component({
@@ -34,7 +34,8 @@ export class ClubDetailsComponent implements OnInit {
 
   constructor(
     private clubService: ClubService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -50,5 +51,9 @@ export class ClubDetailsComponent implements OnInit {
       this.pictures = this.club.pictures.slice(1, this.club.pictures.length);
       this.isLoaded = true;
     });
+  }
+
+  goToReviews() {
+    this.router.navigate([`/clubs/${this.clubId}/reviews`]);
   }
 }

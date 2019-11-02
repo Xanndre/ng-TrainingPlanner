@@ -9,3 +9,7 @@
 .tp-padd {
   padding-left: 73px;
 }
+
+.tp-inline {
+  display: inline;
+}

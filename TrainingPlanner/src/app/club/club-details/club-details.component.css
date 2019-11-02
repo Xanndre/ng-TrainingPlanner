@@ -35,3 +35,7 @@
 .tp-display {
   display: block !important;
 }
+
+.tp-inline {
+  display: inline;
+}
