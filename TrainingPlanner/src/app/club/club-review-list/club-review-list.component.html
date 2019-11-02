@@ -1,3 +1,23 @@
-<p>
-  club-review-list works!
-</p>
+<div class="full-width">
+  <div class="col-lg-3"></div>
+  <div
+    class="col-lg-6 mx-auto tp-main-col pb-4"
+    infinite-scroll
+    (scrolled)="onScrollDown()"
+  >
+    <div class="tp-right mt-4">
+      <button
+        mat-raised-button
+        color="primary"
+        class="btn-block btn-no-shadow w-25"
+        (click)="openReviewDialog('Add', {})"
+      >
+        Add Review
+      </button>
+    </div>
+    <mat-card class="mt-4">
+      <app-club-review-list-item></app-club-review-list-item>
+    </mat-card>
+  </div>
+  <div class="col-lg-3"></div>
+</div>

@@ -6,10 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./trainer-review-list.component.css']
 })
 export class TrainerReviewListComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
+  ngOnInit() {}
 
-  ngOnInit() {
-  }
-
+  onScrollDown() {}
 }

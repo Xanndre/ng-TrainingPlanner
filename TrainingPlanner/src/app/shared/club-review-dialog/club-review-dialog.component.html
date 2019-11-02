@@ -1,0 +1,52 @@
+<h1 mat-dialog-title class="text-muted mb-2">
+  {{ action + ' Review' }}
+</h1>
+<div mat-dialog-content>
+  <div *ngIf="action != 'Delete'; else elseTemplate">
+    <mat-form-field class="tp-width mt-2">
+      <input
+        placeholder="Rate"
+        matInput
+        [(ngModel)]="localData.rate"
+        type="number"
+        required
+        min="1"
+        max="5"
+      />
+    </mat-form-field>
+    <mat-form-field class="tp-width" appearance="outline">
+      <mat-label>Description</mat-label>
+      <textarea
+        placeholder="Description"
+        maxlength="200"
+        matInput
+        rows="5"
+        [(ngModel)]="localData.description"
+      ></textarea>
+    </mat-form-field>
+  </div>
+  <ng-template #elseTemplate>
+    <div class="text-muted tp-padd">
+      Are you sure to delete <b>{{ localData.name }}</b
+      >?
+    </div>
+  </ng-template>
+</div>
+<div mat-dialog-actions class="float-right">
+  <button
+    mat-raised-button
+    color="primary"
+    class="btn-no-shadow"
+    (click)="doAction()"
+  >
+    {{ action }}
+  </button>
+  <button
+    mat-raised-button
+    (click)="closeDialog()"
+    color="warn"
+    class="btn-no-shadow"
+  >
+    Cancel
+  </button>
+</div>

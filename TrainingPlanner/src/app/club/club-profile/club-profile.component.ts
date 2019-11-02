@@ -65,7 +65,6 @@ export class ClubProfileComponent implements OnInit {
       this.isEdit = true;
       this.clubId = parseInt(this.route.snapshot.paramMap.get('id'), 10);
       this.clubService.getClub(this.clubId, false).subscribe(response => {
-        console.log(response.viewCounter);
         this.club = response;
         this.beforeChanges = JSON.parse(JSON.stringify(this.club));
         this.formControls = new ClubProfileControls();
@@ -86,7 +85,6 @@ export class ClubProfileComponent implements OnInit {
           }
         }
         this.isLoaded = true;
-        console.log(this.club.viewCounter);
       });
     } else {
       if (this.route.snapshot.data.add) {
@@ -284,9 +282,6 @@ export class ClubProfileComponent implements OnInit {
     });
   }
   deleteTrainer(rowObj: ClubTrainer) {
-    this.trainers = this.trainers.filter(value => {
-      return value.name !== rowObj.name;
-    });
     const temp = this.trainers.find(value => value.name === rowObj.name);
     if (temp === this.trainers[this.trainers.length - 1]) {
       this.dataTransferService.setIsDeleteTrainer(true);
