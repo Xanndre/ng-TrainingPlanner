@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { ClubReviewDialogComponent } from 'src/app/shared/club-review-dialog/club-review-dialog.component';
 import { ClubRate } from 'src/app/models/ClubStuff/ClubRate/ClubRate';
+import { RateService } from 'src/app/services/Rate.service';
+import { ActivatedRoute } from '@angular/router';
+import { ClubRateCreate } from 'src/app/models/ClubStuff/ClubRate/ClubRateCreate';
 
 @Component({
   selector: 'app-club-review-list',
@@ -12,11 +15,30 @@ export class ClubReviewListComponent implements OnInit {
   reviews: ClubRate[] = [];
   counter = 0;
   userId: string;
+  clubId: number;
+  rate: ClubRate;
+  rateCreate: ClubRateCreate;
+  isEdit = false;
+  isLoaded: boolean;
 
-  constructor(private dialog: MatDialog) {}
+  constructor(
+    private dialog: MatDialog,
+    private rateService: RateService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit() {
     this.userId = localStorage.getItem('userId');
+    this.clubId = parseInt(this.route.snapshot.paramMap.get('id'), 10);
+    this.rateService
+      .getClubRate(this.userId, this.clubId)
+      .subscribe(response => {
+        if (response) {
+          this.isEdit = true;
+        }
+        this.rate = response;
+        this.isLoaded = true;
+      });
   }
 
   onScrollDown() {}
@@ -41,24 +63,20 @@ export class ClubReviewListComponent implements OnInit {
     });
   }
 
-  addReview(rowObj: ClubRate) {
-    this.reviews.push({
-      id: rowObj.id !== undefined ? rowObj.id : this.counter++,
-      clubId: 0,
+  addReview(rowObj: ClubRateCreate) {
+    this.rateCreate = {
+      userId: this.userId,
+      clubId: this.clubId,
       rate: rowObj.rate,
-      description: rowObj.description,
-      userId: this.userId
-    });
+      description: rowObj.description
+    };
+    this.rateService.createClubRate(this.rateCreate).subscribe(() => {});
   }
 
   editReview(rowObj: ClubRate) {
-    this.reviews = this.reviews.filter(value => {
-      if (value.id === rowObj.id) {
-        value.rate = rowObj.rate;
-        value.description = rowObj.description;
-      }
-      return true;
-    });
+    this.rate.rate = rowObj.rate;
+    this.rate.description = rowObj.description;
+    this.rateService.updateClubRate(this.rate).subscribe(() => {});
   }
 
   deleteReview(rowObj: ClubRate) {

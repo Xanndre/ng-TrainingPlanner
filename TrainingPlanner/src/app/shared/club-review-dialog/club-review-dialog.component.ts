@@ -10,7 +10,6 @@ import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 export class ClubReviewDialogComponent {
   action: string;
   localData: any;
-  currentRate = 0;
   constructor(
     private dialogRef: MatDialogRef<ClubReviewDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,

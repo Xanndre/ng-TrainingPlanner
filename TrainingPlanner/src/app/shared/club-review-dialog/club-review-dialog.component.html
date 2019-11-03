@@ -1,30 +1,27 @@
-<h1 mat-dialog-title class="text-muted mb-2">
+<h1 mat-dialog-title class="text-muted mb-0">
   {{ action + ' Review' }}
 </h1>
 <div mat-dialog-content>
   <div *ngIf="action != 'Delete'; else elseTemplate">
-    <ngb-rating [(rate)]="currentRate" class="btn-no-shadow">
+    <ngb-rating [(rate)]="localData.rate" class="btn-no-shadow">
       <ng-template let-fill="fill" let-index="index">
         <span class="star" [class.filled]="fill === 100">&#9733;</span>
       </ng-template>
     </ngb-rating>
-    <hr />
-    <pre>Rate: <b>{{currentRate}}</b></pre>
     <mat-form-field class="tp-width" appearance="outline">
       <mat-label>Description</mat-label>
       <textarea
         placeholder="Description"
-        maxlength="200"
+        class="text-muted"
         matInput
-        rows="5"
+        rows="10"
         [(ngModel)]="localData.description"
       ></textarea>
     </mat-form-field>
   </div>
   <ng-template #elseTemplate>
     <div class="text-muted tp-padd">
-      Are you sure to delete <b>{{ localData.name }}</b
-      >?
+      Are you sure to delete this review?
     </div>
   </ng-template>
 </div>
@@ -33,6 +30,13 @@
     mat-raised-button
     color="primary"
     class="btn-no-shadow"
+    [disabled]="
+      localData.rate != 1 &&
+      localData.rate != 2 &&
+      localData.rate != 3 &&
+      localData.rate != 4 &&
+      localData.rate != 5
+    "
     (click)="doAction()"
   >
     {{ action }}
