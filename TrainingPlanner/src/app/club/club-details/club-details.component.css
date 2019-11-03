@@ -70,3 +70,7 @@
   overflow: hidden;
   color: #ffc600;
 }
+
+.tp-div {
+  align-self: center;
+}
