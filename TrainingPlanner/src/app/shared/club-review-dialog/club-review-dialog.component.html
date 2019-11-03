@@ -3,17 +3,13 @@
 </h1>
 <div mat-dialog-content>
   <div *ngIf="action != 'Delete'; else elseTemplate">
-    <mat-form-field class="tp-width mt-2">
-      <input
-        placeholder="Rate"
-        matInput
-        [(ngModel)]="localData.rate"
-        type="number"
-        required
-        min="1"
-        max="5"
-      />
-    </mat-form-field>
+    <ngb-rating [(rate)]="currentRate" class="btn-no-shadow">
+      <ng-template let-fill="fill" let-index="index">
+        <span class="star" [class.filled]="fill === 100">&#9733;</span>
+      </ng-template>
+    </ngb-rating>
+    <hr />
+    <pre>Rate: <b>{{currentRate}}</b></pre>
     <mat-form-field class="tp-width" appearance="outline">
       <mat-label>Description</mat-label>
       <textarea

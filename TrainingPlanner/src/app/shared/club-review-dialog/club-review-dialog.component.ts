@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-club-review-dialog',
@@ -9,10 +10,13 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 export class ClubReviewDialogComponent {
   action: string;
   localData: any;
+  currentRate = 0;
   constructor(
     private dialogRef: MatDialogRef<ClubReviewDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    config: NgbRatingConfig
   ) {
+    config.max = 5;
     this.localData = { ...data };
     this.action = this.localData.action;
   }

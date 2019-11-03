@@ -25,6 +25,7 @@ import { DeleteTrainerDialogComponent } from './delete-trainer-dialog/delete-tra
 import { DeleteClubDialogComponent } from './delete-club-dialog/delete-club-dialog.component';
 import { DeleteUserDialogComponent } from './delete-user-dialog/delete-user-dialog.component';
 import { ClubReviewDialogComponent } from './club-review-dialog/club-review-dialog.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { ClubReviewDialogComponent } from './club-review-dialog/club-review-dial
     MatNativeDateModule,
     MatDialogModule,
     MatButtonModule,
+    NgbModule,
     NgxMaterialTimepickerModule
   ],
   exports: [

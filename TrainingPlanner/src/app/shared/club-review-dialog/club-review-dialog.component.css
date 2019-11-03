@@ -2,3 +2,11 @@
   background-color: #868e96;
   color: white;
 }
+
+.star {
+  font-size: 3rem;
+  color: #d8dcf0;
+}
+.filled {
+  color: #ffc600;
+}
