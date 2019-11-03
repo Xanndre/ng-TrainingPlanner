@@ -31,7 +31,6 @@ export class ClubDetailsComponent implements OnInit {
     Saturday: 6,
     Sunday: 7
   };
-  currentRate = 2.39;
 
   constructor(
     private clubService: ClubService,

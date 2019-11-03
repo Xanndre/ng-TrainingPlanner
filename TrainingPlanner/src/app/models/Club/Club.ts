@@ -22,4 +22,5 @@ export class Club {
   activities: ClubActivity[];
   trainers: ClubTrainer[];
   viewCounter: number;
+  average: number;
 }

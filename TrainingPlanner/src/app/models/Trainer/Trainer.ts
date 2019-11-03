@@ -10,4 +10,5 @@ export class Trainer {
   sports: TrainerSportBase[];
   priceList: TrainerPrice[];
   viewCounter: number;
+  average: number;
 }
