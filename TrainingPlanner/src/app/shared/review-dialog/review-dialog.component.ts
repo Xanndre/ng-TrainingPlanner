@@ -16,6 +16,7 @@ export class ReviewDialogComponent {
     config: NgbRatingConfig
   ) {
     config.max = 5;
+    config.readonly = false;
     this.localData = { ...data };
     this.action = this.localData.action;
   }

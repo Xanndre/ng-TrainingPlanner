@@ -6,6 +6,7 @@ import { RateService } from 'src/app/services/Rate.service';
 import { ActivatedRoute } from '@angular/router';
 import { ReviewDialogComponent } from 'src/app/shared/review-dialog/review-dialog.component';
 import { LoginService } from 'src/app/services/Login.service';
+import { TrainerRateBase } from 'src/app/models/TrainerStuff/TrainerRate/TrainerRateBase';
 
 @Component({
   selector: 'app-trainer-review-list',
@@ -13,7 +14,7 @@ import { LoginService } from 'src/app/services/Login.service';
   styleUrls: ['./trainer-review-list.component.css']
 })
 export class TrainerReviewListComponent implements OnInit {
-  reviews: TrainerRate[] = [];
+  reviews: TrainerRateBase[] = [];
   userId: string;
   trainerId: number;
   rate: TrainerRate;
@@ -21,6 +22,12 @@ export class TrainerReviewListComponent implements OnInit {
   isEdit = false;
   isLoaded: boolean;
   isUserAuthenticated: boolean;
+  isRatesLoaded: boolean;
+
+  pageSize = 3;
+  totalPages: number;
+  totalCount: number;
+  currentPage: number;
 
   constructor(
     private dialog: MatDialog,
@@ -41,14 +48,32 @@ export class TrainerReviewListComponent implements OnInit {
             this.isEdit = true;
           }
           this.rate = response;
+          this.getTrainerRates(1);
           this.isLoaded = true;
         });
     } else {
+      this.getTrainerRates(1);
       this.isLoaded = true;
     }
   }
 
-  onScrollDown() {}
+  getTrainerRates(pageNumber: number) {
+    this.rateService
+      .getTrainerRates(pageNumber, this.pageSize, this.trainerId)
+      .subscribe(response => {
+        this.reviews.push(...response.rates);
+        this.totalPages = response.totalPages;
+        this.totalCount = response.totalCount;
+        this.currentPage = pageNumber;
+        this.isRatesLoaded = true;
+      });
+  }
+
+  onScrollDown() {
+    if (this.currentPage + 1 <= this.totalPages) {
+      this.getTrainerRates(this.currentPage + 1);
+    }
+  }
 
   openReviewDialog(action, obj) {
     obj.action = action;

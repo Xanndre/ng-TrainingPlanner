@@ -18,6 +18,7 @@ import { DeleteTrainerDialogComponent } from '../shared/delete-trainer-dialog/de
 import { TrainerReviewListComponent } from './trainer-review-list/trainer-review-list.component';
 import { TrainerReviewListItemComponent } from './trainer-review-list/trainer-review-list-item/trainer-review-list-item.component';
 import { ReviewDialogComponent } from '../shared/review-dialog/review-dialog.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 const routes: Routes = [
   {
@@ -55,6 +56,7 @@ const routes: Routes = [
     MatChipsModule,
     MatDialogModule,
     FormsModule,
+    NgbModule,
     InfiniteScrollModule,
     MatTableModule,
     MatExpansionModule,

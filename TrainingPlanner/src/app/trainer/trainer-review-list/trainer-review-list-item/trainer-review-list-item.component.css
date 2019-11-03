@@ -1,0 +1,19 @@
+.tp-image {
+  width: 164px;
+}
+
+.tp-padd {
+  padding-left: 35px;
+}
+
+.tp-div {
+  align-self: center;
+}
+
+.star {
+  font-size: 3rem;
+  color: #d8dcf0;
+}
+.filled {
+  color: #ffc600;
+}

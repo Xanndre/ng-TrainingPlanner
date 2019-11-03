@@ -34,8 +34,10 @@
         Delete Review
       </button>
     </div>
-    <mat-card class="mt-4">
-      <app-trainer-review-list-item></app-trainer-review-list-item>
+    <mat-card class="mt-4" *ngFor="let review of reviews">
+      <app-trainer-review-list-item
+        [rate]="review"
+      ></app-trainer-review-list-item>
     </mat-card>
   </div>
   <div class="col-lg-3"></div>

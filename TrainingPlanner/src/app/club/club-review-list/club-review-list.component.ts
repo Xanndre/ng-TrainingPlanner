@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ClubRateCreate } from 'src/app/models/ClubStuff/ClubRate/ClubRateCreate';
 import { ReviewDialogComponent } from 'src/app/shared/review-dialog/review-dialog.component';
 import { LoginService } from 'src/app/services/Login.service';
+import { ClubRateBase } from 'src/app/models/ClubStuff/ClubRate/ClubRateBase';
 
 @Component({
   selector: 'app-club-review-list',
@@ -13,7 +14,7 @@ import { LoginService } from 'src/app/services/Login.service';
   styleUrls: ['./club-review-list.component.css']
 })
 export class ClubReviewListComponent implements OnInit {
-  reviews: ClubRate[] = [];
+  reviews: ClubRateBase[] = [];
   userId: string;
   clubId: number;
   rate: ClubRate;
@@ -21,6 +22,12 @@ export class ClubReviewListComponent implements OnInit {
   isEdit = false;
   isLoaded: boolean;
   isUserAuthenticated: boolean;
+  isRatesLoaded: boolean;
+
+  pageSize = 3;
+  totalPages: number;
+  totalCount: number;
+  currentPage: number;
 
   constructor(
     private dialog: MatDialog,
@@ -41,14 +48,32 @@ export class ClubReviewListComponent implements OnInit {
             this.isEdit = true;
           }
           this.rate = response;
+          this.getClubRates(1);
           this.isLoaded = true;
         });
     } else {
+      this.getClubRates(1);
       this.isLoaded = true;
     }
   }
 
-  onScrollDown() {}
+  getClubRates(pageNumber: number) {
+    this.rateService
+      .getClubRates(pageNumber, this.pageSize, this.clubId)
+      .subscribe(response => {
+        this.reviews.push(...response.rates);
+        this.totalPages = response.totalPages;
+        this.totalCount = response.totalCount;
+        this.currentPage = pageNumber;
+        this.isRatesLoaded = true;
+      });
+  }
+
+  onScrollDown() {
+    if (this.currentPage + 1 <= this.totalPages) {
+      this.getClubRates(this.currentPage + 1);
+    }
+  }
 
   openReviewDialog(action, obj) {
     obj.action = action;

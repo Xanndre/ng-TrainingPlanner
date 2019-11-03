@@ -1,3 +1,28 @@
-<p>
-  club-review-list-item works!
-</p>
+<div class="row">
+  <div class="col-3 tp-div">
+    <img
+      class="tp-image"
+      src="{{
+        rate.user.profilePicture != null &&
+        rate.user.profilePicture != undefined
+          ? rate.user.profilePicture
+          : 'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png'
+      }}"
+      alt="Profile Picture"
+    />
+  </div>
+  <div class="col-9 tp-padd">
+    <h5 class="text-muted mt-1 mb-0">
+      {{ rate.user.firstName + ' ' + rate.user.lastName }}
+    </h5>
+
+    <ngb-rating [(rate)]="rate.rate" class="btn-no-shadow">
+      <ng-template let-fill="fill" let-index="index">
+        <span class="star" [class.filled]="fill === 100">&#9733;</span>
+      </ng-template>
+    </ngb-rating>
+    <p class="text-muted mb-2 text-justify" *ngIf="rate.description != null">
+      {{ rate.description }}
+    </p>
+  </div>
+</div>
