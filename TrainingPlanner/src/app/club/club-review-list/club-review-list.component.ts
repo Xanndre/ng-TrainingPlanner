@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { ClubReviewDialogComponent } from 'src/app/shared/club-review-dialog/club-review-dialog.component';
-import { ClubRate } from 'src/app/models/ClubStuff/ClubRate';
+import { ClubRate } from 'src/app/models/ClubStuff/ClubRate/ClubRate';
 
 @Component({
   selector: 'app-club-review-list',
