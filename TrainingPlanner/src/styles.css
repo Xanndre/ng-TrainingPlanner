@@ -75,3 +75,13 @@ html {
 .mat-tab-header-pagination {
   display: none !important;
 }
+
+.btn-grey {
+  background-color: #868e96;
+  color: white;
+}
+
+.btn-red {
+  background-color: #d80930;
+  color: white;
+}

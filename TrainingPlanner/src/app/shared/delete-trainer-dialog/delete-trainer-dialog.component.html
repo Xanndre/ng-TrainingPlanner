@@ -6,18 +6,17 @@
 <div mat-dialog-actions class="float-right">
   <button
     mat-raised-button
-    color="primary"
-    class="btn-no-shadow"
-    (click)="closeDialog()"
-  >
-    Cancel
-  </button>
-  <button
-    mat-raised-button
     (click)="deleteTrainerAccount()"
-    color="warn"
+    color="primary"
     class="btn-no-shadow"
   >
     Delete
+  </button>
+  <button
+    mat-raised-button
+    class="btn-no-shadow btn-grey"
+    (click)="closeDialog()"
+  >
+    Cancel
   </button>
 </div>

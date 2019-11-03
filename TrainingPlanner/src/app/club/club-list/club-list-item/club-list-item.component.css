@@ -21,13 +21,13 @@
 }
 
 .tp-fav {
-  color: #f44336;
+  color: #d80930;
   border: none;
   background: transparent;
 }
 
 .tp-not-fav:before {
-  -webkit-text-stroke: 1px #f44336;
+  -webkit-text-stroke: 1px #d80930;
 }
 
 .tp-icon:focus {
@@ -36,7 +36,7 @@
 }
 
 .tp-icon:hover {
-  color: #f44336;
+  color: #d80930;
 }
 
 .heart-icon {

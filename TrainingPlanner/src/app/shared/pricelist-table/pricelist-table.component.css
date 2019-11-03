@@ -20,3 +20,7 @@
 ::ng-deep .mat-chip-disabled {
   cursor: default !important;
 }
+
+.tp-red {
+  background-color: #d80930 !important;
+}

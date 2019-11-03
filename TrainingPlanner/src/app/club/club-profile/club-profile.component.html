@@ -4,8 +4,7 @@
       <div class="tp-right">
         <button
           mat-raised-button
-          color="warn"
-          class="btn-block btn-no-shadow w-25"
+          class="btn-block btn-no-shadow w-25 btn-red"
           *ngIf="isEdit"
           (click)="deleteClubAccount()"
         >
@@ -102,8 +101,7 @@
 
                     <button
                       mat-raised-button
-                      color="warn"
-                      class="btn-no-shadow mar-l"
+                      class="btn-no-shadow mar-l btn-red"
                       (click)="openTrainerDialog('Delete', trainer)"
                       [disabled]="clubForm.clubForm.disabled"
                     >
@@ -168,8 +166,7 @@
 
                     <button
                       mat-raised-button
-                      color="warn"
-                      class="btn-no-shadow mar-l"
+                      class="btn-no-shadow mar-l btn-red"
                       (click)="openActivityDialog('Delete', activity)"
                       [disabled]="clubForm.clubForm.disabled"
                     >
