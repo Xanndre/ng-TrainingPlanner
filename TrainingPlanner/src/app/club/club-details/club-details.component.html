@@ -15,8 +15,8 @@
           />
         </div>
         <div class="col-9 tp-padd">
-          <div class="mb-3">
-            <h5 class="text-muted mt-1 tp-inline">
+          <div class="mb-0">
+            <h5 class="text-muted mt-1 tp-inline tp-ml-0">
               {{ club.name }}
             </h5>
             <button
@@ -28,19 +28,31 @@
               Reviews
             </button>
           </div>
-          <p class="text-muted mb-2">
+          <ng-template #t let-fill="fill">
+            <span class="star" [class.full]="fill === 100">
+              <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+            </span>
+          </ng-template>
+
+          <ngb-rating
+            [(rate)]="currentRate"
+            [starTemplate]="t"
+            [readonly]="true"
+            max="5"
+          ></ngb-rating>
+          <p class="text-muted mb-2 ml-1">
             <span><i class="fa fa-home" aria-hidden="true"></i></span>
             {{ club.streetName + ' ' + club.streetNumber }}
           </p>
-          <p class="text-muted mb-2 pl-4">
+          <p class="text-muted mb-2 tp-margin">
             {{ club.postalCode + ' ' + club.city }}
           </p>
-          <p class="text-muted mb-2">
-            <span><i class="fa fa-envelope" aria-hidden="true"></i></span>
+          <p class="text-muted mb-2 tp-ml">
+            <span><i class="fa fa-envelope tp-mp" aria-hidden="true"></i></span>
             {{ club.email }}
           </p>
-          <p class="text-muted mb-2" *ngIf="club.phoneNumber != null">
-            <span><i class="fa fa-phone" aria-hidden="true"></i></span>
+          <p class="text-muted mb-2 tp-ml" *ngIf="club.phoneNumber != null">
+            <span><i class="fa fa-phone tp-mp" aria-hidden="true"></i></span>
             {{ club.phoneNumber }}
           </p>
         </div>

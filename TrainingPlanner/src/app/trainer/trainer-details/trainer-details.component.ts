@@ -14,6 +14,7 @@ export class TrainerDetailsComponent implements OnInit {
   sports = '';
   isLoaded: boolean;
   displayedColumns: string[] = ['name', 'validityPeriod', 'entries', 'price'];
+  currentRate = 2.39;
 
   constructor(
     private trainerService: TrainerService,

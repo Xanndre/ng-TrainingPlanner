@@ -7,7 +7,22 @@
 }
 
 .tp-padd {
-  padding-left: 73px;
+  padding-left: 66px;
+}
+
+.tp-margin {
+  margin-left: 27px;
+}
+
+.tp-ml {
+  margin-left: 5px;
+}
+
+.tp-ml-0 {
+  margin-left: 3px;
+}
+.tp-mp {
+  margin-right: 3px;
 }
 
 .tp-image-trainer {
@@ -38,4 +53,20 @@
 
 .tp-inline {
   display: inline;
+}
+
+.star {
+  position: relative;
+  display: inline-block;
+  font-size: 2rem;
+  color: #d8dcf0;
+}
+.full {
+  color: #ffc600;
+}
+.half {
+  position: absolute;
+  display: inline-block;
+  overflow: hidden;
+  color: #ffc600;
 }
