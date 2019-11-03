@@ -39,6 +39,14 @@
         [rate]="review"
       ></app-trainer-review-list-item>
     </mat-card>
+    <mat-card class="mt-4" *ngIf="reviews.length == 0">
+      <div
+        class="row text-muted justify-content-center align-items-center"
+        *ngIf="reviews.length == 0"
+      >
+        This trainer has no reviews.
+      </div></mat-card
+    >
   </div>
   <div class="col-lg-3"></div>
 </div>
