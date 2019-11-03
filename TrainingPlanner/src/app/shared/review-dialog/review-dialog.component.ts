@@ -3,15 +3,15 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  selector: 'app-club-review-dialog',
-  templateUrl: './club-review-dialog.component.html',
-  styleUrls: ['./club-review-dialog.component.css']
+  selector: 'app-review-dialog',
+  templateUrl: './review-dialog.component.html',
+  styleUrls: ['./review-dialog.component.css']
 })
-export class ClubReviewDialogComponent {
+export class ReviewDialogComponent {
   action: string;
   localData: any;
   constructor(
-    private dialogRef: MatDialogRef<ClubReviewDialogComponent>,
+    private dialogRef: MatDialogRef<ReviewDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     config: NgbRatingConfig
   ) {

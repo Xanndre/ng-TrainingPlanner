@@ -24,8 +24,8 @@ import { WorkingHoursTableComponent } from './working-hours-table/working-hours-
 import { DeleteTrainerDialogComponent } from './delete-trainer-dialog/delete-trainer-dialog.component';
 import { DeleteClubDialogComponent } from './delete-club-dialog/delete-club-dialog.component';
 import { DeleteUserDialogComponent } from './delete-user-dialog/delete-user-dialog.component';
-import { ClubReviewDialogComponent } from './club-review-dialog/club-review-dialog.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ReviewDialogComponent } from './review-dialog/review-dialog.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +38,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     DeleteUserDialogComponent,
     ClubActivityDialogComponent,
     ClubTrainerDialogComponent,
-    ClubReviewDialogComponent,
+    ReviewDialogComponent,
     PricelistTableComponent,
     WorkingHoursTableComponent,
     PricelistDialogComponent,
@@ -71,7 +71,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     DeleteUserDialogComponent,
     ClubTrainerDialogComponent,
     ClubActivityDialogComponent,
-    ClubReviewDialogComponent,
+    ReviewDialogComponent,
     PricelistTableComponent,
     WorkingHoursTableComponent,
     SliderComponent,

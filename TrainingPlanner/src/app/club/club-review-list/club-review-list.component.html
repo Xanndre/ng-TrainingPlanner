@@ -5,7 +5,7 @@
     infinite-scroll
     (scrolled)="onScrollDown()"
   >
-    <div class="tp-right mt-4">
+    <div class="tp-right mt-4" *ngIf="isUserAuthenticated">
       <button
         *ngIf="!isEdit"
         mat-raised-button

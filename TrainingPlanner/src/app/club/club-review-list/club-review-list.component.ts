@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
-import { ClubReviewDialogComponent } from 'src/app/shared/club-review-dialog/club-review-dialog.component';
 import { ClubRate } from 'src/app/models/ClubStuff/ClubRate/ClubRate';
 import { RateService } from 'src/app/services/Rate.service';
 import { ActivatedRoute } from '@angular/router';
 import { ClubRateCreate } from 'src/app/models/ClubStuff/ClubRate/ClubRateCreate';
+import { ReviewDialogComponent } from 'src/app/shared/review-dialog/review-dialog.component';
+import { LoginService } from 'src/app/services/Login.service';
 
 @Component({
   selector: 'app-club-review-list',
@@ -13,39 +14,45 @@ import { ClubRateCreate } from 'src/app/models/ClubStuff/ClubRate/ClubRateCreate
 })
 export class ClubReviewListComponent implements OnInit {
   reviews: ClubRate[] = [];
-  counter = 0;
   userId: string;
   clubId: number;
   rate: ClubRate;
   rateCreate: ClubRateCreate;
   isEdit = false;
   isLoaded: boolean;
+  isUserAuthenticated: boolean;
 
   constructor(
     private dialog: MatDialog,
     private rateService: RateService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private loginService: LoginService
   ) {}
 
   ngOnInit() {
     this.userId = localStorage.getItem('userId');
     this.clubId = parseInt(this.route.snapshot.paramMap.get('id'), 10);
-    this.rateService
-      .getClubRate(this.userId, this.clubId)
-      .subscribe(response => {
-        if (response) {
-          this.isEdit = true;
-        }
-        this.rate = response;
-        this.isLoaded = true;
-      });
+    this.isUserAuthenticated = this.loginService.isUserAuthenticated();
+    if (this.isUserAuthenticated) {
+      this.rateService
+        .getClubRate(this.userId, this.clubId)
+        .subscribe(response => {
+          if (response) {
+            this.isEdit = true;
+          }
+          this.rate = response;
+          this.isLoaded = true;
+        });
+    } else {
+      this.isLoaded = true;
+    }
   }
 
   onScrollDown() {}
 
   openReviewDialog(action, obj) {
     obj.action = action;
-    const dialogRef = this.dialog.open(ClubReviewDialogComponent, {
+    const dialogRef = this.dialog.open(ReviewDialogComponent, {
       width: '500px',
       data: obj
     });
@@ -70,7 +77,9 @@ export class ClubReviewListComponent implements OnInit {
       rate: rowObj.rate,
       description: rowObj.description
     };
-    this.rateService.createClubRate(this.rateCreate).subscribe(() => {});
+    this.rateService.createClubRate(this.rateCreate).subscribe(() => {
+      window.location.reload();
+    });
   }
 
   editReview(rowObj: ClubRate) {
@@ -80,6 +89,8 @@ export class ClubReviewListComponent implements OnInit {
   }
 
   deleteReview(rowObj: ClubRate) {
-    this.rateService.deleteClubRate(rowObj.id).subscribe(() => {});
+    this.rateService.deleteClubRate(rowObj.id).subscribe(() => {
+      window.location.reload();
+    });
   }
 }

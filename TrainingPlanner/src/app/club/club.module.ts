@@ -24,7 +24,7 @@ import { EditGuardService } from '../guards/EditGuard.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ClubReviewListComponent } from './club-review-list/club-review-list.component';
 import { ClubReviewListItemComponent } from './club-review-list/club-review-list-item/club-review-list-item.component';
-import { ClubReviewDialogComponent } from '../shared/club-review-dialog/club-review-dialog.component';
+import { ReviewDialogComponent } from '../shared/review-dialog/review-dialog.component';
 
 const routes: Routes = [
   {
@@ -99,7 +99,7 @@ const routes: Routes = [
   entryComponents: [
     ClubTrainerDialogComponent,
     ClubActivityDialogComponent,
-    ClubReviewDialogComponent,
+    ReviewDialogComponent,
     DeleteClubDialogComponent
   ]
 })
