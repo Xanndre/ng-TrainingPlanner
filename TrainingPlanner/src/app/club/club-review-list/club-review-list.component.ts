@@ -80,8 +80,6 @@ export class ClubReviewListComponent implements OnInit {
   }
 
   deleteReview(rowObj: ClubRate) {
-    this.reviews = this.reviews.filter(value => {
-      return value.id !== rowObj.id;
-    });
+    this.rateService.deleteClubRate(rowObj.id).subscribe(() => {});
   }
 }

@@ -24,6 +24,15 @@
       >
         Edit Review
       </button>
+      <button
+        *ngIf="isEdit"
+        mat-raised-button
+        color="warn"
+        class="btn-block btn-no-shadow w-25 ml-2"
+        (click)="openReviewDialog('Delete', rate)"
+      >
+        Delete Review
+      </button>
     </div>
     <mat-card class="mt-4">
       <app-club-review-list-item></app-club-review-list-item>
