@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-confirm-success',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./confirm-success.component.css']
 })
 export class ConfirmSuccessComponent {
-  constructor() {}
+  constructor(private router: Router) {}
+
+  signIn() {
+    this.router.navigate(['/login']);
+  }
 }
