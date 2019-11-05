@@ -16,11 +16,15 @@ import { MatCardModule } from '@angular/material/card';
 import { ErrorDialogComponent } from '../shared/error-dialog/error-dialog.component';
 import { MatIconModule } from '@angular/material';
 import { ConfirmEmailComponent } from './confirm-email/confirm-email.component';
+import { ConfirmErrorComponent } from './confirm-error/confirm-error.component';
+import { ConfirmSuccessComponent } from './confirm-success/confirm-success.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'confirm', component: ConfirmEmailComponent }
+  { path: 'confirm', component: ConfirmEmailComponent },
+  { path: 'confirm/success', component: ConfirmSuccessComponent },
+  { path: 'confirm/error', component: ConfirmErrorComponent }
 ];
 
 const config = new AuthServiceConfig([
@@ -41,7 +45,13 @@ export function provideConfig() {
 }
 
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent, ConfirmEmailComponent],
+  declarations: [
+    LoginComponent,
+    RegisterComponent,
+    ConfirmEmailComponent,
+    ConfirmErrorComponent,
+    ConfirmSuccessComponent
+  ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
@@ -58,7 +68,13 @@ export function provideConfig() {
       useFactory: provideConfig
     }
   ],
-  exports: [LoginComponent, RegisterComponent, ConfirmEmailComponent],
+  exports: [
+    LoginComponent,
+    RegisterComponent,
+    ConfirmEmailComponent,
+    ConfirmErrorComponent,
+    ConfirmSuccessComponent
+  ],
   entryComponents: [ErrorDialogComponent]
 })
 export class AccountModule {}
