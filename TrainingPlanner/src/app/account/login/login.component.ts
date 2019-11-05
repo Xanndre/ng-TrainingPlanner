@@ -52,8 +52,12 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('userId', res.id);
         this.router.navigate(['/profile/user']);
       },
-      () => {
-        this.showError('Invalid login attempt.');
+      err => {
+        if (err.error === 'Email not confirmed') {
+          this.showError('Please confirm your email first.');
+        } else {
+          this.showError('Invalid login attempt.');
+        }
       }
     );
   }
