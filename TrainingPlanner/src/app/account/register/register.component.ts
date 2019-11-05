@@ -49,7 +49,7 @@ export class RegisterComponent implements OnInit {
 
     this.loginService.register(this.registerData).subscribe(
       () => {
-        this.router.navigate(['/login']);
+        this.router.navigate(['/confirm']);
       },
       () => {
         this.showError('Invalid registration attempt.');
