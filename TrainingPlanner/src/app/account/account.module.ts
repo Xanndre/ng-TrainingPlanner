@@ -18,13 +18,15 @@ import { MatIconModule } from '@angular/material';
 import { ConfirmEmailComponent } from './confirm-email/confirm-email.component';
 import { ConfirmErrorComponent } from './confirm-error/confirm-error.component';
 import { ConfirmSuccessComponent } from './confirm-success/confirm-success.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'confirm', component: ConfirmEmailComponent },
   { path: 'confirm/success/:id', component: ConfirmSuccessComponent },
-  { path: 'confirm/error/:id', component: ConfirmErrorComponent }
+  { path: 'confirm/error/:id', component: ConfirmErrorComponent },
+  { path: 'change_password', component: ChangePasswordComponent }
 ];
 
 const config = new AuthServiceConfig([
@@ -50,7 +52,8 @@ export function provideConfig() {
     RegisterComponent,
     ConfirmEmailComponent,
     ConfirmErrorComponent,
-    ConfirmSuccessComponent
+    ConfirmSuccessComponent,
+    ChangePasswordComponent
   ],
   imports: [
     CommonModule,
@@ -73,7 +76,8 @@ export function provideConfig() {
     RegisterComponent,
     ConfirmEmailComponent,
     ConfirmErrorComponent,
-    ConfirmSuccessComponent
+    ConfirmSuccessComponent,
+    ChangePasswordComponent
   ],
   entryComponents: [ErrorDialogComponent]
 })

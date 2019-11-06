@@ -4,7 +4,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { RegisterData } from '../models/Account/RegisterData';
 import { ExternalLogin } from '../models/Account/ExternalLogin';
 import { LoginData } from '../models/Account/LoginData';
-import { map } from 'rxjs/Operators';
+import { ChangePassword } from '../models/User/ChangePassword';
 
 @Injectable({
   providedIn: 'root'
@@ -63,6 +63,22 @@ export class LoginService {
   sendEmailAgain(id: string) {
     return this.client
       .get(`https://localhost:44383/api/Account/send/${id}`)
+      .pipe();
+  }
+
+  changePassword(object: ChangePassword) {
+    const options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + localStorage.getItem('jwt')
+      })
+    };
+    return this.client
+      .post(
+        'https://localhost:44383/api/Account/change_password',
+        object,
+        options
+      )
       .pipe();
   }
 }

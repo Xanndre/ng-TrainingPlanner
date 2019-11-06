@@ -5,9 +5,8 @@ import { UserService } from 'src/app/services/User.service';
 import { FormBuilder } from '@angular/forms';
 import { UserProfileControls } from './user-profile-controls';
 import { MatDialog } from '@angular/material';
-import { DataTransferService } from 'src/app/services/DataTransfer.service';
 import { DeleteUserDialogComponent } from 'src/app/shared/delete-user-dialog/delete-user-dialog.component';
-import { ChangePasswordDialogComponent } from 'src/app/shared/change-password-dialog/change-password-dialog.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-profile',
@@ -28,7 +27,7 @@ export class UserProfileComponent implements OnInit {
     private userService: UserService,
     private formBuilder: FormBuilder,
     private dialog: MatDialog,
-    private dataTransferService: DataTransferService
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -125,9 +124,7 @@ export class UserProfileComponent implements OnInit {
     this.isPictureLoaded = true;
   }
 
-  openDialog(): void {
-    this.dialog.open(ChangePasswordDialogComponent, {
-      width: '268px'
-    });
+  changePassword() {
+    this.router.navigate(['/change_password']);
   }
 }

@@ -1,13 +1,13 @@
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {
   hasNumber,
+  isMatching,
   hasUpper,
   hasLower,
-  hasSpecial,
-  isMatching
+  hasSpecial
 } from 'src/app/validators/PasswordValidator';
 
-export class ChangePasswordDialogForm {
+export class ChangePasswordForm {
   passwordForm: FormGroup;
 
   buildForm(formBuilder: FormBuilder) {
@@ -17,7 +17,10 @@ export class ChangePasswordDialogForm {
           null,
           [Validators.required, Validators.maxLength(40), Validators.email]
         ],
-        oldPassword: [null, [Validators.required, Validators.maxLength(20)]],
+        currentPassword: [
+          null,
+          [Validators.required, Validators.maxLength(20)]
+        ],
         password: [
           null,
           [

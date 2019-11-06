@@ -1,10 +1,10 @@
-import { CustomControlGroup } from '../custom-control-group/custom-control-group';
-import { ChangePasswordDialogForm } from './change-password-dialog-form';
+import { CustomControlGroup } from 'src/app/shared/custom-control-group/custom-control-group';
+import { ChangePasswordForm } from './change-password-form';
 
-export class ChangePasswordDialogControls {
+export class ChangePasswordControls {
   controlGroups: CustomControlGroup[];
 
-  initializeControls(form: ChangePasswordDialogForm) {
+  initializeControls(form: ChangePasswordForm) {
     this.controlGroups = [
       {
         controls: [
@@ -19,8 +19,8 @@ export class ChangePasswordDialogControls {
             formGroup: form.passwordForm,
             controlType: 'input',
             type: 'password',
-            formControlName: 'oldPassword',
-            placeholder: 'Old password'
+            formControlName: 'currentPassword',
+            placeholder: 'Current password'
           },
           {
             formGroup: form.passwordForm,

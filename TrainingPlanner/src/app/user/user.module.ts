@@ -13,7 +13,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthGuardService } from '../guards/AuthGuard.service';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { DeleteUserDialogComponent } from '../shared/delete-user-dialog/delete-user-dialog.component';
-import { ChangePasswordDialogComponent } from '../shared/change-password-dialog/change-password-dialog.component';
 
 const routes: Routes = [
   {
@@ -45,6 +44,6 @@ const routes: Routes = [
     MatCardModule
   ],
   exports: [UserProfileComponent],
-  entryComponents: [DeleteUserDialogComponent, ChangePasswordDialogComponent]
+  entryComponents: [DeleteUserDialogComponent]
 })
 export class UserModule {}
