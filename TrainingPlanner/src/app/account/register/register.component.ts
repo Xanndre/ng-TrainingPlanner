@@ -51,8 +51,12 @@ export class RegisterComponent implements OnInit {
       () => {
         this.router.navigate(['/confirm']);
       },
-      () => {
-        this.showError('Invalid registration attempt.');
+      err => {
+        if (err.error === 'Account with this email already exists') {
+          this.showError('Account with this email address already exists.');
+        } else {
+          this.showError('Invalid registration attempt.');
+        }
       }
     );
   }
