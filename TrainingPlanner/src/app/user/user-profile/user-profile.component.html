@@ -11,6 +11,14 @@
           Delete profile
         </button>
       </div>
+      <button
+        mat-raised-button
+        color="primary"
+        class="btn-block btn-no-shadow w-25 float-right mt-2 tp-display"
+        (click)="openDialog()"
+      >
+        Change password
+      </button>
       <form
         class="text-center p-5"
         [formGroup]="userForm.userForm"

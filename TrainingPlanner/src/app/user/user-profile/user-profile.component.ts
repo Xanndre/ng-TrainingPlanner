@@ -7,6 +7,7 @@ import { UserProfileControls } from './user-profile-controls';
 import { MatDialog } from '@angular/material';
 import { DataTransferService } from 'src/app/services/DataTransfer.service';
 import { DeleteUserDialogComponent } from 'src/app/shared/delete-user-dialog/delete-user-dialog.component';
+import { ChangePasswordDialogComponent } from 'src/app/shared/change-password-dialog/change-password-dialog.component';
 
 @Component({
   selector: 'app-user-profile',
@@ -122,5 +123,11 @@ export class UserProfileComponent implements OnInit {
     myReader.readAsDataURL(file);
 
     this.isPictureLoaded = true;
+  }
+
+  openDialog(): void {
+    this.dialog.open(ChangePasswordDialogComponent, {
+      width: '268px'
+    });
   }
 }
