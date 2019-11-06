@@ -4,6 +4,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { RegisterData } from '../models/Account/RegisterData';
 import { ExternalLogin } from '../models/Account/ExternalLogin';
 import { LoginData } from '../models/Account/LoginData';
+import { map } from 'rxjs/Operators';
 
 @Injectable({
   providedIn: 'root'
@@ -57,5 +58,11 @@ export class LoginService {
         })
       }
     );
+  }
+
+  sendEmailAgain(id: string) {
+    return this.client
+      .get(`https://localhost:44383/api/Account/send/${id}`)
+      .pipe();
   }
 }

@@ -23,8 +23,8 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'confirm', component: ConfirmEmailComponent },
-  { path: 'confirm/success', component: ConfirmSuccessComponent },
-  { path: 'confirm/error', component: ConfirmErrorComponent }
+  { path: 'confirm/success/:id', component: ConfirmSuccessComponent },
+  { path: 'confirm/error/:id', component: ConfirmErrorComponent }
 ];
 
 const config = new AuthServiceConfig([

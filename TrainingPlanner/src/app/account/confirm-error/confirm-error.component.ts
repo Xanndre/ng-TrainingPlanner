@@ -1,16 +1,28 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { LoginService } from 'src/app/services/Login.service';
 
 @Component({
   selector: 'app-confirm-error',
   templateUrl: './confirm-error.component.html',
   styleUrls: ['./confirm-error.component.css']
 })
-export class ConfirmErrorComponent {
-  constructor(private router: Router) {}
+export class ConfirmErrorComponent implements OnInit {
+  userId: string;
+
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private loginService: LoginService
+  ) {}
+
+  ngOnInit() {
+    this.userId = this.route.snapshot.paramMap.get('id');
+  }
 
   send() {
-    // here implement sending email with confirmation link
-    this.router.navigate(['/confirm']);
+    this.loginService.sendEmailAgain(this.userId).subscribe(() => {
+      this.router.navigate(['/confirm']);
+    });
   }
 }
