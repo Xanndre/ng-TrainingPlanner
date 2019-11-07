@@ -22,17 +22,37 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ConfirmErrorUserComponent } from './confirm-error-user/confirm-error-user.component';
 import { ConfirmPasswordResetComponent } from './confirm-password-reset/confirm-password-reset.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'confirm', component: ConfirmEmailComponent },
-  { path: 'confirm/success/:id', component: ConfirmSuccessComponent },
-  { path: 'confirm/error/:id', component: ConfirmErrorComponent },
+  {
+    path: 'confirm/success/:id',
+    component: ConfirmSuccessComponent,
+    data: { reset: false }
+  },
+  {
+    path: 'reset/success/:id',
+    component: ConfirmSuccessComponent,
+    data: { reset: true }
+  },
+  {
+    path: 'confirm/error/:id',
+    component: ConfirmErrorComponent,
+    data: { reset: false }
+  },
+  {
+    path: 'reset/error/:id',
+    component: ConfirmErrorComponent,
+    data: { reset: true }
+  },
   { path: 'change_password', component: ChangePasswordComponent },
   { path: 'forgot_password', component: ForgotPasswordComponent },
   { path: 'confirm/nouser', component: ConfirmErrorUserComponent },
-  { path: 'confirm/password_reset', component: ConfirmPasswordResetComponent }
+  { path: 'confirm/password_reset', component: ConfirmPasswordResetComponent },
+  { path: 'password_reset', component: ResetPasswordComponent }
 ];
 
 const config = new AuthServiceConfig([
@@ -62,7 +82,8 @@ export function provideConfig() {
     ChangePasswordComponent,
     ForgotPasswordComponent,
     ConfirmErrorUserComponent,
-    ConfirmPasswordResetComponent
+    ConfirmPasswordResetComponent,
+    ResetPasswordComponent
   ],
   imports: [
     CommonModule,
@@ -89,7 +110,8 @@ export function provideConfig() {
     ChangePasswordComponent,
     ForgotPasswordComponent,
     ConfirmErrorUserComponent,
-    ConfirmPasswordResetComponent
+    ConfirmPasswordResetComponent,
+    ResetPasswordComponent
   ],
   entryComponents: [ErrorDialogComponent]
 })

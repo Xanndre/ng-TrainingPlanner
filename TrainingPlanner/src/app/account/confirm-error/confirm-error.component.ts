@@ -9,6 +9,8 @@ import { LoginService } from 'src/app/services/Login.service';
 })
 export class ConfirmErrorComponent implements OnInit {
   userId: string;
+  isLoaded: boolean;
+  isReset: boolean;
 
   constructor(
     private router: Router,
@@ -18,11 +20,19 @@ export class ConfirmErrorComponent implements OnInit {
 
   ngOnInit() {
     this.userId = this.route.snapshot.paramMap.get('id');
+    this.isReset = this.route.snapshot.data.reset;
+    this.isLoaded = true;
   }
 
   send() {
-    this.loginService.sendEmailAgain(this.userId).subscribe(() => {
-      this.router.navigate(['/confirm']);
-    });
+    if (!this.isReset) {
+      this.loginService.sendEmailAgain(this.userId).subscribe(() => {
+        this.router.navigate(['/confirm']);
+      });
+    } else {
+      this.loginService.sendResetTokenAgain(this.userId).subscribe(() => {
+        this.router.navigate(['/confirm/password_reset']);
+      });
+    }
   }
 }

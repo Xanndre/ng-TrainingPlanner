@@ -49,7 +49,7 @@ export class ChangePasswordComponent implements OnInit {
         } else if (err.error === `Provided email address doesn't match yours`) {
           this.showError(`Provided email address doesn't match yours.`);
         } else {
-          this.showError('Invalid change password attempt.');
+          this.showError('Invalid password change attempt.');
         }
       }
     );

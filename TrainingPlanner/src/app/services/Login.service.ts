@@ -5,6 +5,7 @@ import { RegisterData } from '../models/Account/RegisterData';
 import { ExternalLogin } from '../models/Account/ExternalLogin';
 import { LoginData } from '../models/Account/LoginData';
 import { ChangePassword } from '../models/User/ChangePassword';
+import { ResetPassword } from '../models/User/ResetPassword';
 
 @Injectable({
   providedIn: 'root'
@@ -89,6 +90,34 @@ export class LoginService {
     };
     return this.client
       .get('https://localhost:44383/api/Account/generate_reset_token', options)
+      .pipe();
+  }
+
+  sendResetTokenAgain(id: string) {
+    const params = new HttpParams().set('id', id);
+    const options = {
+      params
+    };
+    return this.client
+      .get(
+        'https://localhost:44383/api/Account/generate_reset_token_again',
+        options
+      )
+      .pipe();
+  }
+
+  resetPassword(object: ResetPassword) {
+    const options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+    return this.client
+      .post(
+        'https://localhost:44383/api/Account/reset_password',
+        object,
+        options
+      )
       .pipe();
   }
 }
