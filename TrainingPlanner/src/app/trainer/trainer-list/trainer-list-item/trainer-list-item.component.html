@@ -37,7 +37,7 @@
         View details
       </button>
     </div>
-    <p class="text-muted mb-2">
+    <p class="text-muted mb-2" *ngIf="trainer.user.email != null">
       <span><i class="fa fa-envelope" aria-hidden="true"></i></span>
       {{ trainer.user.email }}
     </p>
@@ -46,7 +46,7 @@
       {{ trainer.phoneNumber }}
     </p>
 
-    <p class="text-muted mb-2">
+    <p class="text-muted mb-2" *ngIf="trainer.user.city != null">
       <span><i class="fa fa-home" aria-hidden="true"></i></span>
       {{ trainer.user.city }}
     </p>

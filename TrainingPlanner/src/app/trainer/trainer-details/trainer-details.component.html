@@ -40,7 +40,7 @@
             [readonly]="true"
             max="5"
           ></ngb-rating>
-          <p class="text-muted mb-2 tp-ml">
+          <p class="text-muted mb-2 tp-ml" *ngIf="trainer.user.email != null">
             <span><i class="fa fa-envelope tp-mp" aria-hidden="true"></i></span>
             {{ trainer.user.email }}
           </p>
@@ -49,7 +49,7 @@
             {{ trainer.phoneNumber }}
           </p>
 
-          <p class="text-muted mb-2 ml-1">
+          <p class="text-muted mb-2 ml-1" *ngIf="trainer.user.city != null">
             <span><i class="fa fa-home tp-mp" aria-hidden="true"></i></span>
             {{ trainer.user.city }}
           </p>

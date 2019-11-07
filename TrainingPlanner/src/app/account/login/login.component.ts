@@ -96,7 +96,8 @@ export class LoginComponent implements OnInit {
           : socialUser.idToken,
       firstName: socialUser.firstName,
       lastName: socialUser.lastName,
-      profilePicture: socialUser.photoUrl
+      profilePicture:
+        'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png'
     };
     this.loginService.externalLogin(this.externalLogin).subscribe(
       (response: any) => {
