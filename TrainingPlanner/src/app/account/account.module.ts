@@ -21,6 +21,7 @@ import { ConfirmSuccessComponent } from './confirm-success/confirm-success.compo
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ConfirmErrorUserComponent } from './confirm-error-user/confirm-error-user.component';
+import { ConfirmPasswordResetComponent } from './confirm-password-reset/confirm-password-reset.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -30,7 +31,8 @@ const routes: Routes = [
   { path: 'confirm/error/:id', component: ConfirmErrorComponent },
   { path: 'change_password', component: ChangePasswordComponent },
   { path: 'forgot_password', component: ForgotPasswordComponent },
-  { path: 'confirm/nouser', component: ConfirmErrorUserComponent }
+  { path: 'confirm/nouser', component: ConfirmErrorUserComponent },
+  { path: 'confirm/password_reset', component: ConfirmPasswordResetComponent }
 ];
 
 const config = new AuthServiceConfig([
@@ -59,7 +61,8 @@ export function provideConfig() {
     ConfirmSuccessComponent,
     ChangePasswordComponent,
     ForgotPasswordComponent,
-    ConfirmErrorUserComponent
+    ConfirmErrorUserComponent,
+    ConfirmPasswordResetComponent
   ],
   imports: [
     CommonModule,
@@ -85,7 +88,8 @@ export function provideConfig() {
     ConfirmSuccessComponent,
     ChangePasswordComponent,
     ForgotPasswordComponent,
-    ConfirmErrorUserComponent
+    ConfirmErrorUserComponent,
+    ConfirmPasswordResetComponent
   ],
   entryComponents: [ErrorDialogComponent]
 })

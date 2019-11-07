@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { RegisterData } from '../models/Account/RegisterData';
 import { ExternalLogin } from '../models/Account/ExternalLogin';
@@ -79,6 +79,16 @@ export class LoginService {
         object,
         options
       )
+      .pipe();
+  }
+
+  sendResetToken(email: string) {
+    const params = new HttpParams().set('email', email);
+    const options = {
+      params
+    };
+    return this.client
+      .get('https://localhost:44383/api/Account/generate_reset_token', options)
       .pipe();
   }
 }
