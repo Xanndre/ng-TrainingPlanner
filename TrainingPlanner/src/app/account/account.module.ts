@@ -19,6 +19,8 @@ import { ConfirmEmailComponent } from './confirm-email/confirm-email.component';
 import { ConfirmErrorComponent } from './confirm-error/confirm-error.component';
 import { ConfirmSuccessComponent } from './confirm-success/confirm-success.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ConfirmErrorUserComponent } from './confirm-error-user/confirm-error-user.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -26,7 +28,9 @@ const routes: Routes = [
   { path: 'confirm', component: ConfirmEmailComponent },
   { path: 'confirm/success/:id', component: ConfirmSuccessComponent },
   { path: 'confirm/error/:id', component: ConfirmErrorComponent },
-  { path: 'change_password', component: ChangePasswordComponent }
+  { path: 'change_password', component: ChangePasswordComponent },
+  { path: 'forgot_password', component: ForgotPasswordComponent },
+  { path: 'confirm/nouser', component: ConfirmErrorUserComponent }
 ];
 
 const config = new AuthServiceConfig([
@@ -53,7 +57,9 @@ export function provideConfig() {
     ConfirmEmailComponent,
     ConfirmErrorComponent,
     ConfirmSuccessComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    ForgotPasswordComponent,
+    ConfirmErrorUserComponent
   ],
   imports: [
     CommonModule,
@@ -77,7 +83,9 @@ export function provideConfig() {
     ConfirmEmailComponent,
     ConfirmErrorComponent,
     ConfirmSuccessComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    ForgotPasswordComponent,
+    ConfirmErrorUserComponent
   ],
   entryComponents: [ErrorDialogComponent]
 })

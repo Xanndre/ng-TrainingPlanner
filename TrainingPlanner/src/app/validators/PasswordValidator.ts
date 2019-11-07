@@ -34,6 +34,7 @@ export function isMatching(control: AbstractControl) {
   if (password !== confirmPassword) {
     control.get('confirmPassword').setErrors({ isMatching: true });
   } else {
+    control.get('confirmPassword').setErrors(null);
     return null;
   }
 }
