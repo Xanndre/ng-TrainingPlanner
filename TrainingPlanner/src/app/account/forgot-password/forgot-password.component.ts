@@ -16,6 +16,7 @@ export class ForgotPasswordComponent implements OnInit {
   passwordForm: ForgotPasswordForm = new ForgotPasswordForm();
   formControls: ForgotPasswordControls = new ForgotPasswordControls();
   email: string;
+  isLoaded: boolean;
 
   constructor(
     private router: Router,
@@ -27,6 +28,7 @@ export class ForgotPasswordComponent implements OnInit {
   ngOnInit() {
     this.passwordForm.buildForm(this.formBuilder);
     this.formControls.initializeControls(this.passwordForm);
+    this.isLoaded = true;
   }
 
   send() {

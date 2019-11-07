@@ -18,6 +18,7 @@ export class ChangePasswordComponent implements OnInit {
   formControls: ChangePasswordControls = new ChangePasswordControls();
   object: ChangePassword;
   userId: string;
+  isLoaded: boolean;
 
   constructor(
     private loginService: LoginService,
@@ -30,6 +31,7 @@ export class ChangePasswordComponent implements OnInit {
     this.passwordForm.buildForm(this.formBuilder);
     this.formControls.initializeControls(this.passwordForm);
     this.userId = localStorage.getItem('userId');
+    this.isLoaded = true;
   }
 
   changePassword() {
