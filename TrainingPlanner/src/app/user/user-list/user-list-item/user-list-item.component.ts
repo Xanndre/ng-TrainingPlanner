@@ -1,15 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { User } from 'src/app/models/User/User';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-list-item',
   templateUrl: './user-list-item.component.html',
   styleUrls: ['./user-list-item.component.css']
 })
-export class UserListItemComponent implements OnInit {
+export class UserListItemComponent {
+  @Input() user: User;
 
-  constructor() { }
+  constructor(private router: Router) {}
 
-  ngOnInit() {
+  manageCards() {
+    const id = this.user.id;
+    this.router.navigate([`/users/${id}/trainer_cards`]);
   }
-
 }

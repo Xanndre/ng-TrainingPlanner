@@ -61,5 +61,14 @@
     >
       Edit
     </button>
+    <button
+      *ngIf="isProfile"
+      mat-raised-button
+      color="primary"
+      class="btn-block btn-no-shadow float-right w-75"
+      (click)="editClub()"
+    >
+      Cards
+    </button>
   </div>
 </div>

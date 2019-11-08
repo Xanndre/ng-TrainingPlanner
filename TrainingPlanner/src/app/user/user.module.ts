@@ -15,6 +15,8 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { DeleteUserDialogComponent } from '../shared/delete-user-dialog/delete-user-dialog.component';
 import { UserListItemComponent } from './user-list/user-list-item/user-list-item.component';
 import { UserListComponent } from './user-list/user-list.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 const routes: Routes = [
   {
@@ -52,7 +54,9 @@ const routes: Routes = [
     MatInputModule,
     MatSelectModule,
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
+    NgbModule,
+    InfiniteScrollModule
   ],
   exports: [UserProfileComponent, UserListComponent],
   entryComponents: [DeleteUserDialogComponent]

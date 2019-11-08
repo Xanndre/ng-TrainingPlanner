@@ -1,3 +1,36 @@
-<p>
-  user-list-item works!
-</p>
+<div class="row">
+  <div class="col-3 tp-div">
+    <img
+      class="tp-image"
+      src="{{
+        user.profilePicture != null
+          ? user.profilePicture
+          : 'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png'
+      }}"
+      alt="Profile Picture"
+    />
+  </div>
+  <div class="col-9 tp-padd">
+    <div class="mb-3">
+      <h5 class="text-muted mt-1 tp-inline">
+        {{ user.firstName + ' ' + user.lastName }}
+      </h5>
+      <button
+        mat-raised-button
+        color="primary"
+        class="btn-block btn-no-shadow w-25 float-right tp-inline"
+        (click)="manageCards()"
+      >
+        Cards
+      </button>
+    </div>
+    <p class="text-muted mb-2" *ngIf="user.email != null">
+      <span><i class="fa fa-envelope" aria-hidden="true"></i></span>
+      {{ user.email }}
+    </p>
+    <p class="text-muted mb-2" *ngIf="user.city != null">
+      <span><i class="fa fa-home" aria-hidden="true"></i></span>
+      {{ user.city }}
+    </p>
+  </div>
+</div>
