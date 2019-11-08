@@ -63,7 +63,9 @@ export class PricelistTableComponent implements OnInit {
           id: pr.id,
           name: pr.name,
           validityPeriod: pr.validityPeriod,
+          unlimitedValidityPeriod: pr.unlimitedValidityPeriod,
           entries: pr.entries,
+          unlimitedEntries: pr.unlimitedEntries,
           price: pr.price
         });
       });
@@ -96,8 +98,12 @@ export class PricelistTableComponent implements OnInit {
     this.dataSource.push({
       id: rowObj.id !== undefined ? rowObj.id : this.counter++,
       name: rowObj.name,
-      validityPeriod: rowObj.validityPeriod,
-      entries: rowObj.entries,
+      validityPeriod: !rowObj.unlimitedValidityPeriod
+        ? rowObj.validityPeriod
+        : 0,
+      unlimitedValidityPeriod: rowObj.unlimitedValidityPeriod,
+      entries: !rowObj.unlimitedEntries ? rowObj.entries : 0,
+      unlimitedEntries: rowObj.unlimitedEntries,
       price: rowObj.price
     });
     this.table.renderRows();
@@ -108,9 +114,13 @@ export class PricelistTableComponent implements OnInit {
     this.dataSource = this.dataSource.filter(value => {
       if (value.id === rowObj.id) {
         value.name = rowObj.name;
-        value.validityPeriod = rowObj.validityPeriod;
+        value.validityPeriod = !rowObj.unlimitedValidityPeriod
+          ? rowObj.validityPeriod
+          : 0;
+        value.unlimitedValidityPeriod = rowObj.unlimitedValidityPeriod;
         value.price = rowObj.price;
-        value.entries = rowObj.entries;
+        value.entries = !rowObj.unlimitedEntries ? rowObj.entries : 0;
+        value.unlimitedEntries = rowObj.unlimitedEntries;
       }
       return true;
     });

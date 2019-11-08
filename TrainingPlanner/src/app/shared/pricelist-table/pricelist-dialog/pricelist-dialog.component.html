@@ -12,22 +12,43 @@
         maxlength="20"
       />
     </mat-form-field>
+    <mat-checkbox
+      color="primary"
+      class="text-muted mt-2"
+      [(ngModel)]="localData.unlimitedValidityPeriod"
+      >Unlimited validity period</mat-checkbox
+    >
     <mat-form-field class="tp-width">
       <input
         placeholder="Validity period"
-        matInput
+        type="number"
+        step="1"
         required
-        maxlength="10"
+        max="366"
+        min="1"
+        matInput
+        [disabled]="localData.unlimitedValidityPeriod"
         [(ngModel)]="localData.validityPeriod"
       />
+      <span matSuffix class="text-muted">days</span>
     </mat-form-field>
+    <mat-checkbox
+      color="primary"
+      class="text-muted"
+      [(ngModel)]="localData.unlimitedEntries"
+      >Unlimited entries</mat-checkbox
+    >
     <mat-form-field class="tp-width">
       <input
         placeholder="Entries"
+        type="number"
+        step="1"
+        required
+        max="1000"
+        min="1"
         matInput
         [(ngModel)]="localData.entries"
-        required
-        maxlength="20"
+        [disabled]="localData.unlimitedEntries"
       />
     </mat-form-field>
     <mat-form-field class="tp-width">
@@ -37,7 +58,7 @@
         step="0.01"
         required
         max="10000.00"
-        min="0"
+        min="0.00"
         matInput
         [(ngModel)]="localData.price"
       />
@@ -59,9 +80,9 @@
     (click)="doAction()"
     [disabled]="
       !localData.name ||
-      !localData.validityPeriod ||
-      !localData.entries ||
-      !localData.price ||
+      (!localData.validityPeriod && !localData.unlimitedValidityPeriod) ||
+      (!localData.entries && !localData.unlimitedEntries) ||
+      localData.price == undefined ||
       localData.price > 10000 ||
       localData.price < 0
     "

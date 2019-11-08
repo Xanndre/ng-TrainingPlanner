@@ -1,7 +1,9 @@
 export class Price {
   id: number;
   name: string;
-  validityPeriod: string;
-  entries: string;
+  validityPeriod: number;
+  entries: number;
   price: number;
+  unlimitedValidityPeriod: boolean;
+  unlimitedEntries: boolean;
 }

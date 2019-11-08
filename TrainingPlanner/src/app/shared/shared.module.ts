@@ -13,7 +13,11 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
 import { MatButtonModule } from '@angular/material/button';
 import { PricelistTableComponent } from './pricelist-table/pricelist-table.component';
-import { MatChipsModule, MatTableModule } from '@angular/material';
+import {
+  MatChipsModule,
+  MatTableModule,
+  MatCheckboxModule
+} from '@angular/material';
 import { PricelistDialogComponent } from './pricelist-table/pricelist-dialog/pricelist-dialog.component';
 import { SliderComponent } from './slider/slider.component';
 import { SliderItemDirective } from './slider/slider-item.directive';
@@ -57,6 +61,7 @@ import { ReviewDialogComponent } from './review-dialog/review-dialog.component';
     MatSelectModule,
     MatNativeDateModule,
     MatDialogModule,
+    MatCheckboxModule,
     MatButtonModule,
     NgbModule,
     NgxMaterialTimepickerModule
