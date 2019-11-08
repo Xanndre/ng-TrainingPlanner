@@ -40,4 +40,8 @@ export class ClubListItemComponent implements OnInit {
   doFavourite() {
     this.favouriteChange.emit(this.club);
   }
+
+  viewSales() {
+    this.router.navigate([`clubs/${this.club.id}/cards`]);
+  }
 }

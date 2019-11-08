@@ -85,3 +85,7 @@ html {
   background-color: #d80930;
   color: white;
 }
+
+.mat-tab-body-wrapper {
+  min-height: 500px;
+}

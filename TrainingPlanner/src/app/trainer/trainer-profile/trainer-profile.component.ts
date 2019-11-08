@@ -171,7 +171,7 @@ export class TrainerProfileComponent implements OnInit {
     });
   }
 
-  manageCards() {
-    this.router.navigate(['/users']);
+  viewSales() {
+    this.router.navigate([`trainers/${this.trainer.id}/cards`]);
   }
 }

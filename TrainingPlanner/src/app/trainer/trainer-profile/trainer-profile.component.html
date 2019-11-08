@@ -16,9 +16,9 @@
         mat-raised-button
         color="primary"
         class="btn-block btn-no-shadow w-25 float-right mt-2 tp-display"
-        (click)="manageCards()"
+        (click)="viewSales()"
       >
-        Manage cards
+        View sales
       </button>
       <form class="text-center p-5" [formGroup]="trainerForm.trainerForm">
         <h4 class="text-muted" *ngIf="!isTrainer; else editTitle">
