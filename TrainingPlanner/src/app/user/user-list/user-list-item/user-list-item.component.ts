@@ -1,19 +1,37 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { User } from 'src/app/models/User/User';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-user-list-item',
   templateUrl: './user-list-item.component.html',
   styleUrls: ['./user-list-item.component.css']
 })
-export class UserListItemComponent {
+export class UserListItemComponent implements OnInit {
   @Input() user: User;
 
-  constructor(private router: Router) {}
+  clubId: number;
+  trainerId: number;
+
+  constructor(private router: Router, private route: ActivatedRoute) {}
+
+  ngOnInit() {
+    this.clubId = parseInt(this.route.snapshot.paramMap.get('clubId'), 10);
+    this.trainerId = parseInt(
+      this.route.snapshot.paramMap.get('trainerId'),
+      10
+    );
+  }
 
   manageCards() {
-    const id = this.user.id;
-    this.router.navigate([`/users/${id}/trainer_cards`]);
+    if (!Number.isNaN(this.clubId)) {
+      this.router.navigate([
+        `/users/${this.user.id}/club_cards/clubs/${this.clubId}`
+      ]);
+    } else {
+      this.router.navigate([
+        `/users/${this.user.id}/trainer_cards/trainers/${this.trainerId}`
+      ]);
+    }
   }
 }

@@ -1,3 +1,51 @@
-<p>
-  trainer-card-list works!
-</p>
+<div class="full-width" *ngIf="isLoaded">
+  <div class="col-lg-3"></div>
+  <div
+    class="col-lg-6 mx-auto pb-4"
+    infinite-scroll
+    (scrolled)="onScrollDown()"
+  >
+    <div
+      class="row text-muted justify-content-center align-items-center mt-4"
+      *ngIf="cards.length == 0 && isTrainer && !isUser"
+    >
+      You haven't sold any cards yet.
+    </div>
+    <div
+      class="row text-muted justify-content-center align-items-center mt-4"
+      *ngIf="cards.length == 0 && isTrainer && isUser"
+    >
+      This user hasn't bought any of your cards yet.
+    </div>
+    <div
+      class="row text-muted justify-content-center align-items-center mt-4"
+      *ngIf="cards.length == 0 && !isTrainer && isUser"
+    >
+      You haven't bought any cards yet.
+    </div>
+    <div class="tp-right mt-4" *ngIf="isTrainer && !isUser">
+      <button
+        mat-raised-button
+        color="primary"
+        class="btn-block btn-no-shadow w-25"
+        (click)="goToUserList()"
+      >
+        Add Card
+      </button>
+    </div>
+    <div class="tp-right mt-4" *ngIf="isTrainer && isUser">
+      <button
+        mat-raised-button
+        color="primary"
+        class="btn-block btn-no-shadow w-25"
+        (click)="addCard()"
+      >
+        Add Card
+      </button>
+    </div>
+    <mat-card class="mt-4" *ngFor="let card of cards">
+      <app-trainer-card-list-item [card]="card"></app-trainer-card-list-item>
+    </mat-card>
+  </div>
+  <div class="col-lg-3"></div>
+</div>

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { ClubCardBase } from 'src/app/models/ClubStuff/ClubCard/ClubCardBase';
 
 @Component({
   selector: 'app-club-card-list-item',
@@ -6,10 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./club-card-list-item.component.css']
 })
 export class ClubCardListItemComponent implements OnInit {
+  @Input() card: ClubCardBase;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

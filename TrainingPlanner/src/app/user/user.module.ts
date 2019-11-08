@@ -30,7 +30,12 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'users',
+    path: 'clubs/:clubId/users',
+    component: UserListComponent,
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'trainers/:trainerId/users',
     component: UserListComponent,
     canActivate: [AuthGuardService]
   }

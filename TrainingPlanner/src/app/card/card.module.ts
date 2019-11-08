@@ -6,26 +6,38 @@ import { TrainerCardListComponent } from './trainer-card-list/trainer-card-list.
 import { TrainerCardListItemComponent } from './trainer-card-list/trainer-card-list-item/trainer-card-list-item.component';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuardService } from '../guards/AuthGuard.service';
+import { MatCardModule, MatButtonModule } from '@angular/material';
+import { CardListComponent } from './card-list/card-list.component';
 
 const routes: Routes = [
   {
-    path: 'users/:id/club_cards',
+    path: 'clubs/:clubId/cards',
     component: ClubCardListComponent,
+    data: { isUser: false, isClub: true },
     canActivate: [AuthGuardService]
   },
   {
-    path: 'users/:id/trainer_cards',
+    path: 'trainers/:trainerId/cards',
     component: TrainerCardListComponent,
+    data: { isUser: false, isTrainer: true },
     canActivate: [AuthGuardService]
   },
   {
-    path: 'clubs/:id/cards',
+    path: 'users/:id/club_cards/clubs/:clubId',
     component: ClubCardListComponent,
+    data: { isUser: true, isClub: true },
     canActivate: [AuthGuardService]
   },
   {
-    path: 'trainers/:id/cards',
+    path: 'users/:id/trainer_cards/trainers/:trainerId',
     component: TrainerCardListComponent,
+    data: { isUser: true, isTrainer: true },
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'profile/cards',
+    component: CardListComponent,
+    data: { isUser: true, isTrainer: false, isClub: false },
     canActivate: [AuthGuardService]
   }
 ];
@@ -35,9 +47,15 @@ const routes: Routes = [
     ClubCardListComponent,
     ClubCardListItemComponent,
     TrainerCardListComponent,
-    TrainerCardListItemComponent
+    TrainerCardListItemComponent,
+    CardListComponent
   ],
-  imports: [CommonModule, RouterModule.forChild(routes)],
-  exports: [ClubCardListComponent, TrainerCardListComponent]
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    MatCardModule,
+    MatButtonModule
+  ],
+  exports: [ClubCardListComponent, TrainerCardListComponent, CardListComponent]
 })
 export class CardModule {}
