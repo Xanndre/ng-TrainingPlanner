@@ -12,6 +12,7 @@ import { TrainerUpdate } from 'src/app/models/Trainer/TrainerUpdate';
 import { MatDialog } from '@angular/material';
 import { DataTransferService } from 'src/app/services/DataTransfer.service';
 import { DeleteTrainerDialogComponent } from 'src/app/shared/delete-trainer-dialog/delete-trainer-dialog.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-trainer-profile',
@@ -39,7 +40,8 @@ export class TrainerProfileComponent implements OnInit {
     private trainerService: TrainerService,
     private dataTransferService: DataTransferService,
     private formBuilder: FormBuilder,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -167,5 +169,9 @@ export class TrainerProfileComponent implements OnInit {
       data: { errorMsg: error },
       width: '400px'
     });
+  }
+
+  manageCards() {
+    this.router.navigate(['/users']);
   }
 }

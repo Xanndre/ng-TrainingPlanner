@@ -13,6 +13,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthGuardService } from '../guards/AuthGuard.service';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { DeleteUserDialogComponent } from '../shared/delete-user-dialog/delete-user-dialog.component';
+import { UserListItemComponent } from './user-list/user-list-item/user-list-item.component';
+import { UserListComponent } from './user-list/user-list.component';
 
 const routes: Routes = [
   {
@@ -24,11 +26,20 @@ const routes: Routes = [
     path: '',
     redirectTo: 'profile/user',
     pathMatch: 'full'
+  },
+  {
+    path: 'users',
+    component: UserListComponent,
+    canActivate: [AuthGuardService]
   }
 ];
 
 @NgModule({
-  declarations: [UserProfileComponent],
+  declarations: [
+    UserProfileComponent,
+    UserListComponent,
+    UserListItemComponent
+  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -43,7 +54,7 @@ const routes: Routes = [
     MatButtonModule,
     MatCardModule
   ],
-  exports: [UserProfileComponent],
+  exports: [UserProfileComponent, UserListComponent],
   entryComponents: [DeleteUserDialogComponent]
 })
 export class UserModule {}
