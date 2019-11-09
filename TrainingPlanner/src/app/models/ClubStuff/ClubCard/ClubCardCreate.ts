@@ -7,6 +7,7 @@ export class ClubCardCreate {
   price: number;
   entriesLeft: number;
   clubName: string;
+  userName: string;
   unlimitedValidityPeriod: boolean;
   unlimitedEntries: boolean;
 }

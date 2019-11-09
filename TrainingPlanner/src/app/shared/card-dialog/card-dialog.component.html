@@ -1,6 +1,11 @@
 <div *ngIf="isLoaded">
   <h2 mat-dialog-title class="text-muted">{{ action + ' Card' }}</h2>
-  <div *ngIf="action != 'Delete' && isLoaded; else elseTemplate">
+  <div
+    *ngIf="
+      action != 'Delete' && action != 'Deactivate' && isLoaded;
+      else elseTemplate
+    "
+  >
     <mat-form-field>
       <mat-label>Choose card</mat-label>
       <mat-select class="text-muted" [(ngModel)]="trainerCard.name">
@@ -15,34 +20,19 @@
     </mat-form-field>
   </div>
   <ng-template #elseTemplate>
-    <div class="text-muted tp-padd">
+    <div class="text-muted tp-padd" *ngIf="action === 'Delete'">
       Are you sure to delete <b>{{ trainerCard.name }}</b
+      >?
+    </div>
+    <div class="text-muted tp-padd" *ngIf="action === 'Deactivate'">
+      Are you sure to deactivate <b>{{ trainerCard.name }}</b
       >?
     </div>
   </ng-template>
   <div mat-dialog-actions class="float-right">
     <button
-      *ngIf="action === 'Add'"
       mat-raised-button
-      (click)="addCard()"
-      color="primary"
-      class="btn-no-shadow"
-    >
-      {{ action }}
-    </button>
-    <button
-      *ngIf="action === 'Edit'"
-      mat-raised-button
-      (click)="editCard()"
-      color="primary"
-      class="btn-no-shadow"
-    >
-      {{ action }}
-    </button>
-    <button
-      *ngIf="action === 'Delete'"
-      mat-raised-button
-      (click)="deleteCard()"
+      (click)="doAction()"
       color="primary"
       class="btn-no-shadow"
     >

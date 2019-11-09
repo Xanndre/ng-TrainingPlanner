@@ -42,4 +42,18 @@ export class TrainerCardListItemComponent implements OnInit {
       width: '228px'
     });
   }
+
+  deactivateCard() {
+    this.dialog.open(CardDialogComponent, {
+      data: {
+        userId: this.userId,
+        trainerId: this.trainerId,
+        action: 'Deactivate',
+        id: this.card.id
+      },
+      width: '400px'
+    });
+  }
+
+  viewDetails() {}
 }

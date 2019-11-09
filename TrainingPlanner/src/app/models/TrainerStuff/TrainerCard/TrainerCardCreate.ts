@@ -7,6 +7,7 @@ export class TrainerCardCreate {
   price: number;
   entriesLeft: number;
   trainerName: string;
+  userName: string;
   unlimitedValidityPeriod: boolean;
   unlimitedEntries: boolean;
 }
