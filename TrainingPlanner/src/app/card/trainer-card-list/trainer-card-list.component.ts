@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { TrainerCardBase } from 'src/app/models/TrainerStuff/TrainerCard/TrainerCardBase';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CardService } from 'src/app/services/Card.service';
+import { MatDialog } from '@angular/material';
+import { CardDialogComponent } from 'src/app/shared/card-dialog/card-dialog.component';
 
 @Component({
   selector: 'app-trainer-card-list',
@@ -26,7 +28,8 @@ export class TrainerCardListComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private cardService: CardService,
-    private router: Router
+    private router: Router,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -71,6 +74,9 @@ export class TrainerCardListComponent implements OnInit {
   }
 
   addCard() {
-    console.log('Tu będzie dodawanie karty');
+    this.dialog.open(CardDialogComponent, {
+      data: { userId: this.userId, trainerId: this.trainerId, action: 'Add' },
+      width: '228px'
+    });
   }
 }

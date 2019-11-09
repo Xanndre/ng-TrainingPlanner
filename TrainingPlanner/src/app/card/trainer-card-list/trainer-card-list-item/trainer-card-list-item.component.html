@@ -1,3 +1,21 @@
 <div class="row">
   <div>TRAINER CARD</div>
+  <button
+    *ngIf="isUser && isTrainer"
+    mat-raised-button
+    color="primary"
+    class="btn-block btn-no-shadow w-25"
+    (click)="editCard()"
+  >
+    Edit
+  </button>
+  <button
+    *ngIf="isUser && isTrainer"
+    mat-raised-button
+    color="warn"
+    class="btn-block btn-no-shadow w-25"
+    (click)="deleteCard()"
+  >
+    Delete
+  </button>
 </div>

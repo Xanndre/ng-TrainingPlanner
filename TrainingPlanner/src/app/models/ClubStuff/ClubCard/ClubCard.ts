@@ -1,9 +1,11 @@
 import { ClubCardBase } from './ClubCardBase';
 
 export class ClubCard extends ClubCardBase {
-  validityPeriod: string;
-  entries: string;
+  validityPeriod: number;
+  entries: number;
   price: number;
   purchaseDate: Date;
-  entriesLeft: string;
+  entriesLeft: number;
+  unlimitedValidityPeriod: boolean;
+  unlimitedEntries: boolean;
 }

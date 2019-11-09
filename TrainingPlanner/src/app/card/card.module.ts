@@ -8,6 +8,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuardService } from '../guards/AuthGuard.service';
 import { MatCardModule, MatButtonModule } from '@angular/material';
 import { CardListComponent } from './card-list/card-list.component';
+import { CardDialogComponent } from '../shared/card-dialog/card-dialog.component';
 
 const routes: Routes = [
   {
@@ -56,6 +57,7 @@ const routes: Routes = [
     MatCardModule,
     MatButtonModule
   ],
-  exports: [ClubCardListComponent, TrainerCardListComponent, CardListComponent]
+  exports: [ClubCardListComponent, TrainerCardListComponent, CardListComponent],
+  entryComponents: [CardDialogComponent]
 })
 export class CardModule {}

@@ -2,9 +2,11 @@ export class TrainerCardCreate {
   trainerId: number;
   userId: number;
   name: string;
-  validityPeriod: string;
-  entries: string;
+  validityPeriod: number;
+  entries: number;
   price: number;
-  entriesLeft: string;
+  entriesLeft: number;
   trainerName: string;
+  unlimitedValidityPeriod: boolean;
+  unlimitedEntries: boolean;
 }

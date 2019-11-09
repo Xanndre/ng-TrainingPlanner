@@ -1,9 +1,11 @@
 import { TrainerCardBase } from './TrainerCardBase';
 
 export class TrainerCard extends TrainerCardBase {
-  validityPeriod: string;
-  entries: string;
+  validityPeriod: number;
+  entries: number;
   price: number;
   purchaseDate: Date;
-  entriesLeft: string;
+  entriesLeft: number;
+  unlimitedValidityPeriod: boolean;
+  unlimitedEntries: boolean;
 }

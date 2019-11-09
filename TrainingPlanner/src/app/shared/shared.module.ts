@@ -30,6 +30,7 @@ import { DeleteClubDialogComponent } from './delete-club-dialog/delete-club-dial
 import { DeleteUserDialogComponent } from './delete-user-dialog/delete-user-dialog.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReviewDialogComponent } from './review-dialog/review-dialog.component';
+import { CardDialogComponent } from './card-dialog/card-dialog.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { ReviewDialogComponent } from './review-dialog/review-dialog.component';
     WorkingHoursTableComponent,
     PricelistDialogComponent,
     SliderComponent,
-    SliderItemDirective
+    SliderItemDirective,
+    CardDialogComponent
   ],
   imports: [
     CommonModule,
@@ -80,7 +82,8 @@ import { ReviewDialogComponent } from './review-dialog/review-dialog.component';
     PricelistTableComponent,
     WorkingHoursTableComponent,
     SliderComponent,
-    SliderItemDirective
+    SliderItemDirective,
+    CardDialogComponent
   ],
   entryComponents: [PricelistDialogComponent]
 })

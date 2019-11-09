@@ -2,9 +2,11 @@ export class ClubCardCreate {
   clubId: number;
   userId: number;
   name: string;
-  validityPeriod: string;
-  entries: string;
+  validityPeriod: number;
+  entries: number;
   price: number;
-  entriesLeft: string;
+  entriesLeft: number;
   clubName: string;
+  unlimitedValidityPeriod: boolean;
+  unlimitedEntries: boolean;
 }
