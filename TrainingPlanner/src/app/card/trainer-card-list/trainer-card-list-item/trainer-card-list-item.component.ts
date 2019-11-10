@@ -18,11 +18,21 @@ export class TrainerCardListItemComponent implements OnInit {
   isLoaded: boolean;
 
   date: string;
+  inactive = false;
 
   constructor(private dialog: MatDialog) {}
 
   ngOnInit() {
     this.date = new Date(this.card.expirationDate).toLocaleDateString();
+    const expDate = new Date(this.card.expirationDate);
+    const now = new Date(Date.now());
+
+    if (
+      this.card.expirationDate === null ||
+      (expDate.getTime() <= now.getTime() && !this.card.unlimitedValidityPeriod)
+    ) {
+      this.inactive = true;
+    }
     this.isLoaded = true;
   }
 

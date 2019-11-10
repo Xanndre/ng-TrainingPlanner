@@ -35,8 +35,12 @@ export class ClubCardListComponent implements OnInit {
   ngOnInit() {
     this.isUser = this.route.snapshot.data.isUser;
     this.isClub = this.route.snapshot.data.isClub;
-    this.clubId = parseInt(this.route.snapshot.paramMap.get('clubId'), 10);
-    this.userId = this.route.snapshot.paramMap.get('id');
+    if (this.route.snapshot.routeConfig.path === 'profile/cards') {
+      this.userId = localStorage.getItem('userId');
+    } else {
+      this.clubId = parseInt(this.route.snapshot.paramMap.get('clubId'), 10);
+      this.userId = this.route.snapshot.paramMap.get('id');
+    }
     this.getCards(1, true);
   }
 

@@ -15,9 +15,26 @@ export class ClubCardListItemComponent implements OnInit {
   @Input() userId: number;
   @Input() clubId: number;
 
+  isLoaded: boolean;
+
+  date: string;
+  inactive = false;
+
   constructor(private dialog: MatDialog) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.date = new Date(this.card.expirationDate).toLocaleDateString();
+    const expDate = new Date(this.card.expirationDate);
+    const now = new Date(Date.now());
+
+    if (
+      this.card.expirationDate === null ||
+      (expDate.getTime() <= now.getTime() && !this.card.unlimitedValidityPeriod)
+    ) {
+      this.inactive = true;
+    }
+    this.isLoaded = true;
+  }
 
   deleteCard() {
     this.dialog.open(ClubCardDialogComponent, {

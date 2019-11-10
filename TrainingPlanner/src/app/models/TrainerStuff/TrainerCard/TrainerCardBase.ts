@@ -4,4 +4,5 @@ export class TrainerCardBase {
   name: string;
   expirationDate?: Date;
   userName: string;
+  unlimitedValidityPeriod: boolean;
 }

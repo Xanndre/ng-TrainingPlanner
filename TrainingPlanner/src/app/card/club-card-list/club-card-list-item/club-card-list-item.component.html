@@ -1,38 +1,91 @@
 <div class="row">
-  <div>CLUB CARD</div>
-  <button
-    *ngIf="isUser && isClub"
-    mat-raised-button
-    color="primary"
-    class="btn-block btn-no-shadow w-25"
-    (click)="editCard()"
+  <div
+    *ngIf="isClub && !isUser"
+    class="col tp-vcenter"
+    [ngClass]="{
+      active: !inactive,
+      inactive: inactive
+    }"
   >
-    Edit
-  </button>
-  <button
-    *ngIf="isUser && isClub"
-    mat-raised-button
-    color="warn"
-    class="btn-block btn-no-shadow w-25"
-    (click)="deleteCard()"
+    {{ card.userName }}
+  </div>
+  <div
+    *ngIf="!isClub && isUser"
+    class="col tp-vcenter"
+    [ngClass]="{
+      active: !inactive,
+      inactive: inactive
+    }"
   >
-    Delete
-  </button>
-  <button
-    *ngIf="isUser && isClub"
-    mat-raised-button
-    color="primary"
-    class="btn-block btn-no-shadow w-25"
-    (click)="deactivateCard()"
+    {{ card.clubName }}
+  </div>
+  <div
+    class="col tp-vcenter"
+    [ngClass]="{
+      active: !inactive,
+      inactive: inactive
+    }"
   >
-    Deactivate
-  </button>
-  <button
-    mat-raised-button
-    color="warn"
-    class="btn-block btn-no-shadow w-25"
-    (click)="viewDetails()"
+    {{ card.name }}
+  </div>
+  <div
+    class="col tp-vcenter"
+    [ngClass]="{
+      active: !inactive,
+      inactive: inactive
+    }"
   >
-    View details
-  </button>
+    {{
+      !card.expirationDate || card.unlimitedValidityPeriod ? 'unlimited' : date
+    }}
+  </div>
+  <div class="col">
+    <button
+      mat-raised-button
+      color="primary"
+      class="btn-block btn-no-shadow"
+      [ngClass]="{
+        'active-btn': !inactive,
+        'inactive-btn': inactive
+      }"
+      (click)="viewDetails()"
+    >
+      View details
+    </button>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <button
+      *ngIf="isUser && isClub"
+      mat-raised-button
+      color="primary"
+      class="btn-block btn-no-shadow"
+      (click)="editCard()"
+    >
+      Edit
+    </button>
+  </div>
+  <div class="col">
+    <button
+      *ngIf="isUser && isClub"
+      mat-raised-button
+      color="warn"
+      class="btn-block btn-no-shadow"
+      (click)="deleteCard()"
+    >
+      Delete
+    </button>
+  </div>
+  <div class="col">
+    <button
+      *ngIf="isUser && isClub"
+      mat-raised-button
+      color="primary"
+      class="btn-block btn-no-shadow"
+      (click)="deactivateCard()"
+    >
+      Deactivate
+    </button>
+  </div>
 </div>

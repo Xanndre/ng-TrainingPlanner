@@ -4,4 +4,5 @@ export class ClubCardBase {
   name: string;
   expirationDate: Date;
   userName: string;
+  unlimitedValidityPeriod: boolean;
 }

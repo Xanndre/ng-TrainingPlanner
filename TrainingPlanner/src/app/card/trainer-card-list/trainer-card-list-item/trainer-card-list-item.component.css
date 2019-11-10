@@ -4,3 +4,21 @@
   justify-content: center;
   flex-wrap: wrap;
 }
+
+.active {
+  color: #6c757d;
+}
+
+.inactive {
+  color: #c2c1c1;
+}
+
+.active-btn {
+  background-color: #3f51b5;
+  color: white;
+}
+
+.inactive-btn {
+  background-color: #a0a9de;
+  color: white;
+}

@@ -1,19 +1,53 @@
 <div class="row">
-  <div *ngIf="isTrainer && !isUser" class="col text-muted tp-vcenter">
+  <div
+    *ngIf="isTrainer && !isUser"
+    class="col tp-vcenter"
+    [ngClass]="{
+      active: !inactive,
+      inactive: inactive
+    }"
+  >
     {{ card.userName }}
   </div>
-  <div *ngIf="!isTrainer && isUser" class="col text-muted tp-vcenter">
+  <div
+    *ngIf="!isTrainer && isUser"
+    class="col tp-vcenter"
+    [ngClass]="{
+      active: !inactive,
+      inactive: inactive
+    }"
+  >
     {{ card.trainerName }}
   </div>
-  <div class="col text-muted tp-vcenter">{{ card.name }}</div>
-  <div class="col text-muted tp-vcenter">
-    {{ card.expirationDate ? date : 'unlimited' }}
+  <div
+    class="col tp-vcenter"
+    [ngClass]="{
+      active: !inactive,
+      inactive: inactive
+    }"
+  >
+    {{ card.name }}
+  </div>
+  <div
+    class="col tp-vcenter"
+    [ngClass]="{
+      active: !inactive,
+      inactive: inactive
+    }"
+  >
+    {{
+      !card.expirationDate || card.unlimitedValidityPeriod ? 'unlimited' : date
+    }}
   </div>
   <div class="col">
     <button
       mat-raised-button
       color="primary"
       class="btn-block btn-no-shadow"
+      [ngClass]="{
+        'active-btn': !inactive,
+        'inactive-btn': inactive
+      }"
       (click)="viewDetails()"
     >
       View details
