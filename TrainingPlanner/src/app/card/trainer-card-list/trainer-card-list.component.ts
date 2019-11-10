@@ -19,7 +19,7 @@ export class TrainerCardListComponent implements OnInit {
 
   totalPages: number;
   totalCount: number;
-  pageSize = 3;
+  pageSize = 5;
   currentPage: number;
 
   userId: string;
@@ -35,11 +35,15 @@ export class TrainerCardListComponent implements OnInit {
   ngOnInit() {
     this.isUser = this.route.snapshot.data.isUser;
     this.isTrainer = this.route.snapshot.data.isTrainer;
-    this.trainerId = parseInt(
-      this.route.snapshot.paramMap.get('trainerId'),
-      10
-    );
-    this.userId = this.route.snapshot.paramMap.get('id');
+    if (this.route.snapshot.routeConfig.path === 'profile/cards') {
+      this.userId = localStorage.getItem('userId');
+    } else {
+      this.trainerId = parseInt(
+        this.route.snapshot.paramMap.get('trainerId'),
+        10
+      );
+      this.userId = this.route.snapshot.paramMap.get('id');
+    }
     this.getCards(1, true);
   }
 

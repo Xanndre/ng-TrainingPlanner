@@ -6,12 +6,18 @@ import { TrainerCardListComponent } from './trainer-card-list/trainer-card-list.
 import { TrainerCardListItemComponent } from './trainer-card-list/trainer-card-list-item/trainer-card-list-item.component';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuardService } from '../guards/AuthGuard.service';
-import { MatCardModule, MatButtonModule } from '@angular/material';
+import {
+  MatCardModule,
+  MatButtonModule,
+  MatTabsModule
+} from '@angular/material';
 import { CardListComponent } from './card-list/card-list.component';
 import { TrainerCardDialogComponent } from '../shared/trainer-card-dialog/trainer-card-dialog.component';
 import { ClubCardDialogComponent } from '../shared/club-card-dialog/club-card-dialog.component';
 import { ClubCardGuardService } from '../guards/ClubCardGuard.service';
 import { TrainerCardGuardService } from '../guards/TrainerCardGuard.service';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 const routes: Routes = [
   {
@@ -58,7 +64,10 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    MatTabsModule,
+    NgbModule,
+    InfiniteScrollModule
   ],
   exports: [ClubCardListComponent, TrainerCardListComponent, CardListComponent],
   entryComponents: [TrainerCardDialogComponent, ClubCardDialogComponent]

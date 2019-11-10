@@ -63,6 +63,19 @@
         Add Card
       </button>
     </div>
+    <mat-card class="mt-4" *ngIf="cards.length != 0">
+      <div class="row">
+        <div class="col text-muted tp-vcenter" *ngIf="isClub && !isUser">
+          User
+        </div>
+        <div class="col text-muted tp-vcenter" *ngIf="!isClub && isUser">
+          Club
+        </div>
+        <div class="col text-muted tp-vcenter">Card</div>
+        <div class="col text-muted tp-vcenter">Expiration date</div>
+        <div class="col text-muted tp-vcenter">Details</div>
+      </div>
+    </mat-card>
     <mat-card class="mt-4" *ngFor="let card of cards">
       <app-club-card-list-item
         [card]="card"

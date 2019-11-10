@@ -12,7 +12,7 @@ export class UserListComponent implements OnInit {
 
   totalPages: number;
   totalCount: number;
-  pageSize = 3;
+  pageSize = 5;
   currentPage: number;
 
   isLoaded = false;

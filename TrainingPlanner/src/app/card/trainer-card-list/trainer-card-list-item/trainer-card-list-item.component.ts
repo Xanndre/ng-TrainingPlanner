@@ -15,9 +15,16 @@ export class TrainerCardListItemComponent implements OnInit {
   @Input() userId: number;
   @Input() trainerId: number;
 
+  isLoaded: boolean;
+
+  date: string;
+
   constructor(private dialog: MatDialog) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.date = new Date(this.card.expirationDate).toLocaleDateString();
+    this.isLoaded = true;
+  }
 
   deleteCard() {
     this.dialog.open(TrainerCardDialogComponent, {
