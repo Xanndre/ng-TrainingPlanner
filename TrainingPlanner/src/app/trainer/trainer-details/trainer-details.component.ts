@@ -25,6 +25,7 @@ export class TrainerDetailsComponent implements OnInit {
     this.trainerId = parseInt(this.route.snapshot.paramMap.get('id'), 10);
     this.trainerService.getTrainer(this.trainerId, true).subscribe(response => {
       this.trainer = response;
+      this.trainer.priceList.sort((a, b) => a.name.localeCompare(b.name));
       this.trainer.sports.forEach(s => {
         if (s === this.trainer.sports[this.trainer.sports.length - 1]) {
           this.sports += s.sport.name;

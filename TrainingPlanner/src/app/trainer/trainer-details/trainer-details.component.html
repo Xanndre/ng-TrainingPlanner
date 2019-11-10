@@ -101,7 +101,7 @@
               {{
                 !element.unlimitedValidityPeriod
                   ? element.validityPeriod + ' days'
-                  : '-'
+                  : 'unlimited'
               }}
             </td>
           </ng-container>
@@ -115,7 +115,7 @@
               class="text-muted tp-center-align"
               *matCellDef="let element"
             >
-              {{ !element.unlimitedEntries ? element.entries : '-' }}
+              {{ !element.unlimitedEntries ? element.entries : 'unlimited' }}
             </td>
           </ng-container>
 

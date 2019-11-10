@@ -24,7 +24,9 @@
     </th>
     <td mat-cell class="text-muted" *matCellDef="let element">
       {{
-        element.validityPeriod !== 0 ? element.validityPeriod + ' days' : '-'
+        element.validityPeriod !== 0
+          ? element.validityPeriod + ' days'
+          : 'unlimited'
       }}
     </td>
   </ng-container>
@@ -34,7 +36,7 @@
       Entries
     </th>
     <td mat-cell class="text-muted" *matCellDef="let element">
-      {{ element.entries !== 0 ? element.entries : '-' }}
+      {{ element.entries !== 0 ? element.entries : 'unlimited' }}
     </td>
   </ng-container>
 

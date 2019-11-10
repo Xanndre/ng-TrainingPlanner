@@ -70,6 +70,7 @@ export class PricelistTableComponent implements OnInit {
         });
       });
     }
+    this.dataSource.sort((a, b) => a.name.localeCompare(b.name));
     this.table.renderRows();
     this.isLoaded = true;
   }

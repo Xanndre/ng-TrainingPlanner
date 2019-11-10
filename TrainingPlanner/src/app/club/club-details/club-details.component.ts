@@ -48,6 +48,7 @@ export class ClubDetailsComponent implements OnInit {
       this.club.pictures.sort(
         (pic1, pic2) => pic1.displayOrder - pic2.displayOrder
       );
+      this.club.priceList.sort((a, b) => a.name.localeCompare(b.name));
       this.pictures = this.club.pictures.slice(1, this.club.pictures.length);
       this.isLoaded = true;
     });

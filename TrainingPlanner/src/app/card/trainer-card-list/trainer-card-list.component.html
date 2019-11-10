@@ -23,7 +23,10 @@
     >
       You haven't bought any cards yet.
     </div>
-    <div class="tp-right mt-4" *ngIf="isTrainer && !isUser">
+    <div
+      class="tp-right mt-4"
+      *ngIf="isTrainer && !isUser && cards.length != 0"
+    >
       <button
         mat-raised-button
         color="primary"
@@ -33,7 +36,33 @@
         Add Card
       </button>
     </div>
-    <div class="tp-right mt-4" *ngIf="isTrainer && isUser">
+    <div
+      class="tp-center mt-4"
+      *ngIf="isTrainer && !isUser && cards.length == 0"
+    >
+      <button
+        mat-raised-button
+        color="primary"
+        class="btn-block btn-no-shadow w-25"
+        (click)="goToUserList()"
+      >
+        Add Card
+      </button>
+    </div>
+    <div class="tp-right mt-4" *ngIf="isTrainer && isUser && cards.length != 0">
+      <button
+        mat-raised-button
+        color="primary"
+        class="btn-block btn-no-shadow w-25"
+        (click)="addCard()"
+      >
+        Add Card
+      </button>
+    </div>
+    <div
+      class="tp-center mt-4"
+      *ngIf="isTrainer && isUser && cards.length == 0"
+    >
       <button
         mat-raised-button
         color="primary"
