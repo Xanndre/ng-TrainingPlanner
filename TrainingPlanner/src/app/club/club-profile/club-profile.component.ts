@@ -17,6 +17,7 @@ import { ClubTrainer } from 'src/app/models/ClubStuff/ClubTrainer';
 import { ClubCreate } from 'src/app/models/Club/ClubCreate';
 import { DataTransferService } from 'src/app/services/DataTransfer.service';
 import { DeleteClubDialogComponent } from 'src/app/shared/delete-club-dialog/delete-club-dialog.component';
+import { ErrorDialogComponent } from 'src/app/shared/error-dialog/error-dialog.component';
 
 @Component({
   selector: 'app-club-profile',
@@ -100,13 +101,20 @@ export class ClubProfileComponent implements OnInit {
 
   deleteClubAccount() {
     this.dataTransferService.setClubId(this.club.id);
-    this.showError(
+    this.showDeleteError(
       'Do you really want to delete this club profile? This process cannot be undone.'
     );
   }
 
-  showError(error: string): void {
+  showDeleteError(error: string): void {
     this.dialog.open(DeleteClubDialogComponent, {
+      data: { errorMsg: error },
+      width: '400px'
+    });
+  }
+
+  showError(error: string): void {
+    this.dialog.open(ErrorDialogComponent, {
       data: { errorMsg: error },
       width: '400px'
     });
@@ -186,7 +194,12 @@ export class ClubProfileComponent implements OnInit {
       p.clubId = this.clubUpdate.id;
       p.id = undefined;
     });
-    this.clubService.updateClub(this.clubUpdate).subscribe(() => {});
+    this.clubService.updateClub(this.clubUpdate).subscribe(
+      () => {},
+      () => {
+        this.showError('Invalid club profile edition attempt.');
+      }
+    );
     this.beforeChanges = JSON.parse(JSON.stringify(this.club));
     this.clubForm.clubForm.disable();
   }
@@ -222,9 +235,14 @@ export class ClubProfileComponent implements OnInit {
       activities: this.activities,
       pictures: this.pictures
     };
-    this.clubService.createClub(this.clubCreate).subscribe(() => {
-      this.router.navigate(['profile/clubs']);
-    });
+    this.clubService.createClub(this.clubCreate).subscribe(
+      () => {
+        this.router.navigate(['profile/clubs']);
+      },
+      () => {
+        this.showError('Invalid club profile creation attempt.');
+      }
+    );
   }
 
   receivePriceList($event) {

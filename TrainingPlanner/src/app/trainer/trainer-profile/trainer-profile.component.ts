@@ -13,6 +13,7 @@ import { MatDialog } from '@angular/material';
 import { DataTransferService } from 'src/app/services/DataTransfer.service';
 import { DeleteTrainerDialogComponent } from 'src/app/shared/delete-trainer-dialog/delete-trainer-dialog.component';
 import { Router } from '@angular/router';
+import { ErrorDialogComponent } from 'src/app/shared/error-dialog/error-dialog.component';
 
 @Component({
   selector: 'app-trainer-profile',
@@ -81,9 +82,14 @@ export class TrainerProfileComponent implements OnInit {
           sports: this.sports,
           priceList: this.priceList
         };
-        this.trainerService.createTrainer(this.trainerCreate).subscribe(() => {
-          window.location.reload();
-        });
+        this.trainerService.createTrainer(this.trainerCreate).subscribe(
+          () => {
+            window.location.reload();
+          },
+          () => {
+            this.showError('Invalid trainer profile creation attempt.');
+          }
+        );
       });
   }
 
@@ -135,9 +141,13 @@ export class TrainerProfileComponent implements OnInit {
           p.trainerId = this.trainerUpdate.id;
           p.id = undefined;
         });
-        this.trainerService
-          .updateTrainer(this.trainerUpdate)
-          .subscribe(() => {});
+        this.trainerService.updateTrainer(this.trainerUpdate).subscribe(
+          () => {},
+          () => {
+            console.log('blad');
+            this.showError('Invalid trainer profile edition attempt.');
+          }
+        );
         this.beforeChanges = JSON.parse(JSON.stringify(this.trainer));
         this.trainerForm.trainerForm.disable();
       });
@@ -159,12 +169,12 @@ export class TrainerProfileComponent implements OnInit {
 
   deleteTrainerAccount() {
     this.dataTransferService.setTrainerId(this.trainer.id);
-    this.showError(
+    this.showDeleteError(
       'Do you really want to delete this trainer profile? This process cannot be undone.'
     );
   }
 
-  showError(error: string): void {
+  showDeleteError(error: string): void {
     this.dialog.open(DeleteTrainerDialogComponent, {
       data: { errorMsg: error },
       width: '400px'
@@ -173,5 +183,12 @@ export class TrainerProfileComponent implements OnInit {
 
   viewSales() {
     this.router.navigate([`trainers/${this.trainer.id}/cards`]);
+  }
+
+  showError(error: string): void {
+    this.dialog.open(ErrorDialogComponent, {
+      data: { errorMsg: error },
+      width: '400px'
+    });
   }
 }

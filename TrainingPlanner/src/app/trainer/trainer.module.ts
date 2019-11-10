@@ -19,6 +19,7 @@ import { TrainerReviewListComponent } from './trainer-review-list/trainer-review
 import { TrainerReviewListItemComponent } from './trainer-review-list/trainer-review-list-item/trainer-review-list-item.component';
 import { ReviewDialogComponent } from '../shared/review-dialog/review-dialog.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ErrorDialogComponent } from '../shared/error-dialog/error-dialog.component';
 
 const routes: Routes = [
   {
@@ -70,6 +71,10 @@ const routes: Routes = [
     TrainerDetailsComponent,
     TrainerReviewListComponent
   ],
-  entryComponents: [DeleteTrainerDialogComponent, ReviewDialogComponent]
+  entryComponents: [
+    DeleteTrainerDialogComponent,
+    ReviewDialogComponent,
+    ErrorDialogComponent
+  ]
 })
 export class TrainerModule {}

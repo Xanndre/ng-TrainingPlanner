@@ -25,6 +25,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ClubReviewListComponent } from './club-review-list/club-review-list.component';
 import { ClubReviewListItemComponent } from './club-review-list/club-review-list-item/club-review-list-item.component';
 import { ReviewDialogComponent } from '../shared/review-dialog/review-dialog.component';
+import { ErrorDialogComponent } from '../shared/error-dialog/error-dialog.component';
 
 const routes: Routes = [
   {
@@ -100,7 +101,8 @@ const routes: Routes = [
     ClubTrainerDialogComponent,
     ClubActivityDialogComponent,
     ReviewDialogComponent,
-    DeleteClubDialogComponent
+    DeleteClubDialogComponent,
+    ErrorDialogComponent
   ]
 })
 export class ClubModule {}
