@@ -64,7 +64,13 @@
       </button>
     </div>
     <mat-card class="mt-4" *ngFor="let card of cards">
-      <app-club-card-list-item [card]="card"></app-club-card-list-item>
+      <app-club-card-list-item
+        [card]="card"
+        [isUser]="isUser"
+        [isClub]="isClub"
+        [userId]="userId"
+        [clubId]="clubId"
+      ></app-club-card-list-item>
     </mat-card>
   </div>
   <div class="col-lg-3"></div>

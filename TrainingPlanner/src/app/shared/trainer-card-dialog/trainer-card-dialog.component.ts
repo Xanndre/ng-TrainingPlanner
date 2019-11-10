@@ -1,22 +1,21 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { TrainerService } from 'src/app/services/Trainer.service';
-import { ClubService } from 'src/app/services/Club.service';
-import { CardService } from 'src/app/services/Card.service';
 import { TrainerPrice } from 'src/app/models/TrainerStuff/TrainerPrice';
-import { TrainerCardCreate } from 'src/app/models/TrainerStuff/TrainerCard/TrainerCardCreate';
 import { Trainer } from 'src/app/models/Trainer/Trainer';
-import { TrainerCard } from 'src/app/models/TrainerStuff/TrainerCard/TrainerCard';
-import { TrainerCardUpdate } from 'src/app/models/TrainerStuff/TrainerCard/TrainerCardUpdate';
-import { UserService } from 'src/app/services/User.service';
 import { User } from 'src/app/models/User/User';
+import { TrainerCardCreate } from 'src/app/models/TrainerStuff/TrainerCard/TrainerCardCreate';
+import { TrainerCardUpdate } from 'src/app/models/TrainerStuff/TrainerCard/TrainerCardUpdate';
+import { TrainerCard } from 'src/app/models/TrainerStuff/TrainerCard/TrainerCard';
+import { TrainerService } from 'src/app/services/Trainer.service';
+import { UserService } from 'src/app/services/User.service';
+import { CardService } from 'src/app/services/Card.service';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
-  selector: 'app-card-dialog',
-  templateUrl: './card-dialog.component.html',
-  styleUrls: ['./card-dialog.component.css']
+  selector: 'app-trainer-card-dialog',
+  templateUrl: './trainer-card-dialog.component.html',
+  styleUrls: ['./trainer-card-dialog.component.css']
 })
-export class CardDialogComponent implements OnInit {
+export class TrainerCardDialogComponent implements OnInit {
   trainerPriceList: TrainerPrice[];
   trainerPrice: TrainerPrice;
   trainer: Trainer;
@@ -30,10 +29,9 @@ export class CardDialogComponent implements OnInit {
 
   constructor(
     private trainerService: TrainerService,
-    private clubService: ClubService,
     private userService: UserService,
     private cardService: CardService,
-    private dialogRef: MatDialogRef<CardDialogComponent>,
+    private dialogRef: MatDialogRef<TrainerCardDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 

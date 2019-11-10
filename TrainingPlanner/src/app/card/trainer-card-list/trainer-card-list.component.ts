@@ -3,7 +3,7 @@ import { TrainerCardBase } from 'src/app/models/TrainerStuff/TrainerCard/Trainer
 import { ActivatedRoute, Router } from '@angular/router';
 import { CardService } from 'src/app/services/Card.service';
 import { MatDialog } from '@angular/material';
-import { CardDialogComponent } from 'src/app/shared/card-dialog/card-dialog.component';
+import { TrainerCardDialogComponent } from 'src/app/shared/trainer-card-dialog/trainer-card-dialog.component';
 
 @Component({
   selector: 'app-trainer-card-list',
@@ -74,7 +74,7 @@ export class TrainerCardListComponent implements OnInit {
   }
 
   addCard() {
-    this.dialog.open(CardDialogComponent, {
+    this.dialog.open(TrainerCardDialogComponent, {
       data: { userId: this.userId, trainerId: this.trainerId, action: 'Add' },
       width: '228px'
     });

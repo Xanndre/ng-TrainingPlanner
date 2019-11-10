@@ -8,32 +8,35 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuardService } from '../guards/AuthGuard.service';
 import { MatCardModule, MatButtonModule } from '@angular/material';
 import { CardListComponent } from './card-list/card-list.component';
-import { CardDialogComponent } from '../shared/card-dialog/card-dialog.component';
+import { TrainerCardDialogComponent } from '../shared/trainer-card-dialog/trainer-card-dialog.component';
+import { ClubCardDialogComponent } from '../shared/club-card-dialog/club-card-dialog.component';
+import { ClubCardGuardService } from '../guards/ClubCardGuard.service';
+import { TrainerCardGuardService } from '../guards/TrainerCardGuard.service';
 
 const routes: Routes = [
   {
     path: 'clubs/:clubId/cards',
     component: ClubCardListComponent,
     data: { isUser: false, isClub: true },
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService, ClubCardGuardService]
   },
   {
     path: 'trainers/:trainerId/cards',
     component: TrainerCardListComponent,
     data: { isUser: false, isTrainer: true },
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService, TrainerCardGuardService]
   },
   {
     path: 'users/:id/club_cards/clubs/:clubId',
     component: ClubCardListComponent,
     data: { isUser: true, isClub: true },
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService, ClubCardGuardService]
   },
   {
     path: 'users/:id/trainer_cards/trainers/:trainerId',
     component: TrainerCardListComponent,
     data: { isUser: true, isTrainer: true },
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService, TrainerCardGuardService]
   },
   {
     path: 'profile/cards',
@@ -58,6 +61,6 @@ const routes: Routes = [
     MatButtonModule
   ],
   exports: [ClubCardListComponent, TrainerCardListComponent, CardListComponent],
-  entryComponents: [CardDialogComponent]
+  entryComponents: [TrainerCardDialogComponent, ClubCardDialogComponent]
 })
 export class CardModule {}

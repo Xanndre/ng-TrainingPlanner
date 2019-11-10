@@ -1,3 +1,38 @@
 <div class="row">
   <div>CLUB CARD</div>
+  <button
+    *ngIf="isUser && isClub"
+    mat-raised-button
+    color="primary"
+    class="btn-block btn-no-shadow w-25"
+    (click)="editCard()"
+  >
+    Edit
+  </button>
+  <button
+    *ngIf="isUser && isClub"
+    mat-raised-button
+    color="warn"
+    class="btn-block btn-no-shadow w-25"
+    (click)="deleteCard()"
+  >
+    Delete
+  </button>
+  <button
+    *ngIf="isUser && isClub"
+    mat-raised-button
+    color="primary"
+    class="btn-block btn-no-shadow w-25"
+    (click)="deactivateCard()"
+  >
+    Deactivate
+  </button>
+  <button
+    mat-raised-button
+    color="warn"
+    class="btn-block btn-no-shadow w-25"
+    (click)="viewDetails()"
+  >
+    View details
+  </button>
 </div>

@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { TrainerCardBase } from 'src/app/models/TrainerStuff/TrainerCard/TrainerCardBase';
 import { MatDialog } from '@angular/material';
-import { CardDialogComponent } from 'src/app/shared/card-dialog/card-dialog.component';
+import { TrainerCardDialogComponent } from 'src/app/shared/trainer-card-dialog/trainer-card-dialog.component';
 
 @Component({
   selector: 'app-trainer-card-list-item',
@@ -20,7 +20,7 @@ export class TrainerCardListItemComponent implements OnInit {
   ngOnInit() {}
 
   deleteCard() {
-    this.dialog.open(CardDialogComponent, {
+    this.dialog.open(TrainerCardDialogComponent, {
       data: {
         userId: this.userId,
         trainerId: this.trainerId,
@@ -32,7 +32,7 @@ export class TrainerCardListItemComponent implements OnInit {
   }
 
   editCard() {
-    this.dialog.open(CardDialogComponent, {
+    this.dialog.open(TrainerCardDialogComponent, {
       data: {
         userId: this.userId,
         trainerId: this.trainerId,
@@ -44,7 +44,7 @@ export class TrainerCardListItemComponent implements OnInit {
   }
 
   deactivateCard() {
-    this.dialog.open(CardDialogComponent, {
+    this.dialog.open(TrainerCardDialogComponent, {
       data: {
         userId: this.userId,
         trainerId: this.trainerId,

@@ -44,12 +44,17 @@ export class CardService {
       .pipe();
   }
 
-  updateClubCard(card: ClubCardUpdate) {
+  updateClubCard(card: ClubCardUpdate, isDeactivating = false) {
+    const params = new HttpParams().set(
+      'isDeactivating',
+      isDeactivating.toString()
+    );
     const options = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         Authorization: 'Bearer ' + localStorage.getItem('jwt')
-      })
+      }),
+      params
     };
     return this.client
       .put('https://localhost:44383/api/Card/club', card, options)
