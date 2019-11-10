@@ -1,7 +1,7 @@
 <div class="full-width" *ngIf="isLoaded">
-  <div class="col-lg-2"></div>
+  <div class="col-lg"></div>
   <div
-    class="col-lg-8 mx-auto pb-4"
+    class="col-lg-9 mx-auto pb-4"
     infinite-scroll
     (scrolled)="onScrollDown()"
   >
@@ -83,6 +83,9 @@
         <div class="col text-muted tp-vcenter">Card</div>
         <div class="col text-muted tp-vcenter">Expiration date</div>
         <div class="col text-muted tp-vcenter">Details</div>
+        <div class="col text-muted tp-vcenter" *ngIf="isTrainer && isUser">
+          Actions
+        </div>
       </div>
     </mat-card>
     <mat-card class="mt-4" *ngFor="let card of cards">
@@ -95,5 +98,5 @@
       ></app-trainer-card-list-item>
     </mat-card>
   </div>
-  <div class="col-lg-2"></div>
+  <div class="col-lg"></div>
 </div>
