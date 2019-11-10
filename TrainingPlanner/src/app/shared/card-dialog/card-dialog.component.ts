@@ -154,9 +154,7 @@ export class CardDialogComponent implements OnInit {
     this.trainerCardUpdate = {
       id: this.trainerCard.id,
       purchaseDate: this.trainerCard.purchaseDate,
-      expirationDate: !this.trainerPrice.unlimitedValidityPeriod
-        ? this.trainerCard.expirationDate
-        : this.trainerCard.purchaseDate,
+      expirationDate: null,
       trainerId: this.data.trainerId,
       userId: this.data.userId,
       name: this.trainerCard.name,
@@ -170,9 +168,11 @@ export class CardDialogComponent implements OnInit {
         this.trainer.user.firstName + ' ' + this.trainer.user.lastName,
       entriesLeft: this.trainerPrice.entries
     };
-    this.cardService.updateTrainerCard(this.trainerCardUpdate).subscribe(() => {
-      this.closeDialog();
-      window.location.reload();
-    });
+    this.cardService
+      .updateTrainerCard(this.trainerCardUpdate, true)
+      .subscribe(() => {
+        this.closeDialog();
+        window.location.reload();
+      });
   }
 }
