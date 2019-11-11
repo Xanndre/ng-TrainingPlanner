@@ -69,6 +69,12 @@ export class TrainerCardListComponent implements OnInit {
         this.totalPages = response.totalPages;
         this.totalCount = response.totalCount;
         this.currentPage = pageNumber;
+        this.cards.sort((a, b) => {
+          return (
+            new Date(b.purchaseDate).getTime() -
+            new Date(a.purchaseDate).getTime()
+          );
+        });
         this.isLoaded = true;
       });
   }

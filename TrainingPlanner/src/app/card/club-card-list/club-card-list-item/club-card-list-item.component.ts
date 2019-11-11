@@ -24,13 +24,17 @@ export class ClubCardListItemComponent implements OnInit {
   constructor(private dialog: MatDialog) {}
 
   ngOnInit() {
-    this.date = new Date(this.card.expirationDate).toLocaleDateString();
+    if (this.card.expirationDate) {
+      this.date = new Date(this.card.expirationDate).toLocaleDateString();
+    } else {
+      this.date = null;
+    }
     const expDate = new Date(this.card.expirationDate);
     const now = new Date(Date.now());
 
     if (
-      this.card.expirationDate === null ||
-      (expDate.getTime() <= now.getTime() && !this.card.unlimitedValidityPeriod)
+      this.card.expirationDate !== null &&
+      expDate.getTime() <= now.getTime()
     ) {
       this.inactive = true;
     }
@@ -53,7 +57,7 @@ export class ClubCardListItemComponent implements OnInit {
     this.dialog.open(ClubCardDialogComponent, {
       data: {
         userId: this.userId,
-        trainerId: this.clubId,
+        clubId: this.clubId,
         action: 'Edit',
         id: this.card.id
       },
@@ -65,7 +69,7 @@ export class ClubCardListItemComponent implements OnInit {
     this.dialog.open(ClubCardDialogComponent, {
       data: {
         userId: this.userId,
-        trainerId: this.clubId,
+        clubId: this.clubId,
         action: 'Deactivate',
         id: this.card.id
       },
@@ -76,7 +80,7 @@ export class ClubCardListItemComponent implements OnInit {
   viewDetails() {
     this.dialog.open(CardDetailsComponent, {
       data: { id: this.card.id, isClub: true, isTrainer: false },
-      width: '600px'
+      width: '300px'
     });
   }
 }

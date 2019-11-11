@@ -24,13 +24,17 @@ export class TrainerCardListItemComponent implements OnInit {
   constructor(private dialog: MatDialog) {}
 
   ngOnInit() {
-    this.date = new Date(this.card.expirationDate).toLocaleDateString();
+    if (this.card.expirationDate) {
+      this.date = new Date(this.card.expirationDate).toLocaleDateString();
+    } else {
+      this.date = null;
+    }
     const expDate = new Date(this.card.expirationDate);
     const now = new Date(Date.now());
 
     if (
-      this.card.expirationDate === null ||
-      (expDate.getTime() <= now.getTime() && !this.card.unlimitedValidityPeriod)
+      this.card.expirationDate !== null &&
+      expDate.getTime() <= now.getTime()
     ) {
       this.inactive = true;
     }
@@ -76,7 +80,7 @@ export class TrainerCardListItemComponent implements OnInit {
   viewDetails() {
     this.dialog.open(CardDetailsComponent, {
       data: { id: this.card.id, isClub: false, isTrainer: true },
-      width: '600px'
+      width: '300px'
     });
   }
 }

@@ -1,66 +1,65 @@
 <div *ngIf="isLoaded">
-  <h2 mat-dialog-title class="text-muted mb-0" *ngIf="trainerCard">
+  <h2 mat-dialog-title class="text-muted mb-3" *ngIf="trainerCard">
     {{ trainerCard.name }}
   </h2>
-  <h2 mat-dialog-title class="text-muted mb-0" *ngIf="clubCard">
+  <h2 mat-dialog-title class="text-muted mb-3" *ngIf="clubCard">
     {{ clubCard.name }}
   </h2>
   <mat-dialog-content class="error text-muted" *ngIf="trainerCard">
-    <p class="text-muted">{{ 'Trainer: ' + trainerCard.trainerName }}</p>
-    <p class="text-muted">{{ 'Owner: ' + trainerCard.userName }}</p>
-    <p class="text-muted">{{ 'Price: ' + trainerCard.price + ' zł' }}</p>
-    <p class="text-muted">
-      {{ 'Purchase date: ' + purchaseDate }}
-    </p>
-    <p class="text-muted">
+    <p class="text-muted font-weight-bold tp-inline">Trainer:</p>
+    <p class="text-muted tp-inline">{{ ' ' + trainerCard.trainerName }}</p>
+    <br />
+    <p class="text-muted font-weight-bold tp-inline">Owner:</p>
+    <p class="text-muted tp-inline">{{ ' ' + trainerCard.userName }}</p>
+    <br />
+    <p class="text-muted font-weight-bold tp-inline">Price:</p>
+    <p class="text-muted tp-inline">{{ ' ' + trainerCard.price + ' zł' }}</p>
+    <br />
+    <p class="text-muted font-weight-bold tp-inline">Entries left:</p>
+    <p class="text-muted tp-inline">
       {{
-        'Validity period: ' +
-          (!trainerCard.unlimitedValidityPeriod
-            ? trainerCard.validityPeriod + ' days'
-            : 'unlimited')
-      }}
-    </p>
-    <p class="text-muted">
-      {{
-        'Entries: ' +
-          (!trainerCard.unlimitedEntries ? trainerCard.entries : 'unlimited')
-      }}
-    </p>
-    <p class="text-muted">
-      {{
-        'Entries left: ' +
+        ' ' +
           (!trainerCard.unlimitedEntries
             ? trainerCard.entriesLeft
             : 'unlimited')
       }}
     </p>
+    <br />
+    <p class="text-muted font-weight-bold tp-inline">Purchase date:</p>
+    <p class="text-muted tp-inline">
+      {{ ' ' + purchaseDate }}
+    </p>
+    <br />
+    <p class="text-muted font-weight-bold tp-inline">Expiration date:</p>
+    <p class="text-muted tp-inline">
+      {{ ' ' + (expirationDate ? expirationDate : 'unlimited') }}
+    </p>
   </mat-dialog-content>
   <mat-dialog-content class="error text-muted" *ngIf="clubCard">
-    <p class="text-muted">{{ 'Club: ' + clubCard.clubName }}</p>
-    <p class="text-muted">{{ 'Owner: ' + clubCard.userName }}</p>
-    <p class="text-muted">{{ 'Price: ' + clubCard.price + ' zł' }}</p>
-    <p class="text-muted">
-      {{ 'Purchase date: ' + purchaseDate }}
-    </p>
-    <p class="text-muted">
+    <p class="text-muted font-weight-bold tp-inline">Club:</p>
+    <p class="text-muted tp-inline">{{ ' ' + clubCard.clubName }}</p>
+    <br />
+    <p class="text-muted font-weight-bold tp-inline">Owner:</p>
+    <p class="text-muted tp-inline">{{ ' ' + clubCard.userName }}</p>
+    <br />
+    <p class="text-muted font-weight-bold tp-inline">Price:</p>
+    <p class="text-muted tp-inline">{{ ' ' + clubCard.price + ' zł' }}</p>
+    <br />
+    <p class="text-muted font-weight-bold tp-inline">Entries left:</p>
+    <p class="text-muted tp-inline">
       {{
-        'Validity period: ' +
-          (!clubCard.unlimitedValidityPeriod
-            ? clubCard.validityPeriod + ' days'
-            : 'unlimited')
+        ' ' + (!clubCard.unlimitedEntries ? clubCard.entriesLeft : 'unlimited')
       }}
     </p>
-    <p class="text-muted">
-      {{
-        'Entries: ' +
-          (!clubCard.unlimitedEntries ? clubCard.entries : 'unlimited')
-      }}
+    <br />
+    <p class="text-muted font-weight-bold tp-inline">Purchase date:</p>
+    <p class="text-muted tp-inline">
+      {{ ' ' + purchaseDate }}
     </p>
-    <p class="text-muted">
-      {{
-        'Entries left: ' +
-          (!clubCard.unlimitedEntries ? clubCard.entriesLeft : 'unlimited')
-      }}
+    <br />
+    <p class="text-muted font-weight-bold tp-inline">Expiration date:</p>
+    <p class="text-muted tp-inline">
+      {{ ' ' + (expirationDate ? expirationDate : 'unlimited') }}
     </p>
   </mat-dialog-content>
   <mat-dialog-actions>

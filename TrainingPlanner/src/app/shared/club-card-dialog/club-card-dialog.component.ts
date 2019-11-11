@@ -84,6 +84,7 @@ export class ClubCardDialogComponent implements OnInit {
     const club = await this.clubService.getClub(this.data.clubId).toPromise();
     this.club = club;
     this.clubPriceList = club.priceList;
+    this.clubPriceList.sort((a, b) => a.name.localeCompare(b.name));
   }
 
   async getUser() {
@@ -98,9 +99,7 @@ export class ClubCardDialogComponent implements OnInit {
     this.clubCardUpdate = {
       id: this.clubCard.id,
       purchaseDate: this.clubCard.purchaseDate,
-      expirationDate: this.clubPrice.unlimitedValidityPeriod
-        ? this.clubCard.purchaseDate
-        : null,
+      expirationDate: null,
       clubId: this.data.clubId,
       userId: this.data.userId,
       name: this.clubCard.name,

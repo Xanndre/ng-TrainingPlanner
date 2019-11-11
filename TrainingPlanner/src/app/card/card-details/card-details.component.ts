@@ -14,6 +14,7 @@ export class CardDetailsComponent implements OnInit {
   trainerCard: TrainerCard;
   isLoaded: boolean;
   purchaseDate: string;
+  expirationDate: string;
 
   constructor(
     private cardService: CardService,
@@ -32,6 +33,9 @@ export class CardDetailsComponent implements OnInit {
         this.purchaseDate = new Date(
           this.clubCard.purchaseDate
         ).toLocaleDateString();
+        this.expirationDate = this.clubCard.expirationDate
+          ? new Date(this.clubCard.expirationDate).toLocaleDateString()
+          : null;
         this.isLoaded = true;
       });
     } else {
@@ -40,6 +44,9 @@ export class CardDetailsComponent implements OnInit {
         this.purchaseDate = new Date(
           this.trainerCard.purchaseDate
         ).toLocaleDateString();
+        this.expirationDate = this.trainerCard.expirationDate
+          ? new Date(this.trainerCard.expirationDate).toLocaleDateString()
+          : null;
         this.isLoaded = true;
       });
     }

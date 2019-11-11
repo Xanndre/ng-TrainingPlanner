@@ -35,9 +35,7 @@
       inactive: inactive
     }"
   >
-    {{
-      !card.expirationDate || card.unlimitedValidityPeriod ? 'unlimited' : date
-    }}
+    {{ date ? date : 'unlimited' }}
   </div>
   <div class="col tp-vcenter">
     <button

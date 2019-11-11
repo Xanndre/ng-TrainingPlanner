@@ -89,6 +89,7 @@ export class TrainerCardDialogComponent implements OnInit {
       .toPromise();
     this.trainer = trainer;
     this.trainerPriceList = trainer.priceList;
+    this.trainerPriceList.sort((a, b) => a.name.localeCompare(b.name));
   }
 
   async getUser() {
@@ -103,9 +104,7 @@ export class TrainerCardDialogComponent implements OnInit {
     this.trainerCardUpdate = {
       id: this.trainerCard.id,
       purchaseDate: this.trainerCard.purchaseDate,
-      expirationDate: this.trainerPrice.unlimitedValidityPeriod
-        ? this.trainerCard.purchaseDate
-        : null,
+      expirationDate: null,
       trainerId: this.data.trainerId,
       userId: this.data.userId,
       name: this.trainerCard.name,
