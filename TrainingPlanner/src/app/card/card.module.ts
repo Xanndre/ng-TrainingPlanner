@@ -9,7 +9,8 @@ import { AuthGuardService } from '../guards/AuthGuard.service';
 import {
   MatCardModule,
   MatButtonModule,
-  MatTabsModule
+  MatTabsModule,
+  MatDialogModule
 } from '@angular/material';
 import { CardListComponent } from './card-list/card-list.component';
 import { TrainerCardDialogComponent } from '../shared/trainer-card-dialog/trainer-card-dialog.component';
@@ -18,6 +19,7 @@ import { ClubCardGuardService } from '../guards/ClubCardGuard.service';
 import { TrainerCardGuardService } from '../guards/TrainerCardGuard.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { CardDetailsComponent } from './card-details/card-details.component';
 
 const routes: Routes = [
   {
@@ -58,7 +60,8 @@ const routes: Routes = [
     ClubCardListItemComponent,
     TrainerCardListComponent,
     TrainerCardListItemComponent,
-    CardListComponent
+    CardListComponent,
+    CardDetailsComponent
   ],
   imports: [
     CommonModule,
@@ -66,10 +69,20 @@ const routes: Routes = [
     MatCardModule,
     MatButtonModule,
     MatTabsModule,
+    MatDialogModule,
     NgbModule,
     InfiniteScrollModule
   ],
-  exports: [ClubCardListComponent, TrainerCardListComponent, CardListComponent],
-  entryComponents: [TrainerCardDialogComponent, ClubCardDialogComponent]
+  exports: [
+    ClubCardListComponent,
+    TrainerCardListComponent,
+    CardListComponent,
+    CardDetailsComponent
+  ],
+  entryComponents: [
+    TrainerCardDialogComponent,
+    ClubCardDialogComponent,
+    CardDetailsComponent
+  ]
 })
 export class CardModule {}

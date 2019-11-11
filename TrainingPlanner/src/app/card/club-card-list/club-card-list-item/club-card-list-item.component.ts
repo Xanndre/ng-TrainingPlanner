@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ClubCardBase } from 'src/app/models/ClubStuff/ClubCard/ClubCardBase';
 import { MatDialog } from '@angular/material';
 import { ClubCardDialogComponent } from 'src/app/shared/club-card-dialog/club-card-dialog.component';
+import { CardDetailsComponent } from '../../card-details/card-details.component';
 
 @Component({
   selector: 'app-club-card-list-item',
@@ -72,5 +73,10 @@ export class ClubCardListItemComponent implements OnInit {
     });
   }
 
-  viewDetails() {}
+  viewDetails() {
+    this.dialog.open(CardDetailsComponent, {
+      data: { id: this.card.id, isClub: true, isTrainer: false },
+      width: '600px'
+    });
+  }
 }

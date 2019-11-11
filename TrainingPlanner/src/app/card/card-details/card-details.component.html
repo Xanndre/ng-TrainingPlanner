@@ -1,0 +1,76 @@
+<div *ngIf="isLoaded">
+  <h2 mat-dialog-title class="text-muted mb-0" *ngIf="trainerCard">
+    {{ trainerCard.name }}
+  </h2>
+  <h2 mat-dialog-title class="text-muted mb-0" *ngIf="clubCard">
+    {{ clubCard.name }}
+  </h2>
+  <mat-dialog-content class="error text-muted" *ngIf="trainerCard">
+    <p class="text-muted">{{ 'Trainer: ' + trainerCard.trainerName }}</p>
+    <p class="text-muted">{{ 'Owner: ' + trainerCard.userName }}</p>
+    <p class="text-muted">{{ 'Price: ' + trainerCard.price + ' zł' }}</p>
+    <p class="text-muted">
+      {{ 'Purchase date: ' + purchaseDate }}
+    </p>
+    <p class="text-muted">
+      {{
+        'Validity period: ' +
+          (!trainerCard.unlimitedValidityPeriod
+            ? trainerCard.validityPeriod + ' days'
+            : 'unlimited')
+      }}
+    </p>
+    <p class="text-muted">
+      {{
+        'Entries: ' +
+          (!trainerCard.unlimitedEntries ? trainerCard.entries : 'unlimited')
+      }}
+    </p>
+    <p class="text-muted">
+      {{
+        'Entries left: ' +
+          (!trainerCard.unlimitedEntries
+            ? trainerCard.entriesLeft
+            : 'unlimited')
+      }}
+    </p>
+  </mat-dialog-content>
+  <mat-dialog-content class="error text-muted" *ngIf="clubCard">
+    <p class="text-muted">{{ 'Club: ' + clubCard.clubName }}</p>
+    <p class="text-muted">{{ 'Owner: ' + clubCard.userName }}</p>
+    <p class="text-muted">{{ 'Price: ' + clubCard.price + ' zł' }}</p>
+    <p class="text-muted">
+      {{ 'Purchase date: ' + purchaseDate }}
+    </p>
+    <p class="text-muted">
+      {{
+        'Validity period: ' +
+          (!clubCard.unlimitedValidityPeriod
+            ? clubCard.validityPeriod + ' days'
+            : 'unlimited')
+      }}
+    </p>
+    <p class="text-muted">
+      {{
+        'Entries: ' +
+          (!clubCard.unlimitedEntries ? clubCard.entries : 'unlimited')
+      }}
+    </p>
+    <p class="text-muted">
+      {{
+        'Entries left: ' +
+          (!clubCard.unlimitedEntries ? clubCard.entriesLeft : 'unlimited')
+      }}
+    </p>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button
+      mat-raised-button
+      color="primary"
+      class="btn-no-shadow btn-grey"
+      (click)="closeDialog()"
+    >
+      Close
+    </button>
+  </mat-dialog-actions>
+</div>

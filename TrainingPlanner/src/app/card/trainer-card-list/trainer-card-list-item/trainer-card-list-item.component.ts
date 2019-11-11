@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { TrainerCardBase } from 'src/app/models/TrainerStuff/TrainerCard/TrainerCardBase';
 import { MatDialog } from '@angular/material';
 import { TrainerCardDialogComponent } from 'src/app/shared/trainer-card-dialog/trainer-card-dialog.component';
+import { CardDetailsComponent } from '../../card-details/card-details.component';
 
 @Component({
   selector: 'app-trainer-card-list-item',
@@ -72,5 +73,10 @@ export class TrainerCardListItemComponent implements OnInit {
     });
   }
 
-  viewDetails() {}
+  viewDetails() {
+    this.dialog.open(CardDetailsComponent, {
+      data: { id: this.card.id, isClub: false, isTrainer: true },
+      width: '600px'
+    });
+  }
 }
