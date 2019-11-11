@@ -36,11 +36,8 @@
     <mat-card class="mt-4" *ngFor="let review of reviews">
       <app-club-review-list-item [rate]="review"></app-club-review-list-item>
     </mat-card>
-    <mat-card class="mt-4">
-      <div
-        class="row text-muted justify-content-center align-items-center"
-        *ngIf="reviews.length == 0"
-      >
+    <mat-card class="mt-4" *ngIf="reviews.length == 0">
+      <div class="row text-muted justify-content-center align-items-center">
         This club has no reviews.
       </div></mat-card
     >

@@ -144,7 +144,6 @@ export class TrainerProfileComponent implements OnInit {
         this.trainerService.updateTrainer(this.trainerUpdate).subscribe(
           () => {},
           () => {
-            console.log('blad');
             this.showError('Invalid trainer profile edition attempt.');
           }
         );
