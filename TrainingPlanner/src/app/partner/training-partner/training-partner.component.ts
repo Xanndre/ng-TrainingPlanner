@@ -25,6 +25,7 @@ export class TrainingPartnerComponent implements OnInit {
   isSportsLoaded: boolean;
   isLocationsLoaded: boolean;
   isUserLoaded: boolean;
+  isUpdated: boolean;
 
   sportForm: FormGroup;
   locationForm: FormGroup;
@@ -39,7 +40,6 @@ export class TrainingPartnerComponent implements OnInit {
     this.userId = localStorage.getItem('userId');
     this.userService.getUser(this.userId).subscribe(response => {
       this.user = response;
-      console.log(this.user.locations);
       this.user.sports.forEach(s => {
         this.userSports.push(s.sport);
       });
@@ -113,6 +113,8 @@ export class TrainingPartnerComponent implements OnInit {
     this.locationForm.value.locations.forEach(s => {
       this.user.locations.push({ userId: this.userId, location: s });
     });
-    this.userService.updateUser(this.user, true).subscribe(() => {});
+    this.userService.updateUser(this.user, true).subscribe(() => {
+      this.isUpdated = true;
+    });
   }
 }

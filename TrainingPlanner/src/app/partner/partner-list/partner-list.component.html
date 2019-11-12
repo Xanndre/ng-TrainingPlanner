@@ -1,0 +1,20 @@
+<div>NIE DZIAŁA</div>
+<div class="full-width" *ngIf="isLoaded">
+  <div class="col-lg-3"></div>
+  <div
+    *ngIf="partners.length != 0"
+    class="col-lg-6 mx-auto pb-4"
+    infinite-scroll
+    (scrolled)="onScrollDown()"
+  >
+    <mat-card class="mt-4" *ngFor="let partner of partners">
+      <app-partner-list-item [partner]="partner"></app-partner-list-item>
+    </mat-card>
+  </div>
+  <div *ngIf="partners.length == 0" class="col-lg-6 mx-auto pb-4">
+    <mat-card class="mt-4">
+      There's no partners.
+    </mat-card>
+  </div>
+  <div class="col-lg-3"></div>
+</div>

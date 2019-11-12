@@ -71,7 +71,7 @@ export class TrainerProfileComponent implements OnInit {
           this.sports.push({
             trainerId: 0,
             sportId: s.id,
-            sportName: s.name
+            sport: null
           })
         );
         this.priceList.forEach(el => (el.id = undefined));
@@ -132,7 +132,7 @@ export class TrainerProfileComponent implements OnInit {
           this.sports.push({
             trainerId: this.trainer.id,
             sportId: s.id,
-            sportName: s.name
+            sport: null
           });
         });
         this.trainerUpdate.sports = this.sports;

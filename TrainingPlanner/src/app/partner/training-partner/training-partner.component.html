@@ -37,6 +37,7 @@
           <button mat-button matStepperPrevious>Back</button>
           <button mat-button (click)="stepper.reset()">Reset</button>
         </div>
+        <app-partner-list *ngIf="isUpdated"></app-partner-list>
       </mat-step>
     </mat-vertical-stepper>
   </div>

@@ -8,10 +8,15 @@ import {
   MatFormFieldModule,
   MatInputModule,
   MatButtonModule,
-  MatSelectModule
+  MatSelectModule,
+  MatCardModule
 } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
+import { PartnerListComponent } from './partner-list/partner-list.component';
+import { PartnerListItemComponent } from './partner-list/partner-list-item/partner-list-item.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 const routes: Routes = [
   {
@@ -22,7 +27,11 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [TrainingPartnerComponent],
+  declarations: [
+    TrainingPartnerComponent,
+    PartnerListComponent,
+    PartnerListItemComponent
+  ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
@@ -31,10 +40,13 @@ const routes: Routes = [
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    MatCardModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    NgbModule,
+    InfiniteScrollModule
   ],
-  exports: [TrainingPartnerComponent]
+  exports: [TrainingPartnerComponent, PartnerListComponent]
 })
 export class PartnerModule {}

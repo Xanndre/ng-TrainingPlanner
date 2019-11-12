@@ -4,6 +4,7 @@ import { User } from '../models/User/User';
 import { map } from 'rxjs/Operators';
 import { Observable } from 'rxjs';
 import { PagedUsers } from '../models/Paged/PagedUsers';
+import { PagedPartners } from '../models/Paged/PagedPartners';
 
 @Injectable({
   providedIn: 'root'
@@ -82,6 +83,29 @@ export class UserService {
       .get('https://localhost:44383/api/User/locations', options)
       .pipe(
         map((res: string[]) => {
+          return res;
+        })
+      );
+  }
+
+  getPartners(
+    pageNumber: number,
+    pageSize: number,
+    userId: string
+  ): Observable<PagedPartners> {
+    const params = new HttpParams()
+      .set('pageNumber', pageNumber.toString())
+      .set('pageSize', pageSize.toString());
+    const options = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + localStorage.getItem('jwt')
+      }),
+      params
+    };
+    return this.client
+      .get(`https://localhost:44383/api/User/partners/${userId}`, options)
+      .pipe(
+        map((res: PagedPartners) => {
           return res;
         })
       );

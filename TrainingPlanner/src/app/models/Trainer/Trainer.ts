@@ -1,13 +1,13 @@
 import { User } from '../User/User';
-import { TrainerSportBase } from '../TrainerStuff/TrainerSportBase';
 import { TrainerPrice } from '../TrainerStuff/TrainerPrice';
+import { TrainerSport } from '../TrainerStuff/TrainerSport';
 
 export class Trainer {
   id: number;
   user: User;
   description: string;
   phoneNumber: string;
-  sports: TrainerSportBase[];
+  sports: TrainerSport[];
   priceList: TrainerPrice[];
   viewCounter: number;
   average: number;
