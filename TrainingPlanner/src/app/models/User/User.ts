@@ -1,3 +1,6 @@
+import { UserLocation } from '../UserStuff/UserLocation';
+import { UserSport } from '../UserStuff/UserSport';
+
 export class User {
   id: string;
   firstName: string;
@@ -7,4 +10,6 @@ export class User {
   email: string;
   city: string;
   profilePicture: string;
+  locations: UserLocation[];
+  sports: UserSport[];
 }

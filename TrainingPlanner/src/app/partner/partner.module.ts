@@ -7,9 +7,11 @@ import {
   MatStepperModule,
   MatFormFieldModule,
   MatInputModule,
-  MatButtonModule
+  MatButtonModule,
+  MatSelectModule
 } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from '../shared/shared.module';
 
 const routes: Routes = [
   {
@@ -25,11 +27,13 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     MatStepperModule,
+    MatSelectModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ],
   exports: [TrainingPartnerComponent]
 })

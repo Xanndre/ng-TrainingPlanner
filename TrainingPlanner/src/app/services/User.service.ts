@@ -26,12 +26,14 @@ export class UserService {
       );
   }
 
-  updateUser(user: User) {
+  updateUser(user: User, isPartner = false) {
+    const params = new HttpParams().set('isPartner', isPartner.toString());
     const options = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         Authorization: 'Bearer ' + localStorage.getItem('jwt')
-      })
+      }),
+      params
     };
     return this.client
       .put('https://localhost:44383/api/User', user, options)
@@ -68,5 +70,20 @@ export class UserService {
         return res;
       })
     );
+  }
+
+  getLocations(): Observable<string[]> {
+    const options = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + localStorage.getItem('jwt')
+      })
+    };
+    return this.client
+      .get('https://localhost:44383/api/User/locations', options)
+      .pipe(
+        map((res: string[]) => {
+          return res;
+        })
+      );
   }
 }

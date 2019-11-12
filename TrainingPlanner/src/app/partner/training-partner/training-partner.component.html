@@ -1,43 +1,44 @@
-<mat-vertical-stepper linear #stepper>
-  <mat-step [stepControl]="firstFormGroup">
-    <form [formGroup]="firstFormGroup">
-      <ng-template matStepLabel>Fill out your name</ng-template>
-      <mat-form-field>
-        <input
-          matInput
-          placeholder="Last name, First name"
-          formControlName="firstCtrl"
-          required
-        />
-      </mat-form-field>
-      <div>
-        <button mat-button matStepperNext>Next</button>
-      </div>
-    </form>
-  </mat-step>
-  <mat-step [stepControl]="secondFormGroup">
-    <form [formGroup]="secondFormGroup">
-      <ng-template matStepLabel>Fill out your address</ng-template>
-      <mat-form-field>
-        <input
-          matInput
-          placeholder="Address"
-          formControlName="secondCtrl"
-          required
-        />
-      </mat-form-field>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
-      </div>
-    </form>
-  </mat-step>
-  <mat-step>
-    <ng-template matStepLabel>Done</ng-template>
-    You are now done.
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="stepper.reset()">Reset</button>
-    </div>
-  </mat-step>
-</mat-vertical-stepper>
+<div
+  class="full-width"
+  *ngIf="isSportsLoaded && isLocationsLoaded && isUserLoaded"
+>
+  <div class="col-lg"></div>
+  <div class="col-lg-6 mx-auto pb-4">
+    <mat-vertical-stepper linear #stepper>
+      <mat-step [stepControl]="sportForm">
+        <ng-template matStepLabel>What you want to train?</ng-template>
+        <form [formGroup]="sportForm">
+          <app-custom-control
+            [customControl]="sportControl"
+          ></app-custom-control>
+        </form>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </mat-step>
+      <mat-step [stepControl]="locationForm">
+        <ng-template matStepLabel>Where you want to train?</ng-template>
+        <form [formGroup]="locationForm">
+          <app-custom-control
+            [customControl]="locationControl"
+          ></app-custom-control>
+        </form>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext (click)="updateUser()">Next</button>
+        </div>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel
+          >Meet new friends and train with them!</ng-template
+        >
+        You are now done.
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="stepper.reset()">Reset</button>
+        </div>
+      </mat-step>
+    </mat-vertical-stepper>
+  </div>
+  <div class="col-lg"></div>
+</div>
