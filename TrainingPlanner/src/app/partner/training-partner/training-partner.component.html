@@ -2,44 +2,77 @@
   class="full-width"
   *ngIf="isSportsLoaded && isLocationsLoaded && isUserLoaded"
 >
-  <div class="col-lg"></div>
   <div class="col-lg-6 mx-auto pb-4">
-    <mat-vertical-stepper linear #stepper>
+    <mat-vertical-stepper linear #stepper class="mt-4">
       <mat-step [stepControl]="sportForm">
         <ng-template matStepLabel>What you want to train?</ng-template>
-        <form [formGroup]="sportForm">
+        <form [formGroup]="sportForm" class="mt-2">
           <app-custom-control
             [customControl]="sportControl"
           ></app-custom-control>
         </form>
         <div>
-          <button mat-button matStepperNext>Next</button>
+          <button
+            mat-raised-button
+            matStepperNext
+            color="primary"
+            class="tp-btn btn-no-shadow"
+          >
+            Next
+          </button>
         </div>
       </mat-step>
       <mat-step [stepControl]="locationForm">
         <ng-template matStepLabel>Where you want to train?</ng-template>
-        <form [formGroup]="locationForm">
+        <form [formGroup]="locationForm" class="mt-2">
           <app-custom-control
             [customControl]="locationControl"
           ></app-custom-control>
         </form>
         <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext (click)="updateUser()">Next</button>
+          <button
+            mat-raised-button
+            matStepperPrevious
+            color="primary"
+            class="mr-1 tp-btn btn-no-shadow"
+          >
+            Back
+          </button>
+          <button
+            mat-raised-button
+            matStepperNext
+            color="primary"
+            class="tp-btn btn-no-shadow"
+            (click)="updateUser()"
+          >
+            Next
+          </button>
         </div>
       </mat-step>
       <mat-step>
         <ng-template matStepLabel
           >Meet new friends and train with them!</ng-template
         >
-        You are now done.
         <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button (click)="stepper.reset()">Reset</button>
+          <button
+            mat-raised-button
+            matStepperPrevious
+            color="primary"
+            class="mr-1 mt-2 tp-btn btn-no-shadow"
+          >
+            Back
+          </button>
+          <button
+            mat-raised-button
+            color="primary"
+            class="mt-2 tp-btn btn-no-shadow"
+            (click)="stepper.reset()"
+          >
+            Reset
+          </button>
         </div>
         <app-partner-list *ngIf="isUpdated"></app-partner-list>
       </mat-step>
     </mat-vertical-stepper>
   </div>
-  <div class="col-lg"></div>
 </div>

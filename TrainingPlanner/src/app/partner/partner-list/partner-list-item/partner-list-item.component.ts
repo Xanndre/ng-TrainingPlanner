@@ -8,8 +8,19 @@ import { Partner } from 'src/app/models/User/Partner';
 })
 export class PartnerListItemComponent implements OnInit {
   @Input() partner: Partner;
+  sports = '';
 
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.partner.sports.forEach(s => {
+      if (s === this.partner.sports[this.partner.sports.length - 1]) {
+        this.sports += s.sport;
+      } else {
+        this.sports += s.sport + ' | ';
+      }
+    });
+  }
+
+  openChat() {}
 }

@@ -7,9 +7,25 @@
 }
 
 .tp-padd {
-  padding-left: 35px;
+  padding-left: 32px;
 }
 
 .tp-div {
   align-self: center;
+}
+
+.tp-ml {
+  margin-left: 2px;
+}
+
+.tp-mp {
+  margin-right: 2px;
+}
+
+.tp-mp-x {
+  margin-right: 4px;
+}
+
+.tp-mp-3 {
+  margin-right: 3px;
 }

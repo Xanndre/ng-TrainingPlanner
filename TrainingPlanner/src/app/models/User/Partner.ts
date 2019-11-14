@@ -10,4 +10,5 @@ export class Partner {
   profilePicture: string;
   locations: UserLocation[];
   sports: UserSport[];
+  similarity: number;
 }

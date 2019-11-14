@@ -1,0 +1,7 @@
+.tp-btn {
+  width: 68px;
+}
+
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-wrapper {
+  width: 524.5px;
+}

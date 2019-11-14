@@ -15,10 +15,27 @@
       <h5 class="text-muted mt-1 tp-inline">
         {{ partner.firstName + ' ' + partner.lastName }}
       </h5>
+      <button
+        mat-raised-button
+        color="primary"
+        class="btn-block btn-no-shadow w-25 float-right tp-inline"
+        (click)="openChat()"
+      >
+        <i class="fas fa-comments"></i>
+        Chat
+      </button>
     </div>
     <p class="text-muted mb-2" *ngIf="partner.city != null">
-      <span><i class="fa fa-home" aria-hidden="true"></i></span>
+      <span><i class="fas fa-puzzle-piece tp-ml tp-mp-3"></i></span>
+      {{ 'Match: ' + partner.similarity + ' %' }}
+    </p>
+    <p class="text-muted mb-2" *ngIf="partner.city != null">
+      <span><i class="fa fa-home tp-mp-x" aria-hidden="true"></i></span>
       {{ partner.city }}
+    </p>
+    <p class="text-muted mb-2" *ngIf="partner.city != null">
+      <span><i class="fas fa-dumbbell tp-mp"></i></span>
+      {{ sports }}
     </p>
   </div>
 </div>

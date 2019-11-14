@@ -89,3 +89,30 @@ html {
 .mat-tab-body-wrapper {
   min-height: 500px;
 }
+
+.mat-step-header .mat-step-label.mat-step-label-active {
+  color: #868e96;
+}
+
+.mat-step-header .mat-step-label,
+.mat-step-header .mat-step-optional {
+  color: #999999;
+}
+
+.mat-step-header .mat-step-icon {
+  background-color: #999999;
+  color: #fff;
+}
+
+.mat-step-header .mat-step-icon-selected,
+.mat-step-header .mat-step-icon-state-done,
+.mat-step-header .mat-step-icon-state-edit {
+  background-color: #3f51b5;
+  color: #fff;
+}
+
+.mat-step-header.cdk-keyboard-focused,
+.mat-step-header.cdk-program-focused,
+.mat-step-header:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
