@@ -57,6 +57,9 @@ export class TrainingPartnerComponent implements OnInit {
       });
       this.initializeSportControl();
       this.initializeLocationControl();
+      if (this.user.sports.length !== 0 && this.user.locations.length !== 0) {
+        this.isUpdated = true;
+      }
       this.isUserLoaded = true;
     });
   }
@@ -105,6 +108,7 @@ export class TrainingPartnerComponent implements OnInit {
   }
 
   updateUser() {
+    this.isUpdated = false;
     this.user.sports = [];
     this.user.locations = [];
     this.sportForm.value.sports.forEach(s => {
@@ -116,5 +120,11 @@ export class TrainingPartnerComponent implements OnInit {
     this.userService.updateUser(this.user, true).subscribe(() => {
       this.isUpdated = true;
     });
+  }
+
+  findPartners(event) {
+    if (event.selectedIndex === 2) {
+      this.updateUser();
+    }
   }
 }

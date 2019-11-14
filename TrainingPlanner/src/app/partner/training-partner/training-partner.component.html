@@ -3,7 +3,12 @@
   *ngIf="isSportsLoaded && isLocationsLoaded && isUserLoaded"
 >
   <div class="col-lg-6 mx-auto pb-4">
-    <mat-vertical-stepper linear #stepper class="mt-4">
+    <mat-vertical-stepper
+      linear
+      #stepper
+      class="mt-4"
+      (selectionChange)="findPartners($event)"
+    >
       <mat-step [stepControl]="sportForm">
         <ng-template matStepLabel>What you want to train?</ng-template>
         <form [formGroup]="sportForm" class="mt-2 tp-margin">
@@ -43,7 +48,6 @@
             matStepperNext
             color="primary"
             class="tp-btn btn-no-shadow"
-            (click)="updateUser()"
           >
             Next
           </button>

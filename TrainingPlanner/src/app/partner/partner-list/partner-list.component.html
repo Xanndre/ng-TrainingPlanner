@@ -9,9 +9,7 @@
       <app-partner-list-item [partner]="partner"></app-partner-list-item>
     </mat-card>
   </div>
-  <div *ngIf="partners.length == 0" class="col-lg-6 mx-auto pb-4">
-    <mat-card class="mt-4">
-      There's no partners.
-    </mat-card>
+  <div *ngIf="partners.length == 0" class="text-muted mt-4 tp-pl">
+    We're sorry, but we couldn't find any partner for you. Please try again.
   </div>
 </div>
