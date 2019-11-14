@@ -13,7 +13,7 @@ export class PartnerListComponent implements OnInit {
 
   totalPages: number;
   totalCount: number;
-  pageSize = 5;
+  pageSize = 3;
   currentPage: number;
 
   isLoaded = false;
@@ -32,7 +32,6 @@ export class PartnerListComponent implements OnInit {
     this.userService
       .getPartners(pageNumber, this.pageSize, this.userId)
       .subscribe(response => {
-        console.log(response);
         this.partners.push(...response.partners);
         this.totalPages = response.totalPages;
         this.totalCount = response.totalCount;

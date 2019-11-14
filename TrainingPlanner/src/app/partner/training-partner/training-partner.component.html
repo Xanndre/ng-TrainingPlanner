@@ -6,7 +6,7 @@
     <mat-vertical-stepper linear #stepper class="mt-4">
       <mat-step [stepControl]="sportForm">
         <ng-template matStepLabel>What you want to train?</ng-template>
-        <form [formGroup]="sportForm" class="mt-2">
+        <form [formGroup]="sportForm" class="mt-2 tp-margin">
           <app-custom-control
             [customControl]="sportControl"
           ></app-custom-control>
@@ -24,7 +24,7 @@
       </mat-step>
       <mat-step [stepControl]="locationForm">
         <ng-template matStepLabel>Where you want to train?</ng-template>
-        <form [formGroup]="locationForm" class="mt-2">
+        <form [formGroup]="locationForm" class="mt-2 tp-margin">
           <app-custom-control
             [customControl]="locationControl"
           ></app-custom-control>
