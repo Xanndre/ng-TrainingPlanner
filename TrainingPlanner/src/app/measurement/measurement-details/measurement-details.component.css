@@ -1,0 +1,12 @@
+.mat-dialog-actions {
+  justify-content: flex-end;
+}
+
+.btn-grey {
+  background-color: #868e96;
+  color: white;
+}
+
+.tp-inline {
+  display: inline;
+}

@@ -2,6 +2,7 @@ import { BodyMeasurementBase } from './BodyMeasurementBase';
 import { BodyInjury } from './BodyInjury';
 
 export class BodyMeasurement extends BodyMeasurementBase {
+  userId: string;
   age: number;
   muscleMass: number;
   height: number;

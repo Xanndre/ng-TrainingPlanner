@@ -20,6 +20,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { ErrorDialogComponent } from '../shared/error-dialog/error-dialog.component';
 import { DeleteMeasurementDialogComponent } from '../shared/delete-measurement-dialog/delete-measurement-dialog.component';
+import { EditMeasurementGuardService } from '../guards/EditMeasurementGuard.service';
 
 const routes: Routes = [
   {
@@ -37,7 +38,7 @@ const routes: Routes = [
     path: 'measurements/edit/:id',
     component: MeasurementAddComponent,
     data: { edit: true },
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService, EditMeasurementGuardService]
   }
 ];
 

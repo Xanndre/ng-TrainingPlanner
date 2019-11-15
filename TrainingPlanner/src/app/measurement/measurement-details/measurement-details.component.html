@@ -1,3 +1,114 @@
-<p>
-  measurement-details works!
-</p>
+<div *ngIf="isLoaded">
+  <h2 mat-dialog-title class="text-muted mb-3">
+    Body Measurement
+  </h2>
+  <mat-dialog-content class="error text-muted">
+    <div class="row">
+      <div class="col">
+        <p class="text-muted font-weight-bold tp-inline">Creation date:</p>
+        <p class="text-muted tp-inline">{{ ' ' + date }}</p>
+        <br />
+        <p class="text-muted font-weight-bold tp-inline">Weight:</p>
+        <p class="text-muted tp-inline">
+          {{ ' ' + measurement.weight + ' kg' }}
+        </p>
+        <br />
+        <p class="text-muted font-weight-bold tp-inline">Fat:</p>
+        <p class="text-muted tp-inline">{{ ' ' + measurement.fat + ' %' }}</p>
+        <br />
+        <p class="text-muted font-weight-bold tp-inline">BMI:</p>
+        <p class="text-muted tp-inline">
+          {{ ' ' + measurement.bmi }}
+        </p>
+        <br />
+        <p class="text-muted font-weight-bold tp-inline">Age:</p>
+        <p class="text-muted tp-inline">
+          {{ ' ' + measurement.age }}
+        </p>
+        <br />
+        <p class="text-muted font-weight-bold tp-inline">Metabolic age:</p>
+        <p class="text-muted tp-inline">
+          {{ ' ' + measurement.metabolicAge }}
+        </p>
+        <br />
+        <p class="text-muted font-weight-bold tp-inline">Height:</p>
+        <p class="text-muted tp-inline">
+          {{ ' ' + measurement.height + ' cm' }}
+        </p>
+        <br />
+        <p class="text-muted font-weight-bold tp-inline">Muscle mass</p>
+        <p class="text-muted tp-inline">
+          {{ ' ' + measurement.muscleMass + ' kg' }}
+        </p>
+        <br />
+        <p class="text-muted font-weight-bold tp-inline">Fat mass:</p>
+        <p class="text-muted tp-inline">
+          {{ ' ' + measurement.fatMass + ' kg' }}
+        </p>
+        <br />
+        <p class="text-muted font-weight-bold tp-inline">Neck:</p>
+        <p class="text-muted tp-inline">
+          {{ measurement.neck ? ' ' + measurement.neck + ' cm' : ' -' }}
+        </p>
+      </div>
+      <div class="col">
+        <p class="text-muted font-weight-bold tp-inline">Forearm:</p>
+        <p class="text-muted tp-inline">
+          {{ measurement.forearm ? ' ' + measurement.forearm + ' cm' : ' -' }}
+        </p>
+        <br />
+        <p class="text-muted font-weight-bold tp-inline">Chest:</p>
+        <p class="text-muted tp-inline">
+          {{ measurement.chest ? ' ' + measurement.chest + ' cm' : ' -' }}
+        </p>
+        <br />
+        <p class="text-muted font-weight-bold tp-inline">Waist:</p>
+        <p class="text-muted tp-inline">
+          {{ measurement.waist ? ' ' + measurement.waist + ' cm' : ' -' }}
+        </p>
+        <br />
+        <p class="text-muted font-weight-bold tp-inline">Thigh:</p>
+        <p class="text-muted tp-inline">
+          {{ measurement.thigh ? ' ' + measurement.thigh + ' cm' : ' -' }}
+        </p>
+        <br />
+        <p class="text-muted font-weight-bold tp-inline">Shoulders:</p>
+        <p class="text-muted tp-inline">
+          {{
+            measurement.shoulders ? ' ' + measurement.shoulders + ' cm' : ' -'
+          }}
+        </p>
+        <br />
+        <p class="text-muted font-weight-bold tp-inline">Biceps:</p>
+        <p class="text-muted tp-inline">
+          {{ measurement.biceps ? ' ' + measurement.biceps + ' cm' : ' -' }}
+        </p>
+        <br />
+        <p class="text-muted font-weight-bold tp-inline">Hips:</p>
+        <p class="text-muted tp-inline">
+          {{ measurement.hips ? ' ' + measurement.hips + ' cm' : ' -' }}
+        </p>
+        <br />
+        <p class="text-muted font-weight-bold tp-inline">Calf:</p>
+        <p class="text-muted tp-inline">
+          {{ measurement.calf ? ' ' + measurement.calf + ' cm' : ' -' }}
+        </p>
+        <br />
+        <p class="text-muted font-weight-bold tp-inline">Injuries:</p>
+        <p class="text-muted tp-inline">
+          {{ measurement.injuries.length != 0 ? ' ' + injuries : ' -' }}
+        </p>
+      </div>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button
+      mat-raised-button
+      color="primary"
+      class="btn-no-shadow btn-grey"
+      (click)="closeDialog()"
+    >
+      Close
+    </button>
+  </mat-dialog-actions>
+</div>

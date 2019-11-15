@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
 import { DeleteMeasurementDialogComponent } from 'src/app/shared/delete-measurement-dialog/delete-measurement-dialog.component';
 import { DataTransferService } from 'src/app/services/DataTransfer.service';
+import { MeasurementDetailsComponent } from '../../measurement-details/measurement-details.component';
 
 @Component({
   selector: 'app-measurement-list-item',
@@ -44,6 +45,9 @@ export class MeasurementListItemComponent implements OnInit {
   }
 
   viewDetails() {
-    // tutaj dialog ze szczegółami
+    this.dialog.open(MeasurementDetailsComponent, {
+      data: { id: this.measurement.id },
+      width: '470px'
+    });
   }
 }
