@@ -16,8 +16,6 @@ export class ClubCardListItemComponent implements OnInit {
   @Input() userId: number;
   @Input() clubId: number;
 
-  isLoaded: boolean;
-
   date: string;
   inactive = false;
 
@@ -38,7 +36,6 @@ export class ClubCardListItemComponent implements OnInit {
     ) {
       this.inactive = true;
     }
-    this.isLoaded = true;
   }
 
   deleteCard() {

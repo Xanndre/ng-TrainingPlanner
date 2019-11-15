@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="col tp-vcenter">
+    {{ date }}
+  </div>
+  <div class="col tp-vcenter">
+    {{ measurement.weight }}
+  </div>
+  <div class="col tp-vcenter">
+    {{ measurement.fat }}
+  </div>
+  <div class="col tp-vcenter">
+    {{ measurement.bmi }}
+  </div>
+  <div class="col tp-vcenter">
+    <button
+      mat-raised-button
+      color="primary"
+      class="btn-block btn-no-shadow"
+      (click)="viewDetails()"
+    >
+      View details
+    </button>
+  </div>
+  <div class="col tp-vcenter">
+    <button
+      mat-raised-button
+      color="primary"
+      class="btn-block btn-no-shadow tp-width tp-margin-right"
+      (click)="editMeasurement()"
+    >
+      <i class="fas fa-pencil-alt"></i>
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      class="btn-block btn-no-shadow tp-width tp-margin-both"
+      (click)="deleteMeasurement()"
+    >
+      <i class="fas fa-trash-alt"></i>
+    </button>
+  </div>
+</div>

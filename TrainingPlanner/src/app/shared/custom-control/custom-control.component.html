@@ -14,6 +14,9 @@
         [ngClass]="customControl.class"
         [errorStateMatcher]="matcher"
       />
+      <span matSuffix class="text-muted" *ngIf="customControl.suffix">{{
+        customControl.suffix
+      }}</span>
       <mat-error>
         <app-custom-error
           [customControl]="

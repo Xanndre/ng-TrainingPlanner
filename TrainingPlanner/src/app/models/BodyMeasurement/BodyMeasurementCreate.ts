@@ -2,7 +2,6 @@ import { BodyInjury } from './BodyInjury';
 
 export class BodyMeasurementCreate {
   userId: string;
-  date: Date;
   age: number;
   muscleMass: number;
   weight: number;

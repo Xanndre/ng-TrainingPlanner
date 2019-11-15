@@ -14,7 +14,7 @@ export class RegisterControls {
             type: 'text',
             formControlName: 'firstName',
             placeholder: 'First name',
-            class: 'col mt-2'
+            class: 'col'
           },
           {
             formGroup: form.registerForm,
@@ -22,7 +22,7 @@ export class RegisterControls {
             type: 'text',
             formControlName: 'lastName',
             placeholder: 'Last name',
-            class: 'col mt-2'
+            class: 'col'
           }
         ],
         title: 'Create new account',
@@ -36,7 +36,7 @@ export class RegisterControls {
             type: 'email',
             formControlName: 'email',
             placeholder: 'Email',
-            class: 'col mt-2'
+            class: 'col'
           },
           {
             formGroup: form.registerForm,
@@ -44,7 +44,7 @@ export class RegisterControls {
             type: 'text',
             formControlName: 'city',
             placeholder: 'Location',
-            class: 'col mt-2'
+            class: 'col'
           }
         ],
         class: 'form-row mb-4'
@@ -57,7 +57,7 @@ export class RegisterControls {
             type: 'password',
             formControlName: 'password',
             placeholder: 'Password',
-            class: 'col mt-2'
+            class: 'col'
           },
           {
             formGroup: form.registerForm,
@@ -65,7 +65,7 @@ export class RegisterControls {
             type: 'password',
             formControlName: 'confirmPassword',
             placeholder: 'Confirm password',
-            class: 'col mt-2'
+            class: 'col'
           }
         ],
         class: 'form-row mb-4'

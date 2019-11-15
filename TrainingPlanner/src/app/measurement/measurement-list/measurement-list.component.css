@@ -1,0 +1,14 @@
+.tp-right {
+  text-align: right;
+}
+
+.tp-center {
+  text-align: center;
+}
+
+.tp-vcenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}

@@ -14,6 +14,7 @@ import { ClubModule } from './club/club.module';
 import { FavouriteModule } from './favourite/favourite.module';
 import { CardModule } from './card/card.module';
 import { PartnerModule } from './partner/partner.module';
+import { MeasurementModule } from './measurement/measurement.module';
 
 export function getToken(): string {
   return localStorage.getItem('token');
@@ -26,6 +27,7 @@ export function getToken(): string {
     AccountModule,
     ClubModule,
     CardModule,
+    MeasurementModule,
     NavbarModule,
     PartnerModule,
     SharedModule,
