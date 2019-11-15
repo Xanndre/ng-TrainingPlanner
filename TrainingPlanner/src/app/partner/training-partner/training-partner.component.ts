@@ -100,13 +100,6 @@ export class TrainingPartnerComponent implements OnInit {
     });
   }
 
-  getUser() {
-    this.userService.getUser(this.userId).subscribe(response => {
-      this.user = response;
-      this.isUserLoaded = true;
-    });
-  }
-
   updateUser() {
     this.isUpdated = false;
     this.user.sports = [];

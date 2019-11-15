@@ -168,12 +168,12 @@ export class TrainerProfileComponent implements OnInit {
 
   deleteTrainerAccount() {
     this.dataTransferService.setTrainerId(this.trainer.id);
-    this.showDeleteError(
+    this.openDeleteDialog(
       'Do you really want to delete this trainer profile? This process cannot be undone.'
     );
   }
 
-  showDeleteError(error: string): void {
+  openDeleteDialog(error: string): void {
     this.dialog.open(DeleteTrainerDialogComponent, {
       data: { errorMsg: error },
       width: '400px'

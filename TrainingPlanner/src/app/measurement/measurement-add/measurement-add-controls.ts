@@ -43,7 +43,6 @@ export class MeasurementAddControls {
             suffix: 'kg'
           }
         ],
-        title: 'Add new measurement',
         class: 'form-row'
       },
       {

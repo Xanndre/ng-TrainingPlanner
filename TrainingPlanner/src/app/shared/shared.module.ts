@@ -32,6 +32,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReviewDialogComponent } from './review-dialog/review-dialog.component';
 import { ClubCardDialogComponent } from './club-card-dialog/club-card-dialog.component';
 import { TrainerCardDialogComponent } from './trainer-card-dialog/trainer-card-dialog.component';
+import { DeleteMeasurementDialogComponent } from './delete-measurement-dialog/delete-measurement-dialog.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { TrainerCardDialogComponent } from './trainer-card-dialog/trainer-card-d
     DeleteClubDialogComponent,
     DeleteTrainerDialogComponent,
     DeleteUserDialogComponent,
+    DeleteMeasurementDialogComponent,
     ClubActivityDialogComponent,
     ClubTrainerDialogComponent,
     ReviewDialogComponent,
@@ -78,6 +80,7 @@ import { TrainerCardDialogComponent } from './trainer-card-dialog/trainer-card-d
     DeleteTrainerDialogComponent,
     DeleteClubDialogComponent,
     DeleteUserDialogComponent,
+    DeleteMeasurementDialogComponent,
     ClubTrainerDialogComponent,
     ClubActivityDialogComponent,
     ReviewDialogComponent,

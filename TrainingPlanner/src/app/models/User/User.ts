@@ -1,5 +1,6 @@
 import { UserLocation } from '../UserStuff/UserLocation';
 import { UserSport } from '../UserStuff/UserSport';
+import { BodyMeasurement } from '../BodyMeasurement/BodyMeasurement';
 
 export class User {
   id: string;
@@ -12,4 +13,5 @@ export class User {
   profilePicture: string;
   locations: UserLocation[];
   sports: UserSport[];
+  bodyMeasurements: BodyMeasurement[];
 }

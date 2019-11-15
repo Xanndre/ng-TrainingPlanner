@@ -1,39 +1,57 @@
-<div class="row full-width">
+<div class="row full-width" *ngIf="isLoaded">
   <div class="col-lg-6 mx-auto">
     <mat-card class="my-4">
-      <form class="text-center p-5" [formGroup]="bodyForm.bodyForm">
+      <form class="text-center pr-5 pl-5 pt-5" [formGroup]="bodyForm.bodyForm">
+        <h4 class="text-muted" *ngIf="!isEdit">
+          Add new measurement
+        </h4>
+        <h4 class="text-muted" *ngIf="isEdit">
+          Edit measurement
+        </h4>
         <app-custom-control-group
           *ngFor="let controlGroup of formControls.controlGroups"
           [customControlGroup]="controlGroup"
         ></app-custom-control-group>
-        <button
-          mat-raised-button
-          color="primary"
-          class="btn-block my-4 btn-no-shadow"
-          type="submit"
-          [disabled]="!bodyForm.bodyForm.valid"
-        >
-          Add
-        </button>
       </form>
-      <mat-checkbox
+      <div class="text-center">
+        <mat-checkbox
+          color="primary"
+          class="text-muted mt-2 mb-2"
+          [(ngModel)]="isInjured"
+          >Do you have any injuries?</mat-checkbox
+        >
+      </div>
+      <form [formGroup]="injuryForm" class="tp-padd" *ngIf="isInjured">
+        <app-custom-control
+          [customControl]="injuriesControl"
+        ></app-custom-control>
+      </form>
+      <button
+        *ngIf="!isEdit"
+        mat-raised-button
         color="primary"
-        class="text-muted mt-2"
-        [(ngModel)]="isInjured"
-        >Do you have any injuries?</mat-checkbox
+        class="btn-block mb-4 tp-margin btn-no-shadow tp-padd"
+        (click)="addMeasurement()"
+        [disabled]="
+          (!bodyForm.bodyForm.valid && !isInjured) ||
+          (isInjured && (!bodyForm.bodyForm.valid || !injuryForm.valid))
+        "
       >
-      <mat-form-field class="full-width" *ngIf="isInjured">
-        <mat-label>Injuries</mat-label>
-        <mat-select multiple>
-          <mat-option
-            class="text-muted"
-            *ngFor="let injury of injuries; let i = index"
-            [value]="selectedInjury"
-            >{{ injuries[i] }}</mat-option
-          >
-        </mat-select>
-        <mat-error> </mat-error>
-      </mat-form-field>
+        Add
+      </button>
+      <button
+        *ngIf="isEdit"
+        mat-raised-button
+        color="primary"
+        class="btn-block mb-4 tp-margin btn-no-shadow tp-padd"
+        (click)="editMeasurement()"
+        [disabled]="
+          (!bodyForm.bodyForm.valid && !isInjured) ||
+          (isInjured && (!bodyForm.bodyForm.valid || !injuryForm.valid))
+        "
+      >
+        Edit
+      </button>
     </mat-card>
   </div>
 </div>

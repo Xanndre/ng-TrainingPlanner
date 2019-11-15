@@ -19,7 +19,9 @@ export class ValidationService {
       pattern: 'Only letters allowed',
       isMatching: 'Passwords must match',
       isPhoneNumber: 'Please enter a valid phone number, such as xxx-xxx-xxx',
-      isPostalCode: 'Please enter a valid postal code, such as xx-xxx'
+      isPostalCode: 'Please enter a valid postal code, such as xx-xxx',
+      min: `Minimum value: ${validatorValue.min}`,
+      max: `Maximum value: ${validatorValue.max}`
     };
 
     return config[validatorName];

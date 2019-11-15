@@ -101,12 +101,12 @@ export class ClubProfileComponent implements OnInit {
 
   deleteClubAccount() {
     this.dataTransferService.setClubId(this.club.id);
-    this.showDeleteError(
+    this.openDeleteDialog(
       'Do you really want to delete this club profile? This process cannot be undone.'
     );
   }
 
-  showDeleteError(error: string): void {
+  openDeleteDialog(error: string): void {
     this.dialog.open(DeleteClubDialogComponent, {
       data: { errorMsg: error },
       width: '400px'
