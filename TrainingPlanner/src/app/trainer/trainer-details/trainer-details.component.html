@@ -14,19 +14,11 @@
             alt="Profile Picture"
           />
         </div>
-        <div class="col-9 tp-padd">
+        <div class="col-6 tp-padd">
           <div class="mb-0">
             <h5 class="text-muted mt-1 tp-inline tp-ml-0">
               {{ trainer.user.firstName + ' ' + trainer.user.lastName }}
             </h5>
-            <button
-              mat-raised-button
-              color="primary"
-              class="btn-block btn-no-shadow float-right w-25 tp-inline"
-              (click)="goToReviews()"
-            >
-              Reviews
-            </button>
           </div>
           <ng-template #t let-fill="fill">
             <span class="star" [class.full]="fill === 100">
@@ -57,6 +49,24 @@
             <span><i class="fas fa-dumbbell tp-mp-2"></i></span>
             {{ sports }}
           </p>
+        </div>
+        <div class="col-3">
+          <button
+            mat-raised-button
+            color="primary"
+            class="btn-block btn-no-shadow float-right"
+            (click)="goToReviews()"
+          >
+            Reviews
+          </button>
+          <button
+            mat-raised-button
+            color="primary"
+            class="btn-block btn-no-shadow float-right"
+            (click)="goToCalendar()"
+          >
+            Calendar
+          </button>
         </div>
       </div>
 

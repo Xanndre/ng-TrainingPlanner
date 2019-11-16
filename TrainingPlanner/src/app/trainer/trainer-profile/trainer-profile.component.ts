@@ -190,4 +190,8 @@ export class TrainerProfileComponent implements OnInit {
       width: '400px'
     });
   }
+
+  goToCalendar() {
+    this.router.navigate(['/profile/trainer/calendar']);
+  }
 }

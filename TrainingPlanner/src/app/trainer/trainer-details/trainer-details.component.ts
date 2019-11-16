@@ -40,4 +40,8 @@ export class TrainerDetailsComponent implements OnInit {
   goToReviews() {
     this.router.navigate([`/trainers/${this.trainerId}/reviews`]);
   }
+
+  goToCalendar() {
+    this.router.navigate([`/trainers/${this.trainerId}/calendar`]);
+  }
 }

@@ -4,11 +4,12 @@
       <div class="tp-right">
         <button
           mat-raised-button
-          class="btn-block btn-no-shadow w-25 btn-red"
+          color="primary"
+          class="btn-block btn-no-shadow w-25"
           *ngIf="isEdit"
-          (click)="deleteClubAccount()"
+          (click)="goToCalendar()"
         >
-          Delete profile
+          Edit calendar
         </button>
       </div>
       <form class="text-center p-5" [formGroup]="clubForm.clubForm">

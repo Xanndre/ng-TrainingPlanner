@@ -99,20 +99,6 @@ export class ClubProfileComponent implements OnInit {
     }
   }
 
-  deleteClubAccount() {
-    this.dataTransferService.setClubId(this.club.id);
-    this.openDeleteDialog(
-      'Do you really want to delete this club profile? This process cannot be undone.'
-    );
-  }
-
-  openDeleteDialog(error: string): void {
-    this.dialog.open(DeleteClubDialogComponent, {
-      data: { errorMsg: error },
-      width: '400px'
-    });
-  }
-
   showError(error: string): void {
     this.dialog.open(ErrorDialogComponent, {
       data: { errorMsg: error },
@@ -368,5 +354,10 @@ export class ClubProfileComponent implements OnInit {
       }
       return true;
     });
+  }
+
+  goToCalendar() {
+    // this.router.navigate(['profile/trainer/calendar']);
+    // tutaj navigate do linka z kalendarzem klubu
   }
 }

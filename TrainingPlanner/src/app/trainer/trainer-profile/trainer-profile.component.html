@@ -1,25 +1,41 @@
 <div class="row full-width" *ngIf="isLoaded">
   <div class="col-lg-6 mx-auto">
     <mat-card class="my-4">
-      <div class="tp-right">
-        <button
-          mat-raised-button
-          class="btn-block btn-no-shadow w-25 btn-red"
-          *ngIf="isTrainer"
-          (click)="deleteTrainerAccount()"
-        >
-          Delete profile
-        </button>
+      <div class="row mx-5">
+        <div class="col pl-0">
+          <button
+            *ngIf="isTrainer"
+            mat-raised-button
+            color="primary"
+            class="btn-block btn-no-shadow mt-2"
+            (click)="viewSales()"
+          >
+            View sales
+          </button>
+        </div>
+        <div class="col">
+          <button
+            *ngIf="isTrainer"
+            mat-raised-button
+            color="primary"
+            class="btn-block btn-no-shadow mt-2"
+            (click)="goToCalendar()"
+          >
+            Edit calendar
+          </button>
+        </div>
+        <div class="col pr-0">
+          <button
+            mat-raised-button
+            class="btn-block btn-no-shadow btn-red mt-2"
+            *ngIf="isTrainer"
+            (click)="deleteTrainerAccount()"
+          >
+            Delete profile
+          </button>
+        </div>
       </div>
-      <button
-        *ngIf="isTrainer"
-        mat-raised-button
-        color="primary"
-        class="btn-block btn-no-shadow w-25 float-right mt-2 tp-display"
-        (click)="viewSales()"
-      >
-        View sales
-      </button>
+
       <form class="text-center p-5" [formGroup]="trainerForm.trainerForm">
         <h4 class="text-muted" *ngIf="!isTrainer; else editTitle">
           Create a trainer profile

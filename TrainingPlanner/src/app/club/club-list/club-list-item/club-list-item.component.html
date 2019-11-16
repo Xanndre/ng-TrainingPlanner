@@ -57,6 +57,15 @@
       mat-raised-button
       color="primary"
       class="btn-block btn-no-shadow float-right w-75"
+      (click)="viewSales()"
+    >
+      View sales
+    </button>
+    <button
+      *ngIf="isProfile"
+      mat-raised-button
+      color="primary"
+      class="btn-block btn-no-shadow float-right w-75"
       (click)="editClub()"
     >
       Edit
@@ -64,11 +73,10 @@
     <button
       *ngIf="isProfile"
       mat-raised-button
-      color="primary"
-      class="btn-block btn-no-shadow float-right w-75"
-      (click)="viewSales()"
+      class="btn-block btn-no-shadow float-right w-75 btn-red"
+      (click)="deleteClub()"
     >
-      View sales
+      Delete
     </button>
   </div>
 </div>

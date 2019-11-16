@@ -18,8 +18,12 @@ import { DeleteTrainerDialogComponent } from '../shared/delete-trainer-dialog/de
 import { TrainerReviewListComponent } from './trainer-review-list/trainer-review-list.component';
 import { TrainerReviewListItemComponent } from './trainer-review-list/trainer-review-list-item/trainer-review-list-item.component';
 import { ReviewDialogComponent } from '../shared/review-dialog/review-dialog.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { ErrorDialogComponent } from '../shared/error-dialog/error-dialog.component';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { TrainerCalendarComponent } from './trainer-calendar/trainer-calendar.component';
+import { FlatpickrModule } from 'angularx-flatpickr';
 
 const routes: Routes = [
   {
@@ -38,6 +42,10 @@ const routes: Routes = [
   {
     path: 'trainers/:id/reviews',
     component: TrainerReviewListComponent
+  },
+  {
+    path: 'profile/trainer/calendar',
+    component: TrainerCalendarComponent
   }
 ];
 
@@ -48,10 +56,17 @@ const routes: Routes = [
     TrainerListItemComponent,
     TrainerDetailsComponent,
     TrainerReviewListComponent,
-    TrainerReviewListItemComponent
+    TrainerReviewListItemComponent,
+    TrainerCalendarComponent
   ],
   imports: [
+    NgbModalModule,
+    FlatpickrModule.forRoot(),
     CommonModule,
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory
+    }),
     MatButtonModule,
     MatCardModule,
     MatChipsModule,
@@ -69,7 +84,8 @@ const routes: Routes = [
     TrainerProfileComponent,
     TrainerListComponent,
     TrainerDetailsComponent,
-    TrainerReviewListComponent
+    TrainerReviewListComponent,
+    TrainerCalendarComponent
   ],
   entryComponents: [
     DeleteTrainerDialogComponent,
