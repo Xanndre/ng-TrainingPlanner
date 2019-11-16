@@ -7,3 +7,13 @@
 .tp-margin {
   margin-top: 42px;
 }
+
+.tp-mx {
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+.btn-cancel {
+  background-color: #868e96;
+  color: white;
+}

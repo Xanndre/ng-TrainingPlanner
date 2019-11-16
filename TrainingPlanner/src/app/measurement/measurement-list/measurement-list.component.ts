@@ -50,9 +50,6 @@ export class MeasurementListComponent implements OnInit {
         this.totalPages = response.totalPages;
         this.totalCount = response.totalCount;
         this.currentPage = pageNumber;
-        this.measurements.sort((a, b) => {
-          return new Date(b.date).getTime() - new Date(a.date).getTime();
-        });
         this.isLoaded = true;
       });
   }

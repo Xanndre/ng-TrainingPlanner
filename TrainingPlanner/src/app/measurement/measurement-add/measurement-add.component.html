@@ -17,6 +17,7 @@
         <mat-checkbox
           color="primary"
           class="text-muted mt-2 mb-2"
+          [disabled]="!isEdited"
           [(ngModel)]="isInjured"
           >Do you have any injuries?</mat-checkbox
         >
@@ -40,18 +41,39 @@
         Add
       </button>
       <button
-        *ngIf="isEdit"
+        *ngIf="isEdit && !isEdited"
         mat-raised-button
         color="primary"
         class="btn-block mb-4 tp-margin btn-no-shadow tp-padd"
         (click)="editMeasurement()"
-        [disabled]="
-          (!bodyForm.bodyForm.valid && !isInjured) ||
-          (isInjured && (!bodyForm.bodyForm.valid || !injuryForm.valid))
-        "
       >
         Edit
       </button>
+      <div *ngIf="isEdited" class="row tp-mx tp-margin">
+        <div class="col">
+          <button
+            mat-raised-button
+            class="btn-block mb-4 btn-no-shadow"
+            color="primary"
+            [disabled]="
+              (!bodyForm.bodyForm.valid && !isInjured) ||
+              (isInjured && (!bodyForm.bodyForm.valid || !injuryForm.valid))
+            "
+            (click)="saveMeasurementData()"
+          >
+            Save
+          </button>
+        </div>
+        <div class="col">
+          <button
+            mat-raised-button
+            class="btn-cancel btn-block mb-4 btn-no-shadow"
+            (click)="cancel()"
+          >
+            Close
+          </button>
+        </div>
+      </div>
     </mat-card>
   </div>
 </div>
