@@ -3,7 +3,7 @@ export class ClubCardBase {
   clubName: string;
   name: string;
   purchaseDate: Date;
-  expirationDate: Date;
+  expirationDate?: Date;
   userName: string;
   unlimitedValidityPeriod: boolean;
 }
