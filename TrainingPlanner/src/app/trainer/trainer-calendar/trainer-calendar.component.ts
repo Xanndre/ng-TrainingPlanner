@@ -20,7 +20,8 @@ import {
   CalendarEvent,
   CalendarEventAction,
   CalendarEventTimesChangedEvent,
-  CalendarView
+  CalendarView,
+  DAYS_OF_WEEK
 } from 'angular-calendar';
 
 const colors: any = {
@@ -52,6 +53,8 @@ export class TrainerCalendarComponent {
   CalendarView = CalendarView;
 
   viewDate: Date = new Date();
+
+  weekStartsOn: number = DAYS_OF_WEEK.MONDAY;
 
   modalData: {
     action: string;
