@@ -23,6 +23,9 @@ import {
   CalendarView,
   DAYS_OF_WEEK
 } from 'angular-calendar';
+import { FormGroup } from '@angular/forms';
+import { MatDialog } from '@angular/material';
+import { TrainingDialogComponent } from 'src/app/shared/training-dialog/training-dialog.component';
 
 const colors: any = {
   red: {
@@ -46,6 +49,8 @@ const colors: any = {
   styleUrls: ['./trainer-calendar.component.css']
 })
 export class TrainerCalendarComponent {
+  ngForm: FormGroup;
+
   @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any>;
 
   view: CalendarView = CalendarView.Month;
@@ -73,7 +78,7 @@ export class TrainerCalendarComponent {
       label: '<i class="fa fa-fw fa-times"></i>',
       a11yLabel: 'Delete',
       onClick: ({ event }: { event: CalendarEvent }): void => {
-        this.events = this.events.filter(iEvent => iEvent !== event);
+        // this.events = this.events.filter(iEvent => iEvent !== event);
         this.handleEvent('Deleted', event);
       }
     }
@@ -124,7 +129,7 @@ export class TrainerCalendarComponent {
 
   activeDayIsOpen = true;
 
-  constructor(private modal: NgbModal) {}
+  constructor(private modal: NgbModal, private dialog: MatDialog) {}
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
@@ -159,29 +164,51 @@ export class TrainerCalendarComponent {
   }
 
   handleEvent(action: string, event: CalendarEvent): void {
-    this.modalData = { event, action };
-    this.modal.open(this.modalContent, { size: 'lg' });
+    console.log(action);
+    if (action === 'Edited') {
+      this.openDialog('Edit', event);
+    } else if (action === 'Deleted') {
+      this.openDialog('Delete', event);
+    } else {
+      this.modalData = { event, action };
+      this.modal.open(this.modalContent, { size: 'lg' });
+    }
   }
 
-  addEvent(): void {
-    this.events = [
-      ...this.events,
-      {
-        title: 'New event',
-        start: startOfDay(new Date()),
-        end: endOfDay(new Date()),
-        color: colors.red,
-        draggable: true,
-        resizable: {
-          beforeStart: true,
-          afterEnd: true
+  openDialog(action, obj) {
+    obj.action = action;
+    const dialogRef = this.dialog.open(TrainingDialogComponent, {
+      width: '400px',
+      data: obj
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result !== undefined) {
+        if (result.event === 'Add') {
+          this.addTraining(result.data);
+        } else if (result.event === 'Edit') {
+          this.editTraining(result.data);
+        } else if (result.event === 'Delete') {
+          this.deleteTraining(result.data);
         }
       }
-    ];
+    });
+  }
+
+  deleteTraining(rowObj) {
+    // tutaj implementacja usuwania treningu z bazy
+  }
+
+  addTraining(rowObj) {
+    // tutaj implementacja dodawania treningu do bazy
+  }
+
+  editTraining(rowObj) {
+    // tutaj implementacja edycji treningu
   }
 
   deleteEvent(eventToDelete: CalendarEvent) {
-    this.events = this.events.filter(event => event !== eventToDelete);
+    // this.events = this.events.filter(event => event !== eventToDelete);
   }
 
   setView(view: CalendarView) {

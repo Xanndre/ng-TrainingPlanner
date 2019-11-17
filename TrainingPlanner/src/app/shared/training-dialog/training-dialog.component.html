@@ -1,0 +1,31 @@
+<h1 mat-dialog-title class="text-muted mb-0">
+  {{ action + ' Training' }}
+</h1>
+<div mat-dialog-content>
+  <div *ngIf="action != 'Delete'; else elseTemplate">
+    <!-- tutaj form  -->
+  </div>
+  <ng-template #elseTemplate>
+    <div class="text-muted tp-padd">
+      Are you sure to delete <b>{{ localData.title }}</b
+      >?
+    </div>
+  </ng-template>
+</div>
+<div mat-dialog-actions class="float-right">
+  <button
+    mat-raised-button
+    color="primary"
+    class="btn-no-shadow"
+    (click)="doAction()"
+  >
+    {{ action }}
+  </button>
+  <button
+    mat-raised-button
+    (click)="closeDialog()"
+    class="btn-no-shadow btn-grey"
+  >
+    Cancel
+  </button>
+</div>

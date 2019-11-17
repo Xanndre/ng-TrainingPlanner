@@ -33,6 +33,7 @@ import { ReviewDialogComponent } from './review-dialog/review-dialog.component';
 import { ClubCardDialogComponent } from './club-card-dialog/club-card-dialog.component';
 import { TrainerCardDialogComponent } from './trainer-card-dialog/trainer-card-dialog.component';
 import { DeleteMeasurementDialogComponent } from './delete-measurement-dialog/delete-measurement-dialog.component';
+import { TrainingDialogComponent } from './training-dialog/training-dialog.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { DeleteMeasurementDialogComponent } from './delete-measurement-dialog/de
     SliderComponent,
     SliderItemDirective,
     ClubCardDialogComponent,
-    TrainerCardDialogComponent
+    TrainerCardDialogComponent,
+    TrainingDialogComponent
   ],
   imports: [
     CommonModule,
@@ -89,7 +91,8 @@ import { DeleteMeasurementDialogComponent } from './delete-measurement-dialog/de
     SliderComponent,
     SliderItemDirective,
     ClubCardDialogComponent,
-    TrainerCardDialogComponent
+    TrainerCardDialogComponent,
+    TrainingDialogComponent
   ],
   entryComponents: [PricelistDialogComponent]
 })

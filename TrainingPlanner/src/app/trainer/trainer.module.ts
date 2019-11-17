@@ -24,6 +24,7 @@ import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { TrainerCalendarComponent } from './trainer-calendar/trainer-calendar.component';
 import { FlatpickrModule } from 'angularx-flatpickr';
+import { TrainingDialogComponent } from '../shared/training-dialog/training-dialog.component';
 
 const routes: Routes = [
   {
@@ -90,7 +91,8 @@ const routes: Routes = [
   entryComponents: [
     DeleteTrainerDialogComponent,
     ReviewDialogComponent,
-    ErrorDialogComponent
+    ErrorDialogComponent,
+    TrainingDialogComponent
   ]
 })
 export class TrainerModule {}

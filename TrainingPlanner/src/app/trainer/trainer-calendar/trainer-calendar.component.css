@@ -11,13 +11,19 @@ pre {
   color: #6c757d !important;
 }
 
-::ng-deep .cal-month-view .cal-open-day-events {
-  background-color: #3f51b5;
-  color: white;
+::ng-deep b {
+  color: #6c757d !important;
 }
 
-::ng-deep a {
-  color: white;
+::ng-deep .cal-month-view .cal-open-day-events {
+  background-color: #ededed;
+  color: #6c757d;
+  box-shadow: none;
+}
+
+::ng-deep a.cal-event-action {
+  color: #6c757d;
+  outline: none !important;
 }
 
 ::ng-deep .cal-month-view .cal-day-badge {
@@ -57,4 +63,20 @@ pre {
 
 ::ng-deep .fa-pencil:before {
   content: '\f303';
+}
+
+:ng-deep .cal-week-view .cal-hour-segment {
+  color: #6c757d !important;
+}
+
+::ng-deep body {
+  color: #6c757d !important;
+}
+
+::ng-deep .cal-week-view .cal-header.cal-weekend span {
+  color: #3f51b5 !important;
+}
+
+::ng-deep .cal-week-view .cal-event {
+  color: #6c757d;
 }

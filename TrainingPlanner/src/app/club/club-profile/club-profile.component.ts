@@ -16,7 +16,6 @@ import { ClubActivity } from 'src/app/models/ClubStuff/ClubActivity';
 import { ClubTrainer } from 'src/app/models/ClubStuff/ClubTrainer';
 import { ClubCreate } from 'src/app/models/Club/ClubCreate';
 import { DataTransferService } from 'src/app/services/DataTransfer.service';
-import { DeleteClubDialogComponent } from 'src/app/shared/delete-club-dialog/delete-club-dialog.component';
 import { ErrorDialogComponent } from 'src/app/shared/error-dialog/error-dialog.component';
 
 @Component({
