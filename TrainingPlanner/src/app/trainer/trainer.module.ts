@@ -50,18 +50,18 @@ const routes: Routes = [
     component: TrainerReviewListComponent
   },
   {
-    path: 'profile/trainer/calendar',
+    path: 'profile/trainers/:trainerId/calendar',
     component: TrainerCalendarComponent,
     canActivate: [AuthGuardService]
   },
   {
-    path: 'profile/trainer/calendar/trainings/add',
+    path: 'profile/trainers/:trainerId/calendar/trainings/add',
     component: TrainingAddComponent,
     canActivate: [AuthGuardService],
     data: { edit: false }
   },
   {
-    path: 'profile/trainer/calendar/trainings/:id/edit',
+    path: 'profile/trainers/:trainerId/calendar/trainings/:id/edit',
     component: TrainingAddComponent,
     canActivate: [AuthGuardService],
     data: { edit: true }

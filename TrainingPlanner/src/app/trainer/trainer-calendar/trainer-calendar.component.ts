@@ -2,7 +2,8 @@ import {
   Component,
   ChangeDetectionStrategy,
   ViewChild,
-  TemplateRef
+  TemplateRef,
+  OnInit
 } from '@angular/core';
 import {
   startOfDay,
@@ -25,7 +26,9 @@ import {
 } from 'angular-calendar';
 import { FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { TrainerService } from 'src/app/services/Trainer.service';
+import { Trainer } from 'src/app/models/Trainer/Trainer';
 
 const colors: any = {
   red: {
@@ -48,7 +51,7 @@ const colors: any = {
   templateUrl: './trainer-calendar.component.html',
   styleUrls: ['./trainer-calendar.component.css']
 })
-export class TrainerCalendarComponent {
+export class TrainerCalendarComponent implements OnInit {
   ngForm: FormGroup;
 
   @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any>;
@@ -133,11 +136,26 @@ export class TrainerCalendarComponent {
 
   activeDayIsOpen = true;
 
+  userId: string;
+  trainer: Trainer;
+  trainerId: number;
+  trainerName: string;
+  isLoaded = false;
+
   constructor(
     private modal: NgbModal,
     private dialog: MatDialog,
+    private route: ActivatedRoute,
+    private trainerService: TrainerService,
     private router: Router
   ) {}
+
+  ngOnInit() {
+    this.trainerId = parseInt(
+      this.route.snapshot.paramMap.get('trainerId'),
+      10
+    );
+  }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
@@ -185,28 +203,10 @@ export class TrainerCalendarComponent {
   }
 
   goToAdd() {
-    this.router.navigate(['profile/trainer/calendar/trainings/add']);
+    this.router.navigate([
+      `profile/trainers/${this.trainerId}/calendar/trainings/add`
+    ]);
   }
-
-  // openDialog(action, obj) {
-  //   obj.action = action;
-  //   const dialogRef = this.dialog.open(TrainingDialogComponent, {
-  //     width: '500px',
-  //     data: obj
-  //   });
-
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     if (result !== undefined) {
-  //       if (result.event === 'Add') {
-  //         this.addTraining(result.data);
-  //       } else if (result.event === 'Edit') {
-  //         this.editTraining(result.data);
-  //       } else if (result.event === 'Delete') {
-  //         this.deleteTraining(result.data);
-  //       }
-  //     }
-  //   });
-  // }
 
   deleteTraining(rowObj) {
     // tutaj implementacja usuwania treningu z bazy

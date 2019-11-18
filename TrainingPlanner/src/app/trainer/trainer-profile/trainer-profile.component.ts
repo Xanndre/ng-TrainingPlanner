@@ -192,6 +192,6 @@ export class TrainerProfileComponent implements OnInit {
   }
 
   goToCalendar() {
-    this.router.navigate(['/profile/trainer/calendar']);
+    this.router.navigate([`/profile/trainers/${this.trainer.id}/calendar`]);
   }
 }

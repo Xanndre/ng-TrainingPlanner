@@ -11,6 +11,4 @@ export class TrainingCreate {
   entriesLeft: number;
   primaryColor: string;
   secondaryColor: string;
-  startTime: string;
-  endTime: string;
 }
