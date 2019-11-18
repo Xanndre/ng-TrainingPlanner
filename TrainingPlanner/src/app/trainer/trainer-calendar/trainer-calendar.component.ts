@@ -25,7 +25,7 @@ import {
 } from 'angular-calendar';
 import { FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material';
-import { TrainingDialogComponent } from 'src/app/shared/training-dialog/training-dialog.component';
+import { Router } from '@angular/router';
 
 const colors: any = {
   red: {
@@ -98,20 +98,23 @@ export class TrainerCalendarComponent {
         beforeStart: true,
         afterEnd: true
       },
-      draggable: true
+      draggable: true,
+      id: 0
     },
     {
       start: startOfDay(new Date()),
       title: 'An event with no end date',
       color: colors.yellow,
-      actions: this.actions
+      actions: this.actions,
+      id: 1
     },
     {
       start: subDays(endOfMonth(new Date()), 3),
       end: addDays(endOfMonth(new Date()), 3),
       title: 'A long event that spans 2 months',
       color: colors.blue,
-      allDay: true
+      allDay: true,
+      id: 2
     },
     {
       start: addHours(startOfDay(new Date()), 2),
@@ -123,13 +126,18 @@ export class TrainerCalendarComponent {
         beforeStart: true,
         afterEnd: true
       },
-      draggable: true
+      draggable: true,
+      id: 3
     }
   ];
 
   activeDayIsOpen = true;
 
-  constructor(private modal: NgbModal, private dialog: MatDialog) {}
+  constructor(
+    private modal: NgbModal,
+    private dialog: MatDialog,
+    private router: Router
+  ) {}
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
@@ -164,36 +172,41 @@ export class TrainerCalendarComponent {
   }
 
   handleEvent(action: string, event: CalendarEvent): void {
-    console.log(action);
     if (action === 'Edited') {
-      this.openDialog('Edit', event);
+      this.router.navigate([
+        `profile/trainer/calendar/trainings/${event.id}/edit`
+      ]);
     } else if (action === 'Deleted') {
-      this.openDialog('Delete', event);
+      // this.openDialog('Delete', event);
     } else {
       this.modalData = { event, action };
       this.modal.open(this.modalContent, { size: 'lg' });
     }
   }
 
-  openDialog(action, obj) {
-    obj.action = action;
-    const dialogRef = this.dialog.open(TrainingDialogComponent, {
-      width: '400px',
-      data: obj
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result !== undefined) {
-        if (result.event === 'Add') {
-          this.addTraining(result.data);
-        } else if (result.event === 'Edit') {
-          this.editTraining(result.data);
-        } else if (result.event === 'Delete') {
-          this.deleteTraining(result.data);
-        }
-      }
-    });
+  goToAdd() {
+    this.router.navigate(['profile/trainer/calendar/trainings/add']);
   }
+
+  // openDialog(action, obj) {
+  //   obj.action = action;
+  //   const dialogRef = this.dialog.open(TrainingDialogComponent, {
+  //     width: '500px',
+  //     data: obj
+  //   });
+
+  //   dialogRef.afterClosed().subscribe(result => {
+  //     if (result !== undefined) {
+  //       if (result.event === 'Add') {
+  //         this.addTraining(result.data);
+  //       } else if (result.event === 'Edit') {
+  //         this.editTraining(result.data);
+  //       } else if (result.event === 'Delete') {
+  //         this.deleteTraining(result.data);
+  //       }
+  //     }
+  //   });
+  // }
 
   deleteTraining(rowObj) {
     // tutaj implementacja usuwania treningu z bazy

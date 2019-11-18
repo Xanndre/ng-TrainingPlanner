@@ -9,3 +9,8 @@
 ::ng-deep .mat-input-element:enabled {
   color: #999999;
 }
+
+::ng-deep .timepicker-dial__control:focus {
+  outline: none !important;
+  box-shadow: none;
+}

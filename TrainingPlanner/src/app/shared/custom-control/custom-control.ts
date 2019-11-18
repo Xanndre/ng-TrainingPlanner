@@ -1,4 +1,5 @@
 import { FormGroup } from '@angular/forms';
+import { NgxMaterialTimepickerTheme } from 'ngx-material-timepicker';
 
 export class CustomControl {
   formGroup: FormGroup;
@@ -15,4 +16,5 @@ export class CustomControl {
   values?: string[];
   multiple?: boolean;
   suffix?: string;
+  theme?: NgxMaterialTimepickerTheme;
 }

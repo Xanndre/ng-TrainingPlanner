@@ -33,7 +33,7 @@ import { ReviewDialogComponent } from './review-dialog/review-dialog.component';
 import { ClubCardDialogComponent } from './club-card-dialog/club-card-dialog.component';
 import { TrainerCardDialogComponent } from './trainer-card-dialog/trainer-card-dialog.component';
 import { DeleteMeasurementDialogComponent } from './delete-measurement-dialog/delete-measurement-dialog.component';
-import { TrainingDialogComponent } from './training-dialog/training-dialog.component';
+import { ColorPickerModule } from 'ngx-color-picker';
 
 @NgModule({
   declarations: [
@@ -54,8 +54,7 @@ import { TrainingDialogComponent } from './training-dialog/training-dialog.compo
     SliderComponent,
     SliderItemDirective,
     ClubCardDialogComponent,
-    TrainerCardDialogComponent,
-    TrainingDialogComponent
+    TrainerCardDialogComponent
   ],
   imports: [
     CommonModule,
@@ -72,7 +71,8 @@ import { TrainingDialogComponent } from './training-dialog/training-dialog.compo
     MatCheckboxModule,
     MatButtonModule,
     NgbModule,
-    NgxMaterialTimepickerModule
+    NgxMaterialTimepickerModule,
+    ColorPickerModule
   ],
   exports: [
     CustomControlComponent,
@@ -91,8 +91,7 @@ import { TrainingDialogComponent } from './training-dialog/training-dialog.compo
     SliderComponent,
     SliderItemDirective,
     ClubCardDialogComponent,
-    TrainerCardDialogComponent,
-    TrainingDialogComponent
+    TrainerCardDialogComponent
   ],
   entryComponents: [PricelistDialogComponent]
 })

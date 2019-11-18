@@ -93,4 +93,75 @@
       </mat-error>
     </mat-form-field>
   </ng-template>
+  <ng-template [ngIf]="customControl.controlType == 'dayPicker'">
+    <mat-form-field class="full-width">
+      <input
+        matInput
+        [matDatepicker]="datePicker"
+        [placeholder]="customControl.placeholder"
+        [formControlName]="customControl.formControlName"
+      />
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="datePicker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #datePicker></mat-datepicker>
+      <mat-error>
+        <app-custom-error
+          [customControl]="
+            customControl.formGroup.get(customControl.formControlName)
+          "
+        ></app-custom-error>
+      </mat-error>
+    </mat-form-field>
+  </ng-template>
+  <ng-template [ngIf]="customControl.controlType == 'timePicker'">
+    <mat-form-field class="full-width">
+      <input
+        matInput
+        [placeholder]="customControl.placeholder"
+        [formControlName]="customControl.formControlName"
+        [ngxTimepicker]="picker"
+      />
+      <ngx-material-timepicker
+        #picker
+        [theme]="customControl.theme"
+      ></ngx-material-timepicker>
+      <mat-error>
+        <app-custom-error
+          [customControl]="
+            customControl.formGroup.get(customControl.formControlName)
+          "
+        ></app-custom-error>
+      </mat-error>
+    </mat-form-field>
+  </ng-template>
+  <ng-template [ngIf]="customControl.controlType == 'colorPicker'">
+    <mat-form-field class="full-width">
+      <input
+        matInput
+        [colorPicker]="
+          customControl.formGroup.get(customControl.formControlName).value
+        "
+        [style.background]="
+          customControl.formGroup.get(customControl.formControlName).value
+        "
+        (colorPickerChange)="
+          customControl.formGroup
+            .get(customControl.formControlName)
+            .setValue($event)
+        "
+        class="colorPicker"
+        [formControlName]="customControl.formControlName"
+        [placeholder]="customControl.placeholder"
+      />
+      <mat-error>
+        <app-custom-error
+          [customControl]="
+            customControl.formGroup.get(customControl.formControlName)
+          "
+        ></app-custom-error>
+      </mat-error>
+    </mat-form-field>
+  </ng-template>
 </div>
