@@ -87,7 +87,11 @@ export class TrainingAddComponent implements OnInit {
     const min = parseInt(rest[0], 10);
     const ampm = rest[1];
     if (ampm === 'PM') {
-      hour += 12;
+      if (hour === 12) {
+        hour -= 12;
+      } else {
+        hour += 12;
+      }
     }
     date.setHours(hour, min);
     return date;

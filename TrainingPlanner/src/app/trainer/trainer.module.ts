@@ -30,6 +30,7 @@ import { TrainerCalendarComponent } from './trainer-calendar/trainer-calendar.co
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { TrainingAddComponent } from './trainer-calendar/training-add/training-add.component';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+import { DeleteTrainingDialogComponent } from '../shared/delete-training-dialog/delete-training-dialog.component';
 
 const routes: Routes = [
   {
@@ -112,7 +113,8 @@ const routes: Routes = [
   entryComponents: [
     DeleteTrainerDialogComponent,
     ReviewDialogComponent,
-    ErrorDialogComponent
+    ErrorDialogComponent,
+    DeleteTrainingDialogComponent
   ]
 })
 export class TrainerModule {}

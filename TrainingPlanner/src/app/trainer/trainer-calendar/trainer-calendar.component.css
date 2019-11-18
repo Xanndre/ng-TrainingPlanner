@@ -59,6 +59,7 @@ pre {
 
 ::ng-deep .cal-month-view .cal-day-cell.cal-today {
   outline-color: #3f51b5 !important;
+  background-color: #e8ebfc;
 }
 
 ::ng-deep .fa-pencil:before {

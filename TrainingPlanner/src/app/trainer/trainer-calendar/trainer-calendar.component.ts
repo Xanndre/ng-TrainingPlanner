@@ -1,22 +1,6 @@
-import {
-  Component,
-  ChangeDetectionStrategy,
-  ViewChild,
-  TemplateRef,
-  OnInit
-} from '@angular/core';
-import {
-  startOfDay,
-  endOfDay,
-  subDays,
-  addDays,
-  endOfMonth,
-  isSameDay,
-  isSameMonth,
-  addHours
-} from 'date-fns';
+import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
+import { isSameDay, isSameMonth } from 'date-fns';
 import { Subject } from 'rxjs';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {
   CalendarEvent,
   CalendarEventAction,
@@ -27,23 +11,9 @@ import {
 import { FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material';
 import { Router, ActivatedRoute } from '@angular/router';
-import { TrainerService } from 'src/app/services/Trainer.service';
-import { Trainer } from 'src/app/models/Trainer/Trainer';
-
-const colors: any = {
-  red: {
-    primary: '#ad2121',
-    secondary: '#FAE3E3'
-  },
-  blue: {
-    primary: '#1e90ff',
-    secondary: '#D1E8FF'
-  },
-  yellow: {
-    primary: '#e3bc08',
-    secondary: '#FDF1BA'
-  }
-};
+import { TrainingService } from 'src/app/services/Training.service';
+import { Training } from 'src/app/models/Training/Training';
+import { DeleteTrainingDialogComponent } from 'src/app/shared/delete-training-dialog/delete-training-dialog.component';
 
 @Component({
   selector: 'app-trainer-calendar',
@@ -54,8 +24,6 @@ const colors: any = {
 export class TrainerCalendarComponent implements OnInit {
   ngForm: FormGroup;
 
-  @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any>;
-
   view: CalendarView = CalendarView.Month;
 
   CalendarView = CalendarView;
@@ -63,11 +31,6 @@ export class TrainerCalendarComponent implements OnInit {
   viewDate: Date = new Date();
 
   weekStartsOn: number = DAYS_OF_WEEK.MONDAY;
-
-  modalData: {
-    action: string;
-    event: CalendarEvent;
-  };
 
   actions: CalendarEventAction[] = [
     {
@@ -89,64 +52,18 @@ export class TrainerCalendarComponent implements OnInit {
 
   refresh: Subject<any> = new Subject();
 
-  events: CalendarEvent[] = [
-    {
-      start: subDays(startOfDay(new Date()), 1),
-      end: addDays(new Date(), 1),
-      title: 'A 3 day event',
-      color: colors.red,
-      actions: this.actions,
-      allDay: true,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true
-      },
-      draggable: true,
-      id: 0
-    },
-    {
-      start: startOfDay(new Date()),
-      title: 'An event with no end date',
-      color: colors.yellow,
-      actions: this.actions,
-      id: 1
-    },
-    {
-      start: subDays(endOfMonth(new Date()), 3),
-      end: addDays(endOfMonth(new Date()), 3),
-      title: 'A long event that spans 2 months',
-      color: colors.blue,
-      allDay: true,
-      id: 2
-    },
-    {
-      start: addHours(startOfDay(new Date()), 2),
-      end: addHours(new Date(), 2),
-      title: 'A draggable and resizable event',
-      color: colors.yellow,
-      actions: this.actions,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true
-      },
-      draggable: true,
-      id: 3
-    }
-  ];
+  events: CalendarEvent[] = [];
 
-  activeDayIsOpen = true;
+  activeDayIsOpen = false;
 
-  userId: string;
-  trainer: Trainer;
   trainerId: number;
-  trainerName: string;
+  trainings: Training[];
   isLoaded = false;
 
   constructor(
-    private modal: NgbModal,
     private dialog: MatDialog,
     private route: ActivatedRoute,
-    private trainerService: TrainerService,
+    private trainingService: TrainingService,
     private router: Router
   ) {}
 
@@ -155,6 +72,31 @@ export class TrainerCalendarComponent implements OnInit {
       this.route.snapshot.paramMap.get('trainerId'),
       10
     );
+    this.trainingService
+      .getTrainerTrainings(this.trainerId)
+      .subscribe(response => {
+        this.trainings = response;
+        this.trainings.forEach(t => {
+          this.events.push({
+            start: new Date(),
+            end: new Date(),
+            title: t.title,
+            color: {
+              primary: t.primaryColor,
+              secondary: t.secondaryColor
+            },
+            actions: this.actions,
+            allDay: true,
+            resizable: {
+              beforeStart: false,
+              afterEnd: false
+            },
+            draggable: false,
+            id: t.id
+          });
+        });
+        this.isLoaded = true;
+      });
   }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
@@ -192,36 +134,30 @@ export class TrainerCalendarComponent implements OnInit {
   handleEvent(action: string, event: CalendarEvent): void {
     if (action === 'Edited') {
       this.router.navigate([
-        `profile/trainer/calendar/trainings/${event.id}/edit`
+        `profile/trainers/${this.trainerId}/calendar/trainings/${event.id}/edit`
       ]);
     } else if (action === 'Deleted') {
-      // this.openDialog('Delete', event);
+      this.openDeleteDialog(event);
     } else {
-      this.modalData = { event, action };
-      this.modal.open(this.modalContent, { size: 'lg' });
     }
+  }
+
+  openDeleteDialog(eventToDelete: CalendarEvent) {
+    this.dialog.open(DeleteTrainingDialogComponent, {
+      width: '400px',
+      data: {
+        trainingId: eventToDelete.id,
+        trainerId: this.trainerId,
+        errorMsg:
+          'Do you really want to delete this training? This process cannot be undone.'
+      }
+    });
   }
 
   goToAdd() {
     this.router.navigate([
       `profile/trainers/${this.trainerId}/calendar/trainings/add`
     ]);
-  }
-
-  deleteTraining(rowObj) {
-    // tutaj implementacja usuwania treningu z bazy
-  }
-
-  addTraining(rowObj) {
-    // tutaj implementacja dodawania treningu do bazy
-  }
-
-  editTraining(rowObj) {
-    // tutaj implementacja edycji treningu
-  }
-
-  deleteEvent(eventToDelete: CalendarEvent) {
-    // this.events = this.events.filter(event => event !== eventToDelete);
   }
 
   setView(view: CalendarView) {
