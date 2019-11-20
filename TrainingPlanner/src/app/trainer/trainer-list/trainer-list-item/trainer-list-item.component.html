@@ -12,7 +12,10 @@
   </div>
   <div class="col-9 tp-padd">
     <div class="mb-3">
-      <h5 class="text-muted mt-1 tp-inline">
+      <h5
+        class="text-muted mt-1 tp-inline tp-cursor"
+        [routerLink]="[trainer.id]"
+      >
         {{ trainer.user.firstName + ' ' + trainer.user.lastName }}
       </h5>
       <div class="heart-icon" *ngIf="isUserAuthenticated">
@@ -28,14 +31,6 @@
           ></button
         ></ng-template>
       </div>
-      <button
-        mat-raised-button
-        color="primary"
-        class="btn-block btn-no-shadow w-25 float-right tp-inline"
-        (click)="viewDetails()"
-      >
-        View details
-      </button>
     </div>
     <p class="text-muted mb-2" *ngIf="trainer.user.email != null">
       <span><i class="fa fa-envelope" aria-hidden="true"></i></span>

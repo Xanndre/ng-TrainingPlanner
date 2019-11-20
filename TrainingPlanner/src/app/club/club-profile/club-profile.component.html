@@ -1,17 +1,6 @@
 <div class="row full-width" *ngIf="(isAdd && isLoaded) || (isEdit && isLoaded)">
   <div class="col-lg-6 mx-auto">
     <mat-card class="my-4">
-      <div class="tp-right">
-        <button
-          mat-raised-button
-          color="primary"
-          class="btn-block btn-no-shadow w-25"
-          *ngIf="isEdit"
-          (click)="goToCalendar()"
-        >
-          Edit calendar
-        </button>
-      </div>
       <form class="text-center p-5" [formGroup]="clubForm.clubForm">
         <h4 class="text-muted" *ngIf="isAdd; else editTitle">
           Create a club profile
@@ -193,7 +182,7 @@
         <button
           mat-raised-button
           color="primary"
-          class="btn-block my-4 btn-no-shadow"
+          class="btn-block mt-4 mb-0 btn-no-shadow"
           type="submit"
           *ngIf="isAdd"
           [disabled]="!clubForm.clubForm.valid"
@@ -204,7 +193,7 @@
         <button
           mat-raised-button
           color="primary"
-          class="btn-block my-4 btn-no-shadow"
+          class="btn-block mt-4 mb-0 btn-no-shadow"
           *ngIf="isEdit && !isEdited"
           (click)="editClubAccount()"
         >

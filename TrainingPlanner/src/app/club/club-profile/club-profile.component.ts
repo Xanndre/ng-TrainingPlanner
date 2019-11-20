@@ -354,9 +354,4 @@ export class ClubProfileComponent implements OnInit {
       return true;
     });
   }
-
-  goToCalendar() {
-    // this.router.navigate(['profile/trainer/calendar']);
-    // tutaj navigate do linka z kalendarzem klubu
-  }
 }

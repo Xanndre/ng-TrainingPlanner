@@ -1,7 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { TrainingService } from 'src/app/services/Training.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-delete-training-dialog',
@@ -15,7 +14,6 @@ export class DeleteTrainingDialogComponent implements OnInit {
 
   constructor(
     private trainingService: TrainingService,
-    private router: Router,
     private dialogRef: MatDialogRef<DeleteTrainingDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {

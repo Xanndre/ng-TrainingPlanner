@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Router } from '@angular/router';
 import { TrainerBase } from 'src/app/models/Trainer/TrainerBase';
 import { LoginService } from 'src/app/services/Login.service';
 
@@ -15,7 +14,7 @@ export class TrainerListItemComponent implements OnInit {
   @Input() trainer: TrainerBase;
   @Output() favouriteChange = new EventEmitter<TrainerBase>();
 
-  constructor(private router: Router, private loginService: LoginService) {}
+  constructor(private loginService: LoginService) {}
 
   ngOnInit() {
     this.isUserAuthenticated = this.loginService.isUserAuthenticated();
@@ -26,10 +25,6 @@ export class TrainerListItemComponent implements OnInit {
         this.sports += s.sport.name + ' | ';
       }
     });
-  }
-
-  viewDetails() {
-    this.router.navigate([`/trainers/${this.trainer.id}`]);
   }
 
   doFavourite() {

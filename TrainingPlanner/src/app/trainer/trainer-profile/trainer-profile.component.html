@@ -10,7 +10,7 @@
             class="btn-block btn-no-shadow mt-2"
             (click)="viewSales()"
           >
-            View sales
+            Sales
           </button>
         </div>
         <div class="col">
@@ -21,7 +21,7 @@
             class="btn-block btn-no-shadow mt-2"
             (click)="goToCalendar()"
           >
-            Edit calendar
+            Calendar
           </button>
         </div>
         <div class="col pr-0">
@@ -36,7 +36,10 @@
         </div>
       </div>
 
-      <form class="text-center p-5" [formGroup]="trainerForm.trainerForm">
+      <form
+        class="text-center pl-5 pr-5 pt-5 pb-2"
+        [formGroup]="trainerForm.trainerForm"
+      >
         <h4 class="text-muted" *ngIf="!isTrainer; else editTitle">
           Create a trainer profile
         </h4>
@@ -62,7 +65,7 @@
         <button
           mat-raised-button
           color="primary"
-          class="btn-block my-4 btn-no-shadow"
+          class="btn-block mt-4 mb-0 btn-no-shadow"
           type="submit"
           *ngIf="!isTrainer"
           [disabled]="!trainerForm.trainerForm.valid"
@@ -73,7 +76,7 @@
         <button
           mat-raised-button
           color="primary"
-          class="btn-block my-4 btn-no-shadow"
+          class="btn-block mt-4 mb-0 btn-no-shadow"
           type="submit"
           *ngIf="isTrainer && !isEdited"
           (click)="editTrainerAccount()"

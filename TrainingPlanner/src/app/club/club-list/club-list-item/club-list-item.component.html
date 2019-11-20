@@ -12,7 +12,10 @@
   </div>
   <div class="col-6 tp-padd">
     <div class="mb-3">
-      <h5 class="text-muted mt-1 tp-inline">
+      <h5
+        class="text-muted mt-1 tp-inline tp-cursor"
+        [routerLink]="['/clubs', club.id]"
+      >
         {{ club.name }}
       </h5>
       <div class="heart-icon" *ngIf="isUserAuthenticated && !isUser">
@@ -45,12 +48,13 @@
   </div>
   <div class="col-3 pl-0">
     <button
+      *ngIf="isProfile"
       mat-raised-button
       color="primary"
       class="btn-block btn-no-shadow float-right w-75"
-      (click)="viewDetails()"
+      (click)="viewCalendar()"
     >
-      View details
+      Calendar
     </button>
     <button
       *ngIf="isProfile"
@@ -59,7 +63,7 @@
       class="btn-block btn-no-shadow float-right w-75"
       (click)="viewSales()"
     >
-      View sales
+      Sales
     </button>
     <button
       *ngIf="isProfile"

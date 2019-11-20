@@ -31,7 +31,7 @@
         *ngIf="!isEdit"
         mat-raised-button
         color="primary"
-        class="btn-block mb-4 tp-margin btn-no-shadow tp-padd"
+        class="btn-block mb-5 tp-margin btn-no-shadow tp-padd"
         (click)="addMeasurement()"
         [disabled]="
           (!bodyForm.bodyForm.valid && !isInjured) ||
@@ -44,7 +44,7 @@
         *ngIf="isEdit && !isEdited"
         mat-raised-button
         color="primary"
-        class="btn-block mb-4 tp-margin btn-no-shadow tp-padd"
+        class="btn-block mb-5 tp-margin btn-no-shadow tp-padd"
         (click)="editMeasurement()"
       >
         Edit

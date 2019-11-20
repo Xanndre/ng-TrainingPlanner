@@ -4,7 +4,12 @@ import { Training } from 'src/app/models/Training/Training';
 export class TrainingAddForm {
   trainingForm: FormGroup;
 
-  buildForm(formBuilder: FormBuilder, training: Training) {
+  buildForm(
+    formBuilder: FormBuilder,
+    training: Training,
+    startTime: string,
+    endTime: string
+  ) {
     this.trainingForm = formBuilder.group({
       title: [
         training !== null ? training.title : null,
@@ -27,14 +32,8 @@ export class TrainingAddForm {
         training !== null ? training.endDate : null,
         [Validators.required]
       ],
-      startTime: [
-        training !== null ? training.startTime : null,
-        [Validators.required]
-      ],
-      endTime: [
-        training !== null ? training.endTime : null,
-        [Validators.required]
-      ],
+      startTime: [training !== null ? startTime : null, [Validators.required]],
+      endTime: [training !== null ? endTime : null, [Validators.required]],
       primaryColor: [
         training !== null ? training.primaryColor : null,
         [Validators.required]

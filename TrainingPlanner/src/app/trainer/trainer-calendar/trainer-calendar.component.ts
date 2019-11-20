@@ -78,8 +78,8 @@ export class TrainerCalendarComponent implements OnInit {
         this.trainings = response;
         this.trainings.forEach(t => {
           this.events.push({
-            start: new Date(),
-            end: new Date(),
+            start: new Date(t.startDate),
+            end: new Date(t.endDate),
             title: t.title,
             color: {
               primary: t.primaryColor,

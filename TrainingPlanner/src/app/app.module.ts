@@ -15,6 +15,8 @@ import { FavouriteModule } from './favourite/favourite.module';
 import { CardModule } from './card/card.module';
 import { PartnerModule } from './partner/partner.module';
 import { MeasurementModule } from './measurement/measurement.module';
+import { DateAdapter } from '@angular/material';
+import { CustomDateAdapter } from './shared/custom-date-adapter/custom-date-adapter';
 
 export function getToken(): string {
   return localStorage.getItem('token');
@@ -43,7 +45,14 @@ export function getToken(): string {
     }),
     BrowserAnimationsModule
   ],
-  providers: [JwtHelperService],
+  providers: [
+    JwtHelperService,
+    { provide: DateAdapter, useClass: CustomDateAdapter }
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+  constructor(private dateAdapter: DateAdapter<Date>) {
+    this.dateAdapter.setLocale('en-en');
+  }
+}

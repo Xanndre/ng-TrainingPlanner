@@ -34,10 +34,6 @@ export class ClubListItemComponent implements OnInit {
     }
   }
 
-  viewDetails() {
-    this.router.navigate([`/clubs/${this.club.id}`]);
-  }
-
   editClub() {
     this.router.navigate([`profile/clubs/edit/${this.club.id}`]);
   }
@@ -48,6 +44,10 @@ export class ClubListItemComponent implements OnInit {
 
   viewSales() {
     this.router.navigate([`clubs/${this.club.id}/cards`]);
+  }
+
+  viewCalendar() {
+    this.router.navigate([`profile/clubs/${this.club.id}/calendar`]);
   }
 
   deleteClub() {

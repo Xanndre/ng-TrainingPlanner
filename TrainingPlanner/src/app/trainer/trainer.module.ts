@@ -31,6 +31,7 @@ import { FlatpickrModule } from 'angularx-flatpickr';
 import { TrainingAddComponent } from './trainer-calendar/training-add/training-add.component';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { DeleteTrainingDialogComponent } from '../shared/delete-training-dialog/delete-training-dialog.component';
+import { CustomDateAdapter } from '../shared/custom-date-adapter/custom-date-adapter';
 
 const routes: Routes = [
   {
