@@ -1,10 +1,17 @@
-import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  OnInit,
+  SimpleChanges,
+  OnChanges,
+  SimpleChange,
+  ChangeDetectorRef
+} from '@angular/core';
 import { isSameDay, isSameMonth } from 'date-fns';
 import { Subject } from 'rxjs';
 import {
   CalendarEvent,
   CalendarEventAction,
-  CalendarEventTimesChangedEvent,
   CalendarView,
   DAYS_OF_WEEK
 } from 'angular-calendar';
@@ -67,14 +74,15 @@ export class TrainerCalendarComponent implements OnInit {
 
   trainerId: number;
   trainings: Training[];
-  isLoaded = false;
   isEditable: boolean;
+  isLoaded: boolean;
 
   constructor(
     private dialog: MatDialog,
     private route: ActivatedRoute,
     private trainingService: TrainingService,
-    private router: Router
+    private router: Router,
+    private changeDetectorRef: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
@@ -107,6 +115,8 @@ export class TrainerCalendarComponent implements OnInit {
           });
         });
         this.isLoaded = true;
+        this.viewDate = new Date();
+        this.changeDetectorRef.detectChanges();
       });
   }
 
@@ -124,24 +134,6 @@ export class TrainerCalendarComponent implements OnInit {
     }
   }
 
-  eventTimesChanged({
-    event,
-    newStart,
-    newEnd
-  }: CalendarEventTimesChangedEvent): void {
-    this.events = this.events.map(iEvent => {
-      if (iEvent === event) {
-        return {
-          ...event,
-          start: newStart,
-          end: newEnd
-        };
-      }
-      return iEvent;
-    });
-    this.handleEvent('Dropped or resized', event);
-  }
-
   handleEvent(action: string, event: CalendarEvent): void {
     if (action === 'Edited') {
       this.router.navigate([
@@ -156,13 +148,24 @@ export class TrainerCalendarComponent implements OnInit {
   }
 
   openDeleteDialog(eventToDelete: CalendarEvent) {
-    this.dialog.open(DeleteTrainingDialogComponent, {
+    const dialogRef = this.dialog.open(DeleteTrainingDialogComponent, {
       width: '400px',
       data: {
         trainingId: eventToDelete.id,
         trainerId: this.trainerId,
+        events: this.events,
         errorMsg:
           'Do you really want to delete this training? This process cannot be undone.'
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result !== undefined) {
+        if (result.event === 'Delete') {
+          this.activeDayIsOpen = false;
+          this.refresh.next();
+          this.changeDetectorRef.detectChanges();
+        }
       }
     });
   }

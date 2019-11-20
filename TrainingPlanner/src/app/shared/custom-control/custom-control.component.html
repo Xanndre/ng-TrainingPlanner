@@ -140,12 +140,18 @@
     <mat-form-field class="full-width">
       <input
         matInput
+        readonly
         [colorPicker]="
           customControl.formGroup.get(customControl.formControlName).value
         "
         [style.background]="
           customControl.formGroup.get(customControl.formControlName).value
         "
+        [style.color]="
+          customControl.formGroup.get(customControl.formControlName).value
+        "
+        [ngStyle]="{ '--background-color': backgroundColor }"
+        cpPosition="top-right"
         (colorPickerChange)="
           customControl.formGroup
             .get(customControl.formControlName)
