@@ -54,6 +54,7 @@ const routes: Routes = [
   {
     path: 'profile/trainers/:trainerId/calendar',
     component: TrainerCalendarComponent,
+    data: { editable: true },
     canActivate: [AuthGuardService]
   },
   {
@@ -67,6 +68,12 @@ const routes: Routes = [
     component: TrainingAddComponent,
     canActivate: [AuthGuardService],
     data: { edit: true }
+  },
+  {
+    path: 'trainers/:trainerId/calendar',
+    component: TrainerCalendarComponent,
+    data: { editable: false },
+    canActivate: [AuthGuardService]
   }
 ];
 

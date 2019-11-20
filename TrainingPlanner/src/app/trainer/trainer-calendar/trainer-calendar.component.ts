@@ -44,8 +44,17 @@ export class TrainerCalendarComponent implements OnInit {
       label: '<i class="fa fa-fw fa-times"></i>',
       a11yLabel: 'Delete',
       onClick: ({ event }: { event: CalendarEvent }): void => {
-        // this.events = this.events.filter(iEvent => iEvent !== event);
         this.handleEvent('Deleted', event);
+      }
+    }
+  ];
+
+  userActions: CalendarEventAction[] = [
+    {
+      label: '<i class="fas fa-info-circle"></i>',
+      a11yLabel: 'Info',
+      onClick: ({ event }: { event: CalendarEvent }): void => {
+        this.handleEvent('Info', event);
       }
     }
   ];
@@ -59,6 +68,7 @@ export class TrainerCalendarComponent implements OnInit {
   trainerId: number;
   trainings: Training[];
   isLoaded = false;
+  isEditable: boolean;
 
   constructor(
     private dialog: MatDialog,
@@ -72,6 +82,7 @@ export class TrainerCalendarComponent implements OnInit {
       this.route.snapshot.paramMap.get('trainerId'),
       10
     );
+    this.isEditable = this.route.snapshot.data.editable;
     this.trainingService
       .getTrainerTrainings(this.trainerId)
       .subscribe(response => {
@@ -85,7 +96,7 @@ export class TrainerCalendarComponent implements OnInit {
               primary: t.primaryColor,
               secondary: t.secondaryColor
             },
-            actions: this.actions,
+            actions: this.isEditable ? this.actions : this.userActions,
             allDay: true,
             resizable: {
               beforeStart: false,
@@ -138,6 +149,8 @@ export class TrainerCalendarComponent implements OnInit {
       ]);
     } else if (action === 'Deleted') {
       this.openDeleteDialog(event);
+    } else if (action === 'Info') {
+      // tutaj otwieranie dialogu z detailsami
     } else {
     }
   }

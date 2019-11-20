@@ -100,9 +100,18 @@ export class TrainingAddComponent implements OnInit {
       trainerName: this.trainerName
     };
 
-    this.trainingService.createTraining(this.trainingCreate).subscribe(() => {
-      this.router.navigate([`/profile/trainers/${this.trainerId}/calendar`]);
-    });
+    this.trainingService.createTraining(this.trainingCreate).subscribe(
+      () => {
+        this.router.navigate([`/profile/trainers/${this.trainerId}/calendar`]);
+      },
+      err => {
+        if (err.error === 'Invalid dates') {
+          this.showError('End date should be greater than start date.');
+        } else {
+          this.showError('Invalid training creation attempt.');
+        }
+      }
+    );
   }
 
   getDate(time: string, date: Date) {
@@ -213,8 +222,12 @@ export class TrainingAddComponent implements OnInit {
       () => {
         this.router.navigate([`/profile/trainers/${this.trainerId}/calendar`]);
       },
-      () => {
-        this.showError('Invalid training edition attempt.');
+      err => {
+        if (err.error === 'Invalid dates') {
+          this.showError('End date should be greater than start date.');
+        } else {
+          this.showError('Invalid training edition attempt.');
+        }
       }
     );
     this.beforeChanges = JSON.parse(JSON.stringify(this.training));
