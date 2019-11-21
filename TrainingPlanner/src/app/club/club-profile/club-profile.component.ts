@@ -63,7 +63,7 @@ export class ClubProfileComponent implements OnInit {
   ngOnInit() {
     if (this.route.snapshot.data.edit) {
       this.isEdit = true;
-      this.clubId = parseInt(this.route.snapshot.paramMap.get('id'), 10);
+      this.clubId = parseInt(this.route.snapshot.paramMap.get('clubId'), 10);
       this.clubService.getClub(this.clubId, false).subscribe(response => {
         this.club = response;
         this.beforeChanges = JSON.parse(JSON.stringify(this.club));

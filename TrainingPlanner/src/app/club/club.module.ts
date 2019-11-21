@@ -20,12 +20,12 @@ import { ClubListComponent } from './club-list/club-list.component';
 import { ClubListItemComponent } from './club-list/club-list-item/club-list-item.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { DeleteClubDialogComponent } from '../shared/delete-club-dialog/delete-club-dialog.component';
-import { EditGuardService } from '../guards/EditGuard.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ClubReviewListComponent } from './club-review-list/club-review-list.component';
 import { ClubReviewListItemComponent } from './club-review-list/club-review-list-item/club-review-list-item.component';
 import { ReviewDialogComponent } from '../shared/review-dialog/review-dialog.component';
 import { ErrorDialogComponent } from '../shared/error-dialog/error-dialog.component';
+import { ClubGuardService } from '../guards/ClubGuard.service';
 
 const routes: Routes = [
   {
@@ -41,10 +41,10 @@ const routes: Routes = [
     canActivate: [AuthGuardService]
   },
   {
-    path: 'profile/clubs/edit/:id',
+    path: 'profile/clubs/edit/:clubId',
     component: ClubProfileComponent,
     data: { edit: true, add: false },
-    canActivate: [AuthGuardService, EditGuardService]
+    canActivate: [AuthGuardService, ClubGuardService]
   },
   {
     path: 'clubs/user',

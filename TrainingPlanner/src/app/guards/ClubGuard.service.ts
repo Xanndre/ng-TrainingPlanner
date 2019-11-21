@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import { Router, CanActivate, ActivatedRouteSnapshot } from '@angular/router';
+import { CanActivate, Router, ActivatedRouteSnapshot } from '@angular/router';
 import { ClubService } from '../services/Club.service';
 import { map } from 'rxjs/Operators';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ClubCardGuardService implements CanActivate {
-  constructor(private router: Router, private clubService: ClubService) {}
+export class ClubGuardService implements CanActivate {
+  constructor(private clubService: ClubService, private router: Router) {}
 
   canActivate(route: ActivatedRouteSnapshot) {
     const userId = localStorage.getItem('userId');

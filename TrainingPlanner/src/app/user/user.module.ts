@@ -17,8 +17,8 @@ import { UserListItemComponent } from './user-list/user-list-item/user-list-item
 import { UserListComponent } from './user-list/user-list.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
-import { ClubCardGuardService } from '../guards/ClubCardGuard.service';
-import { TrainerCardGuardService } from '../guards/TrainerCardGuard.service';
+import { TrainerGuardService } from '../guards/TrainerGuard.service';
+import { ClubGuardService } from '../guards/ClubGuard.service';
 
 const routes: Routes = [
   {
@@ -34,12 +34,12 @@ const routes: Routes = [
   {
     path: 'clubs/:clubId/users',
     component: UserListComponent,
-    canActivate: [AuthGuardService, ClubCardGuardService]
+    canActivate: [AuthGuardService, ClubGuardService]
   },
   {
     path: 'trainers/:trainerId/users',
     component: UserListComponent,
-    canActivate: [AuthGuardService, TrainerCardGuardService]
+    canActivate: [AuthGuardService, TrainerGuardService]
   }
 ];
 

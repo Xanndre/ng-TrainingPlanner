@@ -81,3 +81,13 @@ pre {
 ::ng-deep .cal-week-view .cal-event {
   color: #6c757d;
 }
+
+::ng-deep .cal-event-title:focus {
+  outline: none !important;
+  box-shadow: none;
+}
+
+::ng-deep .ng-tns-c5-5:focus {
+  outline: none !important;
+  box-shadow: none;
+}

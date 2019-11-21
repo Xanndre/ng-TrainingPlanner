@@ -2,9 +2,6 @@ import {
   Component,
   ChangeDetectionStrategy,
   OnInit,
-  SimpleChanges,
-  OnChanges,
-  SimpleChange,
   ChangeDetectorRef
 } from '@angular/core';
 import { isSameDay, isSameMonth } from 'date-fns';
@@ -56,16 +53,6 @@ export class TrainerCalendarComponent implements OnInit {
     }
   ];
 
-  userActions: CalendarEventAction[] = [
-    {
-      label: '<i class="fas fa-info-circle"></i>',
-      a11yLabel: 'Info',
-      onClick: ({ event }: { event: CalendarEvent }): void => {
-        this.handleEvent('Info', event);
-      }
-    }
-  ];
-
   refresh: Subject<any> = new Subject();
 
   events: CalendarEvent[] = [];
@@ -104,7 +91,7 @@ export class TrainerCalendarComponent implements OnInit {
               primary: t.primaryColor,
               secondary: t.secondaryColor
             },
-            actions: this.isEditable ? this.actions : this.userActions,
+            actions: this.isEditable ? this.actions : null,
             allDay: true,
             resizable: {
               beforeStart: false,
@@ -135,14 +122,14 @@ export class TrainerCalendarComponent implements OnInit {
   }
 
   handleEvent(action: string, event: CalendarEvent): void {
-    if (action === 'Edited') {
+    if (action === 'Clicked') {
+      // tutaj otwieranie dialogu z detailsami
+    } else if (action === 'Edited') {
       this.router.navigate([
         `profile/trainers/${this.trainerId}/calendar/trainings/${event.id}/edit`
       ]);
     } else if (action === 'Deleted') {
       this.openDeleteDialog(event);
-    } else if (action === 'Info') {
-      // tutaj otwieranie dialogu z detailsami
     } else {
     }
   }

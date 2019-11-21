@@ -15,36 +15,36 @@ import {
 import { CardListComponent } from './card-list/card-list.component';
 import { TrainerCardDialogComponent } from '../shared/trainer-card-dialog/trainer-card-dialog.component';
 import { ClubCardDialogComponent } from '../shared/club-card-dialog/club-card-dialog.component';
-import { ClubCardGuardService } from '../guards/ClubCardGuard.service';
-import { TrainerCardGuardService } from '../guards/TrainerCardGuard.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { CardDetailsComponent } from './card-details/card-details.component';
+import { ClubGuardService } from '../guards/ClubGuard.service';
+import { TrainerGuardService } from '../guards/TrainerGuard.service';
 
 const routes: Routes = [
   {
     path: 'clubs/:clubId/cards',
     component: ClubCardListComponent,
     data: { isUser: false, isClub: true },
-    canActivate: [AuthGuardService, ClubCardGuardService]
+    canActivate: [AuthGuardService, ClubGuardService]
   },
   {
     path: 'trainers/:trainerId/cards',
     component: TrainerCardListComponent,
     data: { isUser: false, isTrainer: true },
-    canActivate: [AuthGuardService, TrainerCardGuardService]
+    canActivate: [AuthGuardService, TrainerGuardService]
   },
   {
     path: 'users/:id/club_cards/clubs/:clubId',
     component: ClubCardListComponent,
     data: { isUser: true, isClub: true },
-    canActivate: [AuthGuardService, ClubCardGuardService]
+    canActivate: [AuthGuardService, ClubGuardService]
   },
   {
     path: 'users/:id/trainer_cards/trainers/:trainerId',
     component: TrainerCardListComponent,
     data: { isUser: true, isTrainer: true },
-    canActivate: [AuthGuardService, TrainerCardGuardService]
+    canActivate: [AuthGuardService, TrainerGuardService]
   },
   {
     path: 'profile/cards',

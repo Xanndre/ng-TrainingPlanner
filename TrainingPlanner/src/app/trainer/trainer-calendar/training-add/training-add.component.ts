@@ -210,8 +210,8 @@ export class TrainingAddComponent implements OnInit {
       endDate: this.training.endDate,
       primaryColor: this.training.primaryColor,
       secondaryColor: this.training.secondaryColor,
-      startTime: this.getStringFromDate(this.training.startDate),
-      endTime: this.getStringFromDate(this.training.endDate)
+      startTime: this.getStringFromDate(new Date(this.training.startDate)),
+      endTime: this.getStringFromDate(new Date(this.training.endDate))
     });
   }
 

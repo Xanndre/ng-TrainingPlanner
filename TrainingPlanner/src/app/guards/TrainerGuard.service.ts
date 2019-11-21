@@ -1,23 +1,23 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router, ActivatedRouteSnapshot } from '@angular/router';
+import { TrainerService } from '../services/Trainer.service';
 import { map } from 'rxjs/Operators';
-import { ClubService } from '../services/Club.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class EditGuardService implements CanActivate {
-  constructor(private clubService: ClubService, private router: Router) {}
+export class TrainerGuardService implements CanActivate {
+  constructor(private router: Router, private trainerService: TrainerService) {}
 
   canActivate(route: ActivatedRouteSnapshot) {
     const userId = localStorage.getItem('userId');
-    const clubId = parseInt(route.paramMap.get('id'), 10);
-    return this.clubService.getClub(clubId).pipe(
+    const trainerId = parseInt(route.paramMap.get('trainerId'), 10);
+    return this.trainerService.getTrainer(trainerId).pipe(
       map(response => {
         if (response.user.id === userId) {
           return true;
         }
-        this.router.navigate(['/clubs']);
+        this.router.navigate(['/trainers']);
         return false;
       })
     );

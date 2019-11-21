@@ -57,4 +57,8 @@ export class ClubDetailsComponent implements OnInit {
   goToReviews() {
     this.router.navigate([`/clubs/${this.clubId}/reviews`]);
   }
+
+  goToCalendar() {
+    this.router.navigate([`/clubs/${this.clubId}/calendar`]);
+  }
 }

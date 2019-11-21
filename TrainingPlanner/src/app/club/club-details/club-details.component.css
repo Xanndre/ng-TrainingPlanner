@@ -74,3 +74,9 @@
 .tp-div {
   align-self: center;
 }
+
+.fas,
+.far {
+  margin-top: -2px;
+  margin-right: 5px;
+}

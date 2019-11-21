@@ -31,7 +31,7 @@ import { FlatpickrModule } from 'angularx-flatpickr';
 import { TrainingAddComponent } from './trainer-calendar/training-add/training-add.component';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { DeleteTrainingDialogComponent } from '../shared/delete-training-dialog/delete-training-dialog.component';
-import { CustomDateAdapter } from '../shared/custom-date-adapter/custom-date-adapter';
+import { TrainerGuardService } from '../guards/TrainerGuard.service';
 
 const routes: Routes = [
   {
@@ -55,18 +55,18 @@ const routes: Routes = [
     path: 'profile/trainers/:trainerId/calendar',
     component: TrainerCalendarComponent,
     data: { editable: true },
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService, TrainerGuardService]
   },
   {
     path: 'profile/trainers/:trainerId/calendar/trainings/add',
     component: TrainingAddComponent,
-    canActivate: [AuthGuardService],
+    canActivate: [AuthGuardService, TrainerGuardService],
     data: { edit: false }
   },
   {
     path: 'profile/trainers/:trainerId/calendar/trainings/:id/edit',
     component: TrainingAddComponent,
-    canActivate: [AuthGuardService],
+    canActivate: [AuthGuardService, TrainerGuardService],
     data: { edit: true }
   },
   {
