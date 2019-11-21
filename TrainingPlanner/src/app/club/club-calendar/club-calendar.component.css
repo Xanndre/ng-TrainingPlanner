@@ -87,17 +87,7 @@ pre {
   box-shadow: none;
 }
 
-::ng-deep .ng-tns-c5-5:focus {
-  outline: none !important;
-  box-shadow: none;
-}
-
-::ng-deep .ng-tns-c5-9:focus {
-  outline: none !important;
-  box-shadow: none;
-}
-
-::ng-deep .ng-tns-c5-4:focus {
+::ng-deep [class*='ng-tns-c']:focus {
   outline: none !important;
   box-shadow: none;
 }

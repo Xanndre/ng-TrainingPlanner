@@ -33,3 +33,11 @@ textarea {
 .colorPicker::selection {
   background-color: var(--background-color);
 }
+
+.tp-input {
+  cursor: pointer;
+}
+
+.tp-input:disabled {
+  cursor: auto;
+}
