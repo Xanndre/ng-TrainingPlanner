@@ -20,12 +20,12 @@ import { Training } from 'src/app/models/Training/Training';
 import { DeleteTrainingDialogComponent } from 'src/app/shared/delete-training-dialog/delete-training-dialog.component';
 
 @Component({
-  selector: 'app-trainer-calendar',
+  selector: 'app-club-calendar',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  templateUrl: './trainer-calendar.component.html',
-  styleUrls: ['./trainer-calendar.component.css']
+  templateUrl: './club-calendar.component.html',
+  styleUrls: ['./club-calendar.component.css']
 })
-export class TrainerCalendarComponent implements OnInit {
+export class ClubCalendarComponent implements OnInit {
   ngForm: FormGroup;
 
   view: CalendarView = CalendarView.Month;
@@ -59,7 +59,7 @@ export class TrainerCalendarComponent implements OnInit {
 
   activeDayIsOpen = false;
 
-  trainerId: number;
+  clubId: number;
   trainings: Training[];
   isEditable: boolean;
   isLoaded: boolean;
@@ -73,38 +73,33 @@ export class TrainerCalendarComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.trainerId = parseInt(
-      this.route.snapshot.paramMap.get('trainerId'),
-      10
-    );
+    this.clubId = parseInt(this.route.snapshot.paramMap.get('clubId'), 10);
     this.isEditable = this.route.snapshot.data.editable;
-    this.trainingService
-      .getTrainerTrainings(this.trainerId)
-      .subscribe(response => {
-        this.trainings = response;
-        this.trainings.forEach(t => {
-          this.events.push({
-            start: new Date(t.startDate),
-            end: new Date(t.endDate),
-            title: t.title,
-            color: {
-              primary: t.primaryColor,
-              secondary: t.secondaryColor
-            },
-            actions: this.isEditable ? this.actions : null,
-            allDay: true,
-            resizable: {
-              beforeStart: false,
-              afterEnd: false
-            },
-            draggable: false,
-            id: t.id
-          });
+    this.trainingService.getClubTrainings(this.clubId).subscribe(response => {
+      this.trainings = response;
+      this.trainings.forEach(t => {
+        this.events.push({
+          start: new Date(t.startDate),
+          end: new Date(t.endDate),
+          title: t.title,
+          color: {
+            primary: t.primaryColor,
+            secondary: t.secondaryColor
+          },
+          actions: this.isEditable ? this.actions : null,
+          allDay: true,
+          resizable: {
+            beforeStart: false,
+            afterEnd: false
+          },
+          draggable: false,
+          id: t.id
         });
-        this.isLoaded = true;
-        this.viewDate = new Date();
-        this.changeDetectorRef.detectChanges();
       });
+      this.isLoaded = true;
+      this.viewDate = new Date();
+      this.changeDetectorRef.detectChanges();
+    });
   }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
@@ -126,7 +121,7 @@ export class TrainerCalendarComponent implements OnInit {
       // tutaj otwieranie dialogu z detailsami
     } else if (action === 'Edited') {
       this.router.navigate([
-        `profile/trainers/${this.trainerId}/calendar/trainings/${event.id}/edit`
+        `profile/clubs/${this.clubId}/calendar/trainings/${event.id}/edit`
       ]);
     } else if (action === 'Deleted') {
       this.openDeleteDialog(event);
@@ -158,7 +153,7 @@ export class TrainerCalendarComponent implements OnInit {
 
   goToAdd() {
     this.router.navigate([
-      `profile/trainers/${this.trainerId}/calendar/trainings/add`
+      `profile/clubs/${this.clubId}/calendar/trainings/add`
     ]);
   }
 

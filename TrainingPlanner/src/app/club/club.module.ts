@@ -7,7 +7,8 @@ import { SharedModule } from '../shared/shared.module';
 import {
   MatCardModule,
   MatButtonModule,
-  MatTableModule
+  MatTableModule,
+  DateAdapter
 } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -26,6 +27,11 @@ import { ClubReviewListItemComponent } from './club-review-list/club-review-list
 import { ReviewDialogComponent } from '../shared/review-dialog/review-dialog.component';
 import { ErrorDialogComponent } from '../shared/error-dialog/error-dialog.component';
 import { ClubGuardService } from '../guards/ClubGuard.service';
+import { ClubCalendarComponent } from './club-calendar/club-calendar.component';
+import { TrainingAddComponent } from './club-calendar/training-add/training-add.component';
+import { DeleteTrainingDialogComponent } from '../shared/delete-training-dialog/delete-training-dialog.component';
+import { CalendarModule } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 const routes: Routes = [
   {
@@ -47,12 +53,6 @@ const routes: Routes = [
     canActivate: [AuthGuardService, ClubGuardService]
   },
   {
-    path: 'clubs/user',
-    component: ClubListComponent,
-    data: { isUser: true },
-    canActivate: [AuthGuardService]
-  },
-  {
     path: 'clubs',
     component: ClubListComponent,
     data: { isUser: false }
@@ -64,6 +64,30 @@ const routes: Routes = [
   {
     path: 'clubs/:id/reviews',
     component: ClubReviewListComponent
+  },
+  {
+    path: 'profile/clubs/:clubId/calendar',
+    component: ClubCalendarComponent,
+    data: { editable: true },
+    canActivate: [AuthGuardService, ClubGuardService]
+  },
+  {
+    path: 'profile/clubs/:clubId/calendar/trainings/add',
+    component: TrainingAddComponent,
+    canActivate: [AuthGuardService, ClubGuardService],
+    data: { edit: false }
+  },
+  {
+    path: 'profile/clubs/:clubId/calendar/trainings/:id/edit',
+    component: TrainingAddComponent,
+    canActivate: [AuthGuardService, ClubGuardService],
+    data: { edit: true }
+  },
+  {
+    path: 'clubs/:clubId/calendar',
+    component: ClubCalendarComponent,
+    data: { editable: false },
+    canActivate: [AuthGuardService]
   }
 ];
 
@@ -75,9 +99,15 @@ const routes: Routes = [
     ClubListComponent,
     ClubListItemComponent,
     ClubReviewListComponent,
-    ClubReviewListItemComponent
+    ClubReviewListItemComponent,
+    ClubCalendarComponent,
+    TrainingAddComponent
   ],
   imports: [
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory
+    }),
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
@@ -95,14 +125,16 @@ const routes: Routes = [
     ClubProfileComponent,
     ClubDetailsComponent,
     ClubListComponent,
-    ClubReviewListComponent
+    ClubReviewListComponent,
+    ClubCalendarComponent
   ],
   entryComponents: [
     ClubTrainerDialogComponent,
     ClubActivityDialogComponent,
     ReviewDialogComponent,
     DeleteClubDialogComponent,
-    ErrorDialogComponent
+    ErrorDialogComponent,
+    DeleteTrainingDialogComponent
   ]
 })
 export class ClubModule {}

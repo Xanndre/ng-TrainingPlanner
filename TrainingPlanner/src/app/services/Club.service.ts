@@ -135,4 +135,19 @@ export class ClubService {
       })
     );
   }
+
+  getClubTrainerNames(clubId: number) {
+    const options = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + localStorage.getItem('jwt')
+      })
+    };
+    return this.client
+      .get(`https://localhost:44383/api/Club/${clubId}/trainers`, options)
+      .pipe(
+        map((res: string[]) => {
+          return res;
+        })
+      );
+  }
 }

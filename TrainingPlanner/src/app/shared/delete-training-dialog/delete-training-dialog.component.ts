@@ -10,7 +10,6 @@ import { TrainingService } from 'src/app/services/Training.service';
 export class DeleteTrainingDialogComponent implements OnInit {
   localData: any;
   trainingId: number;
-  trainerId: number;
   constructor(
     private trainingService: TrainingService,
     private dialogRef: MatDialogRef<DeleteTrainingDialogComponent>,
@@ -25,7 +24,6 @@ export class DeleteTrainingDialogComponent implements OnInit {
 
   ngOnInit() {
     this.trainingId = this.localData.trainingId;
-    this.trainerId = this.localData.trainerId;
   }
 
   deleteTraining() {

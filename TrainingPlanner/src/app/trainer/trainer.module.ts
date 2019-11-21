@@ -22,12 +22,11 @@ import { DeleteTrainerDialogComponent } from '../shared/delete-trainer-dialog/de
 import { TrainerReviewListComponent } from './trainer-review-list/trainer-review-list.component';
 import { TrainerReviewListItemComponent } from './trainer-review-list/trainer-review-list-item/trainer-review-list-item.component';
 import { ReviewDialogComponent } from '../shared/review-dialog/review-dialog.component';
-import { NgbModule, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ErrorDialogComponent } from '../shared/error-dialog/error-dialog.component';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { TrainerCalendarComponent } from './trainer-calendar/trainer-calendar.component';
-import { FlatpickrModule } from 'angularx-flatpickr';
 import { TrainingAddComponent } from './trainer-calendar/training-add/training-add.component';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { DeleteTrainingDialogComponent } from '../shared/delete-training-dialog/delete-training-dialog.component';
@@ -89,8 +88,6 @@ const routes: Routes = [
     TrainingAddComponent
   ],
   imports: [
-    NgbModalModule,
-    FlatpickrModule.forRoot(),
     CommonModule,
     CalendarModule.forRoot({
       provide: DateAdapter,
