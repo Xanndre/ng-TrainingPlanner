@@ -35,6 +35,7 @@ import { TrainerCardDialogComponent } from './trainer-card-dialog/trainer-card-d
 import { DeleteMeasurementDialogComponent } from './delete-measurement-dialog/delete-measurement-dialog.component';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { DeleteTrainingDialogComponent } from './delete-training-dialog/delete-training-dialog.component';
+import { TrainingDetailsDialogComponent } from './training-details-dialog/training-details-dialog.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { DeleteTrainingDialogComponent } from './delete-training-dialog/delete-t
     SliderItemDirective,
     ClubCardDialogComponent,
     TrainerCardDialogComponent,
-    DeleteTrainingDialogComponent
+    DeleteTrainingDialogComponent,
+    TrainingDetailsDialogComponent
   ],
   imports: [
     CommonModule,
@@ -94,7 +96,8 @@ import { DeleteTrainingDialogComponent } from './delete-training-dialog/delete-t
     SliderItemDirective,
     ClubCardDialogComponent,
     TrainerCardDialogComponent,
-    DeleteTrainingDialogComponent
+    DeleteTrainingDialogComponent,
+    TrainingDetailsDialogComponent
   ],
   entryComponents: [PricelistDialogComponent]
 })

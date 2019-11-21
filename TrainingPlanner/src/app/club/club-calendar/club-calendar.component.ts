@@ -18,6 +18,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { TrainingService } from 'src/app/services/Training.service';
 import { Training } from 'src/app/models/Training/Training';
 import { DeleteTrainingDialogComponent } from 'src/app/shared/delete-training-dialog/delete-training-dialog.component';
+import { TrainingDetailsDialogComponent } from 'src/app/shared/training-details-dialog/training-details-dialog.component';
 
 @Component({
   selector: 'app-club-calendar',
@@ -118,7 +119,7 @@ export class ClubCalendarComponent implements OnInit {
 
   handleEvent(action: string, event: CalendarEvent): void {
     if (action === 'Clicked') {
-      // tutaj otwieranie dialogu z detailsami
+      this.openDetailsDialog(event);
     } else if (action === 'Edited') {
       this.router.navigate([
         `profile/clubs/${this.clubId}/calendar/trainings/${event.id}/edit`
@@ -127,6 +128,18 @@ export class ClubCalendarComponent implements OnInit {
       this.openDeleteDialog(event);
     } else {
     }
+  }
+
+  openDetailsDialog(event: CalendarEvent) {
+    const id = event.id.toString();
+    this.trainingService.getTraining(parseInt(id, 10)).subscribe(response => {
+      this.dialog.open(TrainingDetailsDialogComponent, {
+        width: '400px',
+        data: {
+          training: response
+        }
+      });
+    });
   }
 
   openDeleteDialog(eventToDelete: CalendarEvent) {

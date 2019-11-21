@@ -32,6 +32,7 @@ import { TrainingAddComponent } from './club-calendar/training-add/training-add.
 import { DeleteTrainingDialogComponent } from '../shared/delete-training-dialog/delete-training-dialog.component';
 import { CalendarModule } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { TrainingDetailsDialogComponent } from '../shared/training-details-dialog/training-details-dialog.component';
 
 const routes: Routes = [
   {
@@ -134,7 +135,8 @@ const routes: Routes = [
     ReviewDialogComponent,
     DeleteClubDialogComponent,
     ErrorDialogComponent,
-    DeleteTrainingDialogComponent
+    DeleteTrainingDialogComponent,
+    TrainingDetailsDialogComponent
   ]
 })
 export class ClubModule {}

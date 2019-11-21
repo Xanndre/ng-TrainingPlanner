@@ -31,6 +31,7 @@ import { TrainingAddComponent } from './trainer-calendar/training-add/training-a
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { DeleteTrainingDialogComponent } from '../shared/delete-training-dialog/delete-training-dialog.component';
 import { TrainerGuardService } from '../guards/TrainerGuard.service';
+import { TrainingDetailsDialogComponent } from '../shared/training-details-dialog/training-details-dialog.component';
 
 const routes: Routes = [
   {
@@ -119,7 +120,8 @@ const routes: Routes = [
     DeleteTrainerDialogComponent,
     ReviewDialogComponent,
     ErrorDialogComponent,
-    DeleteTrainingDialogComponent
+    DeleteTrainingDialogComponent,
+    TrainingDetailsDialogComponent
   ]
 })
 export class TrainerModule {}
