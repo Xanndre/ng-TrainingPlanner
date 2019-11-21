@@ -233,6 +233,7 @@ export class TrainingAddComponent implements OnInit {
       err => {
         if (err.error === 'Invalid dates') {
           this.showError('End date should be greater than start date.');
+          this.cancel();
         } else {
           this.showError('Invalid training edition attempt.');
         }
