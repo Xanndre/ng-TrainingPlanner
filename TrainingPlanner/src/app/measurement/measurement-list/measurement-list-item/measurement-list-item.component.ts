@@ -3,7 +3,6 @@ import { BodyMeasurementBase } from 'src/app/models/BodyMeasurement/BodyMeasurem
 import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
 import { DeleteMeasurementDialogComponent } from 'src/app/shared/delete-measurement-dialog/delete-measurement-dialog.component';
-import { DataTransferService } from 'src/app/services/DataTransfer.service';
 import { MeasurementDetailsComponent } from '../../measurement-details/measurement-details.component';
 
 @Component({
@@ -16,11 +15,7 @@ export class MeasurementListItemComponent implements OnInit {
 
   date: string;
 
-  constructor(
-    private dialog: MatDialog,
-    private router: Router,
-    private dataTransferService: DataTransferService
-  ) {}
+  constructor(private dialog: MatDialog, private router: Router) {}
 
   ngOnInit() {
     this.date = new Date(this.measurement.date).toLocaleDateString();
@@ -31,7 +26,6 @@ export class MeasurementListItemComponent implements OnInit {
   }
 
   deleteMeasurement() {
-    this.dataTransferService.setMeasurementId(this.measurement.id);
     this.openDeleteDialog(
       'Do you really want to delete this measurement? This process cannot be undone.'
     );
@@ -39,7 +33,7 @@ export class MeasurementListItemComponent implements OnInit {
 
   openDeleteDialog(error: string): void {
     this.dialog.open(DeleteMeasurementDialogComponent, {
-      data: { errorMsg: error },
+      data: { errorMsg: error, measurementId: this.measurement.id },
       width: '400px'
     });
   }

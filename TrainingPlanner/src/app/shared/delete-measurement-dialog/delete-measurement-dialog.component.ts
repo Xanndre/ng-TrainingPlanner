@@ -2,7 +2,6 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { BodyMeasurementService } from 'src/app/services/BodyMeasurement.service';
 import { Router } from '@angular/router';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { DataTransferService } from 'src/app/services/DataTransfer.service';
 
 @Component({
   selector: 'app-delete-measurement-dialog',
@@ -13,7 +12,6 @@ export class DeleteMeasurementDialogComponent implements OnInit {
   measurementId: number;
 
   constructor(
-    private dataTransferService: DataTransferService,
     private bodyMeasurementService: BodyMeasurementService,
     private router: Router,
     private dialogRef: MatDialogRef<DeleteMeasurementDialogComponent>,
@@ -25,7 +23,7 @@ export class DeleteMeasurementDialogComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.measurementId = this.dataTransferService.getMeasurementId();
+    this.measurementId = this.data.measurementId;
   }
 
   deleteMeasurement() {
@@ -33,7 +31,7 @@ export class DeleteMeasurementDialogComponent implements OnInit {
       .deleteBodyMeasurement(this.measurementId)
       .subscribe(() => {
         this.dialogRef.close();
-        this.router.navigate(['/measurements']);
+        window.location.reload();
       });
   }
 }

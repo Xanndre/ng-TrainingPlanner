@@ -10,6 +10,10 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 })
 export class TrainingDetailsDialogComponent implements OnInit {
   training: Training;
+  startDate: string;
+  endDate: string;
+  startTime: string;
+  endTime: string;
 
   constructor(
     private dialogRef: MatDialogRef<TrainingDetailsDialogComponent>,
@@ -22,6 +26,10 @@ export class TrainingDetailsDialogComponent implements OnInit {
 
   ngOnInit() {
     this.training = this.data.training;
+    this.startDate = this.data.startDate;
+    this.endDate = this.data.endDate;
+    this.startTime = this.data.startTime;
+    this.endTime = this.data.endTime;
   }
 
   signUp() {}

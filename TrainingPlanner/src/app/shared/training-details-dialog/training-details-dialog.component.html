@@ -1,5 +1,46 @@
 <h2 mat-dialog-title class="mb-0 text-muted">{{ training.title }}</h2>
-<mat-dialog-content class="error text-muted">xdddd</mat-dialog-content>
+<mat-dialog-content class="error text-muted">
+  <p class="text-muted font-weight-bold tp-inline">
+    Trainer:
+  </p>
+  <p class="text-muted tp-inline">{{ ' ' + training.trainerName }}</p>
+  <br />
+  <p class="text-muted font-weight-bold tp-inline">
+    Room:
+  </p>
+  <p class="text-muted tp-inline">{{ ' ' + training.room }}</p>
+  <br />
+  <p class="text-muted font-weight-bold tp-inline">
+    Level:
+  </p>
+  <p class="text-muted tp-inline">{{ ' ' + training.level }}</p>
+  <br />
+  <p class="text-muted font-weight-bold tp-inline">
+    Entries left:
+  </p>
+  <p class="text-muted tp-inline">{{ ' ' + training.entriesLeft }}</p>
+  <br />
+  <p class="text-muted font-weight-bold tp-inline">
+    Date:
+  </p>
+  <p class="text-muted tp-inline">
+    {{ ' ' + (startDate === endDate ? startDate : startDate + '/' + endDate) }}
+  </p>
+  <br />
+  <p class="text-muted font-weight-bold tp-inline">
+    From:
+  </p>
+  <p class="text-muted tp-inline">
+    {{ ' ' + startTime }}
+  </p>
+  <br />
+  <p class="text-muted font-weight-bold tp-inline">
+    To:
+  </p>
+  <p class="text-muted tp-inline">
+    {{ ' ' + endTime }}
+  </p>
+</mat-dialog-content>
 
 <div mat-dialog-actions class="float-right">
   <button

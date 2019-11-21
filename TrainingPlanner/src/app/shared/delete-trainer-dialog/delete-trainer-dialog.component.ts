@@ -1,5 +1,4 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { DataTransferService } from 'src/app/services/DataTransfer.service';
 import { TrainerService } from 'src/app/services/Trainer.service';
 import { Router } from '@angular/router';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
@@ -13,7 +12,6 @@ export class DeleteTrainerDialogComponent implements OnInit {
   trainerId: number;
 
   constructor(
-    private dataTransferService: DataTransferService,
     private trainerService: TrainerService,
     private router: Router,
     private dialogRef: MatDialogRef<DeleteTrainerDialogComponent>,
@@ -25,7 +23,7 @@ export class DeleteTrainerDialogComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.trainerId = this.dataTransferService.getTrainerId();
+    this.trainerId = this.data.trainerId;
   }
 
   deleteTrainerAccount() {

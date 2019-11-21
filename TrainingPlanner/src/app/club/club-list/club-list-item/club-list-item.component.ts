@@ -2,7 +2,6 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { LoginService } from 'src/app/services/Login.service';
 import { ClubBase } from 'src/app/models/Club/ClubBase';
-import { DataTransferService } from 'src/app/services/DataTransfer.service';
 import { MatDialog } from '@angular/material';
 import { DeleteClubDialogComponent } from 'src/app/shared/delete-club-dialog/delete-club-dialog.component';
 
@@ -23,7 +22,6 @@ export class ClubListItemComponent implements OnInit {
     private router: Router,
     private loginService: LoginService,
     private route: ActivatedRoute,
-    private dataTransferService: DataTransferService,
     private dialog: MatDialog
   ) {}
 
@@ -51,7 +49,6 @@ export class ClubListItemComponent implements OnInit {
   }
 
   deleteClub() {
-    this.dataTransferService.setClubId(this.club.id);
     this.openDeleteDialog(
       'Do you really want to delete this club profile? This process cannot be undone.'
     );
@@ -59,7 +56,7 @@ export class ClubListItemComponent implements OnInit {
 
   openDeleteDialog(error: string): void {
     this.dialog.open(DeleteClubDialogComponent, {
-      data: { errorMsg: error },
+      data: { errorMsg: error, clubId: this.club.id },
       width: '400px'
     });
   }

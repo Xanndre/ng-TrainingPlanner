@@ -10,7 +10,6 @@ import { FormBuilder } from '@angular/forms';
 import { Trainer } from 'src/app/models/Trainer/Trainer';
 import { TrainerUpdate } from 'src/app/models/Trainer/TrainerUpdate';
 import { MatDialog } from '@angular/material';
-import { DataTransferService } from 'src/app/services/DataTransfer.service';
 import { DeleteTrainerDialogComponent } from 'src/app/shared/delete-trainer-dialog/delete-trainer-dialog.component';
 import { Router } from '@angular/router';
 import { ErrorDialogComponent } from 'src/app/shared/error-dialog/error-dialog.component';
@@ -39,7 +38,6 @@ export class TrainerProfileComponent implements OnInit {
   constructor(
     private sportService: SportService,
     private trainerService: TrainerService,
-    private dataTransferService: DataTransferService,
     private formBuilder: FormBuilder,
     private dialog: MatDialog,
     private router: Router
@@ -167,7 +165,6 @@ export class TrainerProfileComponent implements OnInit {
   }
 
   deleteTrainerAccount() {
-    this.dataTransferService.setTrainerId(this.trainer.id);
     this.openDeleteDialog(
       'Do you really want to delete this trainer profile? This process cannot be undone.'
     );
@@ -175,7 +172,7 @@ export class TrainerProfileComponent implements OnInit {
 
   openDeleteDialog(error: string): void {
     this.dialog.open(DeleteTrainerDialogComponent, {
-      data: { errorMsg: error },
+      data: { errorMsg: error, trainerId: this.trainer.id },
       width: '400px'
     });
   }

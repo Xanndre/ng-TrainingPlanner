@@ -136,7 +136,11 @@ export class ClubCalendarComponent implements OnInit {
       this.dialog.open(TrainingDetailsDialogComponent, {
         width: '400px',
         data: {
-          training: response
+          training: response,
+          startDate: new Date(response.startDate).toLocaleDateString(),
+          endDate: new Date(response.endDate).toLocaleDateString(),
+          startTime: this.getStringFromDate(new Date(response.startDate)),
+          endTime: this.getStringFromDate(new Date(response.endDate))
         }
       });
     });
@@ -176,5 +180,28 @@ export class ClubCalendarComponent implements OnInit {
 
   closeOpenMonthViewDay() {
     this.activeDayIsOpen = false;
+  }
+
+  getStringFromDate(date: Date) {
+    let hour = new Date(date).getHours();
+    const min = new Date(date).getMinutes();
+    let ampm = ' AM';
+    let hourString = hour.toString();
+    let minString = min.toString();
+    if (hour > 12) {
+      hour -= 12;
+      ampm = ' PM';
+    }
+    if (hour === 0) {
+      hour = 12;
+      ampm = ' PM';
+    }
+    if (hour < 10) {
+      hourString = '0' + hour;
+    }
+    if (min < 10) {
+      minString = '0' + min;
+    }
+    return hourString + ':' + minString + ampm;
   }
 }

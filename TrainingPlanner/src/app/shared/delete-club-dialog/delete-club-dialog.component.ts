@@ -1,5 +1,4 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { DataTransferService } from 'src/app/services/DataTransfer.service';
 import { ClubService } from 'src/app/services/Club.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Router } from '@angular/router';
@@ -16,7 +15,6 @@ export class DeleteClubDialogComponent implements OnInit {
   isClubsLoaded: boolean;
 
   constructor(
-    private dataTransferService: DataTransferService,
     private clubService: ClubService,
     private router: Router,
     private dialogRef: MatDialogRef<DeleteClubDialogComponent>,
@@ -29,14 +27,13 @@ export class DeleteClubDialogComponent implements OnInit {
 
   ngOnInit() {
     this.userId = localStorage.getItem('userId');
-    this.clubId = this.dataTransferService.getClubId();
+    this.clubId = this.data.clubId;
   }
 
   deleteClubAccount() {
     this.clubService.deleteClub(this.clubId).subscribe(() => {
       this.dialogRef.close();
       this.getClubQuantity();
-      // this.router.navigate(['/profile/user']);
     });
   }
 
