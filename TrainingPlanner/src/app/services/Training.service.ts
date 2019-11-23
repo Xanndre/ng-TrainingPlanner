@@ -95,4 +95,19 @@ export class TrainingService {
         })
       );
   }
+
+  getReservedTrainings(userId: string): Observable<Training[]> {
+    const options = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + localStorage.getItem('jwt')
+      })
+    };
+    return this.client
+      .get(`https://localhost:44383/api/Training/user/${userId}`, options)
+      .pipe(
+        map((res: Training[]) => {
+          return res;
+        })
+      );
+  }
 }

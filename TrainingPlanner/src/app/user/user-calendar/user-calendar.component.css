@@ -1,0 +1,93 @@
+h3 {
+  margin: 0 0 10px;
+}
+
+pre {
+  background-color: #f5f5f5;
+  padding: 15px;
+}
+
+::ng-deep .cal-month-view .cal-header .cal-cell {
+  color: #6c757d !important;
+}
+
+::ng-deep b {
+  color: #6c757d !important;
+}
+
+::ng-deep .cal-month-view .cal-open-day-events {
+  background-color: #ededed;
+  color: #6c757d;
+  box-shadow: none;
+}
+
+::ng-deep a.cal-event-action {
+  color: #6c757d;
+  outline: none !important;
+}
+
+::ng-deep .cal-month-view .cal-day-badge {
+  background-color: #3f51b5;
+  color: white;
+}
+
+.tp-inline {
+  display: inline;
+}
+
+.tp-border-right {
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+.tp-border-left {
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+
+.active {
+  background-color: #324191;
+}
+
+::ng-deep .cal-month-view .cal-day-cell.cal-weekend .cal-day-number {
+  color: #3f51b5;
+}
+
+::ng-deep .cal-month-view .cal-day-cell:not(:last-child) {
+  outline-color: #3f51b5 !important;
+}
+
+::ng-deep .cal-month-view .cal-day-cell.cal-today {
+  outline-color: #3f51b5 !important;
+  background-color: #e8ebfc;
+}
+
+::ng-deep .fa-pencil:before {
+  content: '\f303';
+}
+
+:ng-deep .cal-week-view .cal-hour-segment {
+  color: #6c757d !important;
+}
+
+::ng-deep body {
+  color: #6c757d !important;
+}
+
+::ng-deep .cal-week-view .cal-header.cal-weekend span {
+  color: #3f51b5 !important;
+}
+
+::ng-deep .cal-week-view .cal-event {
+  color: #6c757d;
+}
+
+::ng-deep .cal-event-title:focus {
+  outline: none !important;
+  box-shadow: none;
+}
+
+::ng-deep [class*='ng-tns-c']:focus {
+  outline: none !important;
+  box-shadow: none;
+}

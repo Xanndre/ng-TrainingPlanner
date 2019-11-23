@@ -19,6 +19,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { TrainerGuardService } from '../guards/TrainerGuard.service';
 import { ClubGuardService } from '../guards/ClubGuard.service';
+import { UserCalendarComponent } from './user-calendar/user-calendar.component';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 const routes: Routes = [
   {
@@ -40,6 +43,11 @@ const routes: Routes = [
     path: 'trainers/:trainerId/users',
     component: UserListComponent,
     canActivate: [AuthGuardService, TrainerGuardService]
+  },
+  {
+    path: 'calendar',
+    component: UserCalendarComponent,
+    canActivate: [AuthGuardService]
   }
 ];
 
@@ -47,9 +55,14 @@ const routes: Routes = [
   declarations: [
     UserProfileComponent,
     UserListComponent,
-    UserListItemComponent
+    UserListItemComponent,
+    UserCalendarComponent
   ],
   imports: [
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory
+    }),
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
@@ -65,7 +78,7 @@ const routes: Routes = [
     NgbModule,
     InfiniteScrollModule
   ],
-  exports: [UserProfileComponent, UserListComponent],
+  exports: [UserProfileComponent, UserListComponent, UserCalendarComponent],
   entryComponents: [DeleteUserDialogComponent]
 })
 export class UserModule {}
