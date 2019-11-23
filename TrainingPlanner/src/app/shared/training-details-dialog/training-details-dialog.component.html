@@ -1,61 +1,93 @@
-<h2 mat-dialog-title class="mb-0 text-muted">{{ training.title }}</h2>
-<mat-dialog-content class="error text-muted">
-  <p class="text-muted font-weight-bold tp-inline">
-    Trainer:
-  </p>
-  <p class="text-muted tp-inline">{{ ' ' + training.trainerName }}</p>
-  <br />
-  <p class="text-muted font-weight-bold tp-inline">
-    Room:
-  </p>
-  <p class="text-muted tp-inline">{{ ' ' + training.room }}</p>
-  <br />
-  <p class="text-muted font-weight-bold tp-inline">
-    Level:
-  </p>
-  <p class="text-muted tp-inline">{{ ' ' + training.level }}</p>
-  <br />
-  <p class="text-muted font-weight-bold tp-inline">
-    Entries left:
-  </p>
-  <p class="text-muted tp-inline">{{ ' ' + training.entriesLeft }}</p>
-  <br />
-  <p class="text-muted font-weight-bold tp-inline">
-    Date:
-  </p>
-  <p class="text-muted tp-inline">
-    {{ ' ' + (startDate === endDate ? startDate : startDate + '/' + endDate) }}
-  </p>
-  <br />
-  <p class="text-muted font-weight-bold tp-inline">
-    From:
-  </p>
-  <p class="text-muted tp-inline">
-    {{ ' ' + startTime }}
-  </p>
-  <br />
-  <p class="text-muted font-weight-bold tp-inline">
-    To:
-  </p>
-  <p class="text-muted tp-inline">
-    {{ ' ' + endTime }}
-  </p>
-</mat-dialog-content>
+<div *ngIf="isInfoLoaded">
+  <h2 mat-dialog-title class="mb-0 text-muted">{{ training.title }}</h2>
+  <mat-dialog-content class="error text-muted">
+    <p class="text-muted font-weight-bold tp-inline">
+      Trainer:
+    </p>
+    <p class="text-muted tp-inline">{{ ' ' + training.trainerName }}</p>
+    <br />
+    <p class="text-muted font-weight-bold tp-inline">
+      Room:
+    </p>
+    <p class="text-muted tp-inline">{{ ' ' + training.room }}</p>
+    <br />
+    <p class="text-muted font-weight-bold tp-inline">
+      Level:
+    </p>
+    <p class="text-muted tp-inline">{{ ' ' + training.level }}</p>
+    <br />
+    <p class="text-muted font-weight-bold tp-inline">
+      Entries left:
+    </p>
+    <p class="text-muted tp-inline">{{ ' ' + training.entriesLeft }}</p>
+    <br />
+    <p class="text-muted font-weight-bold tp-inline">
+      Date:
+    </p>
+    <p class="text-muted tp-inline">
+      {{
+        ' ' + (startDate === endDate ? startDate : startDate + '/' + endDate)
+      }}
+    </p>
+    <br />
+    <p class="text-muted font-weight-bold tp-inline">
+      From:
+    </p>
+    <p class="text-muted tp-inline">
+      {{ ' ' + startTime }}
+    </p>
+    <br />
+    <p class="text-muted font-weight-bold tp-inline">
+      To:
+    </p>
+    <p class="text-muted tp-inline">
+      {{ ' ' + endTime }}
+    </p>
+  </mat-dialog-content>
 
-<div mat-dialog-actions class="float-right">
-  <button
-    mat-raised-button
-    (click)="signUp()"
-    color="primary"
-    class="btn-no-shadow"
-  >
-    Sign up
-  </button>
-  <button
-    mat-raised-button
-    class="btn-no-shadow btn-grey"
-    (click)="closeDialog()"
-  >
-    Cancel
-  </button>
+  <div mat-dialog-actions class="float-right">
+    <button
+      *ngIf="!isMine && !isSignedUp && training.entriesLeft > 0"
+      mat-raised-button
+      (click)="signUp()"
+      color="primary"
+      class="btn-no-shadow"
+    >
+      Sign up
+    </button>
+    <button
+      *ngIf="!isMine && isSignedUp && !isReserveList"
+      mat-raised-button
+      (click)="signOut()"
+      color="primary"
+      class="btn-no-shadow"
+    >
+      Sign out
+    </button>
+    <button
+      *ngIf="!isMine && !isSignedUp && training.entriesLeft === 0"
+      mat-raised-button
+      (click)="signUp()"
+      color="primary"
+      class="btn-no-shadow"
+    >
+      Sign up for a reserve list
+    </button>
+    <button
+      *ngIf="!isMine && isSignedUp && isReserveList"
+      mat-raised-button
+      (click)="signOut()"
+      color="primary"
+      class="btn-no-shadow"
+    >
+      Sign out from a reserve list
+    </button>
+    <button
+      mat-raised-button
+      class="btn-no-shadow btn-grey"
+      (click)="closeDialog()"
+    >
+      Cancel
+    </button>
+  </div>
 </div>

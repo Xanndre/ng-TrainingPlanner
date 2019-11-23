@@ -4,6 +4,7 @@ import { TrainingCreate } from '../models/Training/TrainingCreate';
 import { Training } from '../models/Training/Training';
 import { map } from 'rxjs/Operators';
 import { Observable } from 'rxjs';
+import { TrainingUpdate } from '../models/Training/TrainingUpdate';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,7 @@ export class TrainingService {
       .pipe();
   }
 
-  updateTraining(training: Training) {
+  updateTraining(training: TrainingUpdate) {
     const options = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -33,7 +34,7 @@ export class TrainingService {
     return this.client
       .put('https://localhost:44383/api/Training', training, options)
       .pipe(
-        map((res: Training) => {
+        map((res: TrainingUpdate) => {
           return res;
         })
       );

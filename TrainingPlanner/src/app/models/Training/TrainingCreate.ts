@@ -8,7 +8,6 @@ export class TrainingCreate {
   room: string;
   level: string;
   entries: number;
-  entriesLeft: number;
   primaryColor: string;
   secondaryColor: string;
 }

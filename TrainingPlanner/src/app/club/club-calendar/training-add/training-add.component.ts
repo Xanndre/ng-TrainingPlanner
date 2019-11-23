@@ -9,6 +9,7 @@ import { MatDialog } from '@angular/material';
 import { TrainingService } from 'src/app/services/Training.service';
 import { ClubService } from 'src/app/services/Club.service';
 import { ErrorDialogComponent } from 'src/app/shared/error-dialog/error-dialog.component';
+import { TrainingUpdate } from 'src/app/models/Training/TrainingUpdate';
 
 @Component({
   selector: 'app-training-add',
@@ -22,7 +23,7 @@ export class TrainingAddComponent implements OnInit {
   trainingId: number;
   training: Training = null;
   trainingCreate: TrainingCreate;
-  trainingUpdate: Training = new Training();
+  trainingUpdate: TrainingUpdate = new TrainingUpdate();
   beforeChanges: Training;
   clubId: number;
   trainers: string[];
@@ -82,7 +83,6 @@ export class TrainingAddComponent implements OnInit {
       room: this.trainingForm.trainingForm.value.room,
       entries: this.trainingForm.trainingForm.value.entries,
       level: this.trainingForm.trainingForm.value.level,
-      entriesLeft: this.trainingForm.trainingForm.value.entries,
       primaryColor: this.trainingForm.trainingForm.value.primaryColor,
       secondaryColor: this.trainingForm.trainingForm.value.secondaryColor,
       clubId: this.clubId,
@@ -189,12 +189,6 @@ export class TrainingAddComponent implements OnInit {
     );
     this.trainingUpdate.startDate = start;
     this.trainingUpdate.endDate = end;
-    this.trainingUpdate.entriesLeft =
-      this.training.entriesLeft +
-      (this.trainingUpdate.entries - this.training.entries);
-    if (this.trainingUpdate.entriesLeft < 0) {
-      this.trainingUpdate.entriesLeft = 0;
-    }
   }
 
   cancel() {
