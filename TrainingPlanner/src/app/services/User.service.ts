@@ -110,4 +110,30 @@ export class UserService {
         })
       );
   }
+
+  getSignedUpUsers(
+    pageNumber: number,
+    pageSize: number,
+    trainingId: number,
+    isSignedUp: boolean
+  ): Observable<PagedUsers> {
+    const params = new HttpParams()
+      .set('pageNumber', pageNumber.toString())
+      .set('pageSize', pageSize.toString())
+      .set('trainingId', trainingId.toString());
+    const options = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + localStorage.getItem('jwt')
+      }),
+      params
+    };
+    const url = isSignedUp
+      ? 'https://localhost:44383/api/User/signed'
+      : 'https://localhost:44383/api/User/notsigned';
+    return this.client.get(url, options).pipe(
+      map((res: PagedUsers) => {
+        return res;
+      })
+    );
+  }
 }

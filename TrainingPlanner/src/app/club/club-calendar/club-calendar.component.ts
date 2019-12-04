@@ -39,6 +39,13 @@ export class ClubCalendarComponent implements OnInit {
 
   actions: CalendarEventAction[] = [
     {
+      label: '<i class="fas fa-user-friends"></i>',
+      a11yLabel: 'ViewUsers',
+      onClick: ({ event }: { event: CalendarEvent }): void => {
+        this.handleEvent('ViewUsers', event);
+      }
+    },
+    {
       label: '<i class="fa fa-fw fa-pencil"></i>',
       a11yLabel: 'Edit',
       onClick: ({ event }: { event: CalendarEvent }): void => {
@@ -126,6 +133,10 @@ export class ClubCalendarComponent implements OnInit {
       ]);
     } else if (action === 'Deleted') {
       this.openDeleteDialog(event);
+    } else if (action === 'ViewUsers') {
+      this.router.navigate([
+        `profile/clubs/${this.clubId}/calendar/trainings/${event.id}/users`
+      ]);
     } else {
     }
   }

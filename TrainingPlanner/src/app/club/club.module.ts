@@ -8,7 +8,8 @@ import {
   MatCardModule,
   MatButtonModule,
   MatTableModule,
-  DateAdapter
+  DateAdapter,
+  MatTabsModule
 } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -33,6 +34,8 @@ import { DeleteTrainingDialogComponent } from '../shared/delete-training-dialog/
 import { CalendarModule } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { TrainingDetailsDialogComponent } from '../shared/training-details-dialog/training-details-dialog.component';
+import { SignedUserListComponent } from './club-calendar/signed-user-list/signed-user-list.component';
+import { UserModule } from '../user/user.module';
 
 const routes: Routes = [
   {
@@ -85,6 +88,11 @@ const routes: Routes = [
     data: { edit: true }
   },
   {
+    path: 'profile/clubs/:clubId/calendar/trainings/:id/users',
+    component: SignedUserListComponent,
+    canActivate: [AuthGuardService, ClubGuardService]
+  },
+  {
     path: 'clubs/:clubId/calendar',
     component: ClubCalendarComponent,
     data: { editable: false },
@@ -102,7 +110,8 @@ const routes: Routes = [
     ClubReviewListComponent,
     ClubReviewListItemComponent,
     ClubCalendarComponent,
-    TrainingAddComponent
+    TrainingAddComponent,
+    SignedUserListComponent
   ],
   imports: [
     CalendarModule.forRoot({
@@ -120,7 +129,9 @@ const routes: Routes = [
     MatButtonModule,
     DragDropModule,
     InfiniteScrollModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    MatTabsModule,
+    UserModule
   ],
   exports: [
     ClubProfileComponent,

@@ -6,7 +6,12 @@
     (scrolled)="onScrollDown()"
   >
     <mat-card class="mt-4" *ngFor="let user of users">
-      <app-user-list-item [user]="user"></app-user-list-item>
+      <app-user-list-item
+        [user]="user"
+        [isSignList]="isSignList"
+        [trainingId]="trainingId"
+        [isSignedUp]="isSignedUp"
+      ></app-user-list-item>
     </mat-card>
   </div>
   <div class="col-lg-3"></div>

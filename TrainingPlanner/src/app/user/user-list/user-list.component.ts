@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { User } from 'src/app/models/User/User';
 import { UserService } from 'src/app/services/User.service';
 
@@ -17,6 +17,10 @@ export class UserListComponent implements OnInit {
 
   isLoaded = false;
 
+  @Input() isSignList = false;
+  @Input() isSignedUp: boolean;
+  @Input() trainingId: number;
+
   constructor(private userService: UserService) {}
 
   ngOnInit() {
@@ -27,13 +31,32 @@ export class UserListComponent implements OnInit {
     if (isClear) {
       this.users = [];
     }
-    this.userService.getUsers(pageNumber, this.pageSize).subscribe(response => {
-      this.users.push(...response.users);
-      this.totalPages = response.totalPages;
-      this.totalCount = response.totalCount;
-      this.currentPage = pageNumber;
-      this.isLoaded = true;
-    });
+    if (this.isSignList) {
+      this.userService
+        .getSignedUpUsers(
+          pageNumber,
+          this.pageSize,
+          this.trainingId,
+          this.isSignedUp
+        )
+        .subscribe(response => {
+          this.users.push(...response.users);
+          this.totalPages = response.totalPages;
+          this.totalCount = response.totalCount;
+          this.currentPage = pageNumber;
+          this.isLoaded = true;
+        });
+    } else {
+      this.userService
+        .getUsers(pageNumber, this.pageSize)
+        .subscribe(response => {
+          this.users.push(...response.users);
+          this.totalPages = response.totalPages;
+          this.totalCount = response.totalCount;
+          this.currentPage = pageNumber;
+          this.isLoaded = true;
+        });
+    }
   }
 
   onScrollDown() {

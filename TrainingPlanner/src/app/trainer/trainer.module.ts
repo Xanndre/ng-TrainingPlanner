@@ -11,7 +11,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import {
   MatChipsModule,
   MatExpansionModule,
-  MatFormFieldModule
+  MatFormFieldModule,
+  MatTabsModule
 } from '@angular/material';
 import { TrainerProfileComponent } from './trainer-profile/trainer-profile.component';
 import { TrainerListComponent } from './trainer-list/trainer-list.component';
@@ -32,6 +33,8 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { DeleteTrainingDialogComponent } from '../shared/delete-training-dialog/delete-training-dialog.component';
 import { TrainerGuardService } from '../guards/TrainerGuard.service';
 import { TrainingDetailsDialogComponent } from '../shared/training-details-dialog/training-details-dialog.component';
+import { SignedUserListComponent } from './trainer-calendar/signed-user-list/signed-user-list.component';
+import { UserModule } from '../user/user.module';
 
 const routes: Routes = [
   {
@@ -74,6 +77,11 @@ const routes: Routes = [
     component: TrainerCalendarComponent,
     data: { editable: false },
     canActivate: [AuthGuardService]
+  },
+  {
+    path: 'profile/trainers/:trainerId/calendar/trainings/:id/users',
+    component: SignedUserListComponent,
+    canActivate: [AuthGuardService, TrainerGuardService]
   }
 ];
 
@@ -86,7 +94,8 @@ const routes: Routes = [
     TrainerReviewListComponent,
     TrainerReviewListItemComponent,
     TrainerCalendarComponent,
-    TrainingAddComponent
+    TrainingAddComponent,
+    SignedUserListComponent
   ],
   imports: [
     CommonModule,
@@ -96,6 +105,7 @@ const routes: Routes = [
     }),
     MatButtonModule,
     MatFormFieldModule,
+    MatTabsModule,
     MatCardModule,
     MatChipsModule,
     MatDialogModule,
@@ -107,7 +117,8 @@ const routes: Routes = [
     ReactiveFormsModule,
     RouterModule.forChild(routes),
     SharedModule,
-    NgxMaterialTimepickerModule
+    NgxMaterialTimepickerModule,
+    UserModule
   ],
   exports: [
     TrainerProfileComponent,

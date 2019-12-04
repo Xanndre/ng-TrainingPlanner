@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" *ngIf="isInfoLoaded">
   <div class="col-3 tp-div">
     <img
       class="tp-image"
@@ -16,12 +16,49 @@
         {{ user.firstName + ' ' + user.lastName }}
       </h5>
       <button
+        *ngIf="!isSignList"
         mat-raised-button
         color="primary"
         class="btn-block btn-no-shadow w-25 float-right tp-inline"
         (click)="manageCards()"
       >
         Cards
+      </button>
+      <button
+        *ngIf="isSignList && isSignedUp && !isReserveList"
+        mat-raised-button
+        color="primary"
+        class="btn-block btn-no-shadow w-25 float-right tp-inline"
+        (click)="signOut()"
+      >
+        Sign out
+      </button>
+      <button
+        *ngIf="isSignList && !isSignedUp && training.entriesLeft !== 0"
+        mat-raised-button
+        color="primary"
+        class="btn-block btn-no-shadow w-25 float-right tp-inline"
+        (click)="signUp()"
+      >
+        Sign up
+      </button>
+      <button
+        *ngIf="isSignList && !isSignedUp && training.entriesLeft === 0"
+        mat-raised-button
+        (click)="signUp()"
+        color="primary"
+        class="btn-no-shadow float-right"
+      >
+        Sign up for a reserve list
+      </button>
+      <button
+        *ngIf="isSignList && isSignedUp && isReserveList"
+        mat-raised-button
+        (click)="signOut()"
+        color="primary"
+        class="btn-no-shadow float-right"
+      >
+        Sign out from a reserve list
       </button>
     </div>
     <p class="text-muted mb-2" *ngIf="user.email != null">

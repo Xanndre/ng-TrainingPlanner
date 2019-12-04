@@ -91,3 +91,8 @@ pre {
   outline: none !important;
   box-shadow: none;
 }
+
+::ng-deep .fa-user-friends {
+  margin-right: 6px;
+  margin-left: 3px;
+}
