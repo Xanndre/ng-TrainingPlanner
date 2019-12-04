@@ -19,6 +19,7 @@ export class NavbarComponent implements OnInit {
 
   isLoaded = false;
   isClubsLoaded = false;
+  isTrainer = false;
 
   ngOnInit() {
     if (this.isUserAuthenticated()) {

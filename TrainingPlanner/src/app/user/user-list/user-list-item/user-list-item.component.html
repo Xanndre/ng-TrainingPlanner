@@ -1,4 +1,4 @@
-<div class="row" *ngIf="isInfoLoaded">
+<div class="row">
   <div class="col-3 tp-div">
     <img
       class="tp-image"
@@ -16,7 +16,7 @@
         {{ user.firstName + ' ' + user.lastName }}
       </h5>
       <button
-        *ngIf="!isSignList"
+        *ngIf="!reservationInfo"
         mat-raised-button
         color="primary"
         class="btn-block btn-no-shadow w-25 float-right tp-inline"
@@ -25,7 +25,7 @@
         Cards
       </button>
       <button
-        *ngIf="isSignList && isSignedUp && !isReserveList"
+        *ngIf="isSignedUp && reservationInfo && !reservationInfo.isReserveList"
         mat-raised-button
         color="primary"
         class="btn-block btn-no-shadow w-25 float-right tp-inline"
@@ -34,7 +34,7 @@
         Sign out
       </button>
       <button
-        *ngIf="isSignList && !isSignedUp && training.entriesLeft !== 0"
+        *ngIf="reservationInfo && !isSignedUp && training.entriesLeft !== 0"
         mat-raised-button
         color="primary"
         class="btn-block btn-no-shadow w-25 float-right tp-inline"
@@ -43,7 +43,7 @@
         Sign up
       </button>
       <button
-        *ngIf="isSignList && !isSignedUp && training.entriesLeft === 0"
+        *ngIf="reservationInfo && !isSignedUp && training.entriesLeft === 0"
         mat-raised-button
         (click)="signUp()"
         color="primary"
@@ -52,7 +52,7 @@
         Sign up for a reserve list
       </button>
       <button
-        *ngIf="isSignList && isSignedUp && isReserveList"
+        *ngIf="reservationInfo && isSignedUp && reservationInfo.isReserveList"
         mat-raised-button
         (click)="signOut()"
         color="primary"

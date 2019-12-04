@@ -5,6 +5,7 @@ import { Reservation } from 'src/app/models/Reservation/Reservation';
 import { ReservationService } from 'src/app/services/Reservation.service';
 import { Training } from 'src/app/models/Training/Training';
 import { TrainingService } from 'src/app/services/Training.service';
+import { ReservationInfo } from 'src/app/models/Reservation/ReservationInfo';
 
 @Component({
   selector: 'app-user-list-item',
@@ -14,20 +15,17 @@ import { TrainingService } from 'src/app/services/Training.service';
 export class UserListItemComponent implements OnInit {
   @Input() user: User;
   @Input() isSignList: boolean;
-  @Input() trainingId: number;
   @Input() isSignedUp: boolean;
+  @Input() training?: Training;
+  @Input() reservationInfo?: ReservationInfo;
 
   clubId: number;
   trainerId: number;
-  training: Training;
-  isReserveList: boolean;
-  isInfoLoaded: boolean;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private reservationService: ReservationService,
-    private trainingService: TrainingService
+    private reservationService: ReservationService
   ) {}
 
   ngOnInit() {
@@ -36,14 +34,6 @@ export class UserListItemComponent implements OnInit {
       this.route.snapshot.paramMap.get('trainerId'),
       10
     );
-    if (this.isSignList) {
-      this.trainingService.getTraining(this.trainingId).subscribe(response => {
-        this.training = response;
-        this.getReservationInfo();
-      });
-    } else {
-      this.isInfoLoaded = true;
-    }
   }
 
   manageCards() {
@@ -61,7 +51,7 @@ export class UserListItemComponent implements OnInit {
   signUp() {
     const reservation: Reservation = new Reservation();
     reservation.userId = this.user.id;
-    reservation.trainingId = this.trainingId;
+    reservation.trainingId = this.training.id;
     this.reservationService.createReservation(reservation).subscribe(() => {
       window.location.reload();
     });
@@ -69,18 +59,9 @@ export class UserListItemComponent implements OnInit {
 
   signOut() {
     this.reservationService
-      .deleteReservation(this.trainingId, this.user.id)
+      .deleteReservation(this.training.id, this.user.id)
       .subscribe(() => {
         window.location.reload();
-      });
-  }
-
-  getReservationInfo() {
-    this.reservationService
-      .getReservationInfo(this.user.id, this.trainingId)
-      .subscribe(response => {
-        this.isReserveList = response.isReserveList;
-        this.isInfoLoaded = true;
       });
   }
 }

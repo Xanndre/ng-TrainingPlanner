@@ -5,6 +5,7 @@ import { map } from 'rxjs/Operators';
 import { Observable } from 'rxjs';
 import { PagedUsers } from '../models/Paged/PagedUsers';
 import { PagedPartners } from '../models/Paged/PagedPartners';
+import { PagedReservationUser } from '../models/Paged/PagedReservationUser';
 
 @Injectable({
   providedIn: 'root'
@@ -116,7 +117,7 @@ export class UserService {
     pageSize: number,
     trainingId: number,
     isSignedUp: boolean
-  ): Observable<PagedUsers> {
+  ): Observable<PagedReservationUser> {
     const params = new HttpParams()
       .set('pageNumber', pageNumber.toString())
       .set('pageSize', pageSize.toString())
@@ -130,10 +131,6 @@ export class UserService {
     const url = isSignedUp
       ? 'https://localhost:44383/api/User/signed'
       : 'https://localhost:44383/api/User/notsigned';
-    return this.client.get(url, options).pipe(
-      map((res: PagedUsers) => {
-        return res;
-      })
-    );
+    return this.client.get<PagedReservationUser>(url, options);
   }
 }

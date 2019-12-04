@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { User } from 'src/app/models/User/User';
 import { UserService } from 'src/app/services/User.service';
+import { ReservationUser } from 'src/app/models/User/ReservationUser';
+import { Training } from 'src/app/models/Training/Training';
 
 @Component({
   selector: 'app-user-list',
@@ -9,7 +11,8 @@ import { UserService } from 'src/app/services/User.service';
 })
 export class UserListComponent implements OnInit {
   users: User[];
-
+  reservationUsers: ReservationUser[];
+  training: Training;
   totalPages: number;
   totalCount: number;
   pageSize = 5;
@@ -30,6 +33,7 @@ export class UserListComponent implements OnInit {
   getUsers(pageNumber: number, isClear: boolean = false) {
     if (isClear) {
       this.users = [];
+      this.reservationUsers = [];
     }
     if (this.isSignList) {
       this.userService
@@ -40,7 +44,8 @@ export class UserListComponent implements OnInit {
           this.isSignedUp
         )
         .subscribe(response => {
-          this.users.push(...response.users);
+          this.reservationUsers.push(...response.users);
+          this.training = response.training;
           this.totalPages = response.totalPages;
           this.totalCount = response.totalCount;
           this.currentPage = pageNumber;
