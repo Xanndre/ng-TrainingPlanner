@@ -96,3 +96,11 @@ pre {
   margin-right: 6px;
   margin-left: 3px;
 }
+
+.tp-margin-r {
+  margin-right: 3px;
+}
+
+.tp-margin-l {
+  margin-left: 3px;
+}

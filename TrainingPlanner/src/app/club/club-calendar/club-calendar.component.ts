@@ -215,4 +215,10 @@ export class ClubCalendarComponent implements OnInit {
     }
     return hourString + ':' + minString + ampm;
   }
+
+  goToAddRecurrent() {
+    this.router.navigate([
+      `profile/clubs/${this.clubId}/calendar/trainings/add_recurrent`
+    ]);
+  }
 }

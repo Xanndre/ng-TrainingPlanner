@@ -1,8 +1,8 @@
 import { CustomControlGroup } from 'src/app/shared/custom-control-group/custom-control-group';
 import { NgxMaterialTimepickerTheme } from 'ngx-material-timepicker';
-import { TrainingAddForm } from './training-add-form';
+import { TrainingAddRecurrentForm } from './training-add-recurrent-form';
 
-export class TrainingAddControls {
+export class TrainingAddRecurrentControls {
   controlGroups: CustomControlGroup[];
 
   theme: NgxMaterialTimepickerTheme = {
@@ -22,7 +22,7 @@ export class TrainingAddControls {
 
   trainers: string[] = [];
 
-  initializeControls(form: TrainingAddForm, trainers: string[]) {
+  initializeControls(form: TrainingAddRecurrentForm, trainers: string[]) {
     this.trainers = trainers;
     this.controlGroups = [
       {
@@ -37,9 +37,10 @@ export class TrainingAddControls {
           },
           {
             formGroup: form.trainingForm,
-            controlType: 'dayPicker',
-            formControlName: 'date',
-            placeholder: 'Date',
+            controlType: 'input',
+            type: 'text',
+            formControlName: 'room',
+            placeholder: 'Room',
             class: 'col'
           }
         ],
@@ -71,19 +72,28 @@ export class TrainingAddControls {
         controls: [
           {
             formGroup: form.trainingForm,
-            controlType: 'input',
-            type: 'text',
-            formControlName: 'room',
-            placeholder: 'Room',
-            class: 'col'
-          },
-          {
-            formGroup: form.trainingForm,
             controlType: 'select',
             formControlName: 'level',
             placeholder: 'Level',
             values: ['Beginner', 'Intermediate', 'Advanced', 'All'],
             label: 'Level',
+            class: 'col'
+          },
+          {
+            formGroup: form.trainingForm,
+            controlType: 'select',
+            formControlName: 'day',
+            placeholder: 'Day',
+            values: [
+              'Monday',
+              'Tuesday',
+              'Wednesday',
+              'Thursday',
+              'Friday',
+              'Saturday',
+              'Sunday'
+            ],
+            label: 'Day',
             class: 'col'
           }
         ],

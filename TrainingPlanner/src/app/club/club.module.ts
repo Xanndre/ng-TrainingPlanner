@@ -36,6 +36,7 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { TrainingDetailsDialogComponent } from '../shared/training-details-dialog/training-details-dialog.component';
 import { SignedUserListComponent } from './club-calendar/signed-user-list/signed-user-list.component';
 import { UserModule } from '../user/user.module';
+import { TrainingAddRecurrentComponent } from './club-calendar/training-add-recurrent/training-add-recurrent.component';
 
 const routes: Routes = [
   {
@@ -97,6 +98,12 @@ const routes: Routes = [
     component: ClubCalendarComponent,
     data: { editable: false },
     canActivate: [AuthGuardService]
+  },
+  {
+    path: 'profile/clubs/:clubId/calendar/trainings/add_recurrent',
+    component: TrainingAddRecurrentComponent,
+    canActivate: [AuthGuardService, ClubGuardService],
+    data: { edit: false }
   }
 ];
 
@@ -111,6 +118,7 @@ const routes: Routes = [
     ClubReviewListItemComponent,
     ClubCalendarComponent,
     TrainingAddComponent,
+    TrainingAddRecurrentComponent,
     SignedUserListComponent
   ],
   imports: [

@@ -68,8 +68,8 @@ export class TrainingAddComponent implements OnInit {
   }
 
   createTraining() {
-    const dateStart = new Date(this.trainingForm.trainingForm.value.startDate);
-    const dateEnd = new Date(this.trainingForm.trainingForm.value.endDate);
+    const dateStart = new Date(this.trainingForm.trainingForm.value.date);
+    const dateEnd = new Date(this.trainingForm.trainingForm.value.date);
     const start = this.getDate(
       this.trainingForm.trainingForm.value.startTime,
       dateStart
@@ -177,8 +177,8 @@ export class TrainingAddComponent implements OnInit {
     this.trainingUpdate.entries = this.trainingForm.trainingForm.value.entries;
     this.trainingUpdate.primaryColor = this.trainingForm.trainingForm.value.primaryColor;
     this.trainingUpdate.secondaryColor = this.trainingForm.trainingForm.value.secondaryColor;
-    const dateStart = new Date(this.trainingForm.trainingForm.value.startDate);
-    const dateEnd = new Date(this.trainingForm.trainingForm.value.endDate);
+    const dateStart = new Date(this.trainingForm.trainingForm.value.date);
+    const dateEnd = new Date(this.trainingForm.trainingForm.value.date);
     const start = this.getDate(
       this.trainingForm.trainingForm.value.startTime,
       dateStart
@@ -207,8 +207,7 @@ export class TrainingAddComponent implements OnInit {
       entries: this.training.entries,
       room: this.training.room,
       level: this.training.level,
-      startDate: this.training.startDate,
-      endDate: this.training.endDate,
+      date: this.training.startDate,
       primaryColor: this.training.primaryColor,
       secondaryColor: this.training.secondaryColor,
       trainer: this.training.trainerName,
