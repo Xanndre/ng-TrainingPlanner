@@ -1,0 +1,24 @@
+<div class="row full-width" *ngIf="isTrainerLoaded && isLoaded">
+  <div class="col-lg-6 mx-auto">
+    <mat-card class="my-4">
+      <form class="text-center p-5" [formGroup]="trainingForm.trainingForm">
+        <h4 class="text-muted">
+          Create new recurrent training
+        </h4>
+        <app-custom-control-group
+          *ngFor="let controlGroup of formControls.controlGroups"
+          [customControlGroup]="controlGroup"
+        ></app-custom-control-group>
+        <button
+          mat-raised-button
+          class="btn-block btn-no-shadow"
+          color="primary"
+          (click)="createTraining()"
+          [disabled]="!trainingForm.trainingForm.valid"
+        >
+          Create
+        </button>
+      </form>
+    </mat-card>
+  </div>
+</div>

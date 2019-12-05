@@ -110,4 +110,16 @@ export class TrainingService {
         })
       );
   }
+
+  createTrainingRange(trainings: TrainingCreate[]) {
+    const options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + localStorage.getItem('jwt')
+      })
+    };
+    return this.client
+      .post('https://localhost:44383/api/Training/range', trainings, options)
+      .pipe();
+  }
 }

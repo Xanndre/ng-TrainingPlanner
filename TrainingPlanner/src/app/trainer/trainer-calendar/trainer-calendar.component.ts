@@ -220,4 +220,10 @@ export class TrainerCalendarComponent implements OnInit {
     }
     return hourString + ':' + minString + ampm;
   }
+
+  goToAddRecurrent() {
+    this.router.navigate([
+      `profile/trainers/${this.trainerId}/calendar/trainings/add_recurrent`
+    ]);
+  }
 }

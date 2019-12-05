@@ -35,6 +35,7 @@ import { TrainerGuardService } from '../guards/TrainerGuard.service';
 import { TrainingDetailsDialogComponent } from '../shared/training-details-dialog/training-details-dialog.component';
 import { SignedUserListComponent } from './trainer-calendar/signed-user-list/signed-user-list.component';
 import { UserModule } from '../user/user.module';
+import { TrainingAddRecurrentComponent } from './trainer-calendar/training-add-recurrent/training-add-recurrent.component';
 
 const routes: Routes = [
   {
@@ -82,6 +83,12 @@ const routes: Routes = [
     path: 'profile/trainers/:trainerId/calendar/trainings/:id/users',
     component: SignedUserListComponent,
     canActivate: [AuthGuardService, TrainerGuardService]
+  },
+  {
+    path: 'profile/trainers/:trainerId/calendar/trainings/add_recurrent',
+    component: TrainingAddRecurrentComponent,
+    canActivate: [AuthGuardService, TrainerGuardService],
+    data: { edit: false }
   }
 ];
 
@@ -95,6 +102,7 @@ const routes: Routes = [
     TrainerReviewListItemComponent,
     TrainerCalendarComponent,
     TrainingAddComponent,
+    TrainingAddRecurrentComponent,
     SignedUserListComponent
   ],
   imports: [

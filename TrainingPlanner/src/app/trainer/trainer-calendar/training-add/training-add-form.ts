@@ -24,12 +24,8 @@ export class TrainingAddForm {
         [Validators.required, Validators.maxLength(30)]
       ],
       level: [training !== null ? training.level : null, [Validators.required]],
-      startDate: [
+      date: [
         training !== null ? training.startDate : null,
-        [Validators.required]
-      ],
-      endDate: [
-        training !== null ? training.endDate : null,
         [Validators.required]
       ],
       startTime: [training !== null ? startTime : null, [Validators.required]],

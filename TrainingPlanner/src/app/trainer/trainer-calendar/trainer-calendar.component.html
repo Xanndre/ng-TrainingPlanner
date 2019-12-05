@@ -109,10 +109,19 @@
       *ngIf="isEditable"
       mat-raised-button
       color="primary"
-      class="btn-block btn-no-shadow w-25 mt-4"
+      class="btn-block btn-no-shadow w-25 mt-4 tp-inline tp-margin-r"
       (click)="goToAdd()"
     >
-      Add new training
+      Add training
+    </button>
+    <button
+      *ngIf="isEditable"
+      mat-raised-button
+      color="primary"
+      class="btn-block btn-no-shadow w-25 mt-4 tp-inline tp-margin-l"
+      (click)="goToAddRecurrent()"
+    >
+      Add recurrent training
     </button>
   </div>
 </div>

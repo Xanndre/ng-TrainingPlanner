@@ -1,8 +1,8 @@
 import { CustomControlGroup } from 'src/app/shared/custom-control-group/custom-control-group';
-import { TrainingAddForm } from './training-add-form';
 import { NgxMaterialTimepickerTheme } from 'ngx-material-timepicker';
+import { TrainingAddRecurrentForm } from './training-add-recurrent-form';
 
-export class TrainingAddControls {
+export class TrainingAddRecurrentControls {
   controlGroups: CustomControlGroup[];
 
   theme: NgxMaterialTimepickerTheme = {
@@ -20,7 +20,7 @@ export class TrainingAddControls {
     }
   };
 
-  initializeControls(form: TrainingAddForm) {
+  initializeControls(form: TrainingAddRecurrentForm) {
     this.controlGroups = [
       {
         controls: [
@@ -69,9 +69,19 @@ export class TrainingAddControls {
           },
           {
             formGroup: form.trainingForm,
-            controlType: 'dayPicker',
-            formControlName: 'date',
-            placeholder: 'Date',
+            controlType: 'select',
+            formControlName: 'day',
+            placeholder: 'Day',
+            values: [
+              'Monday',
+              'Tuesday',
+              'Wednesday',
+              'Thursday',
+              'Friday',
+              'Saturday',
+              'Sunday'
+            ],
+            label: 'Day',
             class: 'col'
           }
         ],
