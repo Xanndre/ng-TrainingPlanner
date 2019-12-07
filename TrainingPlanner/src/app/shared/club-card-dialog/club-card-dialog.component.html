@@ -35,6 +35,7 @@
       (click)="doAction()"
       color="primary"
       class="btn-no-shadow"
+      [disabled]="clubCard.name === null || clubCard.name === undefined"
     >
       {{ action }}
     </button>

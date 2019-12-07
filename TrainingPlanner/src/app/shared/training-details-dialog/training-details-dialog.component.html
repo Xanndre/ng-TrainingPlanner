@@ -52,6 +52,7 @@
       (click)="signUp()"
       color="primary"
       class="btn-no-shadow"
+      [disabled]="!isPossible()"
     >
       Sign up
     </button>
@@ -61,6 +62,7 @@
       (click)="signOut()"
       color="primary"
       class="btn-no-shadow"
+      [disabled]="!isPossible()"
     >
       Sign out
     </button>
@@ -70,6 +72,7 @@
       (click)="signUp()"
       color="primary"
       class="btn-no-shadow"
+      [disabled]="!isPossible()"
     >
       Sign up for a reserve list
     </button>
@@ -79,6 +82,7 @@
       (click)="signOut()"
       color="primary"
       class="btn-no-shadow"
+      [disabled]="!isPossible()"
     >
       Sign out from a reserve list
     </button>

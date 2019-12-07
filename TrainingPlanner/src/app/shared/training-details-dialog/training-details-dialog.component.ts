@@ -76,4 +76,14 @@ export class TrainingDetailsDialogComponent implements OnInit {
         this.isInfoLoaded = true;
       });
   }
+
+  isPossible() {
+    const now = new Date();
+    const end = new Date(this.training.endDate);
+    if (end < now) {
+      return false;
+    } else {
+      return true;
+    }
+  }
 }
