@@ -1,0 +1,20 @@
+.tp-image {
+  width: 132px;
+}
+
+.tp-inline {
+  display: inline;
+}
+
+.tp-padd {
+  padding-left: 2px;
+}
+
+.tp-div {
+  align-self: center;
+}
+
+.tp-cursor {
+  cursor: pointer;
+  outline: none !important;
+}

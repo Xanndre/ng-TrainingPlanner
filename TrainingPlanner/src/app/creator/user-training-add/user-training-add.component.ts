@@ -25,7 +25,7 @@ export class UserTrainingAddComponent implements OnInit {
   isEdit = false;
   isEdited: boolean;
 
-  training: UserTraining = null;
+  training: UserTraining = new UserTraining();
   trainingCreate: UserTrainingCreate;
   trainingId = null;
 
@@ -132,13 +132,20 @@ export class UserTrainingAddComponent implements OnInit {
   }
 
   createTraining() {
-    this.exercises.forEach(el => (el.id = undefined));
+    this.exercises.forEach(el => {
+      el.id = undefined;
+      if (el.isTimeRelated) {
+        el.repetitions = null;
+      } else {
+        el.duration = null;
+      }
+    });
 
     this.trainingCreate = {
       userId: localStorage.getItem('userId'),
       name: this.trainingForm.trainingForm.value.title,
       type: this.trainingForm.trainingForm.value.type,
-      picture: '',
+      picture: this.training.picture,
       exercises: this.exercises
     };
     this.userTrainingService.createUserTraining(this.trainingCreate).subscribe(
@@ -204,5 +211,19 @@ export class UserTrainingAddComponent implements OnInit {
       }
       return true;
     });
+  }
+
+  changePictureListener($event): void {
+    this.readPicture($event.target);
+  }
+
+  readPicture(inputValue: any): void {
+    const file: File = inputValue.files[0];
+    const myReader: FileReader = new FileReader();
+
+    myReader.onloadend = () => {
+      this.training.picture = myReader.result.toString();
+    };
+    myReader.readAsDataURL(file);
   }
 }

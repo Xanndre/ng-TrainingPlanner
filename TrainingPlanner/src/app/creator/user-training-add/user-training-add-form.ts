@@ -7,10 +7,10 @@ export class UserTrainingAddForm {
   buildForm(formBuilder: FormBuilder, training: UserTraining) {
     this.trainingForm = formBuilder.group({
       title: [
-        training !== null ? training.name : null,
+        training !== undefined ? training.name : null,
         [Validators.required, Validators.maxLength(50)]
       ],
-      type: [training !== null ? training.type : null, Validators.required]
+      type: [training !== undefined ? training.type : null, Validators.required]
     });
   }
 }

@@ -19,7 +19,6 @@ export class UserProfileComponent implements OnInit {
   userId: string;
   isLoaded = false;
   isEdited = false;
-  isPictureLoaded = false;
   userForm: UserProfileForm = new UserProfileForm();
   formControls: UserProfileControls = new UserProfileControls();
 
@@ -120,8 +119,6 @@ export class UserProfileComponent implements OnInit {
       this.user.profilePicture = myReader.result.toString();
     };
     myReader.readAsDataURL(file);
-
-    this.isPictureLoaded = true;
   }
 
   changePassword() {

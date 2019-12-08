@@ -2,15 +2,43 @@
   <div class="col-lg-6 mx-auto">
     <mat-card class="my-4">
       <form class="text-center p-5" [formGroup]="trainingForm.trainingForm">
-        <h4 class="text-muted" *ngIf="!isEdit; else editTitle">
+        <h4 class="text-muted mb-3" *ngIf="!isEdit; else editTitle">
           Create new training
         </h4>
         <ng-template #editTitle>
-          <h4 class="text-muted">
+          <h4 class="text-muted mb-3">
             Edit your training
           </h4>
         </ng-template>
-
+        <img
+          class="tp-picture"
+          src="{{
+            training.picture
+              ? training.picture
+              : 'https://i.ibb.co/d0Zg3qs/newgym.png'
+          }}"
+          alt="Training Picture"
+        /><br />
+        <div
+          *ngIf="(isEdited && training.picture == null) || !training.picture"
+        >
+          <input
+            type="file"
+            id="file"
+            accept="image/*"
+            (change)="changePictureListener($event)"
+          />
+          <label for="file" class="my-btn tp-btn">Add photo</label>
+        </div>
+        <button
+          mat-raised-button
+          color="primary"
+          class="btn-no-shadow btn-block tp-btn"
+          *ngIf="isEdited && training.picture != null"
+          (click)="training.picture = null"
+        >
+          Delete photo
+        </button>
         <app-custom-control-group
           *ngFor="let controlGroup of formControls.controlGroups"
           [customControlGroup]="controlGroup"

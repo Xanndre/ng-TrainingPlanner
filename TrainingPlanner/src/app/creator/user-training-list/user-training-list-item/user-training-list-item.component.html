@@ -1,3 +1,42 @@
-<p>
-  user-training-list-item works!
-</p>
+<div class="row">
+  <div class="col-3 tp-div">
+    <img
+      class="tp-image"
+      src="{{
+        training.picture
+          ? training.picture
+          : 'https://i.ibb.co/d0Zg3qs/newgym.png'
+      }}"
+      alt="Training Picture"
+    />
+  </div>
+  <div class="col-6 tp-padd">
+    <div class="mb-3">
+      <h5 class="text-muted mt-1 tp-inline tp-cursor">
+        {{ training.name }}
+      </h5>
+    </div>
+    <p class="text-muted mb-2">
+      {{ 'Type: ' + training.type }}
+    </p>
+  </div>
+  <div class="col-3 pl-0">
+    <button
+      mat-raised-button
+      color="primary"
+      class="btn-block btn-no-shadow float-right w-75"
+      (click)="editTraining()"
+    >
+      <i class="fas fa-pencil-alt"></i>
+      Edit
+    </button>
+    <button
+      mat-raised-button
+      class="btn-block btn-no-shadow float-right w-75 btn-red"
+      (click)="deleteTraining()"
+    >
+      <i class="fas fa-trash-alt"></i>
+      Delete
+    </button>
+  </div>
+</div>

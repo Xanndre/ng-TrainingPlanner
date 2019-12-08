@@ -14,21 +14,26 @@ export class UserTrainingAddControls {
             type: 'text',
             formControlName: 'title',
             placeholder: 'Title',
-            label: 'Title'
-          }
-        ]
-      },
-      {
-        controls: [
+            label: 'Title',
+            class: 'col'
+          },
           {
             formGroup: form.trainingForm,
             controlType: 'select',
             formControlName: 'type',
             placeholder: 'Type',
             label: 'Type',
-            values: ['Endurance', 'Strength', 'Balance', 'Flexibility', 'Other']
+            values: [
+              'Endurance',
+              'Strength',
+              'Balance',
+              'Flexibility',
+              'Other'
+            ],
+            class: 'col'
           }
-        ]
+        ],
+        class: 'row mt-4'
       }
     ];
   }
