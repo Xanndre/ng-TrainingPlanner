@@ -24,4 +24,12 @@ export class ExerciseDialogComponent {
   closeDialog() {
     this.dialogRef.close({ event: 'Cancel' });
   }
+
+  setTimeRelated() {
+    if (this.localData.isTimeRelated) {
+      this.localData.duration = null;
+    } else {
+      this.localData.repetitions = null;
+    }
+  }
 }

@@ -24,4 +24,16 @@ export class PricelistDialogComponent {
   closeDialog() {
     this.dialogRef.close({ event: 'Cancel' });
   }
+
+  resetValidityPeriod() {
+    if (!this.localData.unlimitedValidityPeriod) {
+      this.localData.validityPeriod = null;
+    }
+  }
+
+  resetEntries() {
+    if (!this.localData.unlimitedEntries) {
+      this.localData.entries = null;
+    }
+  }
 }

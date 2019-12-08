@@ -14,7 +14,7 @@ export class UserTrainingListComponent implements OnInit {
 
   totalPages: number;
   totalCount: number;
-  pageSize = 5;
+  pageSize = 3;
   currentPage: number;
 
   userId: string;

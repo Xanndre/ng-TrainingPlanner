@@ -56,6 +56,13 @@ export class UserTrainingAddComponent implements OnInit {
         .getUserTraining(this.trainingId)
         .subscribe(response => {
           this.training = response;
+          this.training.exercises.forEach(t => {
+            if (t.duration == null) {
+              t.isTimeRelated = false;
+            } else {
+              t.isTimeRelated = true;
+            }
+          });
           this.beforeChanges = JSON.parse(JSON.stringify(this.training));
           this.formControls = new UserTrainingAddControls();
           this.trainingForm.buildForm(this.formBuilder, this.training);
@@ -91,6 +98,8 @@ export class UserTrainingAddComponent implements OnInit {
     this.trainingUpdate.type = this.trainingForm.trainingForm.value.type;
     this.trainingUpdate.userId = this.userId;
     this.trainingUpdate.id = this.training.id;
+    this.trainingUpdate.picture = this.training.picture;
+    this.trainingUpdate.userId = this.training.userId;
   }
 
   cancel() {

@@ -19,9 +19,7 @@
           }}"
           alt="Training Picture"
         /><br />
-        <div
-          *ngIf="(isEdited && training.picture == null) || !training.picture"
-        >
+        <div *ngIf="(isEdited && training.picture == null) || !isEdit">
           <input
             type="file"
             id="file"

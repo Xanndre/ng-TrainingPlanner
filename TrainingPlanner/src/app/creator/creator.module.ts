@@ -19,6 +19,7 @@ import { ErrorDialogComponent } from '../shared/error-dialog/error-dialog.compon
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { ExerciseDialogComponent } from '../shared/exercise-dialog/exercise-dialog.component';
+import { EditUserTrainingGuardService } from '../guards/EditUserTrainingGuard.service';
 
 const routes: Routes = [
   {
@@ -36,7 +37,7 @@ const routes: Routes = [
     path: 'training_creator/edit/:id',
     component: UserTrainingAddComponent,
     data: { edit: true },
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService, EditUserTrainingGuardService]
   }
 ];
 

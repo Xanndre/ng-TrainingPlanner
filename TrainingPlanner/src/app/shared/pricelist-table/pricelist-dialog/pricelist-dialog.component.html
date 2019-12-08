@@ -16,6 +16,7 @@
       color="primary"
       class="text-muted mt-2"
       [(ngModel)]="localData.unlimitedValidityPeriod"
+      (click)="resetValidityPeriod()"
       >Unlimited validity period</mat-checkbox
     >
     <mat-form-field class="tp-width">
@@ -36,6 +37,7 @@
       color="primary"
       class="text-muted"
       [(ngModel)]="localData.unlimitedEntries"
+      (click)="resetEntries()"
       >Unlimited entries</mat-checkbox
     >
     <mat-form-field class="tp-width">
