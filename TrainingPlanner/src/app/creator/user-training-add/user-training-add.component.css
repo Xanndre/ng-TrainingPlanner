@@ -1,0 +1,36 @@
+.example-card {
+  width: 250px;
+  margin-bottom: 2px;
+  margin-left: 1px;
+  margin-right: 1px;
+  margin-top: 1px;
+}
+[appSliderItem] {
+  flex-shrink: 0;
+}
+
+.tp-image {
+  height: 250px;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+}
+
+.mar-l {
+  margin-left: 3px;
+}
+
+.mar-r {
+  margin-right: 3px;
+}
+
+.btn-cancel {
+  background-color: #868e96;
+  color: white;
+}
+
+.tp-display {
+  display: block !important;
+}

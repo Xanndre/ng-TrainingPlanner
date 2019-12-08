@@ -1,0 +1,96 @@
+<h1 mat-dialog-title class="text-muted mb-0">
+  {{ action + ' Exercise' }}
+</h1>
+<div mat-dialog-content>
+  <div *ngIf="action != 'Delete'; else elseTemplate">
+    <mat-form-field class="tp-width">
+      <input
+        placeholder="Name"
+        matInput
+        [(ngModel)]="localData.name"
+        required
+        maxlength="20"
+      />
+    </mat-form-field>
+    <mat-form-field class="tp-width">
+      <input
+        placeholder="Series"
+        type="number"
+        step="1"
+        required
+        max="100"
+        min="1"
+        matInput
+        [(ngModel)]="localData.series"
+      />
+    </mat-form-field>
+    <mat-checkbox
+      color="primary"
+      class="text-muted mt-2"
+      [(ngModel)]="localData.isTimeRelated"
+      >Time related</mat-checkbox
+    >
+    <mat-form-field class="tp-width">
+      <input
+        placeholder="Repetitions"
+        type="number"
+        step="1"
+        required
+        max="1000"
+        min="1"
+        matInput
+        [disabled]="localData.isTimeRelated"
+        [(ngModel)]="localData.repetitions"
+      />
+    </mat-form-field>
+    <mat-form-field class="tp-width">
+      <input
+        placeholder="Duration"
+        type="number"
+        step="1"
+        required
+        max="100000"
+        min="1"
+        matInput
+        [(ngModel)]="localData.duration"
+        [disabled]="!localData.isTimeRelated"
+      />
+      <span matSuffix class="text-muted">s</span>
+    </mat-form-field>
+  </div>
+  <ng-template #elseTemplate>
+    <div class="text-muted tp-padd">
+      Are you sure to delete <b>{{ localData.name }}</b
+      >?
+    </div>
+  </ng-template>
+</div>
+<div mat-dialog-actions class="float-right">
+  <button
+    mat-raised-button
+    color="primary"
+    class="btn-no-shadow"
+    (click)="doAction()"
+    [disabled]="
+      !localData.name ||
+      !localData.series ||
+      (!localData.duration && localData.isTimeRelated) ||
+      (!localData.repetitions && !localData.isTimeRelated) ||
+      (localData.repetitions < 1 && localData.repetitions) ||
+      (localData.repetitions > 1000 && localData.repetitions) ||
+      (localData.duration < 1 && localData.duration) ||
+      (localData.duration > 100000 && localData.duration) ||
+      localData.series < 1 ||
+      localData.series > 100
+    "
+  >
+    {{ action }}
+  </button>
+  <button
+    mat-raised-button
+    (click)="closeDialog()"
+    class="btn-no-shadow btn-grey"
+  >
+    Cancel
+  </button>
+</div>

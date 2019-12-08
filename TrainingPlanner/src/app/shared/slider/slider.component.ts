@@ -36,6 +36,7 @@ export class SliderComponent {
   onClickLeft() {
     this.dataTransferService.setIsDeleteActivity(false);
     this.dataTransferService.setIsDeleteTrainer(false);
+    this.dataTransferService.setIsDeleteExercise(false);
     this.slidesContainer.nativeElement.scrollLeft -= this.currentItem().nativeElement.offsetWidth;
     if (this.slidesIndex > 0) {
       this.slidesIndex--;
@@ -45,6 +46,7 @@ export class SliderComponent {
   onClickRight() {
     this.dataTransferService.setIsDeleteActivity(false);
     this.dataTransferService.setIsDeleteTrainer(false);
+    this.dataTransferService.setIsDeleteExercise(false);
     this.slidesContainer.nativeElement.scrollLeft += this.currentItem().nativeElement.offsetWidth;
 
     if (this.slidesIndex < this.items.length - 1) {

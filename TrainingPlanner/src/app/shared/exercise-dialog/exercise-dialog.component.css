@@ -1,0 +1,11 @@
+.tp-width {
+  width: 202px;
+}
+
+.tp-padd {
+  padding-bottom: 20px;
+}
+
+::ng-deep .mat-checkbox-layout {
+  margin-top: 8px;
+}

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BodyMeasurementBase } from 'src/app/models/BodyMeasurement/BodyMeasurementBase';
 import { BodyMeasurementService } from 'src/app/services/BodyMeasurement.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-measurement-list',
@@ -10,8 +10,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class MeasurementListComponent implements OnInit {
   measurements: BodyMeasurementBase[] = [];
-
-  isEdit = false;
   isLoaded = false;
 
   totalPages: number;
@@ -22,14 +20,12 @@ export class MeasurementListComponent implements OnInit {
   userId: string;
 
   constructor(
-    private route: ActivatedRoute,
     private bodyMeasurementService: BodyMeasurementService,
     private router: Router
   ) {}
 
   ngOnInit() {
     this.userId = localStorage.getItem('userId');
-    this.isEdit = this.route.snapshot.data.edit;
     this.getMeasurements(1, true);
   }
 

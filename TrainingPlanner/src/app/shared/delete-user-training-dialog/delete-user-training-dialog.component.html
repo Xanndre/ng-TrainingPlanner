@@ -1,0 +1,22 @@
+<h2 mat-dialog-title class="mb-0 text-muted">Are you sure?</h2>
+<mat-dialog-content class="error text-muted">{{
+  data.errorMsg
+}}</mat-dialog-content>
+
+<div mat-dialog-actions class="float-right">
+  <button
+    mat-raised-button
+    (click)="deleteTraining()"
+    color="primary"
+    class="btn-no-shadow"
+  >
+    Delete
+  </button>
+  <button
+    mat-raised-button
+    class="btn-no-shadow btn-grey"
+    (click)="closeDialog()"
+  >
+    Cancel
+  </button>
+</div>

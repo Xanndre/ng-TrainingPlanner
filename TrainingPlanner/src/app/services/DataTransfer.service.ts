@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 export class DataTransferService {
   private isDeleteActivity: boolean;
   private isDeleteTrainer: boolean;
+  private isDeleteExercise: boolean;
 
   constructor() {}
 
@@ -23,5 +24,13 @@ export class DataTransferService {
 
   setIsDeleteTrainer(isDeleteTrainer: boolean) {
     this.isDeleteTrainer = isDeleteTrainer;
+  }
+
+  getIsDeleteExercise(): boolean {
+    return this.isDeleteExercise;
+  }
+
+  setIsDeleteExercise(isDeleteExercise: boolean) {
+    this.isDeleteExercise = isDeleteExercise;
   }
 }

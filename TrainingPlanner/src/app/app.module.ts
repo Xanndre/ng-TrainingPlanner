@@ -17,6 +17,7 @@ import { PartnerModule } from './partner/partner.module';
 import { MeasurementModule } from './measurement/measurement.module';
 import { DateAdapter } from '@angular/material';
 import { CustomDateAdapter } from './shared/custom-date-adapter/custom-date-adapter';
+import { CreatorModule } from './creator/creator.module';
 
 export function getToken(): string {
   return localStorage.getItem('token');
@@ -29,6 +30,7 @@ export function getToken(): string {
     AccountModule,
     ClubModule,
     CardModule,
+    CreatorModule,
     MeasurementModule,
     NavbarModule,
     PartnerModule,

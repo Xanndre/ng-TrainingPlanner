@@ -1,0 +1,41 @@
+<div class="full-width" *ngIf="isLoaded">
+  <div class="col-lg"></div>
+  <div
+    class="col-lg-9 mx-auto pb-4"
+    infinite-scroll
+    (scrolled)="onScrollDown()"
+  >
+    <div
+      class="row text-muted justify-content-center align-items-center mt-4"
+      *ngIf="trainings.length == 0"
+    >
+      You haven't added any trainings yet.
+    </div>
+    <div class="tp-right mt-4" *ngIf="trainings.length != 0">
+      <button
+        mat-raised-button
+        color="primary"
+        class="btn-block btn-no-shadow w-25"
+        (click)="addTraining()"
+      >
+        Add Training
+      </button>
+    </div>
+    <div class="mt-4 tp-center" *ngIf="trainings.length == 0">
+      <button
+        mat-raised-button
+        color="primary"
+        class="btn-block btn-no-shadow w-25"
+        (click)="addTraining()"
+      >
+        Add Training
+      </button>
+    </div>
+    <mat-card class="mt-4" *ngFor="let training of trainings">
+      <app-user-training-list-item
+        [training]="training"
+      ></app-user-training-list-item>
+    </mat-card>
+  </div>
+  <div class="col-lg"></div>
+</div>
