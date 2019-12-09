@@ -20,6 +20,10 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { ExerciseDialogComponent } from '../shared/exercise-dialog/exercise-dialog.component';
 import { EditUserTrainingGuardService } from '../guards/EditUserTrainingGuard.service';
+import { UserCalendarTrainingAddComponent } from './user-calendar-training-add/user-calendar-training-add.component';
+import { UserCalendarTrainingAddRecurrentComponent } from './user-calendar-training-add-recurrent/user-calendar-training-add-recurrent.component';
+import { UserCalendarTrainingDialogComponent } from './user-calendar-training-dialog/user-calendar-training-dialog.component';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
 const routes: Routes = [
   {
@@ -38,6 +42,23 @@ const routes: Routes = [
     component: UserTrainingAddComponent,
     data: { edit: true },
     canActivate: [AuthGuardService, EditUserTrainingGuardService]
+  },
+  {
+    path: 'training_creator/:id/add',
+    component: UserCalendarTrainingAddComponent,
+    data: { edit: false },
+    canActivate: [AuthGuardService, EditUserTrainingGuardService]
+  },
+  {
+    path: 'training_creator/:id/edit/:eventId',
+    component: UserCalendarTrainingAddComponent,
+    data: { edit: true },
+    canActivate: [AuthGuardService, EditUserTrainingGuardService]
+  },
+  {
+    path: 'training_creator/:id/add_recurrent',
+    component: UserCalendarTrainingAddRecurrentComponent,
+    canActivate: [AuthGuardService, EditUserTrainingGuardService]
   }
 ];
 
@@ -45,7 +66,10 @@ const routes: Routes = [
   declarations: [
     UserTrainingAddComponent,
     UserTrainingListComponent,
-    UserTrainingListItemComponent
+    UserTrainingListItemComponent,
+    UserCalendarTrainingAddComponent,
+    UserCalendarTrainingAddRecurrentComponent,
+    UserCalendarTrainingDialogComponent
   ],
   imports: [
     CommonModule,
@@ -59,13 +83,21 @@ const routes: Routes = [
     MatExpansionModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    NgxMaterialTimepickerModule
   ],
-  exports: [UserTrainingAddComponent, UserTrainingListComponent],
+  exports: [
+    UserTrainingAddComponent,
+    UserTrainingListComponent,
+    UserCalendarTrainingAddComponent,
+    UserCalendarTrainingAddRecurrentComponent,
+    UserCalendarTrainingDialogComponent
+  ],
   entryComponents: [
     ErrorDialogComponent,
     DeleteUserTrainingDialogComponent,
-    ExerciseDialogComponent
+    ExerciseDialogComponent,
+    UserCalendarTrainingDialogComponent
   ]
 })
 export class CreatorModule {}

@@ -3,6 +3,7 @@ import { UserTrainingBase } from 'src/app/models/UserStuff/UserTraining/UserTrai
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { DeleteUserTrainingDialogComponent } from 'src/app/shared/delete-user-training-dialog/delete-user-training-dialog.component';
+import { UserCalendarTrainingDialogComponent } from '../../user-calendar-training-dialog/user-calendar-training-dialog.component';
 
 @Component({
   selector: 'app-user-training-list-item',
@@ -28,6 +29,13 @@ export class UserTrainingListItemComponent {
     this.dialog.open(DeleteUserTrainingDialogComponent, {
       data: { errorMsg: error, trainingId: this.training.id },
       width: '400px'
+    });
+  }
+
+  addToCalendar() {
+    this.dialog.open(UserCalendarTrainingDialogComponent, {
+      data: { trainingId: this.training.id },
+      width: '600px'
     });
   }
 }

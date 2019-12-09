@@ -1,0 +1,61 @@
+<div class="row full-width" *ngIf="isLoaded">
+  <div class="col-lg-4 mx-auto">
+    <mat-card class="my-4">
+      <form class="text-center p-5" [formGroup]="trainingForm.trainingForm">
+        <h4 class="text-muted" *ngIf="!isEdit; else editTitle">
+          Create new training
+        </h4>
+        <ng-template #editTitle>
+          <h4 class="text-muted">
+            Edit your training
+          </h4>
+        </ng-template>
+        <app-custom-control-group
+          *ngFor="let controlGroup of formControls.controlGroups"
+          [customControlGroup]="controlGroup"
+        ></app-custom-control-group>
+        <button
+          mat-raised-button
+          *ngIf="!isEdit"
+          class="btn-block btn-no-shadow"
+          color="primary"
+          (click)="createTraining()"
+          [disabled]="!trainingForm.trainingForm.valid"
+        >
+          Create
+        </button>
+        <button
+          mat-raised-button
+          *ngIf="isEdit && !isEdited"
+          class="btn-block mt-0 btn-no-shadow"
+          color="primary"
+          (click)="editTraining()"
+        >
+          Edit
+        </button>
+        <div *ngIf="isEdited" class="row tp-mx tp-margin">
+          <div class="col">
+            <button
+              mat-raised-button
+              class="btn-block btn-no-shadow"
+              color="primary"
+              [disabled]="!trainingForm.trainingForm.valid"
+              (click)="saveTrainingData()"
+            >
+              Save
+            </button>
+          </div>
+          <div class="col">
+            <button
+              mat-raised-button
+              class="btn-cancel btn-block mt-0 btn-no-shadow"
+              (click)="cancel()"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </form>
+    </mat-card>
+  </div>
+</div>

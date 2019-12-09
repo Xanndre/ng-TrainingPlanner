@@ -24,7 +24,7 @@
     <button
       mat-raised-button
       color="primary"
-      class="btn-block btn-no-shadow float-right w-75"
+      class="btn-block btn-no-shadow float-right w-100"
       (click)="editTraining()"
     >
       <i class="fas fa-pencil-alt"></i>
@@ -32,11 +32,20 @@
     </button>
     <button
       mat-raised-button
-      class="btn-block btn-no-shadow float-right w-75 btn-red"
+      class="btn-block btn-no-shadow float-right w-100 btn-red"
       (click)="deleteTraining()"
     >
       <i class="fas fa-trash-alt"></i>
       Delete
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      class="btn-block btn-no-shadow float-right w-100"
+      (click)="addToCalendar()"
+    >
+      <i class="far fa-calendar-alt"></i>
+      Add to calendar
     </button>
   </div>
 </div>
