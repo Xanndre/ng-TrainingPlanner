@@ -38,6 +38,8 @@ import { DeleteTrainingDialogComponent } from './delete-training-dialog/delete-t
 import { TrainingDetailsDialogComponent } from './training-details-dialog/training-details-dialog.component';
 import { DeleteUserTrainingDialogComponent } from './delete-user-training-dialog/delete-user-training-dialog.component';
 import { ExerciseDialogComponent } from './exercise-dialog/exercise-dialog.component';
+import { DeleteUserCalendarTrainingDialogComponent } from './delete-user-calendar-training-dialog/delete-user-calendar-training-dialog.component';
+import { UserCalendarTrainingDetailsDialogComponent } from './user-calendar-training-details-dialog/user-calendar-training-details-dialog.component';
 
 @NgModule({
   declarations: [
@@ -60,8 +62,10 @@ import { ExerciseDialogComponent } from './exercise-dialog/exercise-dialog.compo
     ClubCardDialogComponent,
     TrainerCardDialogComponent,
     DeleteTrainingDialogComponent,
+    DeleteUserCalendarTrainingDialogComponent,
     DeleteUserTrainingDialogComponent,
     TrainingDetailsDialogComponent,
+    UserCalendarTrainingDetailsDialogComponent,
     ExerciseDialogComponent
   ],
   imports: [
@@ -101,8 +105,10 @@ import { ExerciseDialogComponent } from './exercise-dialog/exercise-dialog.compo
     ClubCardDialogComponent,
     TrainerCardDialogComponent,
     DeleteTrainingDialogComponent,
+    DeleteUserCalendarTrainingDialogComponent,
     DeleteUserTrainingDialogComponent,
     TrainingDetailsDialogComponent,
+    UserCalendarTrainingDetailsDialogComponent,
     ExerciseDialogComponent
   ],
   entryComponents: [PricelistDialogComponent]

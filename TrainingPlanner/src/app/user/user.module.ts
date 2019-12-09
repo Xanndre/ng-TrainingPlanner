@@ -22,6 +22,8 @@ import { ClubGuardService } from '../guards/ClubGuard.service';
 import { UserCalendarComponent } from './user-calendar/user-calendar.component';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { DeleteUserCalendarTrainingDialogComponent } from '../shared/delete-user-calendar-training-dialog/delete-user-calendar-training-dialog.component';
+import { UserCalendarTrainingDetailsDialogComponent } from '../shared/user-calendar-training-details-dialog/user-calendar-training-details-dialog.component';
 
 const routes: Routes = [
   {
@@ -79,6 +81,10 @@ const routes: Routes = [
     InfiniteScrollModule
   ],
   exports: [UserProfileComponent, UserListComponent, UserCalendarComponent],
-  entryComponents: [DeleteUserDialogComponent]
+  entryComponents: [
+    DeleteUserDialogComponent,
+    DeleteUserCalendarTrainingDialogComponent,
+    UserCalendarTrainingDetailsDialogComponent
+  ]
 })
 export class UserModule {}

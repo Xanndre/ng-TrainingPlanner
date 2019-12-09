@@ -14,10 +14,14 @@ import {
 } from 'angular-calendar';
 import { FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { TrainingService } from 'src/app/services/Training.service';
 import { Training } from 'src/app/models/Training/Training';
 import { TrainingDetailsDialogComponent } from 'src/app/shared/training-details-dialog/training-details-dialog.component';
+import { UserCalendarTraining } from 'src/app/models/UserStuff/UserCalendarTraining/UserCalendarTraining';
+import { UserCalendarTrainingService } from 'src/app/services/UserCalendarTraining.service';
+import { DeleteUserCalendarTrainingDialogComponent } from 'src/app/shared/delete-user-calendar-training-dialog/delete-user-calendar-training-dialog.component';
+import { UserCalendarTrainingDetailsDialogComponent } from 'src/app/shared/user-calendar-training-details-dialog/user-calendar-training-details-dialog.component';
 
 @Component({
   selector: 'app-user-calendar',
@@ -26,6 +30,23 @@ import { TrainingDetailsDialogComponent } from 'src/app/shared/training-details-
   styleUrls: ['./user-calendar.component.css']
 })
 export class UserCalendarComponent implements OnInit {
+  actions: CalendarEventAction[] = [
+    {
+      label: '<i class="fa fa-fw fa-pencil"></i>',
+      a11yLabel: 'Edit',
+      onClick: ({ event }: { event: CalendarEvent }): void => {
+        this.handleEvent('Edited', event);
+      }
+    },
+    {
+      label: '<i class="fa fa-fw fa-times"></i>',
+      a11yLabel: 'Delete',
+      onClick: ({ event }: { event: CalendarEvent }): void => {
+        this.handleEvent('Deleted', event);
+      }
+    }
+  ];
+
   ngForm: FormGroup;
 
   view: CalendarView = CalendarView.Month;
@@ -45,11 +66,14 @@ export class UserCalendarComponent implements OnInit {
   trainings: Training[];
   userId: string;
   isLoaded: boolean;
+  isUserCalendarTrainingsLoaded: boolean;
+
+  userCalendarTrainings: UserCalendarTraining[];
 
   constructor(
     private dialog: MatDialog,
-    private route: ActivatedRoute,
     private trainingService: TrainingService,
+    private userCalendarTrainingService: UserCalendarTrainingService,
     private router: Router,
     private changeDetectorRef: ChangeDetectorRef
   ) {}
@@ -80,6 +104,7 @@ export class UserCalendarComponent implements OnInit {
           });
         });
         this.isLoaded = true;
+        this.getUserCalendarTrainings();
         this.viewDate = new Date();
         this.changeDetectorRef.detectChanges();
       });
@@ -100,10 +125,64 @@ export class UserCalendarComponent implements OnInit {
   }
 
   handleEvent(action: string, event: CalendarEvent): void {
-    if (action === 'Clicked') {
+    if (action === 'Clicked' && event.actions === null) {
       this.openDetailsDialog(event);
+    } else if (action === 'Clicked' && event.actions !== null) {
+      this.openUserCalendarDetailsDialog(event);
+    } else if (action === 'Edited') {
+      const userTrainingId = this.userCalendarTrainings.find(
+        t => t.id === event.id
+      ).userTrainingId;
+      this.router.navigate([
+        `training_creator/${userTrainingId}/edit/${event.id}`
+      ]);
+    } else if (action === 'Deleted') {
+      this.openDeleteDialog(event);
     } else {
     }
+  }
+
+  openDeleteDialog(eventToDelete: CalendarEvent) {
+    const dialogRef = this.dialog.open(
+      DeleteUserCalendarTrainingDialogComponent,
+      {
+        width: '400px',
+        data: {
+          trainingId: eventToDelete.id,
+          events: this.events,
+          errorMsg:
+            'Do you really want to delete this training? This process cannot be undone.'
+        }
+      }
+    );
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result !== undefined) {
+        if (result.event === 'Delete') {
+          this.activeDayIsOpen = false;
+          this.refresh.next();
+          this.changeDetectorRef.detectChanges();
+        }
+      }
+    });
+  }
+
+  openUserCalendarDetailsDialog(event: CalendarEvent) {
+    const id = event.id.toString();
+    this.userCalendarTrainingService
+      .getUserCalendarTraining(parseInt(id, 10))
+      .subscribe(response => {
+        this.dialog.open(UserCalendarTrainingDetailsDialogComponent, {
+          width: '400px',
+          data: {
+            training: response,
+            startDate: new Date(response.startDate).toLocaleDateString(),
+            endDate: new Date(response.endDate).toLocaleDateString(),
+            startTime: this.getStringFromDate(new Date(response.startDate)),
+            endTime: this.getStringFromDate(new Date(response.endDate))
+          }
+        });
+      });
   }
 
   openDetailsDialog(event: CalendarEvent) {
@@ -151,5 +230,35 @@ export class UserCalendarComponent implements OnInit {
       minString = '0' + min;
     }
     return hourString + ':' + minString + ampm;
+  }
+
+  getUserCalendarTrainings() {
+    this.userCalendarTrainingService
+      .getUserCalendarTrainings(this.userId)
+      .subscribe(response => {
+        this.userCalendarTrainings = response;
+        this.userCalendarTrainings.forEach(t => {
+          this.events.push({
+            start: new Date(t.startDate),
+            end: new Date(t.endDate),
+            title: t.userTraining.name,
+            color: {
+              primary: t.primaryColor,
+              secondary: t.secondaryColor
+            },
+            actions: this.actions,
+            allDay: true,
+            resizable: {
+              beforeStart: false,
+              afterEnd: false
+            },
+            draggable: false,
+            id: t.id
+          });
+        });
+        this.isUserCalendarTrainingsLoaded = true;
+        this.viewDate = new Date();
+        this.changeDetectorRef.detectChanges();
+      });
   }
 }

@@ -1,0 +1,59 @@
+<h2 mat-dialog-title class="mb-0 text-muted">
+  {{ training.userTraining.name }}
+</h2>
+<mat-dialog-content class="error text-muted">
+  <p class="text-muted font-weight-bold tp-inline">
+    Type:
+  </p>
+  <p class="text-muted tp-inline">{{ ' ' + training.userTraining.type }}</p>
+  <br />
+  <p class="text-muted font-weight-bold tp-inline">
+    Date:
+  </p>
+  <p class="text-muted tp-inline">
+    {{ ' ' + (startDate === endDate ? startDate : startDate + '/' + endDate) }}
+  </p>
+  <br />
+  <p class="text-muted font-weight-bold tp-inline">
+    From:
+  </p>
+  <p class="text-muted tp-inline">
+    {{ ' ' + startTime }}
+  </p>
+  <br />
+  <p class="text-muted font-weight-bold tp-inline">
+    To:
+  </p>
+  <p class="text-muted tp-inline">
+    {{ ' ' + endTime }}
+  </p>
+  <br /><br />
+  <p
+    class="text-muted font-weight-bold tp-inline"
+    *ngIf="training.userTraining.exercises.length !== 0"
+  >
+    Exercises:
+  </p>
+  <br />
+  <div *ngFor="let ex of training.userTraining.exercises">
+    <p class="text-muted tp-inline tp-p">
+      {{ ex.name + ' • ' + ex.series + ' series' }}
+    </p>
+    <p class="text-muted tp-inline" *ngIf="ex.repetitions">
+      {{ ' • ' + ex.repetitions + ' repetitions' }}
+    </p>
+    <p class="text-muted tp-inline" *ngIf="ex.duration">
+      {{ ' • ' + ex.duration + ' seconds' }}
+    </p>
+  </div>
+</mat-dialog-content>
+
+<div mat-dialog-actions class="float-right">
+  <button
+    mat-raised-button
+    class="btn-no-shadow btn-grey"
+    (click)="closeDialog()"
+  >
+    Cancel
+  </button>
+</div>

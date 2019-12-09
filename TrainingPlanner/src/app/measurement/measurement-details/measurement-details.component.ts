@@ -1,6 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { BodyMeasurementService } from 'src/app/services/BodyMeasurement.service';
 import { BodyMeasurement } from 'src/app/models/BodyMeasurement/BodyMeasurement';
 
 @Component({
@@ -15,7 +14,6 @@ export class MeasurementDetailsComponent implements OnInit {
   date: string;
 
   constructor(
-    private bodyMeasurementService: BodyMeasurementService,
     private dialogRef: MatDialogRef<MeasurementDetailsComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
@@ -25,22 +23,17 @@ export class MeasurementDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.bodyMeasurementService
-      .getBodyMeasurement(this.data.id)
-      .subscribe(response => {
-        this.measurement = response;
-        this.measurement.injuries.forEach(j => {
-          if (
-            j ===
-            this.measurement.injuries[this.measurement.injuries.length - 1]
-          ) {
-            this.injuries += j.injury;
-          } else {
-            this.injuries += j.injury + ', ';
-          }
-        });
-        this.date = new Date(this.measurement.date).toLocaleDateString();
-        this.isLoaded = true;
-      });
+    this.measurement = this.data.measurement;
+    this.measurement.injuries.forEach(j => {
+      if (
+        j === this.measurement.injuries[this.measurement.injuries.length - 1]
+      ) {
+        this.injuries += j.injury;
+      } else {
+        this.injuries += j.injury + ', ';
+      }
+    });
+    this.date = new Date(this.measurement.date).toLocaleDateString();
+    this.isLoaded = true;
   }
 }

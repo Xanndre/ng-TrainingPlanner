@@ -40,7 +40,7 @@ export class MeasurementListItemComponent implements OnInit {
 
   viewDetails() {
     this.dialog.open(MeasurementDetailsComponent, {
-      data: { id: this.measurement.id },
+      data: { measurement: this.measurement },
       width: '470px'
     });
   }
