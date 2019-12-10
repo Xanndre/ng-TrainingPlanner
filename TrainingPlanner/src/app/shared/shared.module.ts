@@ -40,6 +40,7 @@ import { DeleteUserTrainingDialogComponent } from './delete-user-training-dialog
 import { ExerciseDialogComponent } from './exercise-dialog/exercise-dialog.component';
 import { DeleteUserCalendarTrainingDialogComponent } from './delete-user-calendar-training-dialog/delete-user-calendar-training-dialog.component';
 import { UserCalendarTrainingDetailsDialogComponent } from './user-calendar-training-details-dialog/user-calendar-training-details-dialog.component';
+import { SuccessDialogComponent } from './success-dialog/success-dialog.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { UserCalendarTrainingDetailsDialogComponent } from './user-calendar-trai
     CustomErrorComponent,
     CustomControlGroupComponent,
     ErrorDialogComponent,
+    SuccessDialogComponent,
     DeleteClubDialogComponent,
     DeleteTrainerDialogComponent,
     DeleteUserDialogComponent,
@@ -91,6 +93,7 @@ import { UserCalendarTrainingDetailsDialogComponent } from './user-calendar-trai
     CustomErrorComponent,
     CustomControlGroupComponent,
     ErrorDialogComponent,
+    SuccessDialogComponent,
     DeleteTrainerDialogComponent,
     DeleteClubDialogComponent,
     DeleteUserDialogComponent,

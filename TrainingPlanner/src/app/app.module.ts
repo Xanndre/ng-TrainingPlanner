@@ -18,6 +18,7 @@ import { MeasurementModule } from './measurement/measurement.module';
 import { DateAdapter } from '@angular/material';
 import { CustomDateAdapter } from './shared/custom-date-adapter/custom-date-adapter';
 import { CreatorModule } from './creator/creator.module';
+import { NotificationModule } from './notification/notification.module';
 
 export function getToken(): string {
   return localStorage.getItem('token');
@@ -37,6 +38,7 @@ export function getToken(): string {
     SharedModule,
     TrainerModule,
     FavouriteModule,
+    NotificationModule,
     UserModule,
     AppRoutingModule,
     HttpClientModule,
