@@ -26,6 +26,9 @@ export class NotificationComponent implements OnInit {
       .getNotification(this.userId)
       .subscribe(response => {
         this.notification = response;
+        if (response === null) {
+          this.notification = new NotificationInfo();
+        }
         this.isLoaded = true;
       });
   }
