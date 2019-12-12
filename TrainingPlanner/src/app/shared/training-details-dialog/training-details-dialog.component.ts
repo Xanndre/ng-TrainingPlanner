@@ -63,7 +63,11 @@ export class TrainingDetailsDialogComponent implements OnInit {
     this.reservationService
       .deleteReservation(this.training.id, this.userId)
       .subscribe(() => {
-        this.closeDialog();
+        if (this.data.isUserCalendar) {
+          const index = this.data.events.indexOf(this.data.trainingEvent);
+          this.data.events.splice(index, 1);
+        }
+        this.dialogRef.close({ event: 'Delete' });
       });
   }
 

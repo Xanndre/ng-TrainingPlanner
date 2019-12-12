@@ -23,15 +23,16 @@ export class DeleteUserCalendarTrainingDialogComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.trainingId = this.localData.trainingId;
+    this.trainingId = this.localData.trainingEvent.id;
   }
 
   deleteTraining() {
     this.userCalendarTrainingService
       .deleteUserCalendarTraining(this.trainingId)
       .subscribe(() => {
-        const event = this.localData.events.find(c => c.id === this.trainingId);
-        const index = this.localData.events.indexOf(event);
+        const index = this.localData.events.indexOf(
+          this.localData.trainingEvent
+        );
         this.localData.events.splice(index, 1);
         this.dialogRef.close({ event: 'Delete' });
       });

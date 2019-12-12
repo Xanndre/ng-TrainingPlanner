@@ -148,6 +148,8 @@ export class ClubCalendarComponent implements OnInit {
         width: '400px',
         data: {
           training: response,
+          trainingEvent: event,
+          isUserCalendar: false,
           startDate: new Date(response.startDate).toLocaleDateString(),
           endDate: new Date(response.endDate).toLocaleDateString(),
           startTime: this.getStringFromDate(new Date(response.startDate)),
@@ -161,7 +163,7 @@ export class ClubCalendarComponent implements OnInit {
     const dialogRef = this.dialog.open(DeleteTrainingDialogComponent, {
       width: '400px',
       data: {
-        trainingId: eventToDelete.id,
+        trainingEvent: eventToDelete,
         events: this.events,
         errorMsg:
           'Do you really want to delete this training? This process cannot be undone.'

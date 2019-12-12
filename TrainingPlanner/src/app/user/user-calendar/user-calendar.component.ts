@@ -148,7 +148,7 @@ export class UserCalendarComponent implements OnInit {
       {
         width: '400px',
         data: {
-          trainingId: eventToDelete.id,
+          trainingEvent: eventToDelete,
           events: this.events,
           errorMsg:
             'Do you really want to delete this training? This process cannot be undone.'
@@ -188,14 +188,26 @@ export class UserCalendarComponent implements OnInit {
   openDetailsDialog(event: CalendarEvent) {
     const id = event.id.toString();
     this.trainingService.getTraining(parseInt(id, 10)).subscribe(response => {
-      this.dialog.open(TrainingDetailsDialogComponent, {
+      const dialogRef = this.dialog.open(TrainingDetailsDialogComponent, {
         width: '400px',
         data: {
           training: response,
+          trainingEvent: event,
+          isUserCalendar: true,
+          events: this.events,
           startDate: new Date(response.startDate).toLocaleDateString(),
           endDate: new Date(response.endDate).toLocaleDateString(),
           startTime: this.getStringFromDate(new Date(response.startDate)),
           endTime: this.getStringFromDate(new Date(response.endDate))
+        }
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        if (result !== undefined) {
+          if (result.event === 'Delete') {
+            this.activeDayIsOpen = false;
+            this.refresh.next();
+            this.changeDetectorRef.detectChanges();
+          }
         }
       });
     });
