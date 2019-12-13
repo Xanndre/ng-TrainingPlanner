@@ -24,6 +24,7 @@ import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { DeleteUserCalendarTrainingDialogComponent } from '../shared/delete-user-calendar-training-dialog/delete-user-calendar-training-dialog.component';
 import { UserCalendarTrainingDetailsDialogComponent } from '../shared/user-calendar-training-details-dialog/user-calendar-training-details-dialog.component';
+import { UserFiltersComponent } from './user-list/user-filters/user-filters.component';
 
 const routes: Routes = [
   {
@@ -58,7 +59,8 @@ const routes: Routes = [
     UserProfileComponent,
     UserListComponent,
     UserListItemComponent,
-    UserCalendarComponent
+    UserCalendarComponent,
+    UserFiltersComponent
   ],
   imports: [
     CalendarModule.forRoot({

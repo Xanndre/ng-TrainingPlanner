@@ -20,6 +20,8 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { CardDetailsComponent } from './card-details/card-details.component';
 import { ClubGuardService } from '../guards/ClubGuard.service';
 import { TrainerGuardService } from '../guards/TrainerGuard.service';
+import { ClubCardFiltersComponent } from './club-card-list/club-card-filters/club-card-filters.component';
+import { TrainerCardFiltersComponent } from './trainer-card-list/trainer-card-filters/trainer-card-filters.component';
 
 const routes: Routes = [
   {
@@ -61,7 +63,9 @@ const routes: Routes = [
     TrainerCardListComponent,
     TrainerCardListItemComponent,
     CardListComponent,
-    CardDetailsComponent
+    CardDetailsComponent,
+    ClubCardFiltersComponent,
+    TrainerCardFiltersComponent
   ],
   imports: [
     CommonModule,

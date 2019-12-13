@@ -36,6 +36,9 @@ import { TrainingDetailsDialogComponent } from '../shared/training-details-dialo
 import { SignedUserListComponent } from './trainer-calendar/signed-user-list/signed-user-list.component';
 import { UserModule } from '../user/user.module';
 import { TrainingAddRecurrentComponent } from './trainer-calendar/training-add-recurrent/training-add-recurrent.component';
+import { TrainerFiltersComponent } from './trainer-list/trainer-filters/trainer-filters.component';
+import { TrainerReviewFiltersComponent } from './trainer-review-list/trainer-review-filters/trainer-review-filters.component';
+import { TrainingFiltersComponent } from './trainer-calendar/training-filters/training-filters.component';
 
 const routes: Routes = [
   {
@@ -106,7 +109,10 @@ const routes: Routes = [
     TrainerCalendarComponent,
     TrainingAddComponent,
     TrainingAddRecurrentComponent,
-    SignedUserListComponent
+    SignedUserListComponent,
+    TrainerFiltersComponent,
+    TrainerReviewFiltersComponent,
+    TrainingFiltersComponent
   ],
   imports: [
     CommonModule,

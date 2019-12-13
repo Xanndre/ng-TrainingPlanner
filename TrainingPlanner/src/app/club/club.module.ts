@@ -37,6 +37,9 @@ import { TrainingDetailsDialogComponent } from '../shared/training-details-dialo
 import { SignedUserListComponent } from './club-calendar/signed-user-list/signed-user-list.component';
 import { UserModule } from '../user/user.module';
 import { TrainingAddRecurrentComponent } from './club-calendar/training-add-recurrent/training-add-recurrent.component';
+import { ClubFiltersComponent } from './club-list/club-filters/club-filters.component';
+import { ClubReviewFiltersComponent } from './club-review-list/club-review-filters/club-review-filters.component';
+import { TrainingFiltersComponent } from './club-calendar/training-filters/training-filters.component';
 
 const routes: Routes = [
   {
@@ -122,7 +125,10 @@ const routes: Routes = [
     ClubCalendarComponent,
     TrainingAddComponent,
     TrainingAddRecurrentComponent,
-    SignedUserListComponent
+    SignedUserListComponent,
+    ClubFiltersComponent,
+    ClubReviewFiltersComponent,
+    TrainingFiltersComponent
   ],
   imports: [
     CalendarModule.forRoot({
