@@ -14,6 +14,7 @@ import { ClubFilterData } from 'src/app/models/FilterData/ClubFilterData';
 export class ClubListComponent implements OnInit {
   clubs: ClubBase[] = [];
   userId: string;
+  locations: string[];
 
   totalPages: number;
   totalCount: number;
@@ -21,6 +22,7 @@ export class ClubListComponent implements OnInit {
   currentPage: number;
 
   isLoaded = false;
+  isLocationsLoaded = false;
   isUser: boolean;
   isProfile = false;
 
@@ -40,6 +42,7 @@ export class ClubListComponent implements OnInit {
       this.isProfile = true;
     }
     this.userId = localStorage.getItem('userId');
+    this.getLocations();
     this.getClubs(1, true);
   }
 
@@ -88,5 +91,12 @@ export class ClubListComponent implements OnInit {
         this.getClubs(1, true);
       });
     }
+  }
+
+  getLocations() {
+    this.clubService.getLocations().subscribe(response => {
+      this.locations = response;
+      this.isLocationsLoaded = true;
+    });
   }
 }

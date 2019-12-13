@@ -1,10 +1,15 @@
-<div class="full-width" *ngIf="isLoaded">
+<div class="full-width" *ngIf="isLoaded && isLocationsLoaded">
   <div class="col-lg-3"></div>
   <div
     class="col-lg-6 mx-auto tp-main-col pb-4"
     infinite-scroll
     (scrolled)="onScrollDown()"
   >
+    <app-club-filters
+      [filterData]="filterData"
+      [locations]="locations"
+      (getClubs)="getClubs($event, true)"
+    ></app-club-filters>
     <div
       class="row text-muted justify-content-center align-items-center mt-4"
       *ngIf="clubs.length == 0 && isFavourite"

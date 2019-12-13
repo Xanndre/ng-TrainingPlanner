@@ -9,7 +9,10 @@ import {
   MatButtonModule,
   MatTableModule,
   DateAdapter,
-  MatTabsModule
+  MatTabsModule,
+  MatFormFieldModule,
+  MatSelectModule,
+  MatInputModule
 } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -140,8 +143,11 @@ const routes: Routes = [
     ReactiveFormsModule,
     SharedModule,
     MatCardModule,
+    MatFormFieldModule,
+    MatSelectModule,
     MatExpansionModule,
     NgbModule,
+    MatInputModule,
     MatTableModule,
     MatButtonModule,
     DragDropModule,

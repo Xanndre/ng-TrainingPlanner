@@ -165,4 +165,19 @@ export class ClubService {
         })
       );
   }
+
+  getLocations(): Observable<string[]> {
+    const options = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + localStorage.getItem('jwt')
+      })
+    };
+    return this.client
+      .get('https://localhost:44383/api/Club/locations', options)
+      .pipe(
+        map((res: string[]) => {
+          return res;
+        })
+      );
+  }
 }
