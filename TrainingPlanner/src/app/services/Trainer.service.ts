@@ -97,10 +97,8 @@ export class TrainerService {
   ): Observable<PagedTrainers> {
     let params = new HttpParams()
       .set('pageNumber', pageNumber.toString())
-      .set('pageSize', pageSize.toString());
-    if (isFavourite || userId != null) {
-      params = params.set('userId', userId);
-    }
+      .set('pageSize', pageSize.toString())
+      .set('userId', userId);
     Object.keys(filterData).forEach(key => {
       if (filterData[key] != null) {
         if (filterData[key] instanceof Date) {

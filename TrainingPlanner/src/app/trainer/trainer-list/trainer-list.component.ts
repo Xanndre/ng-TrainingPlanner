@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { TrainerService } from 'src/app/services/Trainer.service';
 import { TrainerBase } from 'src/app/models/Trainer/TrainerBase';
-import { LoginService } from 'src/app/services/Login.service';
 import { FavouriteService } from 'src/app/services/Favourite.service';
 import { FavouriteTrainer } from 'src/app/models/Favourite/FavouriteTrainer';
 import { TrainerFilterData } from 'src/app/models/FilterData/TrainerFilterData';
@@ -22,19 +21,16 @@ export class TrainerListComponent implements OnInit {
   currentPage: number;
 
   isLoaded = false;
-  isUserAuthenticated: boolean;
 
   @Input() isFavourite: boolean;
   filterData: TrainerFilterData = {};
 
   constructor(
     private trainerService: TrainerService,
-    private loginService: LoginService,
     private favouriteService: FavouriteService
   ) {}
 
   ngOnInit() {
-    this.isUserAuthenticated = this.loginService.isUserAuthenticated();
     this.userId = localStorage.getItem('userId');
     this.getTrainers(1, true);
   }
@@ -47,7 +43,7 @@ export class TrainerListComponent implements OnInit {
       .getTrainers(
         pageNumber,
         this.pageSize,
-        this.isUserAuthenticated ? this.userId : null,
+        this.userId,
         this.filterData,
         this.isFavourite
       )

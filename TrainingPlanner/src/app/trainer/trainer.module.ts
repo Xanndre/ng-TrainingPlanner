@@ -45,15 +45,18 @@ const routes: Routes = [
   },
   {
     path: 'trainers',
-    component: TrainerListComponent
+    component: TrainerListComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: 'trainers/:id',
-    component: TrainerDetailsComponent
+    component: TrainerDetailsComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: 'trainers/:id/reviews',
-    component: TrainerReviewListComponent
+    component: TrainerReviewListComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: 'profile/trainers/:trainerId/calendar',

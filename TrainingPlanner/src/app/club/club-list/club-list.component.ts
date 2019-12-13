@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ClubService } from 'src/app/services/Club.service';
-import { LoginService } from 'src/app/services/Login.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ClubBase } from 'src/app/models/Club/ClubBase';
 import { FavouriteClub } from 'src/app/models/Favourite/FavouriteClub';
@@ -22,7 +21,6 @@ export class ClubListComponent implements OnInit {
   currentPage: number;
 
   isLoaded = false;
-  isUserAuthenticated: boolean;
   isUser: boolean;
   isProfile = false;
 
@@ -31,14 +29,12 @@ export class ClubListComponent implements OnInit {
 
   constructor(
     private clubService: ClubService,
-    private loginService: LoginService,
     private favouriteService: FavouriteService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
 
   ngOnInit() {
-    this.isUserAuthenticated = this.loginService.isUserAuthenticated();
     this.isUser = this.route.snapshot.data.isUser;
     if (this.route.snapshot.routeConfig.path === 'profile/clubs') {
       this.isProfile = true;
@@ -55,7 +51,7 @@ export class ClubListComponent implements OnInit {
       .getClubs(
         pageNumber,
         this.pageSize,
-        this.isUserAuthenticated ? this.userId : null,
+        this.userId,
         this.filterData,
         this.isUser,
         this.isFavourite

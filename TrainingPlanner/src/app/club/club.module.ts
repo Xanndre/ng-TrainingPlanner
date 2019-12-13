@@ -60,15 +60,18 @@ const routes: Routes = [
   {
     path: 'clubs',
     component: ClubListComponent,
-    data: { isUser: false }
+    data: { isUser: false },
+    canActivate: [AuthGuardService]
   },
   {
     path: 'clubs/:id',
-    component: ClubDetailsComponent
+    component: ClubDetailsComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: 'clubs/:id/reviews',
-    component: ClubReviewListComponent
+    component: ClubReviewListComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: 'profile/clubs/:clubId/calendar',
