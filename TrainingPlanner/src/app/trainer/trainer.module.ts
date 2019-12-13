@@ -12,7 +12,9 @@ import {
   MatChipsModule,
   MatExpansionModule,
   MatFormFieldModule,
-  MatTabsModule
+  MatTabsModule,
+  MatSelectModule,
+  MatInputModule
 } from '@angular/material';
 import { TrainerProfileComponent } from './trainer-profile/trainer-profile.component';
 import { TrainerListComponent } from './trainer-list/trainer-list.component';
@@ -122,11 +124,13 @@ const routes: Routes = [
     }),
     MatButtonModule,
     MatFormFieldModule,
+    MatInputModule,
     MatTabsModule,
     MatCardModule,
     MatChipsModule,
     MatDialogModule,
     FormsModule,
+    MatSelectModule,
     NgbModule,
     InfiniteScrollModule,
     MatTableModule,

@@ -4,6 +4,9 @@ import { TrainerBase } from 'src/app/models/Trainer/TrainerBase';
 import { FavouriteService } from 'src/app/services/Favourite.service';
 import { FavouriteTrainer } from 'src/app/models/Favourite/FavouriteTrainer';
 import { TrainerFilterData } from 'src/app/models/FilterData/TrainerFilterData';
+import { UserService } from 'src/app/services/User.service';
+import { Sport } from 'src/app/models/Stuff/Sport';
+import { SportService } from 'src/app/services/Sport.service';
 
 @Component({
   selector: 'app-trainer-list',
@@ -12,6 +15,8 @@ import { TrainerFilterData } from 'src/app/models/FilterData/TrainerFilterData';
 })
 export class TrainerListComponent implements OnInit {
   trainers: TrainerBase[];
+  locations: string[];
+  sports: Sport[];
 
   userId: string;
 
@@ -21,17 +26,23 @@ export class TrainerListComponent implements OnInit {
   currentPage: number;
 
   isLoaded = false;
+  isLocationsLoaded = false;
+  isSportsLoaded = false;
 
   @Input() isFavourite: boolean;
   filterData: TrainerFilterData = {};
 
   constructor(
     private trainerService: TrainerService,
-    private favouriteService: FavouriteService
+    private favouriteService: FavouriteService,
+    private userService: UserService,
+    private sportService: SportService
   ) {}
 
   ngOnInit() {
     this.userId = localStorage.getItem('userId');
+    this.getLocations();
+    this.getSports();
     this.getTrainers(1, true);
   }
 
@@ -75,5 +86,19 @@ export class TrainerListComponent implements OnInit {
         this.getTrainers(1, true);
       });
     }
+  }
+
+  getLocations() {
+    this.userService.getLocations().subscribe(response => {
+      this.locations = response;
+      this.isLocationsLoaded = true;
+    });
+  }
+
+  getSports() {
+    this.sportService.getAllSports().subscribe(response => {
+      this.sports = response;
+      this.isSportsLoaded = true;
+    });
   }
 }

@@ -1,3 +1,77 @@
-<p>
-  trainer-filters works!
-</p>
+<div class="row mt-3 text-muted">
+  <div class="col">
+    <mat-form-field class="tp-inline w-25">
+      <input
+        matInput
+        type="text"
+        class="text-muted"
+        placeholder="Search"
+        [(ngModel)]="filterData.keywords"
+      />
+    </mat-form-field>
+  </div>
+  <div class="col">
+    <mat-form-field class="tp-inline w-25 text-muted">
+      <mat-label>Location</mat-label>
+      <mat-select
+        [(ngModel)]="filterData.location"
+        placeholder="Location"
+        class="text-muted"
+      >
+        <mat-option
+          *ngFor="let location of locations"
+          [value]="location"
+          class="text-muted"
+        >
+          {{ location }}
+        </mat-option>
+        <mat-option [value]="null" class="text-muted">
+          All
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="col">
+    <mat-form-field class="tp-inline w-25 text-muted">
+      <mat-label>Sports</mat-label>
+      <mat-select
+        multiple
+        placeholder="Sports"
+        class="text-muted"
+        [(ngModel)]="filterData.sportIds"
+      >
+        <mat-option
+          *ngFor="let sport of sports"
+          [value]="sport.id"
+          class="text-muted"
+        >
+          {{ sport.name }}
+        </mat-option>
+        <mat-option [value]="null" class="text-muted">
+          All
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>
+<div class="row">
+  <div class="col text-right">
+    <button
+      mat-raised-button
+      color="primary"
+      class="btn-block btn-no-shadow tp-inline tp-margin-right w-25"
+      (click)="filter()"
+    >
+      Filter
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      class="btn-block btn-no-shadow tp-inline tp-margin-left w-25"
+      (click)="clear()"
+      [disabled]="isClear"
+    >
+      Clear
+    </button>
+  </div>
+</div>

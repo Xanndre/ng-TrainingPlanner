@@ -1,10 +1,16 @@
-<div class="full-width" *ngIf="isLoaded">
+<div class="full-width" *ngIf="isLoaded && isLocationsLoaded && isSportsLoaded">
   <div class="col-lg-3"></div>
   <div
     class="col-lg-6 mx-auto pb-4"
     infinite-scroll
     (scrolled)="onScrollDown()"
   >
+    <app-trainer-filters
+      [filterData]="filterData"
+      [locations]="locations"
+      [sports]="sports"
+      (getTrainers)="getTrainers($event, true)"
+    ></app-trainer-filters>
     <div
       class="row text-muted justify-content-center align-items-center mt-4"
       *ngIf="trainers.length == 0 && isFavourite"
