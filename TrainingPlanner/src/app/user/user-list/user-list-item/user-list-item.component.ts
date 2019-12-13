@@ -4,7 +4,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Reservation } from 'src/app/models/Reservation/Reservation';
 import { ReservationService } from 'src/app/services/Reservation.service';
 import { Training } from 'src/app/models/Training/Training';
-import { TrainingService } from 'src/app/services/Training.service';
 import { ReservationInfo } from 'src/app/models/Reservation/ReservationInfo';
 
 @Component({
@@ -14,7 +13,6 @@ import { ReservationInfo } from 'src/app/models/Reservation/ReservationInfo';
 })
 export class UserListItemComponent implements OnInit {
   @Input() user: User;
-  @Input() isSignList: boolean;
   @Input() isSignedUp: boolean;
   @Input() training?: Training;
   @Input() reservationInfo?: ReservationInfo;
@@ -63,5 +61,15 @@ export class UserListItemComponent implements OnInit {
       .subscribe(() => {
         window.location.reload();
       });
+  }
+
+  isPossible() {
+    const now = new Date();
+    const end = new Date(this.training.endDate);
+    if (end < now) {
+      return false;
+    } else {
+      return true;
+    }
   }
 }

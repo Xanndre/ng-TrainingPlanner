@@ -25,7 +25,12 @@
         Cards
       </button>
       <button
-        *ngIf="isSignedUp && reservationInfo && !reservationInfo.isReserveList"
+        *ngIf="
+          isSignedUp &&
+          reservationInfo &&
+          !reservationInfo.isReserveList &&
+          isPossible()
+        "
         mat-raised-button
         color="primary"
         class="btn-block btn-no-shadow w-25 float-right tp-inline"
@@ -34,7 +39,12 @@
         Sign out
       </button>
       <button
-        *ngIf="reservationInfo && !isSignedUp && training.entriesLeft !== 0"
+        *ngIf="
+          reservationInfo &&
+          !isSignedUp &&
+          training.entriesLeft !== 0 &&
+          isPossible()
+        "
         mat-raised-button
         color="primary"
         class="btn-block btn-no-shadow w-25 float-right tp-inline"
@@ -43,7 +53,12 @@
         Sign up
       </button>
       <button
-        *ngIf="reservationInfo && !isSignedUp && training.entriesLeft === 0"
+        *ngIf="
+          reservationInfo &&
+          !isSignedUp &&
+          training.entriesLeft === 0 &&
+          isPossible()
+        "
         mat-raised-button
         (click)="signUp()"
         color="primary"
@@ -52,7 +67,12 @@
         Sign up for a reserve list
       </button>
       <button
-        *ngIf="reservationInfo && isSignedUp && reservationInfo.isReserveList"
+        *ngIf="
+          reservationInfo &&
+          isSignedUp &&
+          reservationInfo.isReserveList &&
+          isPossible()
+        "
         mat-raised-button
         (click)="signOut()"
         color="primary"

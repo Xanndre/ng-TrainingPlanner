@@ -5,11 +5,14 @@
     infinite-scroll
     (scrolled)="onScrollDown()"
   >
+    <app-user-filters
+      [filterData]="filterData"
+      (getUsers)="getUsers($event, true)"
+    ></app-user-filters>
     <div *ngIf="users">
       <mat-card class="mt-4" *ngFor="let user of users">
         <app-user-list-item
           [user]="user"
-          [isSignList]="isSignList"
           [isSignedUp]="isSignedUp"
         ></app-user-list-item>
       </mat-card>
@@ -18,7 +21,6 @@
       <mat-card class="mt-4" *ngFor="let reservationUser of reservationUsers">
         <app-user-list-item
           [user]="reservationUser.user"
-          [isSignList]="isSignList"
           [training]="training"
           [isSignedUp]="isSignedUp"
           [reservationInfo]="reservationUser.reservationInfo"
