@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { TrainingCreate } from '../models/Training/TrainingCreate';
 import { Training } from '../models/Training/Training';
 import { map } from 'rxjs/Operators';
 import { Observable } from 'rxjs';
 import { TrainingUpdate } from '../models/Training/TrainingUpdate';
+import { TrainingFilterData } from '../models/FilterData/TrainingFilterData';
 
 @Injectable({
   providedIn: 'root'
@@ -66,7 +67,26 @@ export class TrainingService {
       );
   }
 
-  getTrainerTrainings(trainerId: number): Observable<Training[]> {
+  getTrainerTrainings(
+    trainerId: number,
+    filterData: TrainingFilterData
+  ): Observable<Training[]> {
+    let params = new HttpParams();
+    Object.keys(filterData).forEach(key => {
+      if (filterData[key] != null) {
+        if (filterData[key] instanceof Date) {
+          params = params.set(key, filterData[key].toUTCString());
+        } else if (filterData[key] instanceof Array) {
+          filterData[key].forEach(el => {
+            if (el != null) {
+              params = params.append(key, el);
+            }
+          });
+        } else {
+          params = params.set(key, filterData[key]);
+        }
+      }
+    });
     const options = {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + localStorage.getItem('jwt')
@@ -81,7 +101,26 @@ export class TrainingService {
       );
   }
 
-  getClubTrainings(clubId: number): Observable<Training[]> {
+  getClubTrainings(
+    clubId: number,
+    filterData: TrainingFilterData
+  ): Observable<Training[]> {
+    let params = new HttpParams();
+    Object.keys(filterData).forEach(key => {
+      if (filterData[key] != null) {
+        if (filterData[key] instanceof Date) {
+          params = params.set(key, filterData[key].toUTCString());
+        } else if (filterData[key] instanceof Array) {
+          filterData[key].forEach(el => {
+            if (el != null) {
+              params = params.append(key, el);
+            }
+          });
+        } else {
+          params = params.set(key, filterData[key]);
+        }
+      }
+    });
     const options = {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + localStorage.getItem('jwt')
@@ -96,7 +135,26 @@ export class TrainingService {
       );
   }
 
-  getReservedTrainings(userId: string): Observable<Training[]> {
+  getReservedTrainings(
+    userId: string,
+    filterData: TrainingFilterData
+  ): Observable<Training[]> {
+    let params = new HttpParams();
+    Object.keys(filterData).forEach(key => {
+      if (filterData[key] != null) {
+        if (filterData[key] instanceof Date) {
+          params = params.set(key, filterData[key].toUTCString());
+        } else if (filterData[key] instanceof Array) {
+          filterData[key].forEach(el => {
+            if (el != null) {
+              params = params.append(key, el);
+            }
+          });
+        } else {
+          params = params.set(key, filterData[key]);
+        }
+      }
+    });
     const options = {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + localStorage.getItem('jwt')

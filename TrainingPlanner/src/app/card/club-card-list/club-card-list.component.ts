@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CardService } from 'src/app/services/Card.service';
 import { MatDialog } from '@angular/material';
 import { ClubCardDialogComponent } from 'src/app/shared/club-card-dialog/club-card-dialog.component';
+import { CardFilterData } from 'src/app/models/FilterData/CardFilterData';
 
 @Component({
   selector: 'app-club-card-list',
@@ -24,6 +25,8 @@ export class ClubCardListComponent implements OnInit {
 
   userId: string;
   clubId: number;
+
+  filterData: CardFilterData = {};
 
   constructor(
     private route: ActivatedRoute,
@@ -59,7 +62,8 @@ export class ClubCardListComponent implements OnInit {
         pageNumber,
         this.pageSize,
         this.isUser ? this.userId : null,
-        this.isClub ? this.clubId : null
+        this.isClub ? this.clubId : null,
+        this.filterData
       )
       .subscribe(response => {
         this.cards.push(...response.cards);

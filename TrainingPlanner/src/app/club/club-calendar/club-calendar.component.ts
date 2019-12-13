@@ -19,6 +19,7 @@ import { TrainingService } from 'src/app/services/Training.service';
 import { Training } from 'src/app/models/Training/Training';
 import { DeleteTrainingDialogComponent } from 'src/app/shared/delete-training-dialog/delete-training-dialog.component';
 import { TrainingDetailsDialogComponent } from 'src/app/shared/training-details-dialog/training-details-dialog.component';
+import { TrainingFilterData } from 'src/app/models/FilterData/TrainingFilterData';
 
 @Component({
   selector: 'app-club-calendar',
@@ -72,6 +73,8 @@ export class ClubCalendarComponent implements OnInit {
   isEditable: boolean;
   isLoaded: boolean;
 
+  filterData: TrainingFilterData = {};
+
   constructor(
     private dialog: MatDialog,
     private route: ActivatedRoute,
@@ -83,31 +86,33 @@ export class ClubCalendarComponent implements OnInit {
   ngOnInit() {
     this.clubId = parseInt(this.route.snapshot.paramMap.get('clubId'), 10);
     this.isEditable = this.route.snapshot.data.editable;
-    this.trainingService.getClubTrainings(this.clubId).subscribe(response => {
-      this.trainings = response;
-      this.trainings.forEach(t => {
-        this.events.push({
-          start: new Date(t.startDate),
-          end: new Date(t.endDate),
-          title: t.title,
-          color: {
-            primary: t.primaryColor,
-            secondary: t.secondaryColor
-          },
-          actions: this.isEditable ? this.actions : null,
-          allDay: true,
-          resizable: {
-            beforeStart: false,
-            afterEnd: false
-          },
-          draggable: false,
-          id: t.id
+    this.trainingService
+      .getClubTrainings(this.clubId, this.filterData)
+      .subscribe(response => {
+        this.trainings = response;
+        this.trainings.forEach(t => {
+          this.events.push({
+            start: new Date(t.startDate),
+            end: new Date(t.endDate),
+            title: t.title,
+            color: {
+              primary: t.primaryColor,
+              secondary: t.secondaryColor
+            },
+            actions: this.isEditable ? this.actions : null,
+            allDay: true,
+            resizable: {
+              beforeStart: false,
+              afterEnd: false
+            },
+            draggable: false,
+            id: t.id
+          });
         });
+        this.isLoaded = true;
+        this.viewDate = new Date();
+        this.changeDetectorRef.detectChanges();
       });
-      this.isLoaded = true;
-      this.viewDate = new Date();
-      this.changeDetectorRef.detectChanges();
-    });
   }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {

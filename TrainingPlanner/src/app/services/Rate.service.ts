@@ -8,6 +8,7 @@ import { PagedClubRates } from '../models/Paged/PagedClubRates';
 import { TrainerRateCreate } from '../models/TrainerStuff/TrainerRate/TrainerRateCreate';
 import { TrainerRate } from '../models/TrainerStuff/TrainerRate/TrainerRate';
 import { PagedTrainerRates } from '../models/Paged/PagedTrainerRates';
+import { RateFilterData } from '../models/FilterData/RateFilterData';
 
 @Injectable({
   providedIn: 'root'
@@ -76,12 +77,32 @@ export class RateService {
   getClubRates(
     pageNumber: number,
     pageSize: number,
-    clubId: number
+    clubId: number,
+    filterData: RateFilterData,
+    sortData: string
   ): Observable<PagedClubRates> {
-    const params = new HttpParams()
+    let params = new HttpParams()
       .set('pageNumber', pageNumber.toString())
       .set('pageSize', pageSize.toString())
       .set('clubId', clubId.toString());
+    Object.keys(filterData).forEach(key => {
+      if (filterData[key] != null) {
+        if (filterData[key] instanceof Date) {
+          params = params.set(key, filterData[key].toUTCString());
+        } else if (filterData[key] instanceof Array) {
+          filterData[key].forEach(el => {
+            if (el != null) {
+              params = params.append(key, el);
+            }
+          });
+        } else {
+          params = params.set(key, filterData[key]);
+        }
+      }
+    });
+    if (sortData != null) {
+      params = params.set('sortData', sortData);
+    }
     const options = {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + localStorage.getItem('jwt')
@@ -158,12 +179,32 @@ export class RateService {
   getTrainerRates(
     pageNumber: number,
     pageSize: number,
-    trainerId: number
+    trainerId: number,
+    filterData: RateFilterData,
+    sortData: string
   ): Observable<PagedTrainerRates> {
-    const params = new HttpParams()
+    let params = new HttpParams()
       .set('pageNumber', pageNumber.toString())
       .set('pageSize', pageSize.toString())
       .set('trainerId', trainerId.toString());
+    Object.keys(filterData).forEach(key => {
+      if (filterData[key] != null) {
+        if (filterData[key] instanceof Date) {
+          params = params.set(key, filterData[key].toUTCString());
+        } else if (filterData[key] instanceof Array) {
+          filterData[key].forEach(el => {
+            if (el != null) {
+              params = params.append(key, el);
+            }
+          });
+        } else {
+          params = params.set(key, filterData[key]);
+        }
+      }
+    });
+    if (sortData != null) {
+      params = params.set('sortData', sortData);
+    }
     const options = {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + localStorage.getItem('jwt')

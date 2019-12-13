@@ -6,6 +6,7 @@ import { Trainer } from '../models/Trainer/Trainer';
 import { TrainerUpdate } from '../models/Trainer/TrainerUpdate';
 import { Observable } from 'rxjs';
 import { PagedTrainers } from '../models/Paged/PagedTrainers';
+import { TrainerFilterData } from '../models/FilterData/TrainerFilterData';
 
 @Injectable({
   providedIn: 'root'
@@ -91,6 +92,7 @@ export class TrainerService {
     pageNumber: number,
     pageSize: number,
     userId: string,
+    filterData: TrainerFilterData,
     isFavourite: boolean
   ): Observable<PagedTrainers> {
     let params = new HttpParams()
@@ -99,6 +101,21 @@ export class TrainerService {
     if (isFavourite || userId != null) {
       params = params.set('userId', userId);
     }
+    Object.keys(filterData).forEach(key => {
+      if (filterData[key] != null) {
+        if (filterData[key] instanceof Date) {
+          params = params.set(key, filterData[key].toUTCString());
+        } else if (filterData[key] instanceof Array) {
+          filterData[key].forEach(el => {
+            if (el != null) {
+              params = params.append(key, el);
+            }
+          });
+        } else {
+          params = params.set(key, filterData[key]);
+        }
+      }
+    });
     const options = {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + localStorage.getItem('jwt')

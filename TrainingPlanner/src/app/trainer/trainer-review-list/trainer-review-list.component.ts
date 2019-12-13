@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ReviewDialogComponent } from 'src/app/shared/review-dialog/review-dialog.component';
 import { LoginService } from 'src/app/services/Login.service';
 import { TrainerRateBase } from 'src/app/models/TrainerStuff/TrainerRate/TrainerRateBase';
+import { RateFilterData } from 'src/app/models/FilterData/RateFilterData';
 
 @Component({
   selector: 'app-trainer-review-list',
@@ -28,6 +29,9 @@ export class TrainerReviewListComponent implements OnInit {
   totalPages: number;
   totalCount: number;
   currentPage: number;
+
+  filterData: RateFilterData = {};
+  sortData: string;
 
   constructor(
     private dialog: MatDialog,
@@ -59,7 +63,13 @@ export class TrainerReviewListComponent implements OnInit {
 
   getTrainerRates(pageNumber: number) {
     this.rateService
-      .getTrainerRates(pageNumber, this.pageSize, this.trainerId)
+      .getTrainerRates(
+        pageNumber,
+        this.pageSize,
+        this.trainerId,
+        this.filterData,
+        this.sortData
+      )
       .subscribe(response => {
         this.reviews.push(...response.rates);
         this.totalPages = response.totalPages;

@@ -19,6 +19,7 @@ import { TrainingService } from 'src/app/services/Training.service';
 import { Training } from 'src/app/models/Training/Training';
 import { DeleteTrainingDialogComponent } from 'src/app/shared/delete-training-dialog/delete-training-dialog.component';
 import { TrainingDetailsDialogComponent } from 'src/app/shared/training-details-dialog/training-details-dialog.component';
+import { TrainingFilterData } from 'src/app/models/FilterData/TrainingFilterData';
 
 @Component({
   selector: 'app-trainer-calendar',
@@ -72,6 +73,8 @@ export class TrainerCalendarComponent implements OnInit {
   isEditable: boolean;
   isLoaded: boolean;
 
+  filterData: TrainingFilterData = {};
+
   constructor(
     private dialog: MatDialog,
     private route: ActivatedRoute,
@@ -87,7 +90,7 @@ export class TrainerCalendarComponent implements OnInit {
     );
     this.isEditable = this.route.snapshot.data.editable;
     this.trainingService
-      .getTrainerTrainings(this.trainerId)
+      .getTrainerTrainings(this.trainerId, this.filterData)
       .subscribe(response => {
         this.trainings = response;
         this.trainings.forEach(t => {

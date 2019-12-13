@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ClubBase } from 'src/app/models/Club/ClubBase';
 import { FavouriteClub } from 'src/app/models/Favourite/FavouriteClub';
 import { FavouriteService } from 'src/app/services/Favourite.service';
+import { ClubFilterData } from 'src/app/models/FilterData/ClubFilterData';
 
 @Component({
   selector: 'app-club-list',
@@ -26,6 +27,7 @@ export class ClubListComponent implements OnInit {
   isProfile = false;
 
   @Input() isFavourite: boolean;
+  filterData: ClubFilterData = {};
 
   constructor(
     private clubService: ClubService,
@@ -54,6 +56,7 @@ export class ClubListComponent implements OnInit {
         pageNumber,
         this.pageSize,
         this.isUserAuthenticated ? this.userId : null,
+        this.filterData,
         this.isUser,
         this.isFavourite
       )

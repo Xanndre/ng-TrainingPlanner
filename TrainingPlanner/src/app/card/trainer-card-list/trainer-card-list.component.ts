@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CardService } from 'src/app/services/Card.service';
 import { MatDialog } from '@angular/material';
 import { TrainerCardDialogComponent } from 'src/app/shared/trainer-card-dialog/trainer-card-dialog.component';
+import { CardFilterData } from 'src/app/models/FilterData/CardFilterData';
 
 @Component({
   selector: 'app-trainer-card-list',
@@ -24,6 +25,8 @@ export class TrainerCardListComponent implements OnInit {
 
   userId: string;
   trainerId: number;
+
+  filterData: CardFilterData = {};
 
   constructor(
     private route: ActivatedRoute,
@@ -62,7 +65,8 @@ export class TrainerCardListComponent implements OnInit {
         pageNumber,
         this.pageSize,
         this.isUser ? this.userId : null,
-        this.isTrainer ? this.trainerId : null
+        this.isTrainer ? this.trainerId : null,
+        this.filterData
       )
       .subscribe(response => {
         this.cards.push(...response.cards);

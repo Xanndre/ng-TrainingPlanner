@@ -6,6 +6,7 @@ import { Club } from '../models/Club/Club';
 import { PagedClubs } from '../models/Paged/PagedClubs';
 import { Observable } from 'rxjs';
 import { ClubUpdate } from '../models/Club/ClubUpdate';
+import { ClubFilterData } from '../models/FilterData/ClubFilterData';
 
 @Injectable({
   providedIn: 'root'
@@ -106,6 +107,7 @@ export class ClubService {
     pageNumber: number,
     pageSize: number,
     userId: string,
+    filterData: ClubFilterData,
     isUser: boolean,
     isFavourite: boolean
   ): Observable<PagedClubs> {
@@ -115,6 +117,21 @@ export class ClubService {
     if (isUser || isFavourite || userId != null) {
       params = params.set('userId', userId);
     }
+    Object.keys(filterData).forEach(key => {
+      if (filterData[key] != null) {
+        if (filterData[key] instanceof Date) {
+          params = params.set(key, filterData[key].toUTCString());
+        } else if (filterData[key] instanceof Array) {
+          filterData[key].forEach(el => {
+            if (el != null) {
+              params = params.append(key, el);
+            }
+          });
+        } else {
+          params = params.set(key, filterData[key]);
+        }
+      }
+    });
     const options = {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + localStorage.getItem('jwt')

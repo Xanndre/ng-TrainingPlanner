@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { PagedUsers } from '../models/Paged/PagedUsers';
 import { PagedPartners } from '../models/Paged/PagedPartners';
 import { PagedReservationUser } from '../models/Paged/PagedReservationUser';
+import { UserFilterData } from '../models/FilterData/UserFilterData';
 
 @Injectable({
   providedIn: 'root'
@@ -57,10 +58,29 @@ export class UserService {
       .pipe();
   }
 
-  getUsers(pageNumber: number, pageSize: number): Observable<PagedUsers> {
-    const params = new HttpParams()
+  getUsers(
+    pageNumber: number,
+    pageSize: number,
+    filterData: UserFilterData
+  ): Observable<PagedUsers> {
+    let params = new HttpParams()
       .set('pageNumber', pageNumber.toString())
       .set('pageSize', pageSize.toString());
+    Object.keys(filterData).forEach(key => {
+      if (filterData[key] != null) {
+        if (filterData[key] instanceof Date) {
+          params = params.set(key, filterData[key].toUTCString());
+        } else if (filterData[key] instanceof Array) {
+          filterData[key].forEach(el => {
+            if (el != null) {
+              params = params.append(key, el);
+            }
+          });
+        } else {
+          params = params.set(key, filterData[key]);
+        }
+      }
+    });
     const options = {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + localStorage.getItem('jwt')
@@ -116,12 +136,28 @@ export class UserService {
     pageNumber: number,
     pageSize: number,
     trainingId: number,
-    isSignedUp: boolean
+    isSignedUp: boolean,
+    filterData: UserFilterData
   ): Observable<PagedReservationUser> {
-    const params = new HttpParams()
+    let params = new HttpParams()
       .set('pageNumber', pageNumber.toString())
       .set('pageSize', pageSize.toString())
       .set('trainingId', trainingId.toString());
+    Object.keys(filterData).forEach(key => {
+      if (filterData[key] != null) {
+        if (filterData[key] instanceof Date) {
+          params = params.set(key, filterData[key].toUTCString());
+        } else if (filterData[key] instanceof Array) {
+          filterData[key].forEach(el => {
+            if (el != null) {
+              params = params.append(key, el);
+            }
+          });
+        } else {
+          params = params.set(key, filterData[key]);
+        }
+      }
+    });
     const options = {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + localStorage.getItem('jwt')

@@ -10,6 +10,7 @@ import { TrainerCard } from '../models/TrainerStuff/TrainerCard/TrainerCard';
 import { TrainerCardCreate } from '../models/TrainerStuff/TrainerCard/TrainerCardCreate';
 import { TrainerCardUpdate } from '../models/TrainerStuff/TrainerCard/TrainerCardUpdate';
 import { PagedTrainerCards } from '../models/Paged/PagedTrainerCards';
+import { CardFilterData } from '../models/FilterData/CardFilterData';
 
 @Injectable({
   providedIn: 'root'
@@ -80,7 +81,8 @@ export class CardService {
     pageNumber: number,
     pageSize: number,
     userId: string,
-    clubId: number
+    clubId: number,
+    filterData: CardFilterData
   ): Observable<PagedClubCards> {
     let params = new HttpParams()
       .set('pageNumber', pageNumber.toString())
@@ -91,6 +93,21 @@ export class CardService {
     if (clubId != null) {
       params = params.set('clubId', clubId.toString());
     }
+    Object.keys(filterData).forEach(key => {
+      if (filterData[key] != null) {
+        if (filterData[key] instanceof Date) {
+          params = params.set(key, filterData[key].toUTCString());
+        } else if (filterData[key] instanceof Array) {
+          filterData[key].forEach(el => {
+            if (el != null) {
+              params = params.append(key, el);
+            }
+          });
+        } else {
+          params = params.set(key, filterData[key]);
+        }
+      }
+    });
     const options = {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + localStorage.getItem('jwt')
@@ -175,7 +192,8 @@ export class CardService {
     pageNumber: number,
     pageSize: number,
     userId: string,
-    trainerId: number
+    trainerId: number,
+    filterData: CardFilterData
   ): Observable<PagedTrainerCards> {
     let params = new HttpParams()
       .set('pageNumber', pageNumber.toString())
@@ -186,6 +204,21 @@ export class CardService {
     if (trainerId != null) {
       params = params.set('trainerId', trainerId.toString());
     }
+    Object.keys(filterData).forEach(key => {
+      if (filterData[key] != null) {
+        if (filterData[key] instanceof Date) {
+          params = params.set(key, filterData[key].toUTCString());
+        } else if (filterData[key] instanceof Array) {
+          filterData[key].forEach(el => {
+            if (el != null) {
+              params = params.append(key, el);
+            }
+          });
+        } else {
+          params = params.set(key, filterData[key]);
+        }
+      }
+    });
     const options = {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + localStorage.getItem('jwt')

@@ -4,6 +4,7 @@ import { TrainerBase } from 'src/app/models/Trainer/TrainerBase';
 import { LoginService } from 'src/app/services/Login.service';
 import { FavouriteService } from 'src/app/services/Favourite.service';
 import { FavouriteTrainer } from 'src/app/models/Favourite/FavouriteTrainer';
+import { TrainerFilterData } from 'src/app/models/FilterData/TrainerFilterData';
 
 @Component({
   selector: 'app-trainer-list',
@@ -24,6 +25,7 @@ export class TrainerListComponent implements OnInit {
   isUserAuthenticated: boolean;
 
   @Input() isFavourite: boolean;
+  filterData: TrainerFilterData = {};
 
   constructor(
     private trainerService: TrainerService,
@@ -46,6 +48,7 @@ export class TrainerListComponent implements OnInit {
         pageNumber,
         this.pageSize,
         this.isUserAuthenticated ? this.userId : null,
+        this.filterData,
         this.isFavourite
       )
       .subscribe(response => {

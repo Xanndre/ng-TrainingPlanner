@@ -22,6 +22,7 @@ import { UserCalendarTraining } from 'src/app/models/UserStuff/UserCalendarTrain
 import { UserCalendarTrainingService } from 'src/app/services/UserCalendarTraining.service';
 import { DeleteUserCalendarTrainingDialogComponent } from 'src/app/shared/delete-user-calendar-training-dialog/delete-user-calendar-training-dialog.component';
 import { UserCalendarTrainingDetailsDialogComponent } from 'src/app/shared/user-calendar-training-details-dialog/user-calendar-training-details-dialog.component';
+import { TrainingFilterData } from 'src/app/models/FilterData/TrainingFilterData';
 
 @Component({
   selector: 'app-user-calendar',
@@ -70,6 +71,8 @@ export class UserCalendarComponent implements OnInit {
 
   userCalendarTrainings: UserCalendarTraining[];
 
+  filterData: TrainingFilterData = {};
+
   constructor(
     private dialog: MatDialog,
     private trainingService: TrainingService,
@@ -81,7 +84,7 @@ export class UserCalendarComponent implements OnInit {
   ngOnInit() {
     this.userId = localStorage.getItem('userId');
     this.trainingService
-      .getReservedTrainings(this.userId)
+      .getReservedTrainings(this.userId, this.filterData)
       .subscribe(response => {
         this.trainings = response;
         this.trainings.forEach(t => {

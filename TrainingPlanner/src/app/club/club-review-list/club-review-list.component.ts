@@ -7,6 +7,7 @@ import { ClubRateCreate } from 'src/app/models/ClubStuff/ClubRate/ClubRateCreate
 import { ReviewDialogComponent } from 'src/app/shared/review-dialog/review-dialog.component';
 import { LoginService } from 'src/app/services/Login.service';
 import { ClubRateBase } from 'src/app/models/ClubStuff/ClubRate/ClubRateBase';
+import { RateFilterData } from 'src/app/models/FilterData/RateFilterData';
 
 @Component({
   selector: 'app-club-review-list',
@@ -28,6 +29,9 @@ export class ClubReviewListComponent implements OnInit {
   totalPages: number;
   totalCount: number;
   currentPage: number;
+
+  filterData: RateFilterData = {};
+  sortData: string;
 
   constructor(
     private dialog: MatDialog,
@@ -59,7 +63,13 @@ export class ClubReviewListComponent implements OnInit {
 
   getClubRates(pageNumber: number) {
     this.rateService
-      .getClubRates(pageNumber, this.pageSize, this.clubId)
+      .getClubRates(
+        pageNumber,
+        this.pageSize,
+        this.clubId,
+        this.filterData,
+        this.sortData
+      )
       .subscribe(response => {
         this.reviews.push(...response.rates);
         this.totalPages = response.totalPages;

@@ -3,6 +3,7 @@ import { User } from 'src/app/models/User/User';
 import { UserService } from 'src/app/services/User.service';
 import { ReservationUser } from 'src/app/models/User/ReservationUser';
 import { Training } from 'src/app/models/Training/Training';
+import { UserFilterData } from 'src/app/models/FilterData/UserFilterData';
 
 @Component({
   selector: 'app-user-list',
@@ -19,6 +20,7 @@ export class UserListComponent implements OnInit {
   currentPage: number;
 
   isLoaded = false;
+  filterData: UserFilterData = {};
 
   @Input() isSignList = false;
   @Input() isSignedUp: boolean;
@@ -41,7 +43,8 @@ export class UserListComponent implements OnInit {
           pageNumber,
           this.pageSize,
           this.trainingId,
-          this.isSignedUp
+          this.isSignedUp,
+          this.filterData
         )
         .subscribe(response => {
           this.reservationUsers.push(...response.users);
@@ -53,7 +56,7 @@ export class UserListComponent implements OnInit {
         });
     } else {
       this.userService
-        .getUsers(pageNumber, this.pageSize)
+        .getUsers(pageNumber, this.pageSize, this.filterData)
         .subscribe(response => {
           this.users.push(...response.users);
           this.totalPages = response.totalPages;
