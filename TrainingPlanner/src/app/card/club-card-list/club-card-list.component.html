@@ -5,6 +5,12 @@
     infinite-scroll
     (scrolled)="onScrollDown()"
   >
+    <app-card-filters
+      [filterData]="filterData"
+      [cardNames]="cardNames"
+      [isUser]="this.isUser && !this.isClub"
+      (getCards)="getCards($event, true)"
+    ></app-card-filters>
     <div
       class="row text-muted justify-content-center align-items-center mt-4"
       *ngIf="cards.length == 0 && isClub && !isUser"

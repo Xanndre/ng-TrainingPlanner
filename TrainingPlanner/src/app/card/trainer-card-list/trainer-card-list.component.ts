@@ -13,6 +13,7 @@ import { CardFilterData } from 'src/app/models/FilterData/CardFilterData';
 })
 export class TrainerCardListComponent implements OnInit {
   cards: TrainerCardBase[] = [];
+  cardNames: string[];
 
   isTrainer = false;
   isUser = false;
@@ -46,6 +47,9 @@ export class TrainerCardListComponent implements OnInit {
         10
       );
       this.userId = this.route.snapshot.paramMap.get('id');
+    }
+    if (!(this.isUser && !this.isTrainer)) {
+      this.getCardNames();
     }
     this.getCards(1, true);
   }
@@ -86,5 +90,22 @@ export class TrainerCardListComponent implements OnInit {
       data: { userId: this.userId, trainerId: this.trainerId, action: 'Add' },
       width: '228px'
     });
+  }
+
+  getCardNames() {
+    this.cardService.getTrainerCardNames(this.trainerId).subscribe(response => {
+      this.cardNames = response;
+    });
+  }
+
+  isFilterDataEmpty() {
+    if (
+      this.filterData.isActive === undefined &&
+      this.filterData.keywords === undefined &&
+      this.filterData.name === undefined
+    ) {
+      return true;
+    }
+    return false;
   }
 }

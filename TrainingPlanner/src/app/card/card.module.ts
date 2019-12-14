@@ -10,7 +10,11 @@ import {
   MatCardModule,
   MatButtonModule,
   MatTabsModule,
-  MatDialogModule
+  MatDialogModule,
+  MatFormFieldModule,
+  MatSelectModule,
+  MatRadioModule,
+  MatInputModule
 } from '@angular/material';
 import { CardListComponent } from './card-list/card-list.component';
 import { TrainerCardDialogComponent } from '../shared/trainer-card-dialog/trainer-card-dialog.component';
@@ -20,8 +24,8 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { CardDetailsComponent } from './card-details/card-details.component';
 import { ClubGuardService } from '../guards/ClubGuard.service';
 import { TrainerGuardService } from '../guards/TrainerGuard.service';
-import { ClubCardFiltersComponent } from './club-card-list/club-card-filters/club-card-filters.component';
-import { TrainerCardFiltersComponent } from './trainer-card-list/trainer-card-filters/trainer-card-filters.component';
+import { FormsModule } from '@angular/forms';
+import { CardFiltersComponent } from './card-filters/card-filters.component';
 
 const routes: Routes = [
   {
@@ -64,8 +68,7 @@ const routes: Routes = [
     TrainerCardListItemComponent,
     CardListComponent,
     CardDetailsComponent,
-    ClubCardFiltersComponent,
-    TrainerCardFiltersComponent
+    CardFiltersComponent
   ],
   imports: [
     CommonModule,
@@ -74,8 +77,13 @@ const routes: Routes = [
     MatButtonModule,
     MatTabsModule,
     MatDialogModule,
+    MatFormFieldModule,
     NgbModule,
-    InfiniteScrollModule
+    InfiniteScrollModule,
+    MatSelectModule,
+    MatRadioModule,
+    MatInputModule,
+    FormsModule
   ],
   exports: [
     ClubCardListComponent,

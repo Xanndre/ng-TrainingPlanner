@@ -13,6 +13,7 @@ import { CardFilterData } from 'src/app/models/FilterData/CardFilterData';
 })
 export class ClubCardListComponent implements OnInit {
   cards: ClubCardBase[] = [];
+  cardNames: string[];
 
   isClub = false;
   isUser = false;
@@ -43,6 +44,9 @@ export class ClubCardListComponent implements OnInit {
     } else {
       this.clubId = parseInt(this.route.snapshot.paramMap.get('clubId'), 10);
       this.userId = this.route.snapshot.paramMap.get('id');
+    }
+    if (!(this.isUser && !this.isClub)) {
+      this.getCardNames();
     }
     this.getCards(1, true);
   }
@@ -82,6 +86,12 @@ export class ClubCardListComponent implements OnInit {
     this.dialog.open(ClubCardDialogComponent, {
       data: { userId: this.userId, clubId: this.clubId, action: 'Add' },
       width: '228px'
+    });
+  }
+
+  getCardNames() {
+    this.cardService.getClubCardNames(this.clubId).subscribe(response => {
+      this.cardNames = response;
     });
   }
 }

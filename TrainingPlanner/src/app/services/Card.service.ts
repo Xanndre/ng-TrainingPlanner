@@ -239,4 +239,34 @@ export class CardService {
       })
     );
   }
+
+  getClubCardNames(id: number): Observable<string[]> {
+    const options = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + localStorage.getItem('jwt')
+      })
+    };
+    return this.client
+      .get(`https://localhost:44383/api/Card/club/${id}/names`, options)
+      .pipe(
+        map((res: string[]) => {
+          return res;
+        })
+      );
+  }
+
+  getTrainerCardNames(id: number): Observable<string[]> {
+    const options = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + localStorage.getItem('jwt')
+      })
+    };
+    return this.client
+      .get(`https://localhost:44383/api/Card/trainer/${id}/names`, options)
+      .pipe(
+        map((res: string[]) => {
+          return res;
+        })
+      );
+  }
 }
