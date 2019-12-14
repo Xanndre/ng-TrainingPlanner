@@ -1,4 +1,11 @@
 <div class="p-5" *ngIf="isLoaded">
+  <app-training-filters
+    [filterData]="filterData"
+    [levels]="levels"
+    [hours]="hours"
+    [names]="names"
+    (getTrainings)="getTrainings(true)"
+  ></app-training-filters>
   <div class="row text-center">
     <div class="col-md-4">
       <div class="btn-group w-75">

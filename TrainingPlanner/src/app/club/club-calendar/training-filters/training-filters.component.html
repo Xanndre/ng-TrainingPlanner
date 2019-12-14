@@ -1,3 +1,104 @@
-<p>
-  training-filters works!
-</p>
+<div class="row mt-0 text-muted">
+  <div class="col">
+    <mat-form-field class="tp-inline w-25 text-muted">
+      <mat-label>Type</mat-label>
+      <mat-select
+        [(ngModel)]="filterData.title"
+        placeholder="Type"
+        class="text-muted"
+      >
+        <mat-option
+          *ngFor="let name of names"
+          [value]="name"
+          class="text-muted"
+        >
+          {{ name }}
+        </mat-option>
+        <mat-option [value]="null" class="text-muted">
+          All
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="col">
+    <mat-form-field class="tp-inline w-25 text-muted">
+      <mat-label>Level</mat-label>
+      <mat-select
+        [(ngModel)]="filterData.level"
+        placeholder="Level"
+        class="text-muted"
+      >
+        <mat-option
+          *ngFor="let level of levels"
+          [value]="level"
+          class="text-muted"
+        >
+          {{ level }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="col">
+    <mat-form-field class="tp-inline w-25 text-muted">
+      <mat-label>Start time</mat-label>
+      <mat-select
+        [(ngModel)]="filterData.dateLowerBound"
+        placeholder="Start time"
+        class="text-muted"
+      >
+        <mat-option
+          *ngFor="let hour of hours"
+          [value]="hour"
+          class="text-muted"
+        >
+          {{ hour }}
+        </mat-option>
+        <mat-option [value]="null" class="text-muted">
+          All
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="col">
+    <mat-form-field class="tp-inline w-25 text-muted">
+      <mat-label>End time</mat-label>
+      <mat-select
+        [(ngModel)]="filterData.dateUpperBound"
+        placeholder="End time"
+        class="text-muted"
+      >
+        <mat-option
+          *ngFor="let hour of hours"
+          [value]="hour"
+          class="text-muted"
+        >
+          {{ hour }}
+        </mat-option>
+        <mat-option [value]="null" class="text-muted">
+          All
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>
+<div class="row">
+  <div class="col text-right mb-4">
+    <button
+      mat-raised-button
+      color="primary"
+      class="btn-block btn-no-shadow tp-inline tp-margin-right tp-btn"
+      (click)="filter()"
+    >
+      Filter
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      class="btn-block btn-no-shadow tp-inline tp-margin-left tp-btn"
+      (click)="clear()"
+      [disabled]="isClear"
+    >
+      Clear
+    </button>
+  </div>
+</div>

@@ -74,6 +74,34 @@ export class ClubCalendarComponent implements OnInit {
   isLoaded: boolean;
 
   filterData: TrainingFilterData = {};
+  names: string[] = [];
+  levels: string[] = ['Beginner', 'Intermediate', 'Advanced', 'All'];
+  hours: string[] = [
+    '01:00 AM',
+    '02:00 AM',
+    '03:00 AM',
+    '04:00 AM',
+    '05:00 AM',
+    '06:00 AM',
+    '07:00 AM',
+    '08:00 AM',
+    '09:00 AM',
+    '10:00 AM',
+    '11:00 AM',
+    '12:00 AM',
+    '01:00 PM',
+    '02:00 PM',
+    '03:00 PM',
+    '04:00 PM',
+    '05:00 PM',
+    '06:00 PM',
+    '07:00 PM',
+    '08:00 PM',
+    '09:00 PM',
+    '10:00 PM',
+    '11:00 PM',
+    '12:00 PM'
+  ];
 
   constructor(
     private dialog: MatDialog,
@@ -86,33 +114,7 @@ export class ClubCalendarComponent implements OnInit {
   ngOnInit() {
     this.clubId = parseInt(this.route.snapshot.paramMap.get('clubId'), 10);
     this.isEditable = this.route.snapshot.data.editable;
-    this.trainingService
-      .getClubTrainings(this.clubId, this.filterData)
-      .subscribe(response => {
-        this.trainings = response;
-        this.trainings.forEach(t => {
-          this.events.push({
-            start: new Date(t.startDate),
-            end: new Date(t.endDate),
-            title: t.title,
-            color: {
-              primary: t.primaryColor,
-              secondary: t.secondaryColor
-            },
-            actions: this.isEditable ? this.actions : null,
-            allDay: true,
-            resizable: {
-              beforeStart: false,
-              afterEnd: false
-            },
-            draggable: false,
-            id: t.id
-          });
-        });
-        this.isLoaded = true;
-        this.viewDate = new Date();
-        this.changeDetectorRef.detectChanges();
-      });
+    this.getTrainings(true);
   }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
@@ -227,5 +229,43 @@ export class ClubCalendarComponent implements OnInit {
     this.router.navigate([
       `profile/clubs/${this.clubId}/calendar/trainings/add_recurrent`
     ]);
+  }
+
+  getTrainings(isClear: boolean = false) {
+    if (isClear) {
+      this.trainings = [];
+      this.events = [];
+    }
+    this.trainingService
+      .getClubTrainings(this.clubId, this.filterData)
+      .subscribe(response => {
+        this.activeDayIsOpen = false;
+        this.trainings = response;
+        this.trainings.forEach(t => {
+          if (!this.names.includes(t.title)) {
+            this.names.push(t.title);
+          }
+          this.events.push({
+            start: new Date(t.startDate),
+            end: new Date(t.endDate),
+            title: t.title,
+            color: {
+              primary: t.primaryColor,
+              secondary: t.secondaryColor
+            },
+            actions: this.isEditable ? this.actions : null,
+            allDay: true,
+            resizable: {
+              beforeStart: false,
+              afterEnd: false
+            },
+            draggable: false,
+            id: t.id
+          });
+        });
+        this.isLoaded = true;
+        this.viewDate = new Date();
+        this.changeDetectorRef.detectChanges();
+      });
   }
 }

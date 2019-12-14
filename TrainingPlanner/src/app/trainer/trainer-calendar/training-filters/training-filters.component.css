@@ -1,0 +1,22 @@
+::ng-deep .mat-select-value {
+  color: #6c757d;
+}
+
+::ng-deep .mat-input-element:enabled {
+  color: #6c757d;
+}
+
+.tp-inline {
+  display: inline;
+}
+.tp-margin-left {
+  margin-left: 2px;
+}
+
+.tp-margin-right {
+  margin-right: 2px;
+}
+
+.tp-btn {
+  width: 150px;
+}

@@ -90,7 +90,8 @@ export class TrainingService {
     const options = {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + localStorage.getItem('jwt')
-      })
+      }),
+      params
     };
     return this.client
       .get(`https://localhost:44383/api/Training/trainer/${trainerId}`, options)
@@ -124,7 +125,8 @@ export class TrainingService {
     const options = {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + localStorage.getItem('jwt')
-      })
+      }),
+      params
     };
     return this.client
       .get(`https://localhost:44383/api/Training/club/${clubId}`, options)
