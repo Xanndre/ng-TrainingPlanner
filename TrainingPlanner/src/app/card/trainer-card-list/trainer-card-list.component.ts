@@ -97,15 +97,4 @@ export class TrainerCardListComponent implements OnInit {
       this.cardNames = response;
     });
   }
-
-  isFilterDataEmpty() {
-    if (
-      this.filterData.isActive === undefined &&
-      this.filterData.keywords === undefined &&
-      this.filterData.name === undefined
-    ) {
-      return true;
-    }
-    return false;
-  }
 }
