@@ -1,3 +1,40 @@
-<p>
-  trainer-review-filters works!
-</p>
+<div class="row mt-3 text-muted">
+  <div class="col text-right">
+    <mat-form-field class="tp-inline text-muted tp-margin">
+      <mat-label>Rate</mat-label>
+      <mat-select
+        [(value)]="filterData.rate"
+        placeholder="Rate"
+        class="text-muted"
+        (valueChange)="emitRate()"
+      >
+        <mat-option
+          *ngFor="let rate of rates"
+          [value]="rate"
+          class="text-muted"
+        >
+          {{ rate }}
+        </mat-option>
+        <mat-option [value]="null" class="text-muted">
+          All
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="tp-inline text-muted tp-p-0 tp-margin">
+      <mat-label>Sort</mat-label>
+      <mat-select
+        placeholder="Sort"
+        [(ngModel)]="sortData"
+        (selectionChange)="emitSortData()"
+      >
+        <mat-option
+          class="text-muted"
+          *ngFor="let sort of sortChoice"
+          [value]="sort.value"
+        >
+          {{ sort.viewValue }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>

@@ -86,7 +86,7 @@ export class RateService {
       .set('pageSize', pageSize.toString())
       .set('clubId', clubId.toString());
     Object.keys(filterData).forEach(key => {
-      if (filterData[key] != null) {
+      if (filterData[key] !== null) {
         if (filterData[key] instanceof Date) {
           params = params.set(key, filterData[key].toUTCString());
         } else if (filterData[key] instanceof Array) {

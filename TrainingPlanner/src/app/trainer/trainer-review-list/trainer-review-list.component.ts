@@ -5,7 +5,6 @@ import { MatDialog } from '@angular/material';
 import { RateService } from 'src/app/services/Rate.service';
 import { ActivatedRoute } from '@angular/router';
 import { ReviewDialogComponent } from 'src/app/shared/review-dialog/review-dialog.component';
-import { LoginService } from 'src/app/services/Login.service';
 import { TrainerRateBase } from 'src/app/models/TrainerStuff/TrainerRate/TrainerRateBase';
 import { RateFilterData } from 'src/app/models/FilterData/RateFilterData';
 
@@ -36,32 +35,28 @@ export class TrainerReviewListComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private rateService: RateService,
-    private route: ActivatedRoute,
-    private loginService: LoginService
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
     this.userId = localStorage.getItem('userId');
     this.trainerId = parseInt(this.route.snapshot.paramMap.get('id'), 10);
-    this.isUserAuthenticated = this.loginService.isUserAuthenticated();
-    if (this.isUserAuthenticated) {
-      this.rateService
-        .getTrainerRate(this.userId, this.trainerId)
-        .subscribe(response => {
-          if (response) {
-            this.isEdit = true;
-          }
-          this.rate = response;
-          this.getTrainerRates(1);
-          this.isLoaded = true;
-        });
-    } else {
-      this.getTrainerRates(1);
-      this.isLoaded = true;
-    }
+    this.rateService
+      .getTrainerRate(this.userId, this.trainerId)
+      .subscribe(response => {
+        if (response) {
+          this.isEdit = true;
+        }
+        this.rate = response;
+        this.getTrainerRates(1, true);
+        this.isLoaded = true;
+      });
   }
 
-  getTrainerRates(pageNumber: number) {
+  getTrainerRates(pageNumber: number, isClear: boolean = false) {
+    if (isClear) {
+      this.reviews = [];
+    }
     this.rateService
       .getTrainerRates(
         pageNumber,
@@ -71,6 +66,9 @@ export class TrainerReviewListComponent implements OnInit {
         this.sortData
       )
       .subscribe(response => {
+        if (this.filterData.rate === null) {
+          this.reviews = [];
+        }
         this.reviews.push(...response.rates);
         this.totalPages = response.totalPages;
         this.totalCount = response.totalCount;

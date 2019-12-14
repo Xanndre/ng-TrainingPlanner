@@ -5,7 +5,7 @@
     infinite-scroll
     (scrolled)="onScrollDown()"
   >
-    <div class="tp-right mt-4" *ngIf="isUserAuthenticated">
+    <div class="tp-right mt-4">
       <button
         *ngIf="!isEdit"
         mat-raised-button
@@ -33,12 +33,20 @@
         Delete Review
       </button>
     </div>
-    <mat-card class="mt-4" *ngFor="let review of reviews">
+    <app-trainer-review-filters
+      [filterData]="filterData"
+      [(sortData)]="sortData"
+      (getRates)="getTrainerRates($event, true)"
+    ></app-trainer-review-filters>
+    <mat-card
+      *ngFor="let review of reviews"
+      [ngClass]="review === reviews[0] ? '' : 'mt-4'"
+    >
       <app-trainer-review-list-item
         [rate]="review"
       ></app-trainer-review-list-item>
     </mat-card>
-    <mat-card class="mt-4" *ngIf="reviews.length == 0">
+    <mat-card class="mt-4" *ngIf="reviews.length == 0 && filterData == {}">
       <div class="row text-muted justify-content-center align-items-center">
         This trainer has no reviews.
       </div></mat-card

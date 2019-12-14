@@ -1,0 +1,15 @@
+.tp-p-0 {
+  padding-bottom: 0px;
+}
+
+.tp-margin {
+  margin-left: 10px;
+}
+
+::ng-deep .mat-select-value {
+  color: #6c757d;
+}
+
+::ng-deep .mat-input-element:enabled {
+  color: #6c757d;
+}
