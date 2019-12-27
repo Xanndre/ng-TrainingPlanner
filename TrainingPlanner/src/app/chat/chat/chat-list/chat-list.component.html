@@ -1,0 +1,47 @@
+<ng-template [ngIf]="chats && chats.length > 0">
+  <div class="card mt-2">
+    <ul class="list-group list-group-flush overflow-auto">
+      <li
+        class="list-group-item chat-item"
+        *ngFor="let chat of chats"
+        (click)="openChat.emit(chat)"
+        [ngClass]="{ isActive: currentChat && currentChat.id === chat.id }"
+      >
+        <div class="row">
+          <div class="col-8">
+            <p class="m-0 text-muted">
+              {{
+                chat.receiverId === userId ? chat.senderName : chat.receiverName
+              }}
+            </p>
+            <small class="text-muted d-block mt-2">
+              {{ chat.lastMessage | date: 'MMM d, H:mm:ss' }}
+            </small>
+          </div>
+          <div class="col-4">
+            <img
+              *ngIf="chat.receiverId === userId"
+              class="tp-image"
+              src="{{
+                chat.senderProfilePic != null
+                  ? chat.senderProfilePic
+                  : 'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png'
+              }}"
+              alt="Profile Picture"
+            />
+            <img
+              *ngIf="chat.senderId === userId"
+              class="tp-image float-right"
+              src="{{
+                chat.receiverProfilePic != null
+                  ? chat.receiverProfilePic
+                  : 'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png'
+              }}"
+              alt="Profile Picture"
+            />
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</ng-template>

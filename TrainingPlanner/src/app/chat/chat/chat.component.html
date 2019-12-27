@@ -1,0 +1,26 @@
+<div *ngIf="isLoaded">
+  <div class="container-fluid">
+    <div class="row chat">
+      <div
+        class="col-lg-9 col-12 messages coll "
+        [ngClass]="{ show: isChatOpen }"
+      >
+        <app-chat-details
+          *ngIf="currentChat"
+          [(chat)]="currentChat"
+        ></app-chat-details>
+        <mat-card *ngIf="!currentChat" class="text-muted text-center mt-4">
+          Choose a chat from the list beside.
+        </mat-card>
+      </div>
+      <div class="col-lg-3 col-12 pt-3 pl-0">
+        <app-chat-list
+          [chats]="chats"
+          [currentChat]="currentChat"
+          (changeChat)="changeChat($event)"
+          (openChat)="openChat($event)"
+        ></app-chat-list>
+      </div>
+    </div>
+  </div>
+</div>

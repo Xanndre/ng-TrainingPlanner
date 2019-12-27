@@ -1,0 +1,19 @@
+<div
+  class="message shadow rounded-lg m-2 mr-3 px-2 py-1"
+  [ngClass]="{ messageOwner: isMessageOwner }"
+>
+  <p
+    class="msg m-0"
+    [ngClass]="{ normalMessage: !isSmallChat, 'text-muted': !isMessageOwner }"
+  >
+    <span class="msg">{{ message.content }}</span>
+  </p>
+  <small
+    class="text-muted d-block"
+    [ngClass]="{
+      'text-right text-owner-muted': isMessageOwner,
+      normalDate: !isSmallChat
+    }"
+    >{{ message.sentAt | date: 'MMM d, H:mm:ss' }}</small
+  >
+</div>

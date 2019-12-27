@@ -3,6 +3,7 @@ import { LoginService } from '../../services/Login.service';
 import { Router, NavigationStart } from '@angular/router';
 import { ClubService } from 'src/app/services/Club.service';
 import { Subscription } from 'rxjs';
+import { ChatHubService } from 'src/app/services/ChatHub.service';
 
 export let browserRefresh = false;
 
@@ -24,12 +25,14 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
     if (this.isUserAuthenticated()) {
       this.userId = localStorage.getItem('userId');
+      this.chatHubService.initHubConnection();
       this.clubService.getClubIds(this.userId).subscribe(response => {
         this.clubIds = response;
         this.getClubQuantity();
         this.isLoaded = true;
       });
     } else {
+      this.chatHubService.closeHubConnection();
       this.isLoaded = true;
     }
   }
@@ -37,7 +40,8 @@ export class NavbarComponent implements OnInit {
   constructor(
     private loginService: LoginService,
     private router: Router,
-    private clubService: ClubService
+    private clubService: ClubService,
+    private chatHubService: ChatHubService
   ) {
     this.subscription = router.events.subscribe(event => {
       if (event instanceof NavigationStart) {

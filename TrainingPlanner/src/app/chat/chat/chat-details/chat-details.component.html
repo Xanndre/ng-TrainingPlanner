@@ -1,0 +1,34 @@
+<div class="message-container">
+  <mat-card *ngIf="chatCreate" class="text-muted text-center mt-4">
+    Write a message to start conversation!
+  </mat-card>
+  <h3 class="text-muted text-center mt-2">
+    {{ chat.receiverId === userId ? chat.senderName : chat.receiverName }}
+  </h3>
+  <div
+    #messages
+    class="messages"
+    infiniteScroll
+    [scrollWindow]="false"
+    (scrolledUp)="loadMessages(currentPageNumber + 1)"
+  >
+    <app-chat-message
+      class="message"
+      [ngClass]="{ messageOwner: message.senderId === userId }"
+      *ngFor="let message of currentMessages.reverse()"
+      [message]="message"
+      [isMessageOwner]="message.senderId === userId"
+      [isSmallChat]="isSmallChat"
+    ></app-chat-message>
+  </div>
+  <div class="row send-message">
+    <div class="col">
+      <textarea
+        class="form-control message-text"
+        [rows]="2"
+        (keydown.enter)="sendMessage(); (false)"
+        [(ngModel)]="newMessage"
+      ></textarea>
+    </div>
+  </div>
+</div>
