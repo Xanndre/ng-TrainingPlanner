@@ -37,7 +37,7 @@ export class ChatDetailsComponent
     this.chatChange.emit(this.chatValue);
   }
   userId: string;
-  pageSize = 4;
+  pageSize = 7;
   chatValue: Chat;
   isScrollingAllowed: boolean;
   pagedMessages: PagedMessages;
