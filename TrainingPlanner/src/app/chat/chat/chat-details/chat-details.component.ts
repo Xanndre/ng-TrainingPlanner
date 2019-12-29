@@ -141,7 +141,9 @@ export class ChatDetailsComponent
         this.newMessage,
         this.userId,
         this.chat.id,
-        this.chat.receiverId
+        this.userId === this.chat.receiverId
+          ? this.chat.senderId
+          : this.chat.receiverId
       );
       this.newMessage = '';
     }
