@@ -4,9 +4,7 @@ import {
   OnChanges,
   AfterViewInit,
   OnDestroy,
-  Output,
   Input,
-  EventEmitter,
   SimpleChanges
 } from '@angular/core';
 import { Chat } from 'src/app/models/Chat/Chat';
@@ -26,15 +24,11 @@ import { DataTransferService } from 'src/app/services/DataTransfer.service';
 })
 export class ChatDetailsComponent
   implements OnInit, OnDestroy, OnChanges, AfterViewInit {
-  @Output() chatChange = new EventEmitter<Chat>();
-
-  @Input() isSmallChat = false;
   @Input() get chat(): Chat {
     return this.chatValue;
   }
   set chat(val) {
     this.chatValue = val;
-    this.chatChange.emit(this.chatValue);
   }
   userId: string;
   pageSize = 7;
@@ -44,7 +38,6 @@ export class ChatDetailsComponent
   currentPageNumber = 1;
   currentMessages: Message[] = [];
   newMessage = '';
-  loading: boolean;
   loadingNewMessages: boolean;
   isCreatingChat: boolean;
   chatCreate: ChatCreate;
@@ -109,8 +102,8 @@ export class ChatDetailsComponent
       this.loadingNewMessages = true;
       this.chatService
         .getAllMessages(pageNumber, this.pageSize, this.chat.id)
-        .subscribe(res => {
-          this.pagedMessages = res;
+        .subscribe(response => {
+          this.pagedMessages = response;
           this.currentPageNumber = this.pagedMessages.currentPage;
           this.currentMessages = this.currentMessages.concat(
             this.pagedMessages.messages
@@ -123,11 +116,9 @@ export class ChatDetailsComponent
   sendMessage() {
     if (this.chatCreate) {
       this.isCreatingChat = true;
-      this.loading = true;
-      this.chatService.createChat(this.chatCreate).subscribe(res => {
-        this.chat = res;
+      this.chatService.createChat(this.chatCreate).subscribe(response => {
+        this.chat = response;
         this.chatCreate = null;
-        this.loading = false;
         this.send();
       });
     } else {

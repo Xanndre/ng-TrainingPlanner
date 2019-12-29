@@ -1,11 +1,10 @@
 <ng-template [ngIf]="chats && chats.length > 0">
   <div class="card mt-2">
-    <ul class="list-group list-group-flush overflow-auto">
+    <ul class="list-group list-group-flush">
       <li
-        class="list-group-item chat-item"
+        class="list-group-item"
         *ngFor="let chat of chats"
         (click)="openChat.emit(chat)"
-        [ngClass]="{ isActive: currentChat && currentChat.id === chat.id }"
       >
         <div class="row">
           <div class="col-8">

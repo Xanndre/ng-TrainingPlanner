@@ -1,18 +1,14 @@
 <div
-  class="message shadow rounded-lg m-2 mr-3 px-2 py-1"
-  [ngClass]="{ messageOwner: isMessageOwner }"
+  class="tp-message shadow rounded-lg m-2 mr-3 px-2 py-1"
+  [ngClass]="{ 'tp-sender-message': isSender }"
 >
-  <p
-    class="msg m-0"
-    [ngClass]="{ normalMessage: !isSmallChat, 'text-muted': !isMessageOwner }"
-  >
-    <span class="msg">{{ message.content }}</span>
+  <p class="tp-content m-0 tp-msg" [ngClass]="{ 'text-muted': !isSender }">
+    <span class="tp-content">{{ message.content }}</span>
   </p>
   <small
-    class="text-muted d-block"
+    class="text-muted d-block tp-date"
     [ngClass]="{
-      'text-right text-owner-muted': isMessageOwner,
-      normalDate: !isSmallChat
+      'text-right tp-textarea': isSender
     }"
     >{{ message.sentAt | date: 'MMM d, H:mm:ss' }}</small
   >

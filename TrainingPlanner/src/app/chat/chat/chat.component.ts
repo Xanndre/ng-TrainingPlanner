@@ -13,8 +13,6 @@ export class ChatComponent implements OnInit, OnDestroy {
   chats: Chat[] = [];
   currentChat: Chat;
   userId: string;
-  isChatOpen: boolean;
-
   isLoaded: true;
 
   constructor(
@@ -24,9 +22,9 @@ export class ChatComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.chatService.getAllChats().subscribe(res => {
-      this.chats = res.sort(this.sortByDate);
-      this.fetchDataTransferData();
+    this.chatService.getAllChats().subscribe(response => {
+      this.chats = response.sort(this.sortChats);
+      this.getChatInfo();
       this.isLoaded = true;
     });
 
@@ -39,34 +37,20 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.chatHubService.removeMessageSentHandler(this.messageHandler);
   }
 
-  toggleChat() {
-    this.isChatOpen = !this.isChatOpen;
-  }
-
-  fetchDataTransferData() {
+  getChatInfo() {
     const isCreateChat = this.dataTransferService.getIsCreateChat();
     const chatId = this.dataTransferService.getChatId();
     this.dataTransferService.setIsCreateChat(null);
     this.dataTransferService.setChatId(null);
     if (isCreateChat) {
       this.currentChat = this.createEmptyChat();
-      this.isChatOpen = true;
     } else if (chatId) {
       this.currentChat = this.chats.find(c => c.id === chatId);
-      this.isChatOpen = true;
     }
-  }
-
-  changeChat() {
-    this.currentChat = null;
-    this.chatService.getAllChats().subscribe(res => {
-      this.chats = res.sort(this.sortByDate);
-    });
   }
 
   openChat(chat) {
     this.currentChat = chat;
-    this.toggleChat();
   }
 
   messageHandler = (message, chatId) => {
@@ -79,16 +63,19 @@ export class ChatComponent implements OnInit, OnDestroy {
       this.chats.splice(this.chats.indexOf(chat), 1);
       this.chats.unshift(chat);
     } else {
-      this.chatService.getChatById(chatId).subscribe(res => {
-        if (res.senderId === this.userId || res.receiverId === this.userId) {
-          this.chats.unshift(res);
+      this.chatService.getChatById(chatId).subscribe(response => {
+        if (
+          response.senderId === this.userId ||
+          response.receiverId === this.userId
+        ) {
+          this.chats.unshift(response);
         }
       });
     }
   };
 
-  sortByDate(one, two) {
-    return one.lastMessage > two.lastMessage ? -1 : 1;
+  sortChats(first, second) {
+    return first.lastMessage > second.lastMessage ? -1 : 1;
   }
 
   createEmptyChat(): Chat {

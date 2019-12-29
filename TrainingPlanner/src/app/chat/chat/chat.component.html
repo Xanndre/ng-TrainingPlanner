@@ -1,10 +1,7 @@
 <div *ngIf="isLoaded">
   <div class="container-fluid">
-    <div class="row chat">
-      <div
-        class="col-lg-9 col-12 messages coll "
-        [ngClass]="{ show: isChatOpen }"
-      >
+    <div class="row tp-chat">
+      <div class="col-lg-9 col-12 tp-messages">
         <app-chat-details
           *ngIf="currentChat"
           [(chat)]="currentChat"
@@ -17,7 +14,6 @@
         <app-chat-list
           [chats]="chats"
           [currentChat]="currentChat"
-          (changeChat)="changeChat($event)"
           (openChat)="openChat($event)"
         ></app-chat-list>
       </div>

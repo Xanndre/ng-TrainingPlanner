@@ -1,4 +1,4 @@
-<div class="message-container">
+<div class="tp-container">
   <mat-card *ngIf="chatCreate" class="text-muted text-center mt-4">
     Write a message to start conversation!
   </mat-card>
@@ -7,24 +7,23 @@
   </h3>
   <div
     #messages
-    class="messages"
+    class="tp-messages"
     infiniteScroll
     [scrollWindow]="false"
     (scrolledUp)="loadMessages(currentPageNumber + 1)"
   >
     <app-chat-message
-      class="message"
-      [ngClass]="{ messageOwner: message.senderId === userId }"
+      class="tp-message"
+      [ngClass]="{ sender: message.senderId === userId }"
       *ngFor="let message of currentMessages.reverse()"
       [message]="message"
-      [isMessageOwner]="message.senderId === userId"
-      [isSmallChat]="isSmallChat"
+      [isSender]="message.senderId === userId"
     ></app-chat-message>
   </div>
-  <div class="row send-message">
+  <div class="row tp-textarea-row">
     <div class="col">
       <textarea
-        class="form-control message-text"
+        class="form-control tp-textarea"
         [rows]="2"
         (keydown.enter)="sendMessage(); (false)"
         [(ngModel)]="newMessage"

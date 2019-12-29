@@ -1,14 +1,14 @@
-.message {
+.tp-message {
   background-color: #fff;
   max-width: 100%;
 }
 
-.messageOwner {
+.tp-sender-message {
   background-color: #a0a9de;
   color: #fff;
 }
 
-.msg {
+.tp-content {
   white-space: pre-wrap;
   overflow-wrap: break-word;
   font-size: small;
@@ -16,19 +16,15 @@
   width: 100%;
 }
 
-.text-owner-muted {
+.tp-textarea {
   color: white !important;
 }
 
-.normalMessage {
+.tp-msg {
   padding: 8px 10px !important;
   font-size: 16px;
 }
-.normalDate {
+.tp-date {
   padding-left: 10px !important;
   padding-right: 10px !important;
-}
-
-.text-muted:not(.normalDate) {
-  font-size: x-small;
 }

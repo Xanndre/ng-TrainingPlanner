@@ -7,8 +7,7 @@ import { Message } from 'src/app/models/Chat/Message';
   styleUrls: ['./chat-message.component.css']
 })
 export class ChatMessageComponent {
-  @Input() isMessageOwner: boolean;
-  @Input() isSmallChat: boolean;
+  @Input() isSender: boolean;
   @Input() message: Message;
 
   constructor() {}
