@@ -118,7 +118,9 @@ export class ClubReviewListComponent implements OnInit {
   editReview(rowObj: ClubRate) {
     this.rate.rate = rowObj.rate;
     this.rate.description = rowObj.description;
-    this.rateService.updateClubRate(this.rate).subscribe(() => {});
+    this.rateService.updateClubRate(this.rate).subscribe(() => {
+      window.location.reload();
+    });
   }
 
   deleteReview(rowObj: ClubRate) {

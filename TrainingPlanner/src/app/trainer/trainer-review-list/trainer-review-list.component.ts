@@ -118,7 +118,9 @@ export class TrainerReviewListComponent implements OnInit {
   editReview(rowObj: TrainerRate) {
     this.rate.rate = rowObj.rate;
     this.rate.description = rowObj.description;
-    this.rateService.updateTrainerRate(this.rate).subscribe(() => {});
+    this.rateService.updateTrainerRate(this.rate).subscribe(() => {
+      window.location.reload();
+    });
   }
 
   deleteReview(rowObj: TrainerRate) {

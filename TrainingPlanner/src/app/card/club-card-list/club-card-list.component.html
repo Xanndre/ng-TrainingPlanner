@@ -13,19 +13,19 @@
     ></app-card-filters>
     <div
       class="row text-muted justify-content-center align-items-center mt-4"
-      *ngIf="cards.length == 0 && isClub && !isUser && filterData == {}"
+      *ngIf="cards.length == 0 && isClub && !isUser && isEmpty(filterData)"
     >
       You haven't sold any cards yet.
     </div>
     <div
       class="row text-muted justify-content-center align-items-center mt-4"
-      *ngIf="cards.length == 0 && isClub && isUser && filterData == {}"
+      *ngIf="cards.length == 0 && isClub && isUser && isEmpty(filterData)"
     >
       This user hasn't bought any card in your club yet.
     </div>
     <div
       class="row text-muted justify-content-center align-items-center mt-4"
-      *ngIf="cards.length == 0 && !isClub && isUser && filterData == {}"
+      *ngIf="cards.length == 0 && !isClub && isUser && isEmpty(filterData)"
     >
       You haven't bought any cards yet.
     </div>
@@ -41,7 +41,7 @@
     </div>
     <div
       class="mt-4 tp-center"
-      *ngIf="isClub && !isUser && cards.length == 0 && filterData == {}"
+      *ngIf="isClub && !isUser && cards.length == 0 && isEmpty(filterData)"
     >
       <button
         mat-raised-button
