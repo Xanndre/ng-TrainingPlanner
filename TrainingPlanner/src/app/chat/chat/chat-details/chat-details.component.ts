@@ -5,7 +5,9 @@ import {
   AfterViewInit,
   OnDestroy,
   Input,
-  SimpleChanges
+  SimpleChanges,
+  Output,
+  EventEmitter
 } from '@angular/core';
 import { Chat } from 'src/app/models/Chat/Chat';
 import { PagedMessages } from 'src/app/models/Paged/PagedMessages';
@@ -24,11 +26,13 @@ import { DataTransferService } from 'src/app/services/DataTransfer.service';
 })
 export class ChatDetailsComponent
   implements OnInit, OnDestroy, OnChanges, AfterViewInit {
+  @Output() chatChange = new EventEmitter<Chat>();
   @Input() get chat(): Chat {
     return this.chatValue;
   }
   set chat(val) {
     this.chatValue = val;
+    this.chatChange.emit(this.chatValue);
   }
   userId: string;
   pageSize = 7;

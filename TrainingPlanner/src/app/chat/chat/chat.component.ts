@@ -22,6 +22,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    this.userId = localStorage.getItem('userId');
     this.chatService.getAllChats().subscribe(response => {
       this.chats = response.sort(this.sortChats);
       this.getChatInfo();

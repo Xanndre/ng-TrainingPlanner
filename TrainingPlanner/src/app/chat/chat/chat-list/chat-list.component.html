@@ -8,12 +8,22 @@
       >
         <div class="row">
           <div class="col-8">
-            <p class="m-0 text-muted">
+            <p
+              class="m-0 text-muted"
+              [ngClass]="{
+                'font-weight-bold': currentChat && currentChat.id === chat.id
+              }"
+            >
               {{
                 chat.receiverId === userId ? chat.senderName : chat.receiverName
               }}
             </p>
-            <small class="text-muted d-block mt-2">
+            <small
+              class="text-muted d-block mt-2"
+              [ngClass]="{
+                'font-weight-bold': currentChat && currentChat.id === chat.id
+              }"
+            >
               {{ chat.lastMessage | date: 'MMM d, H:mm:ss' }}
             </small>
           </div>

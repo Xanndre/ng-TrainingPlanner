@@ -1,3 +1,7 @@
 .tp-image {
   width: 60px;
 }
+
+.list-group-item {
+  cursor: pointer;
+}

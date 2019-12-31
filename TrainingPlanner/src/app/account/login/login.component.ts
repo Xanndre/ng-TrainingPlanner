@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
         const res = response as any;
         localStorage.setItem('jwt', res.token);
         localStorage.setItem('userId', res.id);
-        this.router.navigate(['/profile/user']);
+        this.router.navigate(['/calendar']);
       },
       err => {
         if (err.error === 'Email not confirmed') {
@@ -104,7 +104,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('jwt', response.token);
         localStorage.setItem('userId', response.id);
         localStorage.setItem('username', response.username);
-        this.router.navigate(['/profile/user']);
+        this.router.navigate(['/calendar']);
       },
       () => {
         this.showError('Invalid login attempt.');
